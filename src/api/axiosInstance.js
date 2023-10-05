@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
 });
 
 // Retrieving the token
-const token = localStorage.getItem("jwtToken");
+const token = localStorage.getItem("token");
 // adding the authorization token
 if (token) {
   axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
