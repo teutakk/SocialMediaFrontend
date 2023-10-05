@@ -1,0 +1,34 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* set up the colors of project, those are not the actual colors of our project */
+  --color-primary: red;
+  --color-primary-light: blue;
+  --color-primary-dark: green;
+
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: -#ccc;
+
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+
+  /* set up any shadow we will use  */
+  --shadow-primary: black;
+
+  /* here we setup breakpoints for media queries, those are not the real values */
+  --breakpoint-notepad: 800px;
+  --breakpoint-phone: 500px;
+}
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
