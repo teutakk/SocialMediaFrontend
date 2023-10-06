@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux";
 
 const Login = () => {
   const dispatch = useDispatch();
-  cosnt[(formData, setFormData)] = useState({
-    username: "",
+  const [formData, setFormData] = useState({
+    email: "",
     password: "",
   });
 
@@ -25,16 +25,11 @@ const Login = () => {
     <div>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            onChange={handleChange}
-          />
+          <label htmlFor="email">Email</label>
+          <input type="email" name="email" id="email" onChange={handleChange} />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             name="password"
@@ -44,6 +39,10 @@ const Login = () => {
         </div>
         <button type="submit">Login</button>
       </form>
+      <div>
+        <p>Dont have an account ?!</p>
+        <a href="register">Sign Up</a>
+      </div>
     </div>
   );
 };
