@@ -1,6 +1,5 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
-import axios from "axios";
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
@@ -12,9 +11,19 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (userData) => {
-    const response = await axiosInstance.post(API_ROUTES.register, userData);
+    const { firstName, lastName, email, password, birthday, gender } = userData;
+    const newUserData = {
+      firstName: firstName.toLowerCase(),
+      lastName: lastName.toLowerCase(),
+      email: email.toLowerCase(),
+      password: password.toLowerCase(),
+      birthday: birthday.toLowerCase(),
+      gender: gender.toLowerCase(),
+    };
+    console.log("newUserData: ", newUserData);
+    const response = await axiosInstance.post(API_ROUTES.login, userData);
     // check form of response
-    console.log("response:", response);
+    console.log("response:", response.data);
     return response.data;
   }
 );
@@ -30,8 +39,6 @@ const registerSlice = createSlice({
         state.error = null;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
-        console.log("action payload", action.payload);
-        console.log("state", state);
         state.registeredUser = action.payload;
         state.status = "succeeded";
       })
