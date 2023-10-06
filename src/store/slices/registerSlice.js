@@ -8,10 +8,12 @@ const initialState = {
   error: null,
 };
 
+// asyncthunk is responsible to make the fetchReqests.
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (userData) => {
     const { firstName, lastName, email, password, birthday, gender } = userData;
+    // excluding the confirmPassword from data sent to backend
     const newUserData = {
       firstName: firstName.toLowerCase(),
       lastName: lastName.toLowerCase(),
@@ -23,7 +25,6 @@ export const registerUser = createAsyncThunk(
     console.log("newUserData: ", newUserData);
     const response = await axiosInstance.post(API_ROUTES.login, userData);
     // check form of response
-    console.log("response:", response.data);
     return response.data;
   }
 );

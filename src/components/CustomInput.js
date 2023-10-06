@@ -78,7 +78,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
               required
             />
 
-            <label htmlFor={name}>Male</label>
+            <label htmlFor="male">Male</label>
             <input
               onChange={onChange}
               type={type}
@@ -89,7 +89,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
               required
             />
 
-            <label htmlFor={name}>Other</label>
+            <label htmlFor="other">Other</label>
             <input
               onChange={onChange}
               type={type}

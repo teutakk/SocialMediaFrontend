@@ -52,7 +52,7 @@ export function validateForm(formData) {
   // }
 
   // Return false when there is no error
-  return errors;
+  return { error: false };
 }
 
 function calculateAge(birthday) {

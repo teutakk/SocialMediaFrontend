@@ -17,11 +17,11 @@ const Register = () => {
 
   const dispatch = useDispatch();
   // errors state
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState({ error: true });
 
   useEffect(() => {
     // we dispatch an action when the formError does not contain any errors in it.
-    if (Object.keys(formErrors).length === 0) {
+    if (!formErrors.error) {
       dispatch(registerUser(formData));
     }
   }, [formErrors]);
