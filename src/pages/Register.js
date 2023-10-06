@@ -17,7 +17,7 @@ const Register = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
-    dispatch(registerUser(formData));
+    dispatch(registerUser());
   };
 
   const onChangeHandler = (event) => {
