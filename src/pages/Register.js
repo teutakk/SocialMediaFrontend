@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../store/slices/registerSlice";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -9,9 +11,13 @@ const Register = () => {
     password: "",
     birthday: "",
   });
+
+  const dispatch = useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(formData);
+    dispatch(registerUser(formData));
   };
 
   const onChangeHandler = (event) => {
@@ -107,6 +113,10 @@ const Register = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      <div>
+        <p>Already have an account ?!</p>
+        <a href="login">Log In</a>
+      </div>
     </div>
   );
 };
