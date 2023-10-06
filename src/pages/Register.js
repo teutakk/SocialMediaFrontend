@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../store/slices/registerSlice";
 import { validateForm } from "../utils/validateRegisterData";
+import CustomInput from "../components/CustomInput";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -56,111 +57,69 @@ const Register = () => {
         }}
         onSubmit={handleSubmit}
       >
-        <label htmlFor="firstName">First Name:</label>
-        {formErrors.firstName && <p>{formErrors.firstName}</p>}
-        <input
+        <CustomInput
           onChange={onChangeHandler}
           type="text"
           id="firstName"
           name="firstName"
           value={formData.firstName}
-          required
-        />
-
-        <label htmlFor="lastName">Last Name:</label>
-        {formErrors.lastName && <p>{formErrors.lastName}</p>}
-        <input
+          label="First Name"
+        >
+          {formErrors.firstName && <p>{formErrors.firstName}</p>}
+        </CustomInput>
+        <CustomInput
           onChange={onChangeHandler}
-          value={formData.lastName}
           type="text"
           id="lastName"
           name="lastName"
-          required
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
+          value={formData.lastName}
+          label="Last Name"
+        >
+          {formErrors.lastName && <p>{formErrors.lastName}</p>}
+        </CustomInput>
+        <CustomInput
           onChange={onChangeHandler}
-          value={formData.email}
+          type="email"
           id="email"
           name="email"
-          type="email"
-          required
+          value={formData.email}
         />
-
-        <label htmlFor="password">Password:</label>
-        {formErrors.password && <p>{formErrors.password}</p>}
-
-        <input
+        <CustomInput
           onChange={onChangeHandler}
-          value={formData.password}
+          type="password"
           id="password"
           name="password"
-          type="password"
-          required
-        />
-
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        {formErrors.confirmPassword && !formErrors.password && (
-          <p>{formErrors.confirmPassword}</p>
-        )}
-
-        <input
+          value={formData.password}
+          label="Password"
+        >
+          {formErrors.password && <p>{formErrors.password}</p>}
+        </CustomInput>
+        <CustomInput
           onChange={onChangeHandler}
-          value={formData.confirmPassword}
+          type="password"
           id="confirmPassword"
           name="confirmPassword"
-          type="password"
-          required
+          value={formData.confirmPassword}
+          label="Confirm Password"
+        >
+          {formErrors.confirmPassword && !formErrors.password && (
+            <p>{formErrors.confirmPassword}</p>
+          )}
+        </CustomInput>
+        <CustomInput
+          onChange={onChangeHandler}
+          name="gender"
+          type="radio"
+          value={formData.gender}
         />
-
-        <label htmlFor="gender">Gender:</label>
-        <div>
-          <label htmlFor="female">Female</label>
-          <input
-            onChange={onChangeHandler}
-            type="radio"
-            id="female"
-            name="gender"
-            value="Female"
-            checked={formData.gender === "Female"}
-            required
-          />
-
-          <label htmlFor="male">Male</label>
-          <input
-            onChange={onChangeHandler}
-            type="radio"
-            id="male"
-            name="gender"
-            value="Male"
-            checked={formData.gender === "Male"}
-            required
-          />
-
-          <label htmlFor="other">Other</label>
-          <input
-            onChange={onChangeHandler}
-            type="radio"
-            id="other"
-            name="gender"
-            value="Other"
-            checked={formData.gender === "Other"}
-            required
-          />
-        </div>
-
-        <label htmlFor="birthday">Birthday:</label>
-        {formErrors.birthday && <p>{formErrors.birthday}</p>}
-        <input
+        <CustomInput
           onChange={onChangeHandler}
           type="date"
           id="birthday"
           name="birthday"
-          value={formData.birthday}
-          required
+          value={formData.date}
+          label="Birthday"
         />
-
         <button type="submit">Submit</button>
       </form>
       <div>
