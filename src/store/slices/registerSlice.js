@@ -22,7 +22,6 @@ export const registerUser = createAsyncThunk(
       birthday: birthday.toLowerCase(),
       gender: gender.toLowerCase(),
     };
-    console.log("newUserData: ", newUserData);
     const response = await axiosInstance.post(API_ROUTES.login, userData);
     // check form of response
     return response.data;

@@ -19,7 +19,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "text":
       input = (
         <>
-          <label htmlFor={name}>{label}:</label>
+          <label htmlFor={id}>{label}:</label>
           <input
             onChange={onChange}
             type={type}
@@ -34,7 +34,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "email":
       input = (
         <>
-          <label htmlFor={name}>Email:</label>
+          <label htmlFor={id}>Email:</label>
           <input
             onChange={onChange}
             value={value}
@@ -42,6 +42,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
             name={name}
             type={type}
             required
+            autoComplete="username"
           />
         </>
       );
@@ -50,13 +51,14 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "password":
       input = (
         <>
-          <label htmlFor={name}>{label}:</label>
+          <label htmlFor={id}>{label}:</label>
           <input
             onChange={onChange}
             value={value}
             id={id}
             name={name}
             type={type}
+            autoComplete="new-password"
             required
           />
         </>
@@ -65,7 +67,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "radio":
       input = (
         <>
-          <label htmlFor={name}>Gender:</label>
+          <div>Gender:</div>
           <div>
             <label htmlFor="female">Female</label>
             <input
@@ -106,7 +108,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "date":
       input = (
         <>
-          <label htmlFor={name}>Birthday:</label>
+          <label htmlFor={id}>Birthday:</label>
           <input
             onChange={onChange}
             type={type}

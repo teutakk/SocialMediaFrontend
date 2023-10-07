@@ -47,12 +47,12 @@ export function validateForm(formData) {
   }
 
   // Check if there are any errors
-  // if (Object.keys(errors).length > 0) {
-  // return errors; // Return the errors object if there are errors
-  // }
+  if (Object.keys(errors).length > 0) {
+    return errors; // Return the errors object if there are errors
+  }
 
-  // Return false when there is no error
   return { error: false };
+  // Return false when there is no error
 }
 
 function calculateAge(birthday) {

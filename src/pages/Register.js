@@ -20,8 +20,9 @@ const Register = () => {
   const [formErrors, setFormErrors] = useState({ error: true });
 
   useEffect(() => {
+    console.log("erorrs: ", formErrors.error);
     // we dispatch an action when the formError does not contain any errors in it.
-    if (!formErrors.error) {
+    if (formErrors.error !== undefined && !formErrors.error) {
       dispatch(registerUser(formData));
     }
   }, [formErrors]);
