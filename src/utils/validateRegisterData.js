@@ -41,13 +41,15 @@ export function validateForm(formData) {
   }
 
   const ageDifference = calculateAge(birthday);
-  if (ageDifference < 16) {
-    errors.birthday =
-      "You must be at least 16 years old to register on this site.";
-  }
+  console.log(ageDifference);
+  // if (ageDifference < 16) {
+  //    errors.birthday =
+  //    "You must be at least 16 years old to register on this site.";
+  // }
 
   // Check if there are any errors
   if (Object.keys(errors).length > 0) {
+    console.log(Object.keys(errors));
     return errors; // Return the errors object if there are errors
   }
 
