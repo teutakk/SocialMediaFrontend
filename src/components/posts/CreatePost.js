@@ -70,7 +70,12 @@ const CreatePost = () => {
           placeholder="What's on yout mind, our dear User?"
         />
       </div>
-      {imagePreviews && <PostImagePreviewer imagePreviews={imagePreviews} />}
+      {imagePreviews && (
+        <PostImagePreviewer
+          setImagePreviews={setImagePreviews}
+          imagePreviews={imagePreviews}
+        />
+      )}
       <hr />
       <div className={classes.Actions}>
         <label className={classes.ChooseImg} htmlFor="upload-image">

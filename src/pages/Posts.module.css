@@ -4,3 +4,8 @@
   flex-direction: column;
   gap: 10px;
 }
+
+.Posts {
+  max-width: 620px;
+  margin: 0 auto;
+}
