@@ -1,0 +1,64 @@
+.WritePostComment {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.UserPhoto {
+  display: flex;
+  align-items: center;
+}
+
+.Comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: max-content;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+.Comment:focus-within {
+  background-color: #cccccc;
+}
+
+.Comment textarea {
+  resize: none;
+  width: 100%;
+  /* min-width: max-content; */
+  height: 38px;
+  display: flex;
+  align-items: center;
+  place-content: center;
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: inherit;
+  background-color: transparent;
+}
+
+.Comment textarea:focus {
+  width: 100%;
+  flex: 1;
+}
+
+.Comment button {
+  cursor: pointer;
+  /* background-color: transparent; */
+  height: 100%;
+  aspect-ratio: 1/1;
+  border: none;
+  border-left: 1px solid #ccc;
+  color: #ccc;
+  /* border-radius: inherit; */
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.Comment button:hover {
+  color: #aaa;
+  font-size: 16px;
+}

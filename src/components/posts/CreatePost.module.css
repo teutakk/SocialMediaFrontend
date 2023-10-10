@@ -1,0 +1,79 @@
+.CreatePost {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 10px;
+  border-radius: 20px;
+  gap: 5px;
+  box-shadow: var(--shadow-image);
+}
+
+.Content {
+  display: flex;
+  gap: 10px;
+}
+
+.Content textarea {
+  resize: none;
+  border: none;
+  outline: none;
+  height: 36px;
+  width: 100%;
+  max-height: 300px;
+  display: flex;
+  background-color: #eee;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.PostButton {
+  align-self: stretch;
+  background-color: royalblue;
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+  /* background-color: transparent; */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Feeling {
+  display: none;
+}
+
+.Feelings {
+  position: relative;
+}
+
+.ShowFeeling {
+  display: block;
+  position: absolute;
+  top: 100%;
+  z-index: 1;
+  left: -20%;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.ChooseImg,
+.Feelings {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

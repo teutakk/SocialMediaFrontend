@@ -1,0 +1,34 @@
+.PostHeader {
+  display: flex;
+  /* flex: 1; */
+  justify-content: space-between;
+}
+
+.user-and-photo {
+  display: flex;
+  gap: 10px;
+}
+
+.user-and-photo img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 9999px;
+}
+
+.user-and-date-posted {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-and-privacy {
+  display: flex;
+  gap: 10px;
+}
+
+.settings {
+  position: relative;
+}
+
+.options {
+  display: none;
+}

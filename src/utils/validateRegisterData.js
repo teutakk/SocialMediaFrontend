@@ -49,7 +49,6 @@ export function validateForm(formData) {
 
   // Check if there are any errors
   if (Object.keys(errors).length > 0) {
-    console.log(Object.keys(errors));
     return errors; // Return the errors object if there are errors
   }
 

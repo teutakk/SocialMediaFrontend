@@ -1,10 +1,18 @@
 import "./App.css";
-import Register from "./pages/Register";
+import Posts from "./pages/Posts";
 
 function App() {
   return (
-    <div className="App">
-      <Register />
+    <div
+      style={{
+        maxWidth: "620px",
+        backgroundColor: "#eee",
+        padding: "10px",
+        margin: "0 auto",
+      }}
+      className="App"
+    >
+      <Posts />
     </div>
   );
 }
