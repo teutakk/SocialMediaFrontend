@@ -1,19 +1,15 @@
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
 import "./App.css";
-import Posts from "./pages/Posts";
 
 function App() {
   return (
-    <div
-      style={{
-        maxWidth: "620px",
-        backgroundColor: "#eee",
-        padding: "10px",
-        margin: "0 auto",
-      }}
-      className="App"
-    >
-      <Posts />
-    </div>
+    <Router>
+      <div className="App">
+        <AppRoutes />
+      </div>
+    </Router>
   );
 }
 
