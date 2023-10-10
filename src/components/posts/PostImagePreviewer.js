@@ -13,7 +13,6 @@ const PostImagePreviewer = ({
     for (const key in selectedImages) {
       if (+key !== id) updateSelectedImages[key] = selectedImages[key];
     }
-    console.log(updateSelectedImages);
     // there is still work to be done , in order to fully remove images not just from showing up, but also from the state
     setImagePreviews(uploadedImagePreviews);
     // setSelectedImages([...updateSelectedImages]);

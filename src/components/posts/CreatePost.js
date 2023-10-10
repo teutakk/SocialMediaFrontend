@@ -13,7 +13,6 @@ const CreatePost = () => {
   const [showEmotions, setShowEmotions] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
 
-  console.log("imagePreviews: ", selectedImages);
   // function to increase the height of the textbox
   const handleInputChange = (e) => {
     setPostText(e.target.value);
@@ -34,7 +33,6 @@ const CreatePost = () => {
       description: postText,
       images: selectedImages,
     };
-    console.log("newpost: ", newPost);
     dispatch(createPost(newPost));
   };
 
@@ -42,7 +40,6 @@ const CreatePost = () => {
 
   const handleFileInputChange = (e) => {
     const selectedFiles = e.target.files;
-    console.log("selectedFiles: ", selectedFiles);
     setSelectedImages(selectedFiles);
     // Create an array to store image previews
     const previews = [];
