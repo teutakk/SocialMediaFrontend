@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./PostHeader.module.css";
 
 const PostHeader = ({ post }) => {
+  const [showOptions, setShowOptions] = useState();
+  const handleShowOptions = () => {
+    setShowOptions((prev) => !prev);
+  };
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
@@ -18,12 +22,20 @@ const PostHeader = ({ post }) => {
         </div>
       </div>
       <div className={classes.settings}>
-        <span style={{}}>...</span>
-        <div className={classes.options}>
+        <span onClick={handleShowOptions} className={classes.button}>
+          ...
+        </span>
+        <div
+          className={`${
+            showOptions
+              ? `${classes.options} ${classes.showOptions}`
+              : classes.options
+          }`}
+        >
           <p>edit</p>
           <p>report</p>
           <p>save</p>
-          <p>report</p>
+          <p>delete</p>
         </div>
       </div>
     </div>
