@@ -12,5 +12,6 @@
 @media (prefers-color-scheme: dark) {
   .SinglePost {
     background-color: var(--color-grey-dark-2);
+    /* box-shadow: rgba(200, 200, 200, 0.2) 0px 2px 8px 0px; */
   }
 }
