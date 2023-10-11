@@ -31,3 +31,9 @@
   color: black;
   text-decoration: underline;
 }
+
+@media (prefers-color-scheme: dark) {
+  .CommentSection {
+    background-color: var(--color-grey-dark-3);
+  }
+}

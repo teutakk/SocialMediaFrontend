@@ -41,3 +41,9 @@ body {
   font-family: "Roboto", sans-serif;
   font-family: "Inter", sans-serif;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: var(--color-grey-light-1);
+  }
+}

@@ -15,3 +15,9 @@
 .PostActions div:hover {
   background-color: #eee;
 }
+
+@media (prefers-color-scheme: dark) {
+  .PostActions div:hover {
+    background-color: var(--color-grey-dark-1);
+  }
+}
