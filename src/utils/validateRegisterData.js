@@ -1,6 +1,5 @@
 export function validateForm(formData) {
-  const { firstName, lastName, email, password, confirmPassword, birthday } =
-    formData;
+  const { firstName, lastName, email, password, confirmPassword } = formData;
 
   const errors = {};
 
@@ -40,8 +39,7 @@ export function validateForm(formData) {
     errors.confirmPassword = "Passwords do not match.";
   }
 
-  const ageDifference = calculateAge(birthday);
-  console.log(ageDifference);
+  // const ageDifference = calculateAge(birthday);
   // if (ageDifference < 16) {
   //    errors.birthday =
   //    "You must be at least 16 years old to register on this site.";
@@ -49,7 +47,6 @@ export function validateForm(formData) {
 
   // Check if there are any errors
   if (Object.keys(errors).length > 0) {
-    console.log(Object.keys(errors));
     return errors; // Return the errors object if there are errors
   }
 
@@ -57,9 +54,9 @@ export function validateForm(formData) {
   // Return false when there is no error
 }
 
-function calculateAge(birthday) {
-  const currentDate = new Date();
-  const selectedDate = new Date(birthday);
-  const ageDifference = currentDate.getFullYear() - selectedDate.getFullYear();
-  return ageDifference;
-}
+// function calculateAge(birthday) {
+//   const currentDate = new Date();
+//   const selectedDate = new Date(birthday);
+//   const ageDifference = currentDate.getFullYear() - selectedDate.getFullYear();
+//   return ageDifference;
+// }

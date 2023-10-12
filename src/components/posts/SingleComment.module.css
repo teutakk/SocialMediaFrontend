@@ -1,0 +1,39 @@
+.SingleComment {
+  display: flex;
+  gap: 10px;
+}
+
+.CommentContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.CommentSection {
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #eee;
+}
+
+.CommentContent img {
+  align-self: start;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 10px;
+}
+
+.Actions {
+  display: flex;
+  gap: 10px;
+  margin-left: 10px;
+}
+
+.Actions span:hover {
+  color: black;
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: dark) {
+  .CommentSection {
+    background-color: var(--color-grey-dark-3);
+  }
+}

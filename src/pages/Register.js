@@ -20,7 +20,6 @@ const Register = () => {
   const [formErrors, setFormErrors] = useState({ error: true });
 
   useEffect(() => {
-    console.log("erorrs: ", formErrors);
     // we dispatch an action when the formError does not contain any errors in it.
     if (formErrors.error !== undefined && !formErrors.error) {
       dispatch(registerUser(formData));
@@ -35,7 +34,7 @@ const Register = () => {
       });
       setFormErrors({ error: true });
     }
-  }, [formErrors]);
+  }, [formErrors, formData, dispatch]);
 
   const handleSubmit = (event) => {
     // prevent the reload

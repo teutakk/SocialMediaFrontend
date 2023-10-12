@@ -1,0 +1,61 @@
+.PostHeader {
+  display: flex;
+  /* flex: 1; */
+  justify-content: space-between;
+}
+
+.user-and-photo {
+  display: flex;
+  gap: 10px;
+}
+
+.user-and-photo img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 9999px;
+}
+
+.user-and-date-posted {
+  display: flex;
+  flex-direction: column;
+}
+
+.date-and-privacy {
+  display: flex;
+  gap: 10px;
+}
+
+.settings {
+  position: relative;
+}
+
+.button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.options {
+  display: none;
+}
+
+.showOptions {
+  display: block;
+  position: absolute;
+  top: 25px;
+  left: -48px;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: var(--shadow-image);
+  padding: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .showOptions {
+    background-color: var(--color-grey-dark-2);
+    border: 1px solid var(--color-grey-light-2);
+  }
+}

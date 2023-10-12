@@ -1,0 +1,29 @@
+.ContentHolder {
+}
+
+.ContentHolder p {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-clamp: 4;
+  white-space: normal;
+}
+
+.ImageHolder {
+}
+
+.PostData {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+}
+
+.likes {
+  justify-self: flex-start;
+  flex: 1;
+}
+
+.comments,
+.shares {
+  justify-self: flex-end;
+}
