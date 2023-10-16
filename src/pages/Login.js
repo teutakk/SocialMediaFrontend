@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { useLocation, useParams } from "react-router";
 
 const Login = () => {
-  const params = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  console.log("useParams: ", location);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
