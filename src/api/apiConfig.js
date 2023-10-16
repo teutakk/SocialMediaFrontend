@@ -3,6 +3,11 @@ const API_ROUTES = {
   //  define routes here, so we can use them without making spelling mistakes
   login: "/auth/login",
   register: "/auth/register",
+  fetchFriends: "",
+  sendFriendRequest: "",
+  acceptFriendRequest: "",
+  rejectFriendRequest: "",
+  removeFriend: "",
 };
 
 export { BASE_URL, API_ROUTES };
