@@ -9,6 +9,7 @@ const initialState = {
     delete: "idle",
     comment: "idle",
     like: "idle",
+    create: "idle",
   },
   error: {
     fetch: null,
@@ -16,6 +17,7 @@ const initialState = {
     delete: null,
     comment: null,
     like: null,
+    create: null,
   },
 };
 
@@ -37,12 +39,14 @@ export const editPost = createAsyncThunk("posts/editPost", async (data) => {
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
   // this action can be performed only by the owner of the post. CHECK FOR THAT
-  const response = axiosInstance.delete(API_ROUTES.posts.id);
+  const response = await axiosInstance.delete(API_ROUTES.posts.id);
   return response.data;
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-  const response = axiosInstance.post(API_ROUTES.posts, data);
+  console.log("data from slice:", data);
+  const response = await axiosInstance.post(API_ROUTES.posts, data);
+  console.log("response: ", response);
   return response.data;
 });
 
@@ -112,6 +116,18 @@ const postsSlice = createSlice({
       .addCase(deletePost.rejected, (state, action) => {
         state.status.delete = "failed";
         state.error.delete = action.error.message;
+      })
+      .addCase(createPost.pending, (state, action) => {
+        state.status.create = "loading";
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.status.create = "loading";
+        state.posts.push(action.payload);
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        console.log("action: ", action.payload);
+        state.status.create = "failed";
+        state.error.create = action.error.message;
       });
     // add all cases with .addCase, likes, comments, shares,
   },
