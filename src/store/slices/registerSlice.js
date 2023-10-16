@@ -12,17 +12,7 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (userData) => {
-    const { firstName, lastName, email, password, birthday, gender } = userData;
-    // excluding the confirmPassword from data sent to backend
-    const newUserData = {
-      firstName: firstName.toLowerCase(),
-      lastName: lastName.toLowerCase(),
-      email: email.toLowerCase(),
-      password: password.toLowerCase(),
-      birthday: birthday.toLowerCase(),
-      gender: gender.toLowerCase(),
-    };
-    const response = await axiosInstance.post(API_ROUTES.login, newUserData);
+    const response = await axiosInstance.post(API_ROUTES.register, userData);
     // check form of response
     return response.data;
   }

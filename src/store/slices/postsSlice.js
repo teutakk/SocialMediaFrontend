@@ -9,6 +9,7 @@ const initialState = {
     delete: "idle",
     comment: "idle",
     like: "idle",
+    save: "idle",
   },
   error: {
     fetch: null,
@@ -37,12 +38,18 @@ export const editPost = createAsyncThunk("posts/editPost", async (data) => {
 
 export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
   // this action can be performed only by the owner of the post. CHECK FOR THAT
-  const response = axiosInstance.delete(API_ROUTES.posts.id);
+  const response = await axiosInstance.delete(API_ROUTES.posts.id);
   return response.data;
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-  const response = axiosInstance.post(API_ROUTES.posts, data);
+  const response = await axiosInstance.post(API_ROUTES.posts, data);
+  return response.data;
+});
+
+export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
+  // here we need to be careful where we send the data, we need to post these data to the userId
+  const response = await axiosInstance.post(API_ROUTES.saved, postId);
   return response.data;
 });
 
