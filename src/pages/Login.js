@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { authenticateUser } from "../store/slices/authSlice";
 import { useDispatch } from "react-redux";
+import { useLocation, useParams } from "react-router";
 
 const Login = () => {
+  const params = useParams();
+  const location = useLocation();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  console.log("useParams: ", location);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -23,6 +26,7 @@ const Login = () => {
 
   return (
     <div>
+      {location.hash === "#auth" && <p>You need to login to visit that page</p>}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>

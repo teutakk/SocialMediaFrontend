@@ -18,7 +18,7 @@ const RequireAuth = ({ component: Component }) => {
   return isUserAuthorized() ? (
     <Component />
   ) : (
-    <Navigate to="/login" /> // Redirect to an unauthorized route or show an error message
+    <Navigate to="/login#auth" /> // Redirect to an unauthorized route or show an error message
   );
 };
 
