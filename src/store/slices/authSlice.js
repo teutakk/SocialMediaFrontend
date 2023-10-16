@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
-import axios from "axios";
 
 const initialState = {
   user: null,
@@ -13,7 +12,7 @@ const initialState = {
 export const authenticateUser = createAsyncThunk(
   "authentication/authenticateUser",
   async (credentials) => {
-    const response = await axios.post(API_ROUTES.login, credentials);
+    const response = await axiosInstance.post(API_ROUTES.login, credentials);
     // if we name it token
     const token = response.data.token;
     // Saving the token to localStorage
