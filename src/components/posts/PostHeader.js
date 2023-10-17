@@ -1,10 +1,16 @@
 import React, { useState } from "react";
 import classes from "./PostHeader.module.css";
+import { useDispatch } from "react-redux";
+import { savePost } from "../../store/slices/postsSlice";
 
 const PostHeader = ({ post }) => {
+  const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const handleShowOptions = () => {
     setShowOptions((prev) => !prev);
+  };
+  const handleSave = () => {
+    dispatch(savePost(post.id));
   };
   return (
     <div className={classes.PostHeader}>
@@ -34,7 +40,7 @@ const PostHeader = ({ post }) => {
         >
           <p>edit</p>
           <p>report</p>
-          <p>save</p>
+          <p onClick={handleSave}>save</p>
           <p>delete</p>
         </div>
       </div>
