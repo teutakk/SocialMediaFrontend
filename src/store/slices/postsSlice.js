@@ -9,11 +9,7 @@ const initialState = {
     delete: "idle",
     comment: "idle",
     like: "idle",
-<<<<<<< HEAD
-    create: "idle",
-=======
     save: "idle",
->>>>>>> main
   },
   error: {
     fetch: null,
