@@ -7,6 +7,7 @@ const PostImagePreviewer = ({
   setSelectedImages,
   selectedImages,
 }) => {
+  console.log("selectedImages: ", selectedImages);
   const handleRemoveImage = (id) => {
     const uploadedImagePreviews = imagePreviews.filter((_, i) => i !== id);
     const updateSelectedImages = {};
@@ -15,7 +16,7 @@ const PostImagePreviewer = ({
     }
     // there is still work to be done , in order to fully remove images not just from showing up, but also from the state
     setImagePreviews(uploadedImagePreviews);
-    // setSelectedImages([...updateSelectedImages]);
+    setSelectedImages(updateSelectedImages);
   };
   return (
     <div className={classes.ImagePreviewer}>

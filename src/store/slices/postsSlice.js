@@ -9,7 +9,11 @@ const initialState = {
     delete: "idle",
     comment: "idle",
     like: "idle",
+<<<<<<< HEAD
+    create: "idle",
+=======
     save: "idle",
+>>>>>>> main
   },
   error: {
     fetch: null,
@@ -17,6 +21,7 @@ const initialState = {
     delete: null,
     comment: null,
     like: null,
+    create: null,
   },
 };
 
@@ -43,6 +48,11 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
+<<<<<<< HEAD
+  console.log("data from slice:", data);
+  const response = await axiosInstance.post(API_ROUTES.posts, data);
+  console.log("response: ", response);
+=======
   const response = await axiosInstance.post(API_ROUTES.posts, data);
   return response.data;
 });
@@ -50,6 +60,7 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
   // here we need to be careful where we send the data, we need to post these data to the userId
   const response = await axiosInstance.post(API_ROUTES.saved, postId);
+>>>>>>> main
   return response.data;
 });
 
@@ -119,6 +130,18 @@ const postsSlice = createSlice({
       .addCase(deletePost.rejected, (state, action) => {
         state.status.delete = "failed";
         state.error.delete = action.error.message;
+      })
+      .addCase(createPost.pending, (state, action) => {
+        state.status.create = "loading";
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        state.status.create = "loading";
+        state.posts.push(action.payload);
+      })
+      .addCase(createPost.rejected, (state, action) => {
+        console.log("action: ", action.payload);
+        state.status.create = "failed";
+        state.error.create = action.error.message;
       });
     // add all cases with .addCase, likes, comments, shares,
   },

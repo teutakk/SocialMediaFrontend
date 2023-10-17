@@ -76,7 +76,7 @@ const CreatePost = () => {
         <PostImagePreviewer
           setImagePreviews={setImagePreviews}
           imagePreviews={imagePreviews}
-          setSelectedImages={selectedImages}
+          setSelectedImages={setSelectedImages}
           selectedImages={selectedImages}
         />
       )}
