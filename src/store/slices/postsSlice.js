@@ -48,11 +48,6 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-<<<<<<< HEAD
-  console.log("data from slice:", data);
-  const response = await axiosInstance.post(API_ROUTES.posts, data);
-  console.log("response: ", response);
-=======
   const response = await axiosInstance.post(API_ROUTES.posts, data);
   return response.data;
 });
@@ -60,7 +55,6 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
   // here we need to be careful where we send the data, we need to post these data to the userId
   const response = await axiosInstance.post(API_ROUTES.saved, postId);
->>>>>>> main
   return response.data;
 });
 
