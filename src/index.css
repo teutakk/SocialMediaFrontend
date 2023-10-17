@@ -47,3 +47,12 @@ body {
     color: var(--color-grey-light-1);
   }
 }
+
+a,
+a.active,
+a:focus,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
