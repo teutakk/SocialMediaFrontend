@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../store/slices/registerSlice";
 import { validateForm } from "../utils/validateRegisterData";
 import CustomInput from "../components/CustomInput";
+import classes from "./styles/Register.module.css"
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ const Register = () => {
   };
 
   return (
-    <div className="">
+    <div className={classes.container}>
       <div>
         {/* Some design if provided */}
         <p></p>

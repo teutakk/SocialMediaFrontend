@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap');
 .App {
   width: 100%;
   padding: 10px;
   background-color: #eee;
+  font-family: 'Montserrat', sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
