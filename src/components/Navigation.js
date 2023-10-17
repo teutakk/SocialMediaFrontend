@@ -22,7 +22,10 @@ const Navigation = () => (
             <NavLink to="/posts">Feed</NavLink>
           </li>
           <li>
-            <NavLink to="/login">Marketplace</NavLink>
+            <NavLink to="/friends">Friends</NavLink>
+          </li>
+          <li>
+            <NavLink to="/profile">Profile</NavLink>
           </li>
         </ul>
       </nav>
