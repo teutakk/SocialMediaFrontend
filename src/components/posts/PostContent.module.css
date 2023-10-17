@@ -1,15 +1,9 @@
-.ContentHolder {
-}
-
 .ContentHolder p {
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   line-clamp: 4;
   white-space: normal;
-}
-
-.ImageHolder {
 }
 
 .PostData {

@@ -1,0 +1,36 @@
+.Layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+}
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 0;
+}
+
+.left {
+  display: none;
+}
+
+.right {
+  display: none;
+}
+
+@media (min-width: 767px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 2.8fr 1fr;
+    gap: 20px;
+  }
+
+  .left {
+    display: flex;
+  }
+
+  .right {
+    display: flex;
+  }
+}

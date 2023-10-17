@@ -1,0 +1,95 @@
+.Navigation {
+  display: grid;
+  position: relative;
+  gap: 20px;
+  grid-template-columns: 1fr 2.8fr 1fr;
+  padding: 10px 20px;
+  background-color: var(--color-grey-dark-3);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.Navigation span {
+  width: 30px;
+  display: block;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1/1;
+}
+.navigation-main {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation-left .logo {
+  display: none;
+}
+
+.navigation-main nav {
+  position: absolute;
+  top: 0;
+  left: -100%;
+}
+
+.navigation-main ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+
+.user {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.notifications-icon {
+  position: relative;
+  width: 30px;
+  aspect-ratio: 1/1;
+  background-color: white;
+  border-radius: 99999px;
+  border: none;
+}
+
+.notifications {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  height: 30vh;
+  width: 20vw;
+}
+
+@media (min-width: 767px) {
+  .Navigation nav {
+    position: unset;
+  }
+
+  .navigation-left span {
+    display: none;
+  }
+
+  .navigation-left {
+    display: flex;
+    width: 100%;
+  }
+
+  .navigation-left .logo {
+    display: flex;
+    width: 100%;
+    gap: 2%;
+    align-items: center;
+  }
+
+  .navigation-left img {
+    width: 30px;
+    aspect-ratio: 1/1;
+  }
+}

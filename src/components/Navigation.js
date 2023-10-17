@@ -1,17 +1,40 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { NavLink } from "react-router-dom";
+import classes from "./Navigation.module.css";
+import UserChip from "./UserChip";
+import logo from "../assets/images/starlabs.png";
 const Navigation = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link to="/register">Register</Link>
-      </li>
-      <li>
-        <Link to="/login">Login</Link>
-      </li>
-    </ul>
-  </nav>
+  <section className={classes.Navigation}>
+    <div className={classes["navigation-left"]}>
+      <span>X</span>
+      <div className={classes.logo}>
+        <img src={logo} alt="lasjdlkasjd" />
+        <h3>Our Social Media</h3>
+      </div>
+    </div>
+    <div className={classes["navigation-main"]}>
+      <label htmlFor="Search...">
+        <input type="text" placeholder="Search...." id="searcg" name="search" />
+      </label>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/posts">Feed</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Marketplace</NavLink>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div className={classes.user}>
+      <div className={classes["notifications-icon"]}>
+        <div className={classes.notifications}>Notification</div>
+      </div>
+      <UserChip url={logo} />
+    </div>
+  </section>
 );
 
 export default Navigation;
