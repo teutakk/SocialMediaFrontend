@@ -54,10 +54,52 @@ export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
   return response.data;
 });
 
-export const commentPost = createAsyncThunk("posts/commentPost", async () => {
-  // comment logic here
-  return;
+export const commentPost = createAsyncThunk(
+  "posts/commentPost",
+  async (data) => {
+    const response = await axiosInstance.post(API_ROUTES.comment, data);
+    return response.data;
+  }
+);
+
+export const editComment = createAsyncThunk(
+  "posts/editComment",
+  async (data) => {
+    const response = await axiosInstance.patch(
+      API_ROUTES.comment + `/${data.commentId}`,
+      data
+    );
+    return response.data;
+  }
+);
+
+export const deleteComment = createAsyncThunk(
+  "posts/deleteComment",
+  async (commentId) => {
+    const response = await axiosInstance.delete(
+      API_ROUTES.comment + `/${commentId}`
+    );
+    return response.data;
+  }
+);
+
+export const likeComment = createAsyncThunk(
+  "posts/likeComment",
+  async (commentId) => {
+    const response = await axiosInstance.post(
+      API_ROUTES.comment + `/${commentId}/like`
+    );
+    return response.data;
+  }
+);
+
+export const pinComment = createAsyncThunk("posts/pinComment", async (data) => {
+  const response = await axiosInstance.post(
+    API_ROUTES.comment + `/${data.commentId}/pin`
+  );
+  return response.data;
 });
+
 
 export const likePost = createAsyncThunk("posts/likePost", async () => {
   // like logic here
@@ -132,8 +174,105 @@ const postsSlice = createSlice({
         console.log("action: ", action.payload);
         state.status.create = "failed";
         state.error.create = action.error.message;
-      });
-    // add all cases with .addCase, likes, comments, shares,
+      })
+    //Adding a comment to a post, handling all cases of responses
+    .addCase(commentPost.pending, (state, action) => {
+      state.status.comment = "loading";
+    })
+    .addCase(commentPost.fulfilled, (state, action) => {
+      const { postId, comment } = action.payload;
+      //finding the post that user wants to add a comment
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        //adding the comment to the post that was found
+        post.comments.push(comment);
+      }
+      state.comments.push(comment);
+    })
+    .addCase(commentPost.rejected, (state, action) => {
+      state.status.comment = "failed";
+      state.error.comment = action.error.message;
+    })
+    // Editing a comment, handling all cases of responses
+    .addCase(editComment.pending, (state, action) => {
+      state.status.comment = "loading";
+    })
+    .addCase(editComment.fulfilled, (state, action) => {
+      const { postId, comment } = action.payload;
+      //let the user find the post with the comment that wants to edit it
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        const editedCommentIndex = post.comments.findIndex(
+          (c) => c.id === comment.id
+        );
+        if (editedCommentIndex !== -1) {
+          post.comments[editedCommentIndex] = comment;
+        }
+      }
+      state.status.comment = "succeeded";
+    })
+    .addCase(editComment.rejected, (state, action) => {
+      state.status.comment = "failed";
+      state.error.comment = action.error.message;
+    })
+    // deleting a comment, handling all cases of responses
+    .addCase(deleteComment.pending, (state, action) => {
+      state.status.comment = "loading";
+    })
+    .addCase(deleteComment.fulfilled, (state, action) => {
+      const { postId, commentId } = action.payload;
+      //let the user find the comment in a post and then delete it
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        post.comments = post.comments.filter((c) => c.id !== commentId);
+      }
+      state.status.comment = "succeeded";
+    })
+    .addCase(deleteComment.rejected, (state, action) => {
+      state.status.comment = "failed";
+      state.error.comment = action.error.message;
+    })
+    // liking a comment, handling all cases of responses
+    .addCase(likeComment.pending, (state, action) => {
+      state.status.comment = "loading";
+    })
+    .addCase(likeComment.fulfilled, (state, action) => {
+      const { postId, commentId, likes } = action.payload;
+      //let the user find the post and comment to update the likes
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        const likedComment = post.comments.find((c) => c.id === commentId);
+        if (likedComment) {
+          likeComment.likes = likes;
+        }
+      }
+      state.status.comment = "succeeded";
+    })
+    .addCase(likeComment.rejected, (state, action) => {
+      state.status.comment = "failed";
+      state.error.comment = action.error.message;
+    })
+    // pinning a comment, handling all cases of responses
+    .addCase(pinComment.pending, (state, action) => {
+      state.status.comment = "loading";
+    })
+    .addCase(pinComment.fulfilled, (state, action) => {
+      const { postId, commentId, isPinned } = action.payload;
+      //find the post with the comments to update the pinned status
+      const post = state.posts.find((post) => post.id === postId);
+      if (post) {
+        const pinnedComment = post.comments.find((c) => c.id === commentId);
+        if (pinnedComment) {
+          pinnedComment.isPinned = isPinned;
+        }
+      }
+      state.status.comment = "succeeded";
+    })
+    .addCase(pinComment.rejected, (state, action) => {
+      state.status.comment = "failed";
+      state.error.comment = action.error.message;
+    });
+  // add all cases with .addCase, likes, shares
   },
 });
 
