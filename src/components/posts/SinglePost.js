@@ -12,7 +12,7 @@ const SinglePost = ({ post }) => {
       <PostHeader post={post} />
       <PostContent post={post} />
       <hr />
-      <PostActions />
+      <PostActions post={post} />
       <hr />
       <section>
         <PostComments post={post} />
