@@ -1,8 +1,25 @@
-.ContentHolder p {
-  margin-left: 78px;
-  margin-right: 15px;
+.ContentHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ImageHolder {
+  width: 100%;
+  aspect-ratio: 16/9;
+}
+
+.ImageHolder img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 .PostData {
   display: flex;
   width: 100%;

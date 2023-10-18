@@ -15,8 +15,8 @@ const SinglePost = ({ post }) => {
       <PostActions />
       <hr />
       <section>
-        <WritePostComment />
         <PostComments post={post} />
+        <WritePostComment />
       </section>
     </div>
   );

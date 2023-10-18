@@ -2,11 +2,16 @@ import React from "react";
 import classes from "./PostContent.module.css";
 
 const PostContent = ({ post }) => {
+  console.log(post.images.length > 0);
   return (
-    <>
-      <div className={classes.ContentHolder}>
+    <div className={classes.ContentHolder}>
+      <div className={classes.content}>
         <p>{post.description}</p>
-        <div className={classes.ImageHolder}></div>
+        <div className={classes.ImageHolder}>
+          {post.images.length > 0 && (
+            <img src={post.images[0]} alt="shqiperia" />
+          )}
+        </div>
       </div>
       <div className={classes.PostData}>
         <div className={classes.likes}>
@@ -19,7 +24,7 @@ const PostContent = ({ post }) => {
           <p>{post.shares} shares</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
