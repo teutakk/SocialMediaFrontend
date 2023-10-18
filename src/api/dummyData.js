@@ -6,7 +6,10 @@ export const data = [
     profilePhoto: "https://randomuser.me/api/portraits/men/83.jpg",
     description:
       "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve. Gjithashtu, ekonomia është një temë e rëndësishme. Shqipëria ka shënuar rritje ekonomike, por përkundër kësaj, shumë qytetarë vazhdojnë të kenë probleme me papunësinë dhe varfërinë. Është e rëndësishme të investohet në sektorët e zhvillimit ekonomik për të krijuar vende pune dhe të përmirësuar standardet e jetesës. Në politikën e jashtme, Shqipëria po përpjeket të rrisë bashkëpunimin me partnerët ndërkombëtarë dhe të përshpejtojë procesin e anëtarësimit në Bashkimin Evropian. Ky është një objektiv i rëndësishëm për të ardhmen e vendit.",
-    images: ["https://ata.gov.al/wp-content/uploads/2023/05/1-30.jpg"],
+    images: [
+      "https://ata.gov.al/wp-content/uploads/2023/05/1-30.jpg",
+      "https://w0.peakpx.com/wallpaper/428/407/HD-wallpaper-alb-1-albania-albanian-shqip.jpg",
+    ],
     createdAt: new Date("10/07/20203"),
     privacy: "public",
     likes: [

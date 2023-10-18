@@ -9,7 +9,7 @@ const PostContent = ({ post }) => {
         <p>{post.description}</p>
         <div className={classes.ImageHolder}>
           {post.images.length > 0 && (
-            <img src={post.images[0]} alt="shqiperia" />
+            <img src={post.images[1]} alt="shqiperia" />
           )}
         </div>
       </div>

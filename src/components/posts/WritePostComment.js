@@ -5,7 +5,6 @@ import UserChip from "../UserChip";
 import send from "../../assets/svg/send.svg";
 
 const WritePostComment = () => {
-  console.log("send: ", send);
   return (
     <section className={classes.WritePostComment}>
       <UserChip url={logo} />
