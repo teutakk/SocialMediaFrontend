@@ -1,0 +1,27 @@
+.Notifications {
+  display: none;
+}
+@media (min-width: 767px) {
+  .Notifications {
+    position: absolute;
+    top: 120%;
+    left: 100%;
+    transform: translateX(-100%);
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    display: none;
+  }
+  .notifications-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .showNotifications {
+    display: flex;
+  }
+}

@@ -1,12 +1,22 @@
 import React from "react";
 import classes from "./Notifications.module.css";
-const Notifications = () => {
+import SingleNotification from "./SingleNotification";
+const Notifications = ({ toggleClass }) => {
   return (
-    <div className={classes.Notifications}>
+    <div
+      className={
+        toggleClass
+          ? `${classes.Notifications} ${classes.showNotifications}`
+          : classes.Notifications
+      }
+    >
       <div className={classes["notifications-actions"]}>
+        <p>Clear</p>
         <p>Mark all as read</p>
       </div>
-      <div className={classes.notification}></div>
+      <div className={classes.notification}>
+        <SingleNotification />
+      </div>
     </div>
   );
 };
