@@ -2,7 +2,6 @@ import React from "react";
 import classes from "./Notifications.module.css";
 import SingleNotification from "./SingleNotification";
 const Notifications = ({ toggleClass }) => {
-  console.log(toggleClass);
   return (
     <div
       className={

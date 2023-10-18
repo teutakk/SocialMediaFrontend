@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
 import UserChip from "./UserChip";
@@ -8,10 +8,31 @@ import Notifications from "./notifications/Notifications";
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
+  const notificationsRef = useRef(null);
 
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      console.log("ref: ", notificationsRef);
+      if (
+        notificationsRef.current &&
+        !notificationsRef.current.contains(event.target)
+      ) {
+        console.log(notificationsRef.current);
+        // Click occurred outside the notifications component, so close it
+        setShowNotifications(false);
+      }
+    };
+    if (showNotifications) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showNotifications]);
 
   const handleShowNotifications = () => {
     setShowNotifications((prev) => !prev);
@@ -52,6 +73,7 @@ const Navigation = () => {
 
       <div className={classes.user}>
         <div
+          ref={notificationsRef}
           className={classes["notifications-icon"]}
           onClick={handleShowNotifications}
         >
