@@ -1,9 +1,6 @@
 .ContentHolder p {
-  display: -webkit-box;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  line-clamp: 4;
-  white-space: normal;
+  margin-left: 78px;
+  margin-right: 15px;
 }
 
 .PostData {

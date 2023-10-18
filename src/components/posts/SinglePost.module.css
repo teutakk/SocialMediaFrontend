@@ -2,10 +2,10 @@
   display: flex;
   gap: 5px;
   flex-direction: column;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 20px 5px;
+  border-radius: 16px;
   /* min-width: 200px; */
-  background-color: white;
+  background-color: var(--color-grey-light-2);
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
