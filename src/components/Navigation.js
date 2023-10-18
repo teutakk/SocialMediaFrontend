@@ -3,11 +3,18 @@ import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
 import UserChip from "./UserChip";
 import logo from "../assets/images/starlabs.png";
+import Notifications from "./notifications/Notifications";
 
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
+  };
+
+  const handleShowNotifications = () => {
+    setShowNotifications((prev) => !prev);
   };
   return (
     <section className={classes.Navigation}>
@@ -44,8 +51,12 @@ const Navigation = () => {
       </div>
 
       <div className={classes.user}>
-        <div className={classes["notifications-icon"]}>
+        <div
+          className={classes["notifications-icon"]}
+          onClick={handleShowNotifications}
+        >
           <div className={classes.notifications}>Notification</div>
+          <Notifications toggleClass={showNotifications} />
         </div>
         <UserChip url={logo} />
       </div>
