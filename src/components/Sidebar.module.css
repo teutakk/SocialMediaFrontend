@@ -1,0 +1,36 @@
+.Sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.profile {
+  background-color: #ccc;
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  padding: 10px;
+  border-radius: 16px;
+  height: 80px;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: stretch;
+}
+
+.routing-options {
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.routing-options p {
+  font-size: 18px;
+}
