@@ -189,7 +189,7 @@ const postsSlice = createSlice({
         state.status.comment = "loading";
       })
       .addCase(commentPost.fulfilled, (state, action) => {
-        state.status = "succeeded";
+        state.status.comment = "succeeded";
         const { postId, comment } = action.payload;
         //finding the post that user wants to add a comment
         const post = state.posts.find((post) => post.id === postId);
