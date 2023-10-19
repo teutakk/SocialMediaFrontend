@@ -31,6 +31,18 @@
   gap: 5px;
 }
 
-.routing-options p {
+.route-holder {
   font-size: 18px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.route-logo {
+  width: 40px;
+  aspect-ratio: 1/1;
+  background-color: #777;
+  border-radius: 16px;
+  display: grid;
+  place-content: center;
 }
