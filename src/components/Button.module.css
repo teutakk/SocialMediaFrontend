@@ -1,0 +1,125 @@
+/* Check if the style is implemented to all buttons */
+/* Colors/Background-color/font/size will be up to date with design */
+/* === Buttons for Like, Comment and Share === */
+.like,
+.comment,
+.share {
+    background-color: transparent;
+    font-size: 13px;
+    height: 23px;
+    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65);
+    border: none;
+    border-radius: 500px;
+    color: white;
+    cursor: pointer;
+}
+
+.postPosition {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+}
+
+.innerContent{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.innerContent svg{
+    width: 15px;
+}
+
+.innerContent p {
+    padding-left: 3px;
+}
+
+.dislike{
+    background-color: darkgray;
+    font-size: 12px;
+    border: none;
+    border-radius: 500px;
+    max-width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+    height: 23px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
+.black svg{
+    color: black;
+}
+
+.like:hover,
+.comment:hover,
+.share:hover,
+.post:hover,
+.upload:hover,
+.dislike:hover {
+    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65) inset;
+}
+
+.like:active,
+.comment:active,
+.share:active,
+.upload:active,
+.dislike:active {
+    transform: translateY(-.6px);
+    background-color: rgba(0, 0, 0, 0.07);
+}
+/* ------------------------------------------------------------------ */
+
+/* === Buttons for Post and Upload Image/Video === */
+.post {
+    height: 34px;
+    background-color: royalblue;
+    border: 1px solid rgba(0, 0, 255, 0.65);
+    color: white;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 130px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.post:active {
+    transform: translateY(-.6px);
+}
+
+.upload {
+    align-self: stretch;
+    height: 34px;
+    background-color: transparent;
+    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65);
+    color: white;
+    font-size: 13px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.uploadSvg {
+    font-size: 15px;
+    padding-right: 6px;
+    color: white;
+}
+
+/* ----------------------------------------------------------- */

@@ -30,27 +30,28 @@
   overflow: hidden;
 }
 
-.PostButton {
+/* .PostButton {
   align-self: stretch;
   background-color: royalblue;
   color: white;
   font-weight: bold;
   padding: 5px 10px;
-  /* background-color: transparent; */
+  background-color: transparent;
   border: 1px solid #ccc;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 .Actions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  max-width: 100%;
+  gap: 10px;
 }
 
-.Feeling {
+/* .Feeling {
   display: none;
 }
 
@@ -68,15 +69,15 @@
   padding: 10px;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
+} */
 
-.ChooseImg,
+/* .ChooseImg,
 .Feelings {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 5px 10px;
   cursor: pointer;
-}
+} */
 
 @media (prefers-color-scheme: dark) {
   .CreatePost {
