@@ -18,12 +18,6 @@
   overflow: hidden;
 }
 
-.ImageHolder img {
-  height: 100%;
-  width: 100%;
-  object-fit: contain;
-}
-
 .PostData {
   display: flex;
   width: 100%;
@@ -43,5 +37,30 @@
 @media (min-width: 767px) {
   .ImageHolder {
     aspect-ratio: 16/9;
+    display: grid;
+    gap: 5px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "first second" "first third";
+  }
+
+  .ImageHolder img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .first {
+    grid-area: first;
+  }
+
+  .second {
+    grid-area: second;
+    overflow: hidden;
+  }
+
+  .third {
+    background-color: green;
+    grid-area: third;
   }
 }

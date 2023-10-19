@@ -2,15 +2,24 @@ import React from "react";
 import classes from "./PostContent.module.css";
 
 const PostContent = ({ post }) => {
-  console.log(post.images.length > 0);
+  const images = post.images.map((image, i) => (
+    <img key={i} src={image} alt={`uploadedphoto${i}`} />
+  ));
+
   return (
     <div className={classes.ContentHolder}>
       <div className={classes.content}>
         <p>{post.description}</p>
         <div className={classes.ImageHolder}>
-          {post.images.length > 0 && (
-            <img src={post.images[1]} alt="shqiperia" />
-          )}
+          <div className={classes.first}>
+            <img src={post.images[0]} />
+          </div>
+          <div className={classes.second}>
+            <img src={post.images[1]} />
+          </div>
+          <div className={classes.third}>
+            <div style={{ backgroundColor: "green" }}></div>
+          </div>
         </div>
       </div>
       <div className={classes.PostData}>
