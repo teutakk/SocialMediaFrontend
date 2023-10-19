@@ -249,3 +249,83 @@ export const data = [
     isFeeling: "happy 😊",
   },
 ];
+
+export const friends = [
+  {
+    name: "Alban",
+    lastName: "Mikushnica",
+    id: "alban123",
+    profilePicture:
+      "https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwdXNlcnN8ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    name: "Liridon",
+    lastName: "Krasniqi",
+    id: "liridon456",
+    profilePicture:
+      "https://images.unsplash.com/photo-1590086782792-42dd2350140d?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Dorina",
+    lastName: "Gashi",
+    id: "dorina789",
+    profilePicture:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Arben",
+    lastName: "Xhaka",
+    id: "arben101",
+    profilePicture:
+      "https://plus.unsplash.com/premium_photo-1682000321215-a061fd738095?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Ardit",
+    lastName: "Mehmeti",
+    id: "ardit202",
+    profilePicture:
+      "https://images.unsplash.com/photo-1522941471521-6ee21ec5cc26?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Elira",
+    lastName: "Dervishi",
+    id: "elira303",
+    profilePicture:
+      "https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Shqiponja",
+    lastName: "Rexhepi",
+    id: "shqiponja404",
+    profilePicture:
+      "https://images.unsplash.com/photo-1611619827107-ff5b4b4aea23?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Besa",
+    lastName: "Ismaili",
+    id: "besa505",
+    profilePicture:
+      "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Florin",
+    lastName: "Mustafa",
+    id: "florin606",
+    profilePicture:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Valmira",
+    lastName: "Aliu",
+    id: "valmira707",
+    profilePicture:
+      "https://images.unsplash.com/photo-1512291313931-d4291048e7b6?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Ardian",
+    lastName: "Berisha",
+    id: "ardian808",
+    profilePicture:
+      "https://images.unsplash.com/photo-1441786485319-5e0f0c092803?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGUlMjAlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+];
