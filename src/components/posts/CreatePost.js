@@ -5,12 +5,11 @@ import logo from "../../assets/images/starlabs.png";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../store/slices/postsSlice";
 import PostImagePreviewer from "./PostImagePreviewer";
-
+import { ImImages } from "react-icons/im";
 const CreatePost = () => {
   const dispatch = useDispatch();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
-  const [showEmotions, setShowEmotions] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
 
   // function to increase the height of the textbox
@@ -18,11 +17,6 @@ const CreatePost = () => {
     setPostText(e.target.value);
     e.target.style.height = "36px";
     e.target.style.height = e.target.scrollHeight + "px";
-  };
-
-  // function to toggle Feeling button
-  const handleShowEmotions = () => {
-    setShowEmotions((emotion) => !emotion);
   };
 
   // submt handler when form gets submitted
@@ -69,7 +63,7 @@ const CreatePost = () => {
         <UserChip url={logo} />
         <textarea
           onChange={handleInputChange}
-          placeholder="What's on yout mind, our dear User?"
+          placeholder="What's on your mind..."
         />
       </div>
       {imagePreviews && (
@@ -83,7 +77,14 @@ const CreatePost = () => {
       <hr />
       <div className={classes.Actions}>
         <label className={classes.ChooseImg} htmlFor="upload-image">
-          Choose File
+          <ImImages
+            style={{
+              verticalAlign: "middle",
+              marginRight: "5px",
+              fontSize: "1.1em",
+            }}
+          />
+          Photo/Video
         </label>
         <input
           onChange={handleFileInputChange}
@@ -93,23 +94,9 @@ const CreatePost = () => {
           accept="images/*"
           multiple
         />
-        <div className={classes.Feelings}>
-          <p onClick={handleShowEmotions} className={classes.FeelingsButton}>
-            Feeling
-          </p>
-          <div
-            className={`${classes.Feeling} ${
-              showEmotions ? classes.ShowFeeling : ""
-            }`}
-          >
-            <div>Happy</div>
-            <div>Sad</div>
-            <div>Exited</div>
-            <div>Thrilled</div>
-          </div>
-        </div>
+
         <button className={classes.PostButton} type="submit">
-          POST ▶
+          Post
         </button>
       </div>
     </form>
