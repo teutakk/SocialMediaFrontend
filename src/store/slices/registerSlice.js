@@ -12,9 +12,13 @@ const initialState = {
 export const registerUser = createAsyncThunk(
   "register/registerUser",
   async (userData) => {
-    const response = await axiosInstance.post(API_ROUTES.register, userData);
-    // check form of response
-    return response.data;
+    try {
+      const response = await axiosInstance.post(API_ROUTES.register, userData);
+      // check form of response
+      return response.data;
+    } catch (err) {
+      throw new Error(err.response.data.error);
+    }
   }
 );
 
