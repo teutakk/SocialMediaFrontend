@@ -1,0 +1,39 @@
+.Rightsidebar {
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 16px;
+  align-items: flex-end;
+}
+
+.friends-holder {
+  overflow-y: scroll;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.friends-holder::-webkit-scrollbar {
+  display: none;
+}
+
+.one-friend {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.info p:last-of-type {
+  font-size: 14px;
+}
