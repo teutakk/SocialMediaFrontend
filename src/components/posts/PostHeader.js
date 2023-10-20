@@ -19,7 +19,6 @@ const PostHeader = ({ post }) => {
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.userFullName} </strong>
-            {/* is feeling {post.isFeeling} */}
           </p>
           <div className={classes["date-and-privacy"]}>
             <span>10.7.2023</span>

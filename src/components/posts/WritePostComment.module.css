@@ -16,9 +16,13 @@
   justify-content: space-between;
   min-width: max-content;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 28px;
   background-color: #eee;
   overflow: hidden;
+}
+
+.Comment img {
+  width: 26px;
 }
 
 .Comment:focus-within {
@@ -28,7 +32,6 @@
 .Comment textarea {
   resize: none;
   width: 100%;
-  /* min-width: max-content; */
   height: 38px;
   display: flex;
   align-items: center;
@@ -36,8 +39,14 @@
   padding: 10px;
   border: none;
   outline: none;
+  font-family: inherit;
   border-radius: inherit;
   background-color: transparent;
+  padding: 10px 20px;
+}
+
+.Comment textarea:placeholder-shown {
+  letter-spacing: 0.5px;
 }
 
 .Comment textarea:focus {
@@ -47,18 +56,18 @@
 
 .Comment button {
   cursor: pointer;
-  /* background-color: transparent; */
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   aspect-ratio: 1/1;
   border: none;
   border-left: 1px solid #ccc;
   color: #ccc;
-  /* border-radius: inherit; */
   padding: 0;
   transition: all 0.2s ease;
 }
 
 .Comment button:hover {
-  color: #aaa;
-  font-size: 16px;
+  background-color: #ccc;
 }

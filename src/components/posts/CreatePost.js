@@ -75,7 +75,7 @@ const CreatePost = () => {
           selectedImages={selectedImages}
         />
       )}
-      <hr />
+
       <div className={classes.Actions}>
         <label className={button.upload} htmlFor="upload-image">
           <svg

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./UserChip.module.css";
-const UserChip = ({ url }) => {
+const UserChip = ({ url, width, heigth }) => {
   return (
-    <div className={classes.UserChip}>
+    <div style={{ width: width, height: heigth }} className={classes.UserChip}>
       <img src={url} alt="userphoto" />
     </div>
   );
