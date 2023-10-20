@@ -85,7 +85,7 @@ const Register = () => {
             placeholder="Enter Your Name"
             className={classes.inputRow}
           >
-            {formErrors.firstName && <p>{formErrors.firstName}</p>}
+            {formErrors.firstName && <p className={classes.errorText}>{formErrors.firstName}</p>}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -97,7 +97,7 @@ const Register = () => {
             placeholder="Enter Your Lastname"
             className={classes.inputRow}
           >
-            {formErrors.lastName && <p>{formErrors.lastName}</p>}
+            {formErrors.lastName && <p className={classes.errorText}>{formErrors.lastName}</p>}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -118,7 +118,7 @@ const Register = () => {
             value={formData.password}
             label="Password"
           >
-            {formErrors.password && <p>{formErrors.password}</p>}
+            {formErrors.password && <p className={classes.errorText}>{formErrors.password}</p>}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -131,7 +131,7 @@ const Register = () => {
             label="Confirm Password"
           >
             {formErrors.confirmPassword && !formErrors.password && (
-              <p>{formErrors.confirmPassword}</p>
+              <p className={classes.errorText}>{formErrors.confirmPassword}</p>
             )}
           </CustomInput>
             <div className={classes.blockInput}>

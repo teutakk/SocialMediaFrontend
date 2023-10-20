@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: max(5vw, 40px);
 }
 .background{
     background-color: rgb(189, 186, 186);
     background-position: center;
     background-size: contain;
-    padding: max(200px, 17%);
+    padding: max(200px, 16%);
     margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
     position: relative;
     border-radius: max(14px, .9vw);
@@ -22,7 +23,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: max(40px, 5vw) max(30px, 2vw) max(40px, 6vw) max(30px, 2vw);
+    padding: max(40px, 5vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
     background-color: rgba(155, 155, 155, 0.9);
     width: max(330px, 45%);
     margin: max(20px, 3vw) auto;
@@ -52,12 +53,19 @@
     margin-left: max(7px, .4vw)
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column; 
     gap: max(10px, .6vw);   
 }
-.icon{
+form div p{
+    font-size: max(12px, .75vw);
+    color: rgb(166, 36, 36);
+    font-weight: 500;
+    margin-left: max(10px, .5vw);
+    max-width: 250px; 
+}
+.icon {
     height: max(1vw, 15px);
     width: max(1vw, 15px);
     color: #5f5f5f;
@@ -65,7 +73,7 @@
     align-items: center;
     justify-self: center;
 }
-.blockInput{
+.blockInput {
     display: flex;
     gap: max(10px, .6vw);
 
@@ -82,7 +90,7 @@
     width: 100%;
 
 }
-.button{ 
+.button { 
     width: 100%;
     border-radius: max(14px, .9vw);
     padding: max(10px, .5vw);
@@ -93,12 +101,12 @@
     font-size: max(13px, .85vw);
     cursor: pointer;
 }
-.button:focus{
+.button:focus {
     background-color: #009BC6;
 }
 @media (max-width: 1450px) {
     .container{
-        gap: 90px;
+        gap: 140px;
     }
 }
 @media (max-width: 500px) {
@@ -110,7 +118,8 @@
         margin: max(50px, 5.5vw) 0;
     }
     .formData{
-        margin: 100px auto 20px auto;
+        margin: 100px auto 0px auto;
+        padding: max(20px, 2vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
     }
 }
 
@@ -120,22 +129,21 @@
         right: 0px;
         width: 90%;
     }
-    .form{
+    .form { 
         display: block;
     }
-    .blockInput select{
+    .blockInput select { 
         width: 100%;
     }
-    .button{
+    .button {
         margin-top: 10px;
     }
     /*  if we want to make the gender and birthdate on a column*/
-    /* .blockInput{
+    /* .blockInput {
         display: flex;
         flex-direction: column;
-        align-items: stretch;
     }
-    input[type="date"]{
+    input[type="date"] {
         width: 100%;
     } */
 }
