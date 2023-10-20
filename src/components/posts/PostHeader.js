@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { savePost } from "../../store/slices/postsSlice";
 
 const PostHeader = ({ post, type }) => {
-  console.log("type", type);
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const handleShowOptions = () => {
