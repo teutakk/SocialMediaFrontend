@@ -1,0 +1,11 @@
+.footerList{
+    display: flex;
+    gap: max(20px, 1.3vw);
+    flex-wrap: wrap;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: max(13px, .8vw);
+    margin-top: 3vw;
+    margin-bottom: max(20px, 1.2vw);
+    color: #969696;
+}

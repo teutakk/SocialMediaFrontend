@@ -1,3 +1,129 @@
 .container{
-    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.background{
+    background-color: rgb(189, 186, 186);
+    background-position: center;
+    background-size: contain;
+    padding: max(200px, 17%);
+    margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
+    position: relative;
+    border-radius: max(14px, .9vw);
+}
+.formData{
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: max(40px, 5vw) max(30px, 2vw) max(40px, 6vw) max(30px, 2vw);
+    background-color: rgba(155, 155, 155, 0.9);
+    width: max(330px, 45%);
+    margin: max(20px, 3vw) auto;
+    gap: max(30px, 2vw);
+    border-radius: max(1vw, 15px);
+}
+
+.topData{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: max(10px, .5vw);
+}
+.topData h2{
+    font-size: max(36px, 2.3vw);
+    font-weight: 600;
+    color: #5F5F5F;
+}
+.topData p{
+    white-space: nowrap;
+    font-size: max(13px, .85vw);
+    font-weight: 500;
+}
+.topData p a{
+    text-decoration: underline;
+    color: #5F5F5F;
+    margin-left: max(7px, .4vw)
+}
+
+.form{
+    display: flex;
+    flex-direction: column; 
+    gap: max(10px, .6vw);   
+}
+.icon{
+    height: max(1vw, 15px);
+    width: max(1vw, 15px);
+    color: #5f5f5f;
+}
+.blockInput{
+    display: flex;
+    gap: max(10px, .6vw);
+
+}
+.blockInput select{
+    padding: max(10px, .5vw);
+    outline: none;
+    border: none;
+    border-radius: max(14px, .9vw);
+    background-color: #E2E2E2;
+    color: #222222;
+    font-size: max(12px, .8vw);
+    border: 2px solid #5F5F5F;
+    width: 100%;
+
+}
+.button{ 
+    width: 100%;
+    border-radius: max(14px, .9vw);
+    padding: max(10px, .5vw);
+    background-color: #5F5F5F;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: max(13px, .85vw);
+    cursor: pointer;
+}
+.button:focus{
+    background-color: #009BC6;
+}
+@media (max-width: 1450px) {
+    .container{
+        gap: 90px;
+    }
+}
+@media (max-width: 500px) {
+    .container{
+        gap: 0px;
+    }
+    .background2{
+        padding: 320px max(20px, 18vw);
+        margin: max(50px, 5.5vw) 0;
+    }
+    .formData{
+        margin: 100px auto 20px auto;
+    }
+}
+
+@media (max-width: 380px) {
+    .formData{
+        left: 0px;
+        right: 0px;
+        width: 90%;
+    }
+    .form{
+        display: block;
+    }
+    .blockInput select{
+        width: 100%;
+    }
+    .button{
+        margin-top: 10px;
+    }
 }

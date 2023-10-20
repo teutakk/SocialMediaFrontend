@@ -3,7 +3,12 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../store/slices/registerSlice";
 import { validateForm } from "../utils/validateRegisterData";
 import CustomInput from "../components/CustomInput";
-import classes from "./styles/Register.module.css"
+import classes from "./styles/Register.module.css";
+import { Link, useNavigate } from "react-router-dom";
+import { BiSolidUser } from "react-icons/bi";
+import { AiOutlineMail } from "react-icons/ai";
+import { MdLockOutline } from "react-icons/md";
+import Footer from "../components/Footer";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -17,13 +22,18 @@ const Register = () => {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   // errors state
   const [formErrors, setFormErrors] = useState({ error: true });
 
   useEffect(() => {
     // we dispatch an action when the formError does not contain any errors in it.
     if (formErrors.error !== undefined && !formErrors.error) {
-      dispatch(registerUser(formData));
+      
+      dispatch(registerUser(formData)).then(() => {
+        navigate("/login");
+      });
+
       setFormData({
         firstName: "",
         lastName: "",
@@ -35,6 +45,7 @@ const Register = () => {
       });
       setFormErrors({ error: true });
     }
+
   }, [formErrors, formData, dispatch]);
 
   const handleSubmit = (event) => {
@@ -55,89 +66,97 @@ const Register = () => {
 
   return (
     <div className={classes.container}>
-      <div>
-        {/* Some design if provided */}
-        <p></p>
+      <div className={classes.background}></div>
+      <div className={classes.formData}>
+        <div className={classes.topData}>
+          <h2>Sign Up</h2>
+          <p>
+            Already have an account? <Link to="/login">Log In</Link>{" "}
+          </p>
+        </div>
+        <form onSubmit={handleSubmit} className={classes.form}>
+          <CustomInput
+            onChange={onChangeHandler}
+            icon={<BiSolidUser className={classes.icon} />}
+            type="text"
+            id="firstName"
+            name="firstName"
+            value={formData.firstName}
+            placeholder="Enter Your Name"
+            className={classes.inputRow}
+          >
+            {formErrors.firstName && <p>{formErrors.firstName}</p>}
+          </CustomInput>
+          <CustomInput
+            onChange={onChangeHandler}
+            icon={<BiSolidUser className={classes.icon} />}
+            type="text"
+            id="lastName"
+            name="lastName"
+            value={formData.lastName}
+            placeholder="Enter Your Lastname"
+            className={classes.inputRow}
+          >
+            {formErrors.lastName && <p>{formErrors.lastName}</p>}
+          </CustomInput>
+          <CustomInput
+            onChange={onChangeHandler}
+            icon={<AiOutlineMail className={classes.icon} />}
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Your Email"
+            value={formData.email}
+          />
+          <CustomInput
+            onChange={onChangeHandler}
+            icon={<MdLockOutline className={classes.icon} />}
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Your Password"
+            value={formData.password}
+            label="Password"
+          >
+            {formErrors.password && <p>{formErrors.password}</p>}
+          </CustomInput>
+          <CustomInput
+            onChange={onChangeHandler}
+            icon={<MdLockOutline className={classes.icon} />}
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            label="Confirm Password"
+          >
+            {formErrors.confirmPassword && !formErrors.password && (
+              <p>{formErrors.confirmPassword}</p>
+            )}
+          </CustomInput>
+            <div className={classes.blockInput}>
+              <select name="gender" id="gender" onChange={onChangeHandler} >
+                <option value="" disabled selected>Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+              <CustomInput
+                onChange={onChangeHandler}
+                type="date"
+                id="birthday"
+                name="birthday"
+                value={formData.date}
+                label="Birthday"
+              />
+            </div>
+            <button type="submit" className={classes.button}>
+              Sign Up
+            </button>
+        </form>
       </div>
-      <form
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          alignItems: "flex-start",
-        }}
-        onSubmit={handleSubmit}
-      >
-        <CustomInput
-          onChange={onChangeHandler}
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          label="First Name"
-        >
-          {formErrors.firstName && <p>{formErrors.firstName}</p>}
-        </CustomInput>
-        <CustomInput
-          onChange={onChangeHandler}
-          type="text"
-          id="lastName"
-          name="lastName"
-          value={formData.lastName}
-          label="Last Name"
-        >
-          {formErrors.lastName && <p>{formErrors.lastName}</p>}
-        </CustomInput>
-        <CustomInput
-          onChange={onChangeHandler}
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-        />
-        <CustomInput
-          onChange={onChangeHandler}
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          label="Password"
-        >
-          {formErrors.password && <p>{formErrors.password}</p>}
-        </CustomInput>
-        <CustomInput
-          onChange={onChangeHandler}
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          value={formData.confirmPassword}
-          label="Confirm Password"
-        >
-          {formErrors.confirmPassword && !formErrors.password && (
-            <p>{formErrors.confirmPassword}</p>
-          )}
-        </CustomInput>
-        <CustomInput
-          onChange={onChangeHandler}
-          name="gender"
-          type="radio"
-          value={formData.gender}
-        />
-        <CustomInput
-          onChange={onChangeHandler}
-          type="date"
-          id="birthday"
-          name="birthday"
-          value={formData.date}
-          label="Birthday"
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <div>
-        <p>Already have an account?</p>
-        {/* change later to NavLink when we define our routes */}
-        <a href="login">Log In</a>
-      </div>
+      <Footer />
     </div>
   );
 };
