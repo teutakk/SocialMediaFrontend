@@ -13,7 +13,7 @@ import PostContent from "./PostContent";
 import classes from "./SinglePost.module.css";
 import PostComments from "./PostComments";
 
-const SinglePost = ({ post }) => {
+const SinglePost = ({ post, type }) => {
   const dispatch = useDispatch();
   const editState = useSelector(selectEditState);
   const isEditing = editState === post.id;
@@ -49,7 +49,7 @@ const SinglePost = ({ post }) => {
           <button onClick={() => dispatch(finishEdit())}>Cancel</button>
         </div>
       ) : (
-        <PostContent post={post} />
+        <PostContent post={post} type={type} />
       )}
 
       <hr />

@@ -6,7 +6,6 @@ import { selectUser } from "../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   const loggedInUser = useSelector(selectUser);
-  console.log("logged in user: ", loggedInUser);
   return (
     <div className={classes.Sidebar}>
       <div className={classes.profile}>

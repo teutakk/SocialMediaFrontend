@@ -7,11 +7,8 @@ const Modal = ({ children, showActionButtons, showModal, modal, data }) => {
     return () => document.body.classList.remove("hidden");
   }, []);
 
-  const onCancelHandler = () => {
-    console.log("cancel");
-  };
+  const onCancelHandler = () => {};
   const onSaveHandler = () => {
-    console.log("saved");
     showModal();
   };
   return createPortal(

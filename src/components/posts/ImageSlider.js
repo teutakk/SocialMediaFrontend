@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import classes from "./ImageSlider.module.css";
+import SinglePost from "./SinglePost";
 const ImageSlider = ({ post }) => {
-  console.log("post: from slider", post);
-  const images = [1, 2, 3, 4, 5, 6];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImageHandler = () => {
     if (currentImageIndex < post.images.length - 1) {
@@ -23,7 +22,7 @@ const ImageSlider = ({ post }) => {
   return (
     <div className={classes.ImageSlider}>
       <div className={classes.slider}>
-        {images.length > 1 && (
+        {post.images.length > 1 && (
           <>
             <button className={classes.arrow} onClick={prevImageHandler}>
               &larr;
@@ -35,7 +34,9 @@ const ImageSlider = ({ post }) => {
         )}
         <div className={classes["image-holder"]}>{currentImage}</div>
       </div>
-      <div className={classes["post-content"]}>Post content here</div>
+      <div className={classes["post-content"]}>
+        <SinglePost post={post} type="modal-post" />
+      </div>
     </div>
   );
 };

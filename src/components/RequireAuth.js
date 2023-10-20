@@ -9,8 +9,6 @@ const RequireAuth = ({ component: Component }) => {
   const user = useSelector(selectUser);
   // Check if there is a token in local storage
   const token = localStorage.getItem("token");
-  console.log("user: ", user);
-  console.log("token: ", token);
   const isUserAuthorized = () => {
     return !!user && token;
   };
