@@ -30,21 +30,6 @@
   overflow: hidden;
 }
 
-.PostButton {
-  background-color: white;
-  color: black;
-  font-size: 16px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  height: 30px;
-  width: auto;
-  width: 140px;
-}
 .ChooseImg {
   border: 1px solid #ccc;
   width: 140px;
