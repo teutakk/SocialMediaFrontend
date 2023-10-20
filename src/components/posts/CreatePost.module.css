@@ -25,65 +25,28 @@
   background-color: #eee;
   align-items: center;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 16px;
   overflow: hidden;
 }
 
-.PostButton {
-  align-self: stretch;
-  background-color: royalblue;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px;
-  /* background-color: transparent; */
+.ChooseImg {
   border: 1px solid #ccc;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 140px;
+  color: black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  cursor: pointer;
 }
-
 .Actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-}
-
-.Feeling {
-  display: none;
-}
-
-.Feelings {
-  position: relative;
-}
-
-.ShowFeeling {
-  display: block;
-  position: absolute;
-  top: 110%;
-  z-index: 1;
-  left: 0%;
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.ChooseImg,
-.Feelings {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
   .CreatePost {
     background-color: var(--color-grey-dark-2);
-  }
-  .ShowFeeling {
-    background-color: var(--color-grey-dark-2);
-    border: 1px solid var(--color-grey-light-2);
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-
+import classes from "./CustomInput.module.css"
 /**
  * Custom input component.
  * @param {object} props - Component props.
@@ -13,28 +13,33 @@ import React from "react";
  * @returns {JSX.Element} Custom input component.
  */
 
-const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
+const CustomInput = ({ children, type, icon, value, onChange, id, name, placeholder }) => {
   let input;
   switch (type) {
     case "text":
       input = (
         <>
-          <label htmlFor={id}>{label}:</label>
+        <div className={classes.customInputBlock}>
+          <p>{icon}</p>
           <input
             onChange={onChange}
             type={type}
             id={id}
             name={name}
             value={value}
+            placeholder={placeholder}
             required
+            className={classes.input}
           />
+        </div>
         </>
       );
       break;
     case "email":
       input = (
         <>
-          <label htmlFor={id}>Email:</label>
+          <div className={classes.customInputBlock}>
+          <p>{icon}</p>          
           <input
             onChange={onChange}
             value={value}
@@ -42,8 +47,11 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
             name={name}
             type={type}
             required
+            placeholder={placeholder}
             autoComplete="username"
+            className={classes.input}
           />
+          </div>
         </>
       );
 
@@ -51,56 +59,19 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "password":
       input = (
         <>
-          <label htmlFor={id}>{label}:</label>
+         <div className={classes.customInputBlock}>
+          <p>{icon}</p>
           <input
             onChange={onChange}
             value={value}
             id={id}
             name={name}
             type={type}
+            placeholder={placeholder}
             autoComplete="new-password"
             required
+            className={classes.input}
           />
-        </>
-      );
-      break;
-    case "radio":
-      input = (
-        <>
-          <div>Gender:</div>
-          <div>
-            <label htmlFor="female">Female</label>
-            <input
-              onChange={onChange}
-              type={type}
-              id="female"
-              name={name}
-              value="Female"
-              checked={value === "Female"}
-              required
-            />
-
-            <label htmlFor="male">Male</label>
-            <input
-              onChange={onChange}
-              type={type}
-              id="male"
-              name={name}
-              value="Male"
-              checked={value === "Male"}
-              required
-            />
-
-            <label htmlFor="other">Other</label>
-            <input
-              onChange={onChange}
-              type={type}
-              id="other"
-              name={name}
-              value="Other"
-              checked={value === "Other"}
-              required
-            />
           </div>
         </>
       );
@@ -108,7 +79,6 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
     case "date":
       input = (
         <>
-          <label htmlFor={id}>Birthday:</label>
           <input
             onChange={onChange}
             type={type}
@@ -116,6 +86,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
             name={name}
             value={value}
             required
+            className={classes.birthdayInput}
           />
         </>
       );
@@ -125,7 +96,7 @@ const CustomInput = ({ children, type, value, onChange, id, name, label }) => {
   }
 
   return (
-    <div className="custom-input">
+    <div className={classes.inputBlock}>
       {children && React.cloneElement(children, { className: "error" })}
       {input}
     </div>

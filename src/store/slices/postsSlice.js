@@ -1,6 +1,7 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   posts: [],
   status: {
@@ -21,6 +22,7 @@ const initialState = {
     create: null,
     dislike: null,
   },
+  editPostId: null,
 };
 
 // ***fix the corrent route on API_ROUTE for all of the fetch request***
@@ -28,17 +30,25 @@ const initialState = {
 // here we handle all of the fetch request that have to do with posts, eg liking, commenting, editing, deleting
 
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
-  // in the fute this has to be posts of you, and your friends
-  const response = await axiosInstance.get(API_ROUTES.posts);
-  return response.data;
+  try {
+    const response = await axiosInstance.get(API_ROUTES.posts);
+    return response.data;
+  } catch (error) {
+    throw error; // Handle errors appropriately
+  }
 });
-
 export const editPost = createAsyncThunk("posts/editPost", async (data) => {
-  // this action can be performed only by the owner of the post. CHECK FOR THAT
   const response = await axiosInstance.patch(API_ROUTES.posts[data.id], data);
   return response.data;
 });
 
+export const selectEditState = (state) => state.posts.editing;
+export const startEdit = createAsyncThunk("posts/startEdit", (postId) => {
+  return postId;
+});
+export const finishEdit = createAsyncThunk("posts/finishEdit", () => {
+  return null;
+});
 export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
   // this action can be performed only by the owner of the post. CHECK FOR THAT
   const response = await axiosInstance.delete(API_ROUTES.posts.id);
@@ -120,7 +130,7 @@ export const sharePost = createAsyncThunk("posts/sharePost", async () => {
   return;
 });
 
-const postsSlice = createSlice({
+export const postsSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {},
@@ -157,10 +167,12 @@ const postsSlice = createSlice({
         state.state.edit = "failed";
         state.error.edit = action.error.message;
       })
+
       // Deleting posts, handling all cases of responses
-      .addCase(deletePost.pending, (state, action) => {
+      .addCase(deletePost.pending.type, (state, action) => {
         state.status.delete = "loading";
       })
+
       .addCase(deletePost.fulfilled, (state, action) => {
         // then we exclude the said  post from the data of the posts
         state.posts = state.posts.filter(
@@ -172,7 +184,7 @@ const postsSlice = createSlice({
         state.status.delete = "failed";
         state.error.delete = action.error.message;
       })
-      .addCase(createPost.pending, (state, action) => {
+      .addCase(createPost.pending.type, (state, action) => {
         state.status.create = "loading";
       })
       .addCase(createPost.fulfilled, (state, action) => {
@@ -313,5 +325,5 @@ const postsSlice = createSlice({
 export const selectPosts = (state) => state.posts.posts;
 export const selectStats = (state) => state.posts.status;
 export const selectError = (state) => state.posts.error;
-
+export const selectEditPostId = (state) => state.posts.editPostId;
 export default postsSlice.reducer;

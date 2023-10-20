@@ -15,15 +15,15 @@ const PostHeader = ({ post }) => {
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <img
-          src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=400"
-          alt="profile "
-        />
+        <img src={post.profilePhoto} alt="profile " />
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.userFullName} </strong>
           </p>
-          <span className={classes.date}>10.7.2023</span>
+          <div className={classes["date-and-privacy"]}>
+            <span>10.7.2023</span>
+            <span>{post.privacy === "public" && " P"}</span>
+          </div>
         </div>
       </div>
       <div className={classes.settings}>

@@ -1,23 +1,6 @@
 .PostActions {
   display: flex;
-  justify-content: space-between;
-}
-
-.PostActions div {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  padding: 7px 0;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.PostActions div:hover {
-  background-color: #eee;
-}
-
-@media (prefers-color-scheme: dark) {
-  .PostActions div:hover {
-    background-color: var(--color-grey-dark-3);
-  }
+  justify-content: flex-end;
+  max-width: 100%;
+  gap: 7px;
 }
