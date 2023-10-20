@@ -227,7 +227,9 @@ export const data = [
 
     description:
       "Sporti është jeta ime! Sot u përballëm në një ndeshje të pasionuar të volejbollit në plazh. #Sport #Pasion",
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1697581886387-a8b3af94ef0b?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDV8TThqVmJMYlRSd3N8fGVufDB8fHx8fA%3D%3D",
+    ],
     createdAt: new Date("10/15/2023"),
     privacy: "public",
     likes: [],
