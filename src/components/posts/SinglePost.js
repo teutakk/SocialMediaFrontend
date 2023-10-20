@@ -32,8 +32,12 @@ const SinglePost = ({ post, type }) => {
     dispatch(finishEdit());
   };
   return (
-    <div className={classes.SinglePost}>
-      <PostHeader post={post} />
+    <div
+      className={`${classes.SinglePost} ${
+        type === "modal-post" ? classes.SinglePostModal : ""
+      }`}
+    >
+      <PostHeader post={post} type={type} />
 
       {isOwner && !isEditing ? (
         <button onClick={handleEditClick}>Edit</button>

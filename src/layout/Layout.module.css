@@ -23,7 +23,7 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
-    grid-template-columns: 1fr 2.8fr 1fr;
+    grid-template-columns: 1fr 2.6fr 1.2fr;
     gap: 20px;
   }
 
@@ -35,5 +35,11 @@
 
   .right {
     display: flex;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Layout {
+    grid-template-columns: 1fr 2.8fr 1fr;
   }
 }

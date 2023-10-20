@@ -5,6 +5,10 @@
   gap: 10px;
 }
 
+.PostsHolder {
+  gap: 30px;
+}
+
 .Posts {
   max-width: 720px;
   width: 100%;
