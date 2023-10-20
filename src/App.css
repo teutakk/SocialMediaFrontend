@@ -1,14 +1,14 @@
 .App {
   width: 100%;
-  background-color: #eee;
+  /* background-color: #eee; */
 }
 
 @media (prefers-color-scheme: dark) {
   .App {
-    background-color: var(--color-grey-dark-1);
+    /* background-color: var(--color-grey-dark-1); */
   }
 
   body {
-    color: var(--color-grey-light-1);
+    /* color: var(--color-grey-light-1); */
   }
 }
