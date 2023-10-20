@@ -43,7 +43,6 @@ const Navigation = () => {
         <span onClick={handleShowNavigation}>X</span>
         <div className={classes.logo}>
           <img src={logo} alt="lasjdlkasjd" />
-          <h3>Our Social Media</h3>
         </div>
       </div>
       <div className={classes["navigation-main"]}>
@@ -55,20 +54,6 @@ const Navigation = () => {
             name="search"
           />
         </label>
-        <nav className={showNavigation ? classes.open : ""}>
-          <span onClick={handleShowNavigation}>X</span>
-          <ul>
-            <li>
-              <NavLink to="/posts">Feed</NavLink>
-            </li>
-            <li>
-              <NavLink to="/friends">Friends</NavLink>
-            </li>
-            <li>
-              <NavLink to="/profile">Profile</NavLink>
-            </li>
-          </ul>
-        </nav>
       </div>
 
       <div className={classes.user}>
@@ -80,7 +65,6 @@ const Navigation = () => {
           <div className={classes.notifications}>Notification</div>
           <Notifications toggleClass={showNotifications} />
         </div>
-        <UserChip url={logo} />
       </div>
     </section>
   );
