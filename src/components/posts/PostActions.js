@@ -1,10 +1,11 @@
 import React from "react";
 import classes from "./PostActions.module.css";
+import LikeButton from "../LikeButton";
 
-const PostActions = () => {
+const PostActions = ({ post }) => {
   return (
     <div className={classes.PostActions}>
-      <div className="reaction">like</div>
+      <LikeButton post={post} />
       <div className="comment">comment</div>
       <div className="share">share</div>
     </div>

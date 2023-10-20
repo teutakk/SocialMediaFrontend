@@ -1,9 +1,27 @@
-.ContentHolder p {
-  display: -webkit-box;
+.ContentHolder {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ImageHolder {
+  width: 100%;
+  aspect-ratio: 9/16;
+  background-color: rgba(0, 0, 0, 0.1);
+  max-height: 60vh;
   overflow: hidden;
-  text-overflow: ellipsis;
-  line-clamp: 4;
-  white-space: normal;
+}
+
+.ImageHolder img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .PostData {
@@ -20,4 +38,10 @@
 .comments,
 .shares {
   justify-self: flex-end;
+}
+
+@media (min-width: 767px) {
+  .ImageHolder {
+    aspect-ratio: 16/9;
+  }
 }

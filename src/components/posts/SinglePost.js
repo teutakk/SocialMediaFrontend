@@ -12,11 +12,11 @@ const SinglePost = ({ post }) => {
       <PostHeader post={post} />
       <PostContent post={post} />
       <hr />
-      <PostActions />
+      <PostActions post={post} />
       <hr />
       <section>
-        <WritePostComment />
         <PostComments post={post} />
+        <WritePostComment />
       </section>
     </div>
   );

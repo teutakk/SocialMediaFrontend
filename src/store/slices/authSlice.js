@@ -12,13 +12,17 @@ const initialState = {
 export const authenticateUser = createAsyncThunk(
   "authentication/authenticateUser",
   async (credentials) => {
-    const response = await axiosInstance.post(API_ROUTES.login, credentials);
-    // if we name it token
-    const token = response.data.token;
-    // Saving the token to localStorage
-    localStorage.setItem("token", token);
+    try {
+      const response = await axiosInstance.post(API_ROUTES.login, credentials);
+      // if we name it token
+      const token = response.data.token;
+      // Saving the token to localStorage
+      localStorage.setItem("token", token);
 
-    return response.data;
+      return response.data;
+    } catch (err) {
+      throw new Error(err.response.data.error);
+    }
   }
 );
 
@@ -44,7 +48,7 @@ const authSlice = createSlice({
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.status = "failed";
-        state.error = action.payload;
+        state.error = action.error.message;
       });
   },
 });

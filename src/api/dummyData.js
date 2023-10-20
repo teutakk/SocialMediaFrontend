@@ -6,7 +6,10 @@ export const data = [
     profilePhoto: "https://randomuser.me/api/portraits/men/83.jpg",
     description:
       "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve. Gjithashtu, ekonomia është një temë e rëndësishme. Shqipëria ka shënuar rritje ekonomike, por përkundër kësaj, shumë qytetarë vazhdojnë të kenë probleme me papunësinë dhe varfërinë. Është e rëndësishme të investohet në sektorët e zhvillimit ekonomik për të krijuar vende pune dhe të përmirësuar standardet e jetesës. Në politikën e jashtme, Shqipëria po përpjeket të rrisë bashkëpunimin me partnerët ndërkombëtarë dhe të përshpejtojë procesin e anëtarësimit në Bashkimin Evropian. Ky është një objektiv i rëndësishëm për të ardhmen e vendit.",
-    images: [],
+    images: [
+      "https://ata.gov.al/wp-content/uploads/2023/05/1-30.jpg",
+      "https://w0.peakpx.com/wallpaper/428/407/HD-wallpaper-alb-1-albania-albanian-shqip.jpg",
+    ],
     createdAt: new Date("10/07/20203"),
     privacy: "public",
     likes: [
@@ -37,7 +40,7 @@ export const data = [
     profilePhoto: "https://randomuser.me/api/portraits/men/86.jpg",
     description:
       "Pamjet natyrore të Shqipërisë janë të mahnitshme. Sot u bë një ditë e mrekullueshme për një shëtitje në malin e Tomorrit. #Natyrë #Shqipëri",
-    images: ["mountain.jpg"],
+    images: [],
     createdAt: new Date("10/08/2023"),
     privacy: "public",
     likes: [],
@@ -52,7 +55,7 @@ export const data = [
     profilePhoto: "https://randomuser.me/api/portraits/men/80.jpg",
     description:
       "Futboll është pasioni im! Sot fituam një ndeshje të rëndësishme me ekipin tonë të preferuar. #Futboll #Fitore",
-    images: ["football.jpg"],
+    images: [],
     createdAt: new Date("10/09/2023"),
     privacy: "public",
     likes: [
@@ -82,7 +85,7 @@ export const data = [
 
     description:
       "Plazhet e Shqipërisë janë të mrekullueshme. Dita e sotme është një ditë e përsosur për të shijuar bregdetin. #Plazh #Bregdeti",
-    images: ["beach.jpg"],
+    images: [],
     createdAt: new Date("10/10/2023"),
     privacy: "public",
     likes: [
@@ -119,7 +122,7 @@ export const data = [
 
     description:
       "Natyrë e pasur, Shqipëria është vendi ideal për udhëtime në natyrë. Sot u eksploruam një pyll të bukur. #Natyrë #Eksploremi",
-    images: ["forest.jpg"],
+    images: [],
     createdAt: new Date("10/11/2023"),
     privacy: "public",
     likes: [
@@ -148,7 +151,7 @@ export const data = [
 
     description:
       "Adrenalina është gjithçka! Sot u bë një aventurë emocionuese me rafting në lumin Vjosë. #Adventurë #Rafting",
-    images: ["rafting.jpg"],
+    images: [],
     createdAt: new Date("10/12/2023"),
     privacy: "public",
     likes: [
@@ -171,7 +174,7 @@ export const data = [
 
     description:
       "Malësia e bukur e Bjeshkëve të Nemura. Sot u eksploruam pikën më të lartë të Shqipërisë. #Mali #Eksplorim",
-    images: ["mountain_peak.jpg"],
+    images: [],
     createdAt: new Date("10/13/2023"),
     privacy: "public",
     likes: [],
@@ -196,7 +199,7 @@ export const data = [
 
     description:
       "Frikësohuni nga ngrohësia! Sot e kaluam kohën nën ujërat freskuese të lumit Valbonë. #Natyra #Valbonë",
-    images: ["river.jpg"],
+    images: [],
     createdAt: new Date("10/14/2023"),
     privacy: "public",
     likes: [],
@@ -212,7 +215,7 @@ export const data = [
 
     description:
       "Sporti është jeta ime! Sot u përballëm në një ndeshje të pasionuar të volejbollit në plazh. #Sport #Pasion",
-    images: ["volleyball.jpg"],
+    images: [],
     createdAt: new Date("10/15/2023"),
     privacy: "public",
     likes: [],
@@ -237,12 +240,92 @@ export const data = [
 
     description:
       "Plazhi është vendi më i mirë për t'u relaksuar. Sot u shijua një ditë e mrekullueshme në plazhin e Dhermiut. #Relaksim #Plazh",
-    images: ["beach_dhermi.jpg"],
+    images: [],
     createdAt: new Date("10/16/2023"),
     privacy: "public",
     likes: [],
     comments: [],
     shares: 12,
     isFeeling: "happy 😊",
+  },
+];
+
+export const friends = [
+  {
+    name: "Alban",
+    lastName: "Mikushnica",
+    id: "alban123",
+    profilePicture:
+      "https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmFuZG9tJTIwdXNlcnN8ZW58MHx8MHx8fDA%3D",
+  },
+  {
+    name: "Liridon",
+    lastName: "Krasniqi",
+    id: "liridon456",
+    profilePicture:
+      "https://images.unsplash.com/photo-1590086782792-42dd2350140d?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Dorina",
+    lastName: "Gashi",
+    id: "dorina789",
+    profilePicture:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Arben",
+    lastName: "Xhaka",
+    id: "arben101",
+    profilePicture:
+      "https://plus.unsplash.com/premium_photo-1682000321215-a061fd738095?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Ardit",
+    lastName: "Mehmeti",
+    id: "ardit202",
+    profilePicture:
+      "https://images.unsplash.com/photo-1522941471521-6ee21ec5cc26?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Elira",
+    lastName: "Dervishi",
+    id: "elira303",
+    profilePicture:
+      "https://images.unsplash.com/photo-1505033575518-a36ea2ef75ae?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Shqiponja",
+    lastName: "Rexhepi",
+    id: "shqiponja404",
+    profilePicture:
+      "https://images.unsplash.com/photo-1611619827107-ff5b4b4aea23?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Besa",
+    lastName: "Ismaili",
+    id: "besa505",
+    profilePicture:
+      "https://images.unsplash.com/photo-1532074205216-d0e1f4b87368?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGUlMjBmZW1hbGUlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
+  },
+  {
+    name: "Florin",
+    lastName: "Mustafa",
+    id: "florin606",
+    profilePicture:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Valmira",
+    lastName: "Aliu",
+    id: "valmira707",
+    profilePicture:
+      "https://images.unsplash.com/photo-1512291313931-d4291048e7b6?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bWFsZSUyMGZlbWFsZSUyMHBvcnRyYWl0fGVufDB8fDB8fHww",
+  },
+  {
+    name: "Ardian",
+    lastName: "Berisha",
+    id: "ardian808",
+    profilePicture:
+      "https://images.unsplash.com/photo-1441786485319-5e0f0c092803?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGUlMjAlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
   },
 ];
