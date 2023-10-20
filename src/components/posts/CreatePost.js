@@ -74,7 +74,7 @@ const CreatePost = () => {
           selectedImages={selectedImages}
         />
       )}
-      <hr />
+
       <div className={classes.Actions}>
         <label className={classes.ChooseImg} htmlFor="upload-image">
           <ImImages
