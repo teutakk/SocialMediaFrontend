@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./PostContent.module.css";
+import Modal from "../../layout/Modal";
+import ImageSlider from "./ImageSlider";
 
 const PostContent = ({ post }) => {
-  const images = post.images.map((image, i) => (
-    <img key={i} src={image} alt={`uploadedphoto${i}`} />
-  ));
+  const [modalOpen, setModalOpen] = useState();
+
+  const showModal = () => {
+    setModalOpen((prev) => !prev);
+  };
 
   return (
     <div className={classes.ContentHolder}>
       <div className={classes.content}>
         <p>{post.description}</p>
         {post.images.length > 0 && (
-          <div className={classes.ImageHolder}>
+          <div className={classes.ImageHolder} onClick={showModal}>
             <div className={classes.first}>
               <img src={post.images[0]} alt="laksjdlajsd" />
             </div>
@@ -51,6 +55,16 @@ const PostContent = ({ post }) => {
           </div>
         )}
       </div>
+      {modalOpen && (
+        <Modal
+          data={post}
+          showActionButtons={true}
+          showModal={showModal}
+          modal={modalOpen}
+        >
+          <ImageSlider />
+        </Modal>
+      )}
       <div className={classes.PostData}>
         <div className={classes.likes}>
           <p>{post.likes.length} likes</p>

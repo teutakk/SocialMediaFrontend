@@ -34,12 +34,18 @@
   color: #213547;
 }
 
+#portal {
+  overflow: hidden;
+  margin: 0;
+}
+
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   font-family: "DM Sans", sans-serif;
   font-family: "Lumanosimo", cursive;
   font-family: "Roboto", sans-serif;
   font-family: "Inter", sans-serif;
+  position: relative;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,4 +61,12 @@ a:visited,
 a:active {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  overflow: hidden;
 }
