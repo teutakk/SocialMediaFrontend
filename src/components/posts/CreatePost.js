@@ -11,7 +11,6 @@ const CreatePost = () => {
   const dispatch = useDispatch();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
-  // const [showEmotions, setShowEmotions] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
 
   // function to increase the height of the textbox
@@ -20,11 +19,6 @@ const CreatePost = () => {
     e.target.style.height = "36px";
     e.target.style.height = e.target.scrollHeight + "px";
   };
-
-  // function to toggle Feeling button
-  // const handleShowEmotions = () => {
-  //   setShowEmotions((emotion) => !emotion);
-  // };
 
   // submt handler when form gets submitted
   const handleSubmit = (event) => {
@@ -70,7 +64,7 @@ const CreatePost = () => {
         <UserChip url={logo} />
         <textarea
           onChange={handleInputChange}
-          placeholder="What's on yout mind, our dear User?"
+          placeholder="What's on your mind..."
         />
       </div>
       {imagePreviews && (
@@ -109,23 +103,8 @@ const CreatePost = () => {
           accept="images/*"
           multiple
         />
-        {/* <div className={classes.Feelings}>
-          <p onClick={handleShowEmotions} className={classes.FeelingsButton}>
-            Feeling
-          </p>
-          <div
-            className={`${classes.Feeling} ${
-              showEmotions ? classes.ShowFeeling : ""
-            }`}
-          >
-            <div>Happy</div>
-            <div>Sad</div>
-            <div>Exited</div>
-            <div>Thrilled</div>
-          </div>
-        </div> */}
         <button className={button.post} type="submit">
-          POST ▶
+          POST
         </button>
       </div>
     </form>

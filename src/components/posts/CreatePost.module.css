@@ -30,54 +30,11 @@
   overflow: hidden;
 }
 
-/* .PostButton {
-  align-self: stretch;
-  background-color: royalblue;
-  color: white;
-  font-weight: bold;
-  padding: 5px 10px;
-  background-color: transparent;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
-
 .Actions {
   display: flex;
   justify-content: flex-end;
-  max-width: 100%;
   gap: 10px;
 }
-
-/* .Feeling {
-  display: none;
-}
-
-.Feelings {
-  position: relative;
-}
-
-.ShowFeeling {
-  display: block;
-  position: absolute;
-  top: 110%;
-  z-index: 1;
-  left: 0%;
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-} */
-
-/* .ChooseImg,
-.Feelings {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
-} */
 
 @media (prefers-color-scheme: dark) {
   .CreatePost {

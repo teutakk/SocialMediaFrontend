@@ -1,5 +1,6 @@
-/* Check if the style is implemented to all buttons */
-/* Colors/Background-color/font/size will be up to date with design */
+/* Check if the style is implemented to all buttons                   ---- Check app/components */
+/* Colors/Background-color/font/size will be up to date with design   ---- Check design */
+/* Box-shadow will be deleted after other designs are ready           ---- TO DO */
 /* === Buttons for Like, Comment and Share === */
 .like,
 .comment,
