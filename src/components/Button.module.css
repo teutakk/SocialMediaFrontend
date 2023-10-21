@@ -30,6 +30,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: #213547;
 }
 
 .innerContent svg {
@@ -58,7 +59,7 @@
 }
 
 .black svg {
-  color: black;
+  color: #213547;
 }
 
 .like:hover,
