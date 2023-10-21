@@ -4,7 +4,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const About = () => {
   return (
     <div className={classes.About}>
-      <p>About</p>
+      <p className={classes.title}>About</p>
       <div className={classes["about-content"]}>
         <aside className={classes["about-aside"]}>
           <NavLink to="" end>
@@ -18,14 +18,6 @@ const About = () => {
           <Outlet />
         </div>
       </div>
-      <section>
-        <p>ESDW</p>
-        <p>ESDW</p>
-        <p>ESDW</p>
-        <p>ESDW</p>
-        <p>ESDW</p>
-        <p>ESDW</p>
-      </section>
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./ProfileContent.module.css";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import Posts from "../../pages/Posts";
-import About from "./About";
+import About from "./about/About";
 const ProfileContent = () => {
   const params = useParams();
   const activeRoute = params.id && params["*"];

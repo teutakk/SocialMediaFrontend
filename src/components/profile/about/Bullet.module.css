@@ -1,0 +1,34 @@
+.overview-bullet {
+  padding: 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.overview-bullet .logo,
+.overview-bullet .edit {
+  width: 40px;
+  background-color: #ccc;
+  aspect-ratio: 1/1;
+  border-radius: 100%;
+  display: block;
+  display: grid;
+  place-content: center;
+  align-self: start;
+  color: inherit;
+  font-size: 20px;
+}
+
+.overview-bullet .edit {
+  background-color: white;
+}
+
+.bullet-content {
+  width: calc(100% - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bullet-content span {
+  font-size: 14px;
+}

@@ -8,7 +8,8 @@ import RequireAuth from "./components/RequireAuth";
 import Layout from "./layout/Layout";
 import Profile from "./pages/Profile";
 import ProfileContent from "./components/profile/ProfileContent";
-import About from "./components/profile/About";
+import About from "./components/profile/about/About";
+import Overview from "./components/profile/about/Overview";
 
 const AppRoutes = () => (
   <Routes>
@@ -17,11 +18,11 @@ const AppRoutes = () => (
     <Route path="" element={<Layout />}>
       <Route path="/posts" element={<Posts />} />
       <Route path="/friends" element={<FriendShip />} />
-      <Route path=":id" element={<Profile />}>
+      <Route path="/id" element={<Profile />}>
         <Route path=":idNumber" element={<ProfileContent />}>
           <Route index element={<Posts />} />
           <Route path="about" element={<About />}>
-            <Route index element={<h1>basic info</h1>} />
+            <Route index element={<Overview />} />
             <Route
               path="work-and-education"
               element={<h1>Work and Education</h1>}

@@ -6,7 +6,6 @@ import Sidebar from "../components/Sidebar";
 import Rightsidebar from "../components/Rightsidebar";
 const Layout = () => {
   const location = useLocation();
-  console.log(location.pathname.startsWith("/profile"));
   return (
     <div className={classes.Layout}>
       <Navigation />

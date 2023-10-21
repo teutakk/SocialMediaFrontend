@@ -7,7 +7,7 @@
   padding: 10px 0;
 }
 
-.About p {
+.About .title {
   font-size: 20px;
   font-weight: bold;
   padding-inline: 20px;
