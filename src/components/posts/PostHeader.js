@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { savePost } from "../../store/slices/postsSlice";
 
 const PostHeader = ({ post, type }) => {
-  console.log("type", type);
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const handleShowOptions = () => {
@@ -28,6 +27,7 @@ const PostHeader = ({ post, type }) => {
         </div>
       </div>
       <div className={classes.settings}>
+        {/* this check is performed to look if the post is opened, in a modal to show images, there we dont want to have the opstions of edit report etc.(for simplicity case) */}
         {type !== "modal-post" && (
           <span onClick={handleShowOptions} className={classes.button}>
             <svg
