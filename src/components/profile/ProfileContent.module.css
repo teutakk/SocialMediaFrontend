@@ -1,0 +1,24 @@
+.profile-content {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content-options {
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.content-options a {
+  padding: 10px;
+}
+
+.content-options a[aria-current="page"] {
+  border-bottom: 2px solid yellowgreen;
+}
+
+.content-main {
+  padding: 10px;
+}

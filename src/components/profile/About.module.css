@@ -1,0 +1,48 @@
+.About {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  box-shadow: var(--shadow-image);
+  gap: 10px;
+  padding: 10px 0;
+}
+
+.About p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-inline: 20px;
+}
+
+.about-content {
+  display: flex;
+  padding-inline: 10px;
+  flex-direction: column;
+  gap: 10px;
+  overflow-x: hidden;
+}
+
+.about-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.about-aside a {
+  padding: 5px 10px;
+  border-radius: 10px;
+  justify-self: flex-start;
+}
+
+.about-aside a:hover {
+  background-color: #ccc;
+}
+
+.about-aside a[aria-current="page"] {
+  background-color: lightblue;
+}
+
+@media (min-width: 520px) {
+  .about-content {
+    flex-direction: row;
+  }
+}
