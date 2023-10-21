@@ -3,12 +3,13 @@ import classes from "./Notifications.module.css";
 import SingleNotification from "./SingleNotification";
 
 import { notifications } from "../../api/dummyData";
-const Notifications = ({ toggleClass }) => {
+const Notifications = ({ toggleClass, notificationsSectionRef }) => {
   const onClearHandler = () => {};
   const onMarkAllAsReadHandler = () => {};
 
   return (
     <div
+      ref={notificationsSectionRef}
       className={
         toggleClass
           ? `${classes.Notifications} ${classes.showNotifications}`
