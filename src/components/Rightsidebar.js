@@ -16,7 +16,7 @@ const Rightsidebar = () => {
                   {friend.name} {friend.lastName}
                 </strong>
               </p>
-              <p>@{friend.id}</p>
+              {/* <p>@{friend.id}</p> */}
             </div>
             <UserChip width={40} heigth={40} url={friend.profilePicture} />
           </div>

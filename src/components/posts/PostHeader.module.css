@@ -27,8 +27,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
   gap: 20px;
 }
 
@@ -41,14 +39,43 @@
 }
 
 .showOptions {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  top: 40px;
-  left: -50px;
+  width: max-content;
+  top: 30px;
+  left: 0;
+  transform: translateX(-90%);
   border-radius: 10px;
   background-color: white;
   box-shadow: var(--shadow-image);
   padding: 10px;
+}
+
+.showOptions button {
+  display: flex;
+  gap: 10px;
+  background-color: transparent;
+  align-items: center;
+  border: none;
+  font-size: 16px;
+  color: inherit;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.showOptions span {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.showOptions p {
+  text-transform: capitalize;
+}
+
+.showOptions button:hover {
+  background-color: #eee;
 }
 
 @media (prefers-color-scheme: dark) {

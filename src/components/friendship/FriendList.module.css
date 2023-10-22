@@ -1,12 +1,12 @@
-.container{
-    display: flex;
+.container {
+  display: flex;
 }
 
-.container img{
-    width: 50px;
+.container img {
+  width: 50px;
 }
-.block{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

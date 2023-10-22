@@ -45,6 +45,7 @@ const Overview = () => {
     <div className={classes.Overview}>
       {data.map((bullet, i) => (
         <Bullet
+          key={i}
           content={bullet.content}
           subContent={bullet.subContent}
           logo={bullet.logo}

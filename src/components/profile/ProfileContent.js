@@ -18,17 +18,7 @@ const ProfileContent = () => {
   }
   return (
     <section className={classes["profile-content"]}>
-      <div className={classes["content-options"]}>
-        <NavLink to="" end>
-          Posts
-        </NavLink>
-        <NavLink to="about">About</NavLink>
-        <NavLink to="friends">Friends</NavLink>
-        <NavLink to="photos">Photos</NavLink>
-      </div>
-      <main>
-        <Outlet />
-      </main>
+      <Outlet />
     </section>
   );
 };

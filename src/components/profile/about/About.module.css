@@ -5,6 +5,11 @@
   box-shadow: var(--shadow-image);
   gap: 10px;
   padding: 10px 0;
+  min-height: 40vh;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: white;
 }
 
 .About .title {
@@ -19,6 +24,8 @@
   flex-direction: column;
   gap: 10px;
   overflow-x: hidden;
+  margin-bottom: 10px;
+  min-height: calc(40vh - 45px);
 }
 
 .about-aside {
@@ -44,5 +51,15 @@
 @media (min-width: 520px) {
   .about-content {
     flex-direction: row;
+  }
+}
+
+@media (min-width: 767px) {
+  .about-aside {
+    flex: 1;
+  }
+
+  .about-main {
+    flex: 3;
   }
 }

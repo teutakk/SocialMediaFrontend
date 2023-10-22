@@ -67,7 +67,7 @@ const Navigation = () => {
               <NavLink to="/friends">Friends</NavLink>
             </li>
             <li>
-              <NavLink to="/profile">Profile</NavLink>
+              <NavLink to="/id">Profile</NavLink>
             </li>
           </ul>
         </nav>

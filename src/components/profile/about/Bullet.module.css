@@ -7,6 +7,7 @@
 .overview-bullet .logo,
 .overview-bullet .edit {
   width: 40px;
+  overflow: hidden;
   background-color: #ccc;
   aspect-ratio: 1/1;
   border-radius: 100%;
@@ -16,6 +17,12 @@
   align-self: start;
   color: inherit;
   font-size: 20px;
+}
+
+.overview-bullet .logo img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .overview-bullet .edit {
@@ -31,4 +38,9 @@
 
 .bullet-content span {
   font-size: 14px;
+}
+
+.border {
+  border: 1px solid #aaa;
+  border-radius: 10px;
 }

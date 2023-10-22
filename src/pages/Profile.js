@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import classes from "./styles/Profile.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +13,8 @@ const Profile = () => {
   const loggedInUser = useSelector(selectUser);
   // get user from profileSlice
   useEffect(() => {
-    if (!params.id) {
+    console.log(params);
+    if (!params.idNumber) {
       navigate("endrit");
     }
 
@@ -30,23 +31,32 @@ const Profile = () => {
       <section className={classes["profile-header"]}>
         <div className={classes.cover}>
           <img src="" alt="" />
-        </div>
-        <div className={classes["profile-pic"]}>
-          <span></span>
+          <div className={classes["profile-pic"]}>
+            <span></span>
+          </div>
         </div>
       </section>
       <section className={classes["profile-info"]}>
-        <h3>Endrit Bejta</h3>
-        <span>413 friends</span>
-        <div className={classes.actions}>
-          <button>Add Friend</button>
-          <button>Edit Profile</button>
+        <div className={classes["info-width-controller"]}>
+          <h3>Endrit Bejta</h3>
+          <span>413 friends</span>
+          <div className={classes.actions}>
+            <button>Add Friend</button>
+            <button>Edit Profile</button>
+          </div>
         </div>
       </section>
-      <section className={classes["profile-content"]}></section>
-      <main className={classes["content-main"]}>
-        <Outlet />
-      </main>
+      <div className={classes["content-options"]}>
+        <div className={classes["navlink-holder"]}>
+          <NavLink to={`${params.idNumber}`} end>
+            Posts
+          </NavLink>
+          <NavLink to={`${params.idNumber}/about`}>About</NavLink>
+          <NavLink to={`${params.idNumber}/friends`}>Friends</NavLink>
+          <NavLink to={`${params.idNumber}/photos`}>Photos</NavLink>
+        </div>
+      </div>
+      <Outlet />
     </div>
   );
 };

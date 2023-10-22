@@ -1,36 +1,38 @@
 .Profile {
-  grid-column: 1 / 4;
+  grid-column: 1 / span 3;
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   margin-top: -20px;
-  /* margin-inline: 10px; */
+  /* max-width: 1150px; */
+  margin-inline: auto;
 }
 
 .profile-header {
-  height: 40vh;
+  height: 45vh;
   width: 100%;
-  /* background-color: orchid; */
-  position: relative;
+  background-color: white;
 }
 
 .cover {
-  height: 80%;
-  /* width: 100vw; */
-
-  background-color: azure;
+  height: 100%;
+  position: relative;
+  max-width: 1150px;
+  margin: 0 auto;
+  background-color: rgb(16, 151, 151);
 }
 
 .profile-pic {
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 50%);
   width: 150px;
   aspect-ratio: 1/1;
   padding: 5px;
-  background-color: white;
   border-radius: 100%;
+  background-color: white;
 }
 
 .cover {
@@ -47,13 +49,27 @@
 }
 
 .profile-info {
+  padding-top: 80px;
+  width: 100%;
+  background-color: #fff;
+}
+
+.info-width-controller {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   margin-inline: auto;
   text-align: center;
+  justify-content: center;
+  max-width: 1150px;
+  width: 100%;
+  display: flex;
 }
 
 .actions {
   display: flex;
   gap: 10px;
+  align-self: center;
 }
 
 .actions button {
@@ -69,4 +85,76 @@
 
 .actions button:nth-of-type(2) {
   border: 1px solid red;
+}
+
+.content-options {
+  width: 100%;
+  box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.3);
+  background-color: white;
+}
+
+.navlink-holder {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.content-options a {
+  padding: 10px;
+}
+
+.content-options a[aria-current="page"] {
+  border-bottom: 2px solid rgb(28, 135, 171);
+}
+
+@media (min-width: 520px) {
+  .navlink-holder {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 767px) {
+  .Profile {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .profile-pic {
+    left: 0;
+    bottom: 0;
+    transform: translate(25%, 50%);
+  }
+
+  .profile-info {
+    margin-inline: unset;
+    padding-top: 10px;
+    text-align: unset;
+  }
+
+  .info-width-controller {
+    align-items: flex-start;
+    padding-left: 200px;
+  }
+
+  .actions {
+    align-self: flex-start;
+  }
+
+  .profile-header {
+    margin: 0 auto;
+  }
+
+  .navlink-holder {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1150px) {
+  .cover {
+    border-radius: 0 0 20px 20px;
+  }
 }
