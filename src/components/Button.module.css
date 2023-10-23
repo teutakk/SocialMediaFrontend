@@ -1,18 +1,26 @@
 /* Check if the style is implemented to all buttons                   ---- Check app/components */
 /* Colors/Background-color/font/size will be up to date with design   ---- Check design */
-/* Box-shadow will be deleted after other designs are ready           ---- TO DO */
-/* === Buttons for Like, Comment and Share === */
 .like,
 .comment,
 .share {
-    background-color: transparent;
-    font-size: 13px;
-    height: 23px;
-    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65);
+    background-color: #C5C5C5;
+    font-size: 14px;
+    height: 26px;
     border: none;
     border-radius: 500px;
-    color: white;
+    color: #000000;
     cursor: pointer;
+}
+
+.like .innerContent svg,
+.comment .innerContent svg{
+    width: 20px;
+    height: 20px;
+}
+
+.share .innerContent svg{
+    width: 24px;
+    height: 24px;
 }
 
 .postPosition {
@@ -31,61 +39,33 @@
     align-items: center;
 }
 
-.innerContent svg{
-    width: 15px;
-}
-
 .innerContent p {
     padding-left: 3px;
 }
 
 .dislike{
-    background-color: darkgray;
-    font-size: 12px;
+    background-color: #959595;
+    font-size: 14px;
     border: none;
     border-radius: 500px;
     max-width: 100%;
     padding-left: 10px;
     padding-right: 10px;
     width: auto;
-    height: 23px;
+    height: 26px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: white;
+    color: #000000;
     cursor: pointer;
 }
 
-.black svg{
-    color: black;
-}
-
-.like:hover,
-.comment:hover,
-.share:hover,
-.post:hover,
-.upload:hover,
-.dislike:hover {
-    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65) inset;
-}
-
-.like:active,
-.comment:active,
-.share:active,
-.upload:active,
-.dislike:active {
-    transform: translateY(-.6px);
-    background-color: rgba(0, 0, 0, 0.07);
-}
-/* ------------------------------------------------------------------ */
-
-/* === Buttons for Post and Upload Image/Video === */
 .post {
-    height: 34px;
-    background-color: royalblue;
-    border: 1px solid rgba(0, 0, 255, 0.65);
-    color: white;
-    font-size: 13px;
+    height: 36px;
+    background-color: #4169E1;
+    border: none;
+    color: #000000;
+    font-size: 15px;
     padding-left: 10px;
     padding-right: 10px;
     width: 130px;
@@ -94,19 +74,15 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.post:active {
-    transform: translateY(-.6px);
+    color: #000000;
 }
 
 .upload {
     align-self: stretch;
-    height: 34px;
-    background-color: transparent;
-    box-shadow: 0px 0px 3px 0.5px rgba(0, 0, 0, 0.65);
-    color: white;
-    font-size: 13px;
+    height: 36px;
+    background-color: #C5C5C5;
+    color: #000000;
+    font-size: 15px;
     padding-left: 10px;
     padding-right: 10px;
     border: none;
@@ -118,9 +94,28 @@
 }
 
 .uploadSvg {
-    font-size: 15px;
-    padding-right: 6px;
-    color: white;
+    width: 24px;
+    height: 24px;
 }
 
-/* ----------------------------------------------------------- */
+/* === Hover & Active === */
+
+.like:hover,
+.comment:hover,
+.share:hover,
+.upload:hover,
+.dislike:hover {
+    background-color: #ADADAD;
+}
+
+.post:hover {
+    background-color: #3556B7;
+}
+
+.like:active, .dislike:active, .comment:active, .share:active, .upload:active {
+    background-color: #9E9E9E;
+}
+
+.post:active {
+    background-color: #2C4A9B;
+}
