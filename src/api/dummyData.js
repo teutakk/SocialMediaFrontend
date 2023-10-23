@@ -5,10 +5,13 @@ export const data = [
     userFullName: "Sejdi Jaha",
     profilePhoto: "https://randomuser.me/api/portraits/men/83.jpg",
     description:
-      "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve. Gjithashtu, ekonomia është një temë e rëndësishme. Shqipëria ka shënuar rritje ekonomike, por përkundër kësaj, shumë qytetarë vazhdojnë të kenë probleme me papunësinë dhe varfërinë. Është e rëndësishme të investohet në sektorët e zhvillimit ekonomik për të krijuar vende pune dhe të përmirësuar standardet e jetesës. Në politikën e jashtme, Shqipëria po përpjeket të rrisë bashkëpunimin me partnerët ndërkombëtarë dhe të përshpejtojë procesin e anëtarësimit në Bashkimin Evropian. Ky është një objektiv i rëndësishëm për të ardhmen e vendit.",
+      "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve.",
+
     images: [
-      "https://ata.gov.al/wp-content/uploads/2023/05/1-30.jpg",
-      "https://w0.peakpx.com/wallpaper/428/407/HD-wallpaper-alb-1-albania-albanian-shqip.jpg",
+      "https://images.unsplash.com/photo-1675392771657-2cfb43092b72?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8SnBnNktpZGwtSGt8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1697462959087-e62e40553882?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8SnBnNktpZGwtSGt8fGVufDB8fHx8fA%3D%3D",
+      "https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmFuZG9tfGVufDB8fDB8fHww",
     ],
     createdAt: new Date("10/07/20203"),
     privacy: "public",
@@ -40,7 +43,9 @@ export const data = [
     profilePhoto: "https://randomuser.me/api/portraits/men/86.jpg",
     description:
       "Pamjet natyrore të Shqipërisë janë të mahnitshme. Sot u bë një ditë e mrekullueshme për një shëtitje në malin e Tomorrit. #Natyrë #Shqipëri",
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fHww",
+    ],
     createdAt: new Date("10/08/2023"),
     privacy: "public",
     likes: [],
@@ -85,7 +90,10 @@ export const data = [
 
     description:
       "Plazhet e Shqipërisë janë të mrekullueshme. Dita e sotme është një ditë e përsosur për të shijuar bregdetin. #Plazh #Bregdeti",
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1509281373149-e957c6296406?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cmFuZG9tfGVufDB8fDB8fHww",
+    ],
     createdAt: new Date("10/10/2023"),
     privacy: "public",
     likes: [
@@ -174,7 +182,11 @@ export const data = [
 
     description:
       "Malësia e bukur e Bjeshkëve të Nemura. Sot u eksploruam pikën më të lartë të Shqipërisë. #Mali #Eksplorim",
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1508138221679-760a23a2285b?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cmFuZG9tfGVufDB8fDB8fHww",
+      "https://images.unsplash.com/photo-1494253109108-2e30c049369b?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1550686041-366ad85a1355?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbXxlbnwwfHwwfHx8MA%3D%3D",
+    ],
     createdAt: new Date("10/13/2023"),
     privacy: "public",
     likes: [],
@@ -215,7 +227,9 @@ export const data = [
 
     description:
       "Sporti është jeta ime! Sot u përballëm në një ndeshje të pasionuar të volejbollit në plazh. #Sport #Pasion",
-    images: [],
+    images: [
+      "https://images.unsplash.com/photo-1697581886387-a8b3af94ef0b?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDV8TThqVmJMYlRSd3N8fGVufDB8fHx8fA%3D%3D",
+    ],
     createdAt: new Date("10/15/2023"),
     privacy: "public",
     likes: [],

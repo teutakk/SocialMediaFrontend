@@ -1,6 +1,7 @@
 .WritePostComment {
   display: flex;
   gap: 10px;
+  align-items: stretch;
   width: 100%;
   margin: 10px 0;
 }
@@ -15,8 +16,10 @@
   align-items: center;
   justify-content: space-between;
   min-width: max-content;
-  width: 100%;
+  flex: 1;
+  /* height: 50px; */
   border-radius: 28px;
+  overflow: hidden;
   background-color: #eee;
   overflow: hidden;
 }
@@ -50,13 +53,14 @@
 }
 
 .Comment textarea:focus {
-  width: 100%;
-  flex: 1;
+  /* width: 100%; */
+  /* flex: 1; */
 }
 
 .Comment button {
   cursor: pointer;
   height: 100%;
+  border-radius: 0 28px 28px 0;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -16,12 +16,10 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      console.log("ref: ", notificationsRef);
       if (
         notificationsRef.current &&
         !notificationsRef.current.contains(event.target)
       ) {
-        console.log(notificationsRef.current);
         // Click occurred outside the notifications component, so close it
         setShowNotifications(false);
       }
