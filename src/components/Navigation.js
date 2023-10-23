@@ -49,7 +49,7 @@ const Navigation = () => {
         <label htmlFor="Search...">
           <input
             type="text"
-            placeholder="Search...."
+            placeholder="Search..."
             id="searcg"
             name="search"
           />
@@ -65,6 +65,12 @@ const Navigation = () => {
           <div className={classes.notifications}>Notification</div>
           <Notifications toggleClass={showNotifications} />
         </div>
+        <NavLink className={classes["route-holder"]} to="saved">
+          <div className={classes.circularContainer}></div>
+        </NavLink>
+        <NavLink className={classes["route-holder"]} to="profile">
+          <div className={classes.circularContainer}></div>
+        </NavLink>
       </div>
     </section>
   );

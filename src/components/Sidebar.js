@@ -29,7 +29,7 @@ const Sidebar = () => {
           <span className={classes["route-logo"]}>F</span>
           <span>Friends</span>
         </NavLink>
-        <NavLink className={classes["route-holder"]} to={"profle"}>
+        <NavLink className={classes["route-holder"]} to={"profile"}>
           <span className={classes["route-logo"]}>P</span>
           <span>Profile</span>
         </NavLink>
