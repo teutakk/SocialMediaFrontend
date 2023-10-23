@@ -24,7 +24,7 @@
   border: none;
   outline: none;
   height: 36px;
-  width: 100%;
+  width: calc(100% - 50px);
   max-height: 300px;
   display: flex;
   background-color: #eee;

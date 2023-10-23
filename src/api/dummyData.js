@@ -343,3 +343,136 @@ export const friends = [
       "https://images.unsplash.com/photo-1441786485319-5e0f0c092803?auto=format&fit=crop&q=60&w=400&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG1hbGUlMjAlMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D",
   },
 ];
+
+export const notifications = [
+  {
+    id: 1,
+    type: "friend-request",
+    sender: {
+      name: "Muhamet",
+      lastName: "Alushi",
+      id: "muhamet123",
+    },
+  },
+  {
+    id: 2,
+    type: "post-like",
+    sender: {
+      name: "Alush",
+      lastName: "Maksuti",
+      id: "alush3221",
+    },
+    postId: "231",
+    content: "Your latest post is awesome!",
+  },
+  {
+    id: 3,
+    type: "comment-like",
+    sender: {
+      name: "Mirsad",
+      lastName: "Halimi",
+      id: "mirsad3221",
+    },
+    postId: "2321",
+    commentId: "323233",
+    content: "I really liked your comment. Well said!",
+  },
+  {
+    id: 4,
+    type: "post-comment",
+    sender: {
+      name: "Alisa",
+      lastName: "Xhejms",
+      id: "alis6969",
+    },
+    postId: "2321",
+    content: "Your post was interesting. I have a question about it.",
+  },
+  // 6 additional objects with Albanian names and generic content
+  {
+    id: 5,
+    type: "friend-request",
+    sender: {
+      name: "Ardian",
+      lastName: "Bashota",
+      id: "ardian123",
+    },
+  },
+  {
+    id: 6,
+    type: "post-like",
+    sender: {
+      name: "Vjosa",
+      lastName: "Osmani",
+      id: "vjosa3221",
+    },
+    postId: "232",
+    content: "I loved your recent post. Keep it up!",
+  },
+  {
+    id: 7,
+    type: "comment-like",
+    sender: {
+      name: "Flaka",
+      lastName: "Krasniqi",
+      id: "flaka3221",
+    },
+    postId: "212",
+    commentId: "323234",
+    content: "Your comment made me smile. Great insight!",
+  },
+  {
+    id: 8,
+    type: "post-comment",
+    sender: {
+      name: "Xhevat",
+      lastName: "Dedushaj",
+      id: "xhevat6969",
+    },
+    postId: "232",
+    content: "I found your post really thought-provoking.",
+  },
+  {
+    id: 9,
+    type: "friend-request",
+    sender: {
+      name: "Valbona",
+      lastName: "Gashi",
+      id: "valbona123",
+    },
+  },
+  {
+    id: 10,
+    type: "post-like",
+    sender: {
+      name: "Ardit",
+      lastName: "Mustafa",
+      id: "ardit3221",
+    },
+    postId: "233",
+    content: "Your posts are always interesting. I'm a fan!",
+  },
+  {
+    id: 11,
+    type: "comment-like",
+    sender: {
+      name: "Dafina",
+      lastName: "Rexhepi",
+      id: "dafina3221",
+    },
+    postId: "221",
+    commentId: "323235",
+    content: "I appreciate your perspective. Keep it up!",
+  },
+  {
+    id: 12,
+    type: "post-comment",
+    sender: {
+      name: "Blerina",
+      lastName: "Zogu",
+      id: "blerina6969",
+    },
+    postId: "234",
+    content: "Your posts are making me think differently. Thank you!",
+  },
+];

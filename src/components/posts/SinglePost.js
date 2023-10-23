@@ -13,6 +13,7 @@ import PostContent from "./PostContent";
 import classes from "./SinglePost.module.css";
 import PostComments from "./PostComments";
 
+// type will change some internal post specs, check PostHeader and it will add some conditional cases
 const SinglePost = ({ post, type }) => {
   const dispatch = useDispatch();
   const editState = useSelector(selectEditState);
@@ -34,9 +35,11 @@ const SinglePost = ({ post, type }) => {
   return (
     <div
       className={`${classes.SinglePost} ${
+        // we and this class that removes, borderradius, shadow, so it shows nice in the modal, without the need to recreate a singlepost from scratch again
         type === "modal-post" ? classes.SinglePostModal : ""
       }`}
     >
+      {/* post header needs type to make it possible to show or not the options of the post(editing, report, delete) */}
       <PostHeader post={post} type={type} />
 
       {isOwner && !isEditing ? (
