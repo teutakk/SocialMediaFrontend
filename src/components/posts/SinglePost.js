@@ -13,7 +13,8 @@ import PostContent from "./PostContent";
 import classes from "./SinglePost.module.css";
 import PostComments from "./PostComments";
 
-const SinglePost = ({ post }) => {
+// type will change some internal post specs, check PostHeader and it will add some conditional cases
+const SinglePost = ({ post, type }) => {
   const dispatch = useDispatch();
   const editState = useSelector(selectEditState);
   const isEditing = editState === post.id;
@@ -32,8 +33,14 @@ const SinglePost = ({ post }) => {
     dispatch(finishEdit());
   };
   return (
-    <div className={classes.SinglePost}>
-      <PostHeader post={post} />
+    <div
+      className={`${classes.SinglePost} ${
+        // we and this class that removes, borderradius, shadow, so it shows nice in the modal, without the need to recreate a singlepost from scratch again
+        type === "modal-post" ? classes.SinglePostModal : ""
+      }`}
+    >
+      {/* post header needs type to make it possible to show or not the options of the post(editing, report, delete) */}
+      <PostHeader post={post} type={type} />
 
       {isOwner && !isEditing ? (
         <button onClick={handleEditClick}>Edit</button>
@@ -49,7 +56,7 @@ const SinglePost = ({ post }) => {
           <button onClick={() => dispatch(finishEdit())}>Cancel</button>
         </div>
       ) : (
-        <PostContent post={post} />
+        <PostContent post={post} type={type} />
       )}
 
       <hr />

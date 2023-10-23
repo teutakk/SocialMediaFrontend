@@ -5,8 +5,9 @@
   background-color: white;
   padding: 10px;
   border-radius: 20px;
-  gap: 5px;
+  gap: 10px;
   box-shadow: var(--shadow-image);
+  width: 100%;
 }
 
 .Content {
@@ -14,12 +15,16 @@
   gap: 10px;
 }
 
+.CreatePost hr {
+  color: black;
+}
+
 .Content textarea {
   resize: none;
   border: none;
   outline: none;
   height: 36px;
-  width: 100%;
+  width: calc(100% - 50px);
   max-height: 300px;
   display: flex;
   background-color: #eee;

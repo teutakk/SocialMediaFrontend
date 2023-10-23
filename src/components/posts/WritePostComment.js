@@ -7,7 +7,7 @@ import send from "../../assets/svg/send.svg";
 const WritePostComment = () => {
   return (
     <section className={classes.WritePostComment}>
-      <UserChip url={logo} />
+      <UserChip width={40} heigth={40} url={logo} />
       <form className={classes.Comment}>
         <textarea rows={1} id="comment" placeholder="Write a comment..." />
         <button type="submit">
