@@ -21,8 +21,8 @@ const PostHeader = ({ post, type }) => {
 
   useEffect(() => {
     // we get the Notifications element
-    const settingsIconClass = settingsIconRef.current.classList[0];
-    const parentClass = settingsSectionRef.current.classList[0];
+    const settingsIconClass = settingsIconRef.current?.classList[0];
+    const parentClass = settingsSectionRef.current?.classList[0];
     // if the target clicked in not a child of notifications section, or notifications himselft then we close it
     // an extra additional checks is done in case the click is in the icon itself, to prevent from interfering with notification icons handler
     const handleClickOutside = (event) => {

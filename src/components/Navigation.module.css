@@ -63,11 +63,13 @@
 
 .notifications-icon {
   position: relative;
-  width: 30px;
+  width: 40px;
   aspect-ratio: 1/1;
-  background-color: white;
-  border-radius: 99999px;
+  display: grid;
+  place-content: center;
   border: none;
+  color: #f8bd00;
+  cursor: pointer;
 }
 
 .notifications {
