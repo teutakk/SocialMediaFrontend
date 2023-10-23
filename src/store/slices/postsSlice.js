@@ -192,7 +192,6 @@ export const postsSlice = createSlice({
         state.posts.push(action.payload);
       })
       .addCase(createPost.rejected, (state, action) => {
-        console.log("action: ", action.payload);
         state.status.create = "failed";
         state.error.create = action.error.message;
       })

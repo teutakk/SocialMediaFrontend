@@ -5,7 +5,7 @@ import CreatePost from "../components/posts/CreatePost";
 import classes from "./Posts.module.css";
 const Posts = () => {
   const posts = data.map((post, index) => (
-    <SinglePost post={post} key={post.id} />
+    <SinglePost post={post} key={post.id} type="regular" />
   ));
   return (
     <div className={classes.Posts}>

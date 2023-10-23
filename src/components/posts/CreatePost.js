@@ -67,7 +67,7 @@ const CreatePost = () => {
           placeholder="What's on your mind..."
         />
       </div>
-      {imagePreviews && (
+      {imagePreviews.length > 0 && (
         <PostImagePreviewer
           setImagePreviews={setImagePreviews}
           imagePreviews={imagePreviews}

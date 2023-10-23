@@ -24,23 +24,24 @@
 }
 
 .postPosition {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    max-width: 100%;
-    padding-left: 10px;
-    padding-right: 10px;
-    width: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: auto;
 }
 
-.innerContent{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+.innerContent {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color: #213547;
 }
 
 .innerContent p {
-    padding-left: 3px;
+  padding-left: 3px;
 }
 
 .dislike{

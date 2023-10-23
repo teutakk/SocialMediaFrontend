@@ -6,7 +6,6 @@ import { selectUser } from "../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   const loggedInUser = useSelector(selectUser);
-  console.log("logged in user: ", loggedInUser);
   return (
     <div className={classes.Sidebar}>
       <div className={classes.profile}>
@@ -21,7 +20,7 @@ const Sidebar = () => {
         </div>
       </div>
       <section className={classes["routing-options"]}>
-        <NavLink className={classes["route-holder"]} to={"feed"}>
+        <NavLink className={classes["route-holder"]} to={"posts"}>
           <span className={classes["route-logo"]}>H</span>
           <span>Feed</span>
         </NavLink>

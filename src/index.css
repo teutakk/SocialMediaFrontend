@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap");
 
 *,
 *::before,
@@ -31,16 +31,22 @@
   --breakpoint-notepad: 800px;
   --breakpoint-phone: 500px;
 
-  /* color: #213547; */
+  color: #213547;
 }
 
-body{
-  font-family: 'Montserrat', sans-serif;
+#portal {
+  overflow: hidden;
+  margin: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  position: relative;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* color: var(--color-grey-light-1); */
+    color: var(--color-grey-light-1);
   }
 }
 
@@ -51,4 +57,12 @@ a:visited,
 a:active {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hidden {
+  overflow: hidden;
 }

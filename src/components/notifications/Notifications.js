@@ -1,9 +1,15 @@
 import React from "react";
 import classes from "./Notifications.module.css";
 import SingleNotification from "./SingleNotification";
-const Notifications = ({ toggleClass }) => {
+
+import { notifications } from "../../api/dummyData";
+const Notifications = ({ toggleClass, notificationsSectionRef }) => {
+  const onClearHandler = () => {};
+  const onMarkAllAsReadHandler = () => {};
+
   return (
     <div
+      ref={notificationsSectionRef}
       className={
         toggleClass
           ? `${classes.Notifications} ${classes.showNotifications}`
@@ -11,11 +17,16 @@ const Notifications = ({ toggleClass }) => {
       }
     >
       <div className={classes["notifications-actions"]}>
-        <p>Clear</p>
-        <p>Mark all as read</p>
+        <p onClick={onClearHandler}>Clear</p>
+        <p onClick={onMarkAllAsReadHandler}>Mark all as read</p>
       </div>
-      <div className={classes.notification}>
-        <SingleNotification />
+      <div className={classes.notifications}>
+        {notifications.map((notification) => (
+          <SingleNotification
+            key={notification.id}
+            notification={notification}
+          />
+        ))}
       </div>
     </div>
   );

@@ -9,20 +9,22 @@ const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const notificationsRef = useRef(null);
-
+  const notificationsSectionRef = useRef(null);
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
   };
 
   useEffect(() => {
+    // we get the Notifications element
+    const notificationIconClass = notificationsRef.current.classList[0];
+    const parentClass = notificationsSectionRef.current.classList[0];
+    // if the target clicked in not a child of notifications section, or notifications himselft then we close it
+    // an extra additional checks is done in case the click is in the icon itself, to prevent from interfering with notification icons handler
     const handleClickOutside = (event) => {
-      console.log("ref: ", notificationsRef);
       if (
-        notificationsRef.current &&
-        !notificationsRef.current.contains(event.target)
+        !event.target?.closest(`.${parentClass}`) &&
+        !event.target?.closest(`.${notificationIconClass}`)
       ) {
-        console.log(notificationsRef.current);
-        // Click occurred outside the notifications component, so close it
         setShowNotifications(false);
       }
     };
@@ -76,10 +78,11 @@ const Navigation = () => {
           ref={notificationsRef}
           className={classes["notifications-icon"]}
           onClick={handleShowNotifications}
-        >
-          <div className={classes.notifications}>Notification</div>
-          <Notifications toggleClass={showNotifications} />
-        </div>
+        ></div>
+        <Notifications
+          notificationsSectionRef={notificationsSectionRef}
+          toggleClass={showNotifications}
+        />
         <UserChip url={logo} />
       </div>
     </section>
