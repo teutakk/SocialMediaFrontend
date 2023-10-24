@@ -42,9 +42,13 @@ const Navigation = () => {
     <section className={classes.Navigation}>
       <div className={classes["navigation-left"]}>
         <span onClick={handleShowNavigation}>X</span>
-        <div className={classes.logo}>
-          <img src={logo} alt="lasjdlkasjd" />
-        </div>
+        <img
+          src="https://cdn.discordapp.com/attachments/1150794975748034740/1165994613081919518/2.png"
+          alt="userphoto"
+          width="120px" // Adjust the width to your desired size
+          height="40px" // You can adjust the height as well
+          className={classes.UserChip}
+        />
       </div>
       <div className={classes["navigation-main"]}>
         <label htmlFor="search" style={{ position: "relative" }}>
