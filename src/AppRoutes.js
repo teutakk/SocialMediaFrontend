@@ -10,6 +10,9 @@ import Profile from "./pages/Profile";
 import ProfileContent from "./components/profile/ProfileContent";
 import About from "./components/profile/about/About";
 import Overview from "./components/profile/about/Overview";
+import Friends from "./components/profile/friends/Friends";
+import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
+import Contacts from "./components/profile/friends/Contacts";
 
 const AppRoutes = () => (
   <Routes>
@@ -23,14 +26,11 @@ const AppRoutes = () => (
           <Route index element={<Posts />} />
           <Route path="about" element={<About />}>
             <Route index element={<Overview />} />
-            <Route
-              path="work-and-education"
-              element={<h1>Work and Education</h1>}
-            />
+            <Route path="work-and-education" element={<WorkAndEdu />} />
 
-            <Route path="contacts" element={<h1>Contacts</h1>} />
+            <Route path="contacts" element={<Contacts />} />
           </Route>
-          <Route path="friends" element={<h1>Friends</h1>} />
+          <Route path="friends" element={<Friends />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>

@@ -31,12 +31,6 @@ const Friends = () => {
     },
   ];
   const params = useParams();
-  console.log(params);
-  const navigate = useNavigate();
-
-  const clickHandler = () => {
-    navigate("/id/endrit/friends");
-  };
 
   return (
     <div className={classes.Friends}>
