@@ -7,6 +7,8 @@ import classes from "./styles/Login.module.css";
 import CustomInput from "../components/CustomInput";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
+import { PiEye } from "react-icons/pi";
+import { BsEye, BsEyeSlash } from "react-icons/bs"; 
 import Footer from "../components/Footer";
 
 
@@ -76,12 +78,11 @@ const Login = () => {
             placeholder="Enter Your Password"
             value={formData.password}
             label="Password"
-          >
+            >
             {formErrors.password && (
               <p className={classes.errorText}>{formErrors.password}</p>
             )}
           </CustomInput>
-
           <button type="submit" className={classes.button}>
             Log In
           </button>
