@@ -8,6 +8,8 @@
   border-radius: 16px;
   align-items: flex-end;
   width: max-content;
+  max-height: 83vh;
+  overflow-y: auto;
 }
 
 .friends-holder {
