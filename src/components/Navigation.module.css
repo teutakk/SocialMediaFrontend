@@ -2,9 +2,9 @@
   display: grid;
   position: relative;
   gap: 20px;
-  grid-template-columns: 1fr 2.8fr 1fr;
+  grid-template-columns: 1fr 1.2fr 2fr 1fr;
   padding: 10px 20px;
-  background-color: var(--color-grey-dark-3);
+  background-color: rgb(234, 234, 234); /* Light grey color */
   position: sticky;
   top: 0;
   z-index: 20;
@@ -67,11 +67,14 @@
 }
 
 .notifications-icon {
-  position: relative;
-  width: 30px;
-  aspect-ratio: 1/1;
-  background-color: white;
-  border-radius: 99999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 50%;
+  color: #f8bd00;
   border: none;
 }
 
@@ -115,13 +118,31 @@
     width: 30px;
     aspect-ratio: 1/1;
   }
-  .circularContainer {
+
+  .route-holder-marketplace .circularContainer {
     display: flex;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
-    background-color: white;
+    background-color: rgb(244, 244, 244);
+
     text-align: center;
+    border: 1px solid rgb(239, 96, 96);
+  }
+  .route-holder-friends .circularContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(244, 244, 244);
+    font-size: 18px;
+  }
+  .userChip {
+    position: absolute;
+    top: 1px; /* Adjust the top distance as needed */
+    left: 800px; /* Adjust the right distance as needed */
   }
 }
