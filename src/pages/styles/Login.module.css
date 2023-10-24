@@ -1,0 +1,130 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: max(5vw, 40px);
+    margin-top: 100px;
+}
+.background{
+    background-position: center;
+    background-size: contain;
+    padding: max(200px, 16%);
+    margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
+    position: relative;
+    border-radius: max(14px, .9vw);
+}
+.formData{
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: max(40px, 5vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
+    background-color: rgba(155, 155, 155, 0.9);
+    width: max(330px, 45%);
+    margin: max(20px, 3vw) auto;
+    gap: max(30px, 2vw);
+    border-radius: max(1vw, 15px);
+    margin-top: 150px;
+}
+
+.topData{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: max(10px, .5vw);
+}
+.topData h2{
+    font-size: max(36px, 2.3vw);
+    font-weight: 600;
+    color: #5F5F5F;
+}
+.bottomData{
+    display: flex;
+    justify-content: center;
+}
+.bottomData p{
+    white-space: nowrap;
+    font-size: max(13px, .85vw);
+    font-weight: 600;
+    margin-top: max(2px, 2vw);
+}
+.bottomData a{
+    text-decoration: underline;
+    color: #5F5F5F;
+    font-weight: 600;
+    font-size: max(13px, .85vw);
+    margin-left: max(7px, .4vw);
+    margin-top: max(2px, 2vw);
+}
+
+.form {
+    display: flex;
+    flex-direction: column; 
+    gap: max(10px, .6vw);   
+    width: 50%;
+}
+form div p{
+    font-size: max(12px, .75vw);
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    margin-left: max(10px, .5vw);
+    max-width: 250px; 
+    
+}
+.icon {
+    height: max(1vw, 15px);
+    width: max(1vw, 15px);
+    color: #5f5f5f;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+}
+
+.button { 
+    width: 100%;
+    border-radius: max(14px, .9vw);
+    padding: max(10px, .5vw);
+    background-color: #5F5F5F;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: max(13px, .85vw);
+    cursor: pointer;
+}
+.button:focus {
+    background-color: #009BC6;
+}
+@media (max-width: 1450px) {
+    .container{
+        gap: 140px;
+    }
+}
+@media (max-width: 500px) {
+    .container{
+        gap: 0px;
+        display: flex;
+        justify-content: center;
+    }
+    .formData{
+        width: 90%;
+    }
+    .form{
+        width: 260px;
+    }
+}
+
+@media (max-width: 380px) {
+    .formData{
+        width: 90%;
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+    .form { 
+        display: block;
+    }
+}
