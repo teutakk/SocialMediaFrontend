@@ -16,6 +16,7 @@ import Contacts from "./components/profile/friends/Contacts";
 import { useDispatch } from "react-redux";
 import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
+import Notifications from "./pages/Notifications";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -29,19 +30,23 @@ const AppRoutes = () => {
 
   return (
     <Routes>
-      <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="register" element={<Register />} />
+      <Route path="login" element={<Login />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />
         <Route
-          path="/marketplace"
+          path="notifications"
+          element={<RequireAuth component={Notifications} />}
+        />
+        <Route
+          path="marketplace"
           element={<RequireAuth component={MarketPlace} />}
         />
         <Route
-          path="/friends"
+          path="friends"
           element={<RequireAuth component={FriendShip} />}
         />
-        <Route path="/id" element={<Profile />}>
+        <Route path="id" element={<Profile />}>
           <Route path=":idNumber" element={<ProfileContent />}>
             <Route index element={<Posts />} />
             <Route path="about" element={<About />}>
