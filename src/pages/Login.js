@@ -84,7 +84,7 @@ const Login = () => {
             )}
           </CustomInput>
           <button type="submit" className={classes.button}>
-            Log In
+            <Link to="/feed">Log In</Link>
           </button>
           <div className={classes.bottomData}>
             <p>Don't have an account?</p>

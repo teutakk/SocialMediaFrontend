@@ -84,39 +84,6 @@ form div p{
     align-items: center;
     justify-self: center;
 }
-.customInput {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-  }
-  
-  .inputContainer {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
-  
-  label {
-    width: 25%;
-    min-width: 100px;
-  }
-  
-  input {
-    width: 75%;
-    min-width: 200px;
-  }
-  
-  .icons {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
 .button { 
     width: 100%;
     border-radius: max(14px, .9vw);
