@@ -15,7 +15,9 @@ const Layout = () => {
             <Sidebar />
           </aside>
         )}
-        <Outlet />
+        <div className={classes.mainElement}>
+          <Outlet />
+        </div>
         {!location.pathname.startsWith("/id") && (
           <aside className={classes.right}>
             <Rightsidebar />

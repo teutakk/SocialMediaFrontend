@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./CustomInput.module.css"
+import classes from "./CustomInput.module.css";
 /**
  * Custom input component.
  * @param {object} props - Component props.
@@ -13,25 +13,34 @@ import classes from "./CustomInput.module.css"
  * @returns {JSX.Element} Custom input component.
  */
 
-const CustomInput = ({ children, type, icon, value, onChange, id, name, placeholder }) => {
+const CustomInput = ({
+  children,
+  type,
+  icon,
+  value,
+  onChange,
+  id,
+  name,
+  placeholder,
+}) => {
   let input;
   switch (type) {
     case "text":
       input = (
         <>
-        <div className={classes.customInputBlock}>
-          <p>{icon}</p>
-          <input
-            onChange={onChange}
-            type={type}
-            id={id}
-            name={name}
-            value={value}
-            placeholder={placeholder}
-            required
-            className={classes.input}
-          />
-        </div>
+          <div className={classes.customInputBlock}>
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              type={type}
+              id={id}
+              name={name}
+              value={value}
+              placeholder={placeholder}
+              required
+              className={classes.input}
+            />
+          </div>
         </>
       );
       break;
@@ -39,18 +48,18 @@ const CustomInput = ({ children, type, icon, value, onChange, id, name, placehol
       input = (
         <>
           <div className={classes.customInputBlock}>
-          <p>{icon}</p>          
-          <input
-            onChange={onChange}
-            value={value}
-            id={id}
-            name={name}
-            type={type}
-            required
-            placeholder={placeholder}
-            autoComplete="username"
-            className={classes.input}
-          />
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              value={value}
+              id={id}
+              name={name}
+              type={type}
+              required
+              placeholder={placeholder}
+              autoComplete="username"
+              className={classes.input}
+            />
           </div>
         </>
       );
@@ -59,19 +68,19 @@ const CustomInput = ({ children, type, icon, value, onChange, id, name, placehol
     case "password":
       input = (
         <>
-         <div className={classes.customInputBlock}>
-          <p>{icon}</p>
-          <input
-            onChange={onChange}
-            value={value}
-            id={id}
-            name={name}
-            type={type}
-            placeholder={placeholder}
-            autoComplete="new-password"
-            required
-            className={classes.input}
-          />
+          <div className={classes.customInputBlock}>
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              value={value}
+              id={id}
+              name={name}
+              type={type}
+              placeholder={placeholder}
+              autoComplete="new-password"
+              required
+              className={classes.input}
+            />
           </div>
         </>
       );

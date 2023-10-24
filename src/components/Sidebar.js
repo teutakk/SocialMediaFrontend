@@ -9,14 +9,21 @@ const Sidebar = () => {
   return (
     <div className={classes.Sidebar}>
       <div className={classes.profile}>
-        <UserChip width={53} heigth={53} />
+        <UserChip width={43} heigth={43} />
         <div className={classes.user}>
           <p>
-            <strong>
-              {loggedInUser?.user.firstName} {loggedInUser?.user.lastName}
-            </strong>
+            <strong>{loggedInUser?.firstName}</strong>
           </p>
-          <p>@endritbejta</p>
+          <p
+            style={{
+              fontSize: "12px",
+              maxWidth: "60px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {loggedInUser.email}
+          </p>
         </div>
       </div>
       <section className={classes["routing-options"]}>
@@ -63,7 +70,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           className={`${classes["route-holder"]} ${classes["route-profile"]}`}
-          to={"id"}
+          to={`id/${loggedInUser._id}`}
         >
           <span className={classes["route-logo"]}>P</span>
           <span>Profile</span>
@@ -73,7 +80,7 @@ const Sidebar = () => {
           to={"marketplace"}
         >
           <span className={classes["route-logo"]}>M</span>
-          <span>Market Place</span>
+          <span>Marketplace</span>
         </NavLink>
       </section>
     </div>

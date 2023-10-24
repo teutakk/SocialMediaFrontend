@@ -21,20 +21,27 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
+    grid-template-columns: min-content minmax(auto, max-content);
+    gap: 30px;
+  }
+
+  .mainElement {
     padding: 0 10px;
-    grid-template-columns: minmax(150px, 1.3fr) 2.6fr 1.3fr;
-    gap: 10px;
   }
 
   .left {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
+    margin-left: 10px;
+    padding: 0 5px;
+    width: 150px;
   }
 
   .right {
-    display: flex;
-    justify-content: flex-start;
+    /* display: none; */
+    grid-row: 1;
+    /* grid-template-columns: 1; */
   }
 }
 
@@ -43,5 +50,24 @@
     grid-template-columns: 1fr 2.8fr 1fr;
     gap: 20px;
     padding: 0;
+  }
+
+  .mainElement {
+    padding: 0 10px;
+  }
+
+  .left,
+  .right {
+    padding: 0 10px;
+    display: flex;
+    font-size: 16px;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    grid-row: unset;
+    grid-column: unset;
   }
 }
