@@ -12,9 +12,7 @@ const Rightsidebar = () => {
           <div key={friend.id} className={classes["one-friend"]}>
             <div className={classes.info}>
               <p>
-                <strong>
-                  {friend.name} {friend.lastName}
-                </strong>
+                {friend.name} {friend.lastName}
               </p>
               {/* <p>@{friend.id}</p> */}
             </div>

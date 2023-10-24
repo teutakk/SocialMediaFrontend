@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import classes from "./Navigation.module.css";
 import UserChip from "./UserChip";
-import logo from "../assets/images/starlabs.png";
+import logo from "../assets/images/postify.png";
 import Notifications from "./notifications/Notifications";
 
 const Navigation = () => {
@@ -43,10 +43,9 @@ const Navigation = () => {
     <section className={classes.Navigation}>
       <div className={classes["navigation-left"]}>
         <span onClick={handleShowNavigation}>X</span>
-        <div className={classes.logo}>
+        <NavLink to={""} className={classes.logo}>
           <img src={logo} alt="lasjdlkasjd" />
-          <h3>Our Social Media</h3>
-        </div>
+        </NavLink>
       </div>
       <div className={classes["navigation-main"]}>
         <label htmlFor="Search...">
@@ -61,7 +60,9 @@ const Navigation = () => {
           <span onClick={handleShowNavigation}>X</span>
           <ul>
             <li>
-              <NavLink to="/posts">Feed</NavLink>
+              <NavLink to="" end>
+                Feed
+              </NavLink>
             </li>
             <li>
               <NavLink to="/friends">Friends</NavLink>

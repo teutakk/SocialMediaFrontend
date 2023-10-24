@@ -19,7 +19,7 @@
   font-size: 18px;
   width: 40px;
   aspect-ratio: 1/1;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 100%;
   left: 10px;
 }
@@ -30,7 +30,8 @@
 }
 
 .slider {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,8 +55,8 @@
   height: calc(100%);
   display: none;
   overflow-y: auto;
-  background-color: rgba(111, 111, 111, 0.4);
-  padding: 10px;
+  border-radius: 16px;
+  padding: 10px 15px;
 }
 
 @media (min-width: 767px) {

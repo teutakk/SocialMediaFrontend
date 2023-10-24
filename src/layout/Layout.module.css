@@ -21,8 +21,9 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
-    grid-template-columns: 1fr 2.6fr 1.2fr;
-    gap: 20px;
+    padding: 0 10px;
+    grid-template-columns: minmax(150px, 1.3fr) 2.6fr 1.3fr;
+    gap: 10px;
   }
 
   .left {
@@ -38,7 +39,9 @@
 }
 
 @media (min-width: 1000px) {
-  .Layout {
+  .main {
     grid-template-columns: 1fr 2.8fr 1fr;
+    gap: 20px;
+    padding: 0;
   }
 }
