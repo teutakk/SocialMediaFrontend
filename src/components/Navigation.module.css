@@ -2,32 +2,42 @@
   display: grid;
   position: relative;
   gap: 20px;
-  grid-template-columns: 1fr 2.8fr 1fr;
+  grid-template-columns: 1.2fr 2.8fr 1.2fr;
   padding: 10px 20px;
-  background-color: #e4e4e4;
+  background-color: rgb(234, 234, 234); /* Light grey color */
   position: sticky;
   top: 0;
   z-index: 20;
 }
 
-.Navigation span {
-  width: 30px;
-  display: block;
-  background-color: red;
+.navigation-main input[type="text"] {
+  border-radius: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1/1;
-}
-.navigation-main {
-  display: flex;
+  font-size: 20px;
+  padding: 10px;
+  height: 40px;
   gap: 20px;
   justify-content: space-between;
   align-items: center;
 }
 
-.navigation-left .logo {
-  display: none;
+.navigation-left .logo-route {
+  width: 130px;
+  display: block;
+}
+
+.navigation-left .logo-route img {
+  width: 100%;
+}
+
+.navigation-main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navlink-holder {
+  display: flex;
+  gap: 10px;
 }
 
 .navigation-main nav {
@@ -51,6 +61,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  border-radius: 20px;
 }
 
 .user {
@@ -62,14 +73,19 @@
 }
 
 .notifications-icon {
-  position: relative;
-  width: 40px;
-  aspect-ratio: 1/1;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(244, 244, 244);
+  border-radius: 50%;
   border: none;
-  color: #f8bd00;
   cursor: pointer;
+}
+
+.notifications-icon svg {
+  color: #f8bd00;
 }
 
 .notifications {
@@ -101,11 +117,6 @@
     display: none;
   }
 
-  .navigation-left {
-    display: flex;
-    /* width: 100%; */
-  }
-
   .navigation-left .logo {
     display: flex;
     gap: 2%;
@@ -113,7 +124,30 @@
     width: 100px;
   }
 
-  .navigation-left img {
-    width: 100%;
+  .route-holder-marketplace .circularContainer {
+    display: flex;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(244, 244, 244);
+
+    text-align: center;
+    border: 1px solid rgb(239, 96, 96);
+  }
+  .route-holder-friends .circularContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgb(244, 244, 244);
+    font-size: 18px;
+  }
+  .userChip {
+    /* position: absolute; */
+    /* top: 1px; Adjust the top distance as needed */
+    /* left: 800px; Adjust the right distance as needed */
   }
 }
