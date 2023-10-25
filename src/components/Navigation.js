@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import classes from "./Navigation.module.css";
 import { useDispatch } from "react-redux";
+import classes from "./Navigation.module.css";
 import UserChip from "./UserChip";
 import logo from "../assets/images/starlabs.png";
 import Notifications from "./notifications/Notifications";
@@ -14,34 +14,18 @@ import { selectUser, logoutUser } from "../store/slices/authSlice";
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
-  const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const loggedInUser = useSelector(selectUser);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const notificationsRef = useRef(null);
   const notificationsSectionRef = useRef(null);
 
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
-  };
-
-  const handleShowLogoutConfirmation = () => {
-    setShowLogoutConfirmation(true);
-  };
-
-  const handleHideLogoutConfirmation = () => {
-    setShowLogoutConfirmation(false);
-  };
-
-  const dispatch = useDispatch();
-
-  const handleLogout = async () => {
-    await dispatch(logoutUser());
-    setTimeout(() => {
-      navigate("/login");
-    }, 0);
   };
 
   useEffect(() => {
@@ -53,6 +37,16 @@ const Navigation = () => {
       document.body.style.overflowX = "hidden";
     }
   }, [showNavigation]);
+
+  const handleShowUserMenu = () => {
+    setShowUserMenu((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    console.log("Loggin out");
+    dispatch(logoutUser());
+    navigate("/login");
+  };
 
   const handleShowNotifications = (event) => {
     // this handler gets executed whenever a child of his is clicked, thus making our notification close when we click inside the notif section, a behaviour that we obviously dont want to happen. we check if the clicked target is a child or it is notificationSection itselft, if it is then notthing happens, some of the logic is moved to the Notifications.js to handle the outside click
@@ -148,56 +142,17 @@ const Navigation = () => {
               notificationsSectionRef={notificationsSectionRef}
             />
           </div>
-          <div className={classes["navigation-right"]}>
-            <div>
-              <button onClick={handleShowLogoutConfirmation}>
-                <svg
-                  width="24px"
-                  height="24px"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g
-                    id="SVGRepo_tracerCarrier"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  ></g>
-                  <g id="SVGRepo_iconCarrier">
-                    {" "}
-                    <path
-                      d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-                      stroke="#000000"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>{" "}
-                    <path
-                      d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-                      stroke="#000000"
-                      strokeWidth="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>{" "}
-                  </g>
-                </svg>
-              </button>
-            </div>
-            {showLogoutConfirmation ? (
-              <div className={classes.logoutConfirmation}>
-                <button
-                  className={classes["logout-confirm-button"]}
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
+          <div className={classes.userChip} onClick={handleShowUserMenu}>
+            <UserChip url={logo} />
+            {showUserMenu && (
+              <div className={classes.userMenu}>
+                <button onClick={handleLogout}>Logout</button>
               </div>
-            ) : null}
+            )}
           </div>
         </div>
       </section>
     </>
   );
 };
-
 export default Navigation;
