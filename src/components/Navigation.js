@@ -4,6 +4,7 @@ import classes from "./Navigation.module.css";
 import UserChip from "./UserChip";
 import logo from "../assets/images/starlabs.png";
 import Notifications from "./notifications/Notifications";
+import SearchBar from "./SearchBar";
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -52,13 +53,14 @@ const Navigation = () => {
       </div>
       <div className={classes["navigation-main"]}>
         <label htmlFor="search" style={{ position: "relative" }}>
-          <input
+          {/* <input
             type="text"
             placeholder="Search"
             id="search"
             name="search"
             style={{ paddingLeft: "30px" }}
-          />
+          /> */}
+          <SearchBar />
 
           <svg
             width="27px"
