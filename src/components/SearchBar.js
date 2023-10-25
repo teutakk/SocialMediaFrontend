@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { data } from "../api/dummyData";
-import search from "./UserSearch.module.css";
+import search from "./SearchBar.module.css";
 
 function SearchBar() {
   const [searchText, setSearchText] = useState("");
