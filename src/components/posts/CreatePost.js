@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CreatePost.module.css";
 import UserChip from "../UserChip";
 import logo from "../../assets/images/starlabs.png";
 import { useDispatch, useSelector } from "react-redux";
-import { createPost } from "../../store/slices/postsSlice";
+import {
+  createPost,
+  selectPostErrors,
+  selectPostStatus,
+} from "../../store/slices/postsSlice";
 import PostImagePreviewer from "./PostImagePreviewer";
 import button from "../Button.module.css";
 import { selectUser } from "../../store/slices/authSlice";
@@ -14,6 +18,9 @@ const CreatePost = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
+
+  const postsStatus = useSelector(selectPostStatus);
+  const postErrors = useSelector(selectPostErrors);
 
   // function to increase the height of the textbox
   const handleInputChange = (e) => {
@@ -40,9 +47,26 @@ const CreatePost = () => {
     for (const key in newPost) {
       formData.append(key, newPost[key]);
     }
-
     dispatch(createPost(formData));
+    if (postsStatus.create === "succeeded") {
+      console.log("running and status: ", postsStatus);
+      setPostText("");
+      setSelectedImages([]);
+    }
   };
+
+  // handle response of backend with useEffect in order to reflect the latest state
+  useEffect(() => {
+    if (postsStatus.create === "failed") {
+      console.log("there was a problem with your post");
+    }
+    if (postsStatus.create === "succeeded") {
+      console.log("running");
+      setPostText("");
+      setSelectedImages([]);
+      setImagePreviews([]);
+    }
+  }, [postsStatus.create]);
 
   // function to display uploaded photos
 
@@ -77,6 +101,7 @@ const CreatePost = () => {
         <UserChip url={logo} />
         <textarea
           onChange={handleInputChange}
+          value={postText}
           placeholder="What's on your mind..."
         />
       </div>
@@ -120,6 +145,7 @@ const CreatePost = () => {
           style={{ display: "none" }}
           type="file"
           id="upload-image"
+          value={selectedImages}
           accept="images/*"
           multiple
         />

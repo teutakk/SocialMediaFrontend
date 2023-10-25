@@ -1,5 +1,5 @@
 .search {
-  width: 250px;
+  width: 40px;
   position: relative;
   border-radius: 20px;
   overflow: hidden;
@@ -13,6 +13,11 @@
   padding: 10px 10px;
   color: green;
   border: 1px solid green;
+  transition: width 0.2s ease;
+}
+
+.search:focus-within {
+  width: 100%;
 }
 
 .search input {
@@ -31,6 +36,9 @@
 .search span {
   height: 100%;
   aspect-ratio: 1/1;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: grid;
   font-size: 24px;
   font-weight: bold;
@@ -85,4 +93,24 @@
 .userFullName {
   color: black;
   font-size: 20px;
+}
+
+@media (min-width: 540px) {
+  .search {
+    width: 200px;
+  }
+
+  .search:focus-within {
+    width: 250px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .search {
+    width: 300px;
+  }
+
+  .search:focus-within {
+    width: 390px;
+  }
 }
