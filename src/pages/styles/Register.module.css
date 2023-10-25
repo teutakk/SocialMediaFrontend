@@ -1,39 +1,52 @@
 .container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  flex-direction: row-reverse;
   height: 100vh;
   width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo {
   background: url("https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-size: cover;
-}
-
-.container section {
+  position: absolute;
+  top: 0;
+  left: 0;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  align-items: last baseline;
-  justify-content: last baseline;
-}
-
-.quote {
-  /* margin-top: 100%; */
-  width: 670px;
-  color: #fff;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 600;
+  width: 100%;
+  filter: blur(8px);
+  z-index: 0;
+  transform: scale(1.1);
+  background-position: center center;
+  pointer-events: none;
 }
 
 .formData {
-  background-color: white;
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: transparent;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   align-items: center;
   justify-content: center;
+}
+
+.footerSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.quote {
+  display: none;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 /* .formData {
@@ -63,7 +76,7 @@
 .topData h2 {
   font-size: max(36px, 2.3vw);
   font-weight: 600;
-  color: #5f5f5f;
+  color: #8487ff;
 }
 .topData p {
   white-space: nowrap;
@@ -72,7 +85,7 @@
 }
 .topData p a {
   text-decoration: underline;
-  color: #5f5f5f;
+  color: #8487ff;
   margin-left: max(7px, 0.4vw);
 }
 
@@ -105,8 +118,8 @@ form div p {
   outline: none;
   border: none;
   border-radius: max(14px, 0.9vw);
-  background-color: #e2e2e2;
-  color: #222222;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.3);
   font-size: max(12px, 0.8vw);
   border: 2px solid #5f5f5f;
   width: 100%;
@@ -115,7 +128,7 @@ form div p {
   width: 100%;
   border-radius: max(14px, 0.9vw);
   padding: max(10px, 0.5vw);
-  background-color: #5f5f5f;
+  background-color: #8487ff;
   color: #fff;
   outline: none;
   border: none;
@@ -123,48 +136,75 @@ form div p {
   cursor: pointer;
 }
 .button:focus {
-  background-color: #009bc6;
-}
-@media (max-width: 1450px) {
-  /* .container {
-    gap: 140px;
-  } */
-}
-@media (max-width: 500px) {
-  /* .container {
-    gap: 0px;
-  }
-  .background {
-    padding: 320px max(20px, 18vw);
-    margin: max(50px, 5.5vw) 0;
-  }
-  .formData {
-    margin: 100px auto 0px auto;
-    padding: max(20px, 2vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
-  } */
+  background-color: #6b6efe;
 }
 
-@media (max-width: 380px) {
-  /* .formData {
-    left: 0px;
-    right: 0px;
-    width: 90%;
-  } */
+@media (min-width: 767px) {
+  .container {
+    flex-direction: row-reverse;
+  }
+
+  .photo {
+    filter: blur(0);
+  }
+
+  .formData {
+    width: 50%;
+    background-color: white;
+    height: 100%;
+  }
+  .footerSection {
+    padding: 40px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    align-items: flex-end;
+    z-index: 10;
+    gap: 20px;
+    align-self: baseline;
+  }
+
   .form {
+    width: 80%;
+  }
+
+  .quote {
     display: block;
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    z-index: 1;
+    /* margin-top: auto; */
   }
-  .blockInput select {
-    width: 100%;
+}
+
+@media (min-width: 1000px) {
+  .formData {
+    width: 40%;
   }
-  .button {
-    margin-top: 10px;
+
+  .form {
+    width: 80%;
   }
-  /*  if we want to make the gender and birthdate on a column*/
-  /* .blockInput {
-        display: flex;
-        flex-direction: column;
-    }
-    input[type="date"] {
-        width: 100%;
-    } */
+
+  .footerSection {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1285px) {
+  .formData {
+    width: 40%;
+  }
+
+  .form {
+    width: 60%;
+  }
+
+  .footerSection {
+    width: 60%;
+  }
 }

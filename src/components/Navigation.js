@@ -7,14 +7,14 @@ import Notifications from "./notifications/Notifications";
 import SearchBar from "./SearchBar";
 import postify from "../assets/images/postify.png";
 import { HiXMark } from "react-icons/hi2";
-import { useSelector } from "react-redux";
-import { selectUser } from "../store/slices/authSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser, selectUser } from "../store/slices/authSlice";
 
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const loggedInUser = useSelector(selectUser);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const notificationsRef = useRef(null);
@@ -22,6 +22,12 @@ const Navigation = () => {
 
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
+  };
+
+  const handleLogout = () => {
+    console.log("Loggin out");
+    dispatch(logoutUser());
+    navigate("");
   };
 
   const handleShowNotifications = (event) => {
@@ -107,6 +113,9 @@ const Navigation = () => {
             ref={notificationsRef}
             onClick={(e) => handleShowNotifications(e)}
           >
+            <div className={classes.notificationsDot}>
+              <span className={classes.span}>7</span>
+            </div>
             <svg viewBox="0 0 24 24" fill="#F8BD00" height="32px" width="32px">
               <path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 003 17v1a1 1 0 001 1h16a1 1 0 001-1v-1a.996.996 0 00-.293-.707L19 14.586z" />
             </svg>
@@ -118,7 +127,7 @@ const Navigation = () => {
               notificationsSectionRef={notificationsSectionRef}
             />
           </div>
-          <div className={classes.userChip}>
+          <div onClick={handleLogout} className={classes.userChip}>
             <UserChip url={logo} />
           </div>
         </div>

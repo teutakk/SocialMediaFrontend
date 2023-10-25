@@ -41,11 +41,14 @@ const Register = () => {
     if (!formErrors.error) {
       dispatch(registerUser(formData));
     }
+  };
+
+  useEffect(() => {
     console.log("userStatus", userStatus);
     if (userStatus === "succeeded") {
       navigate("/login?registrationsuccess");
     }
-  };
+  }, [userStatus]);
 
   // input state update handler
   const onChangeHandler = (event) => {
@@ -58,6 +61,7 @@ const Register = () => {
 
   return (
     <div className={classes.container}>
+      <span className={classes.photo}></span>
       <div className={classes.formData}>
         <div className={classes.topData}>
           <h2>Sign Up</h2>
@@ -159,7 +163,7 @@ const Register = () => {
           </button>
         </form>
       </div>
-      <section>
+      <section className={classes.footerSection}>
         <div className={classes.quote}>
           Connect, Share, Thrive: Where Social Worlds Unite!
         </div>
