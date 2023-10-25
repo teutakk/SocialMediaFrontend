@@ -74,7 +74,7 @@ const Sidebar = () => {
         </NavLink>
         <NavLink
           className={`${classes["route-holder"]} ${classes["route-profile"]}`}
-          to={`id/${loggedInUser._id}`}
+          to={`id/${loggedInUser?._id}`}
         >
           <span
             style={{ color: "lightblue", fontSize: "24px" }}
