@@ -22,7 +22,7 @@ export const authenticateUser = createAsyncThunk(
 
       return response.data;
     } catch (err) {
-      throw new Error(err.response.data.error);
+      throw Error(err.response.data.msg);
     }
   }
 );

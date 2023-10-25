@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  height: 100vh;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.formData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 70%;
+  width: 80%;
+  background-color: rgba(155, 155, 155, 0.9);
+  border-radius: 20px;
+}
+
+.topData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.topData h2 {
+  font-size: max(36px, 2.3vw);
+  font-weight: 600;
+  color: #5f5f5f;
+}
+.bottomData {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.bottomData p {
+  white-space: nowrap;
+  font-size: max(13px, 0.85vw);
+  font-weight: 600;
+  margin-top: max(2px, 2vw);
+}
+.bottomData a {
+  text-decoration: underline;
+  color: #5f5f5f;
+  font-weight: 600;
+  font-size: max(13px, 0.85vw);
+  margin-left: max(7px, 0.4vw);
+  margin-top: max(2px, 2vw);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 80%;
+}
+form div p {
+  font-size: max(12px, 0.75vw);
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  margin-left: max(10px, 0.5vw);
+  max-width: 250px;
+}
+.icon {
+  height: max(1vw, 15px);
+  width: max(1vw, 15px);
+  color: #5f5f5f;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+.button {
+  width: 100%;
+  border-radius: max(14px, 0.9vw);
+  padding: max(10px, 0.5vw);
+  background-color: #5f5f5f;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-size: max(13px, 0.85vw);
+  cursor: pointer;
+}
+.button:focus {
+  background-color: #009bc6;
+}
+
+@media (min-width: 440px) {
+  .formData {
+    width: 100%;
+  }
+}

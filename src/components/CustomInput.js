@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./CustomInput.module.css";
+import { BsEye, BsEyeSlash } from "react-icons/bs";
 /**
  * Custom input component.
  * @param {object} props - Component props.
@@ -17,12 +18,18 @@ const CustomInput = ({
   children,
   type,
   icon,
+  secondIcon,
   value,
   onChange,
   id,
   name,
   placeholder,
 }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleTogglePassword = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
   let input;
   switch (type) {
     case "text":
@@ -75,12 +82,18 @@ const CustomInput = ({
               value={value}
               id={id}
               name={name}
-              type={type}
+              type={showPassword ? "text" : "password"}
               placeholder={placeholder}
               autoComplete="new-password"
               required
               className={classes.input}
             />
+            <div
+              className={classes.togglePassword}
+              onClick={handleTogglePassword}
+            >
+              {showPassword ? <BsEyeSlash /> : <BsEye />}
+            </div>
           </div>
         </>
       );
@@ -106,6 +119,7 @@ const CustomInput = ({
 
   return (
     <div className={classes.inputBlock}>
+      <div className={classes.icons}>{secondIcon}</div>
       {children && React.cloneElement(children, { className: "error" })}
       {input}
     </div>
