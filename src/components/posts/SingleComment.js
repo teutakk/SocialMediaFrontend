@@ -1,15 +1,21 @@
 import React from "react";
 import classes from "./SingleComment.module.css";
 import UserChip from "../UserChip";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 const SingleComment = ({ comment }) => {
   return (
     <div className={classes.SingleComment}>
       <UserChip url={comment.profilePhoto} />
       <div className={classes.CommentContent}>
         <div className={classes.CommentSection}>
-          <p>
-            <strong>{comment.userFullName}</strong>
-          </p>
+          <div className={classes["name-and-edit"]}>
+            <p>
+              <strong>{comment.userFullName}</strong>
+            </p>
+            <span>
+              <BiDotsVerticalRounded />
+            </span>
+          </div>
           <p>{comment.description}</p>
         </div>
         {/* <img src={logo1} width={200} height={200} alt="photo if photo" /> */}

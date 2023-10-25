@@ -1,0 +1,28 @@
+.AddInfo {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: rgb(85, 188, 223);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.info svg {
+  font-size: 24px;
+  display: block;
+  width: 40px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 18px;
+}

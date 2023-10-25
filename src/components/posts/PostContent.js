@@ -93,7 +93,7 @@ const PostContent = ({ post, type }) => {
       {modalOpen && (
         <Modal
           data={post}
-          showActionButtons={true}
+          showActionButtons={false}
           showModal={showModal}
           modal={modalOpen}
         >

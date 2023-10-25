@@ -3,10 +3,11 @@
   position: fixed;
   flex-direction: column;
   gap: 10px;
-  background-color: #ccc;
-  padding: 10px;
+  background: rgba(123, 123, 123, 0.1);
+  padding: 10px 20px;
   border-radius: 16px;
   align-items: flex-end;
+  width: max-content;
 }
 
 .friends-holder {
@@ -34,6 +35,7 @@
   align-items: flex-end;
 }
 
-.info p:last-of-type {
-  font-size: 14px;
+.info p {
+  max-width: 100px;
+  text-align: end;
 }
