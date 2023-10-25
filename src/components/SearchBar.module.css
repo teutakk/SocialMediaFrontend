@@ -1,4 +1,44 @@
+.search {
+  width: 250px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  flex-direction: row-reverse;
+  background-color: white;
+  height: 40px;
+  gap: 5px;
+  padding: 10px 10px;
+  color: green;
+  border: 1px solid green;
+}
+
+.search input {
+  outline: none;
+  border: none;
+  display: flex;
+  width: calc(100% - 25px);
+  background-color: transparent;
+  color: inherit;
+}
+
+.search input::placeholder {
+  color: green;
+}
+
+.search span {
+  height: 100%;
+  aspect-ratio: 1/1;
+  display: grid;
+  font-size: 24px;
+  font-weight: bold;
+  place-content: center;
+}
+
 .searchInput {
+  position: relative;
   border-radius: 20px;
   display: flex;
   font-size: 20px;

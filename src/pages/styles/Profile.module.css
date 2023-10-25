@@ -5,8 +5,6 @@
   align-items: center;
   width: 100%;
   margin-top: -20px;
-  /* max-width: 1150px; */
-  margin-inline: auto;
 }
 
 .profile-header {
@@ -19,6 +17,8 @@
   height: 100%;
   position: relative;
   max-width: 1150px;
+  width: 100vw;
+  transform: translateX(-10px);
   margin: 0 auto;
   background-color: rgb(16, 151, 151);
 }
@@ -89,8 +89,6 @@
 
 .content-options {
   width: 100%;
-  box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.3);
-  background-color: white;
 }
 
 .navlink-holder {
@@ -99,6 +97,7 @@
   margin: 0 auto;
   display: flex;
   gap: 10px;
+  margin-bottom: 20px;
   justify-content: space-evenly;
 }
 
@@ -121,6 +120,10 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
+  }
+
+  .cover {
+    transform: translateX(-10px);
   }
 
   .profile-pic {
@@ -150,6 +153,12 @@
 
   .navlink-holder {
     justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1000px) {
+  .cover {
+    transform: translateX(0);
   }
 }
 

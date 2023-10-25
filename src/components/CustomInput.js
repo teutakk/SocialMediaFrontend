@@ -1,5 +1,5 @@
-import React,{ useState } from "react";
-import classes from "./CustomInput.module.css"
+import React, { useState } from "react";
+import classes from "./CustomInput.module.css";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 /**
  * Custom input component.
@@ -14,7 +14,17 @@ import { BsEye, BsEyeSlash } from "react-icons/bs";
  * @returns {JSX.Element} Custom input component.
  */
 
-const CustomInput = ({ children, type, icon, secondIcon, value, onChange, id, name, placeholder }) => {
+const CustomInput = ({
+  children,
+  type,
+  icon,
+  secondIcon,
+  value,
+  onChange,
+  id,
+  name,
+  placeholder,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleTogglePassword = () => {
@@ -25,19 +35,19 @@ const CustomInput = ({ children, type, icon, secondIcon, value, onChange, id, na
     case "text":
       input = (
         <>
-        <div className={classes.customInputBlock}>
-          <p>{icon}</p>
-          <input
-            onChange={onChange}
-            type={type}
-            id={id}
-            name={name}
-            value={value}
-            placeholder={placeholder}
-            required
-            className={classes.input}
-          />
-        </div>
+          <div className={classes.customInputBlock}>
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              type={type}
+              id={id}
+              name={name}
+              value={value}
+              placeholder={placeholder}
+              required
+              className={classes.input}
+            />
+          </div>
         </>
       );
       break;
@@ -45,18 +55,18 @@ const CustomInput = ({ children, type, icon, secondIcon, value, onChange, id, na
       input = (
         <>
           <div className={classes.customInputBlock}>
-          <p>{icon}</p>          
-          <input
-            onChange={onChange}
-            value={value}
-            id={id}
-            name={name}
-            type={type}
-            required
-            placeholder={placeholder}
-            autoComplete="username"
-            className={classes.input}
-          />
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              value={value}
+              id={id}
+              name={name}
+              type={type}
+              required
+              placeholder={placeholder}
+              autoComplete="username"
+              className={classes.input}
+            />
           </div>
         </>
       );
@@ -65,20 +75,20 @@ const CustomInput = ({ children, type, icon, secondIcon, value, onChange, id, na
     case "password":
       input = (
         <>
-         <div className={classes.customInputBlock}>
-          <p>{icon}</p>
-          <input
-            onChange={onChange}
-            value={value}
-            id={id}
-            name={name}
-            type={showPassword ? "text" : "password"}
-            placeholder={placeholder}
-            autoComplete="new-password"
-            required
-            className={classes.input}
-          />
-           <div
+          <div className={classes.customInputBlock}>
+            <p>{icon}</p>
+            <input
+              onChange={onChange}
+              value={value}
+              id={id}
+              name={name}
+              type={showPassword ? "text" : "password"}
+              placeholder={placeholder}
+              autoComplete="new-password"
+              required
+              className={classes.input}
+            />
+            <div
               className={classes.togglePassword}
               onClick={handleTogglePassword}
             >
@@ -108,11 +118,8 @@ const CustomInput = ({ children, type, icon, secondIcon, value, onChange, id, na
   }
 
   return (
-    
     <div className={classes.inputBlock}>
-      <div className={classes.icons}>
-          {secondIcon}
-        </div>
+      <div className={classes.icons}>{secondIcon}</div>
       {children && React.cloneElement(children, { className: "error" })}
       {input}
     </div>

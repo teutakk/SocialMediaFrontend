@@ -16,13 +16,13 @@ export const authenticateUser = createAsyncThunk(
       const response = await axiosInstance.post(API_ROUTES.login, credentials);
       // if we name it token
       console.log(response);
-      const token = response.data.user.token;
+      const token = response.data.token;
       // Saving the token to localStorage
       localStorage.setItem("token", token);
 
       return response.data;
     } catch (err) {
-      throw new Error(err.response.data.error);
+      throw Error(err.response.data.msg);
     }
   }
 );

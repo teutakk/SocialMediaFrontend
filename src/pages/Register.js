@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { registerUser } from "../store/slices/registerSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  registerUser,
+  selectRegisteredError,
+  selectRegisteredStatus,
+} from "../store/slices/registerSlice";
 import { validateForm } from "../utils/validateRegisterData";
 import CustomInput from "../components/CustomInput";
 import classes from "./styles/Register.module.css";
@@ -21,38 +25,26 @@ const Register = () => {
     birthday: "",
   });
 
+  const userStatus = useSelector(selectRegisteredStatus);
+  const userError = useSelector(selectRegisteredError);
+
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // errors state
   const [formErrors, setFormErrors] = useState({ error: true });
-
-  useEffect(() => {
-    // we dispatch an action when the formError does not contain any errors in it.
-    if (formErrors.error !== undefined && !formErrors.error) {
-      
-      dispatch(registerUser(formData)).then(() => {
-        navigate("/login");
-      });
-
-      setFormData({
-        firstName: "",
-        lastName: "",
-        gender: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        birthday: "mm/dd/yyyy",
-      });
-      setFormErrors({ error: true });
-    }
-
-  }, [formErrors, formData, dispatch]);
 
   const handleSubmit = (event) => {
     // prevent the reload
     event.preventDefault();
     // when the inputs are filled, we validate the form data, and let the useEffect dispatch the action of sending the post register request, depending on the validity of formErrors
     setFormErrors(validateForm(formData));
+    if (!formErrors.error) {
+      dispatch(registerUser(formData));
+    }
+    console.log("userStatus", userStatus);
+    if (userStatus === "succeeded") {
+      navigate("/login?registrationsuccess");
+    }
   };
 
   // input state update handler
@@ -85,7 +77,9 @@ const Register = () => {
             placeholder="Enter Your Name"
             className={classes.inputRow}
           >
-            {formErrors.firstName && <p className={classes.errorText}>{formErrors.firstName}</p>}
+            {formErrors.firstName && (
+              <p className={classes.errorText}>{formErrors.firstName}</p>
+            )}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -97,7 +91,9 @@ const Register = () => {
             placeholder="Enter Your Lastname"
             className={classes.inputRow}
           >
-            {formErrors.lastName && <p className={classes.errorText}>{formErrors.lastName}</p>}
+            {formErrors.lastName && (
+              <p className={classes.errorText}>{formErrors.lastName}</p>
+            )}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -107,7 +103,11 @@ const Register = () => {
             name="email"
             placeholder="Enter Your Email"
             value={formData.email}
-          />
+          >
+            {userStatus === "failed" && (
+              <p className={classes.errorText}>{userError}</p>
+            )}
+          </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
             icon={<MdLockOutline className={classes.icon} />}
@@ -118,7 +118,9 @@ const Register = () => {
             value={formData.password}
             label="Password"
           >
-            {formErrors.password && <p className={classes.errorText}>{formErrors.password}</p>}
+            {formErrors.password && (
+              <p className={classes.errorText}>{formErrors.password}</p>
+            )}
           </CustomInput>
           <CustomInput
             onChange={onChangeHandler}
@@ -134,26 +136,28 @@ const Register = () => {
               <p className={classes.errorText}>{formErrors.confirmPassword}</p>
             )}
           </CustomInput>
-            <div className={classes.blockInput}>
-              <select name="gender" id="gender" onChange={onChangeHandler} >
-                <option value="" disabled selected>Gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-                <option value="Prefer not to say">Prefer not to say</option>
-              </select>
-              <CustomInput
-                onChange={onChangeHandler}
-                type="date"
-                id="birthday"
-                name="birthday"
-                value={formData.date}
-                label="Birthday"
-              />
-            </div>
-            <button type="submit" className={classes.button}>
-              Sign Up
-            </button>
+          <div className={classes.blockInput}>
+            <select name="gender" id="gender" onChange={onChangeHandler}>
+              <option value="" disabled selected>
+                Gender
+              </option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+            <CustomInput
+              onChange={onChangeHandler}
+              type="date"
+              id="birthday"
+              name="birthday"
+              value={formData.date}
+              label="Birthday"
+            />
+          </div>
+          <button type="submit" className={classes.button}>
+            Sign Up
+          </button>
         </form>
       </div>
       <Footer />

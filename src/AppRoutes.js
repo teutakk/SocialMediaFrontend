@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -13,29 +13,43 @@ import Overview from "./components/profile/about/Overview";
 import Friends from "./components/profile/friends/Friends";
 import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
 import Contacts from "./components/profile/friends/Contacts";
+import { useDispatch } from "react-redux";
+import { authenticateUser } from "./store/slices/authSlice";
+import MarketPlace from "./pages/MarketPlace";
+import Notifications from "./pages/Notifications";
 
-const AppRoutes = () => (
-  <Routes>
-    <Route path="/register" element={<Register />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="" element={<Layout />}>
-      <Route index path="" element={<Posts />} />
-      <Route path="/friends" element={<FriendShip />} />
-      <Route path="/id" element={<Profile />}>
-        <Route path=":idNumber" element={<ProfileContent />}>
+const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route path="register" element={<Register />} />
+      <Route path="login" element={<Login />} />
+      <Route path="" element={<RequireAuth component={Layout} />}>
+        <Route index path="" element={<RequireAuth component={Posts} />} />
+        <Route
+          path="notifications"
+          element={<RequireAuth component={Notifications} />}
+        />
+        <Route
+          path="marketplace"
+          element={<RequireAuth component={MarketPlace} />}
+        />
+        <Route
+          path="friends"
+          element={<RequireAuth component={FriendShip} />}
+        />
+        <Route path="id/:idNumber" element={<Profile />}>
           <Route index element={<Posts />} />
           <Route path="about" element={<About />}>
             <Route index element={<Overview />} />
             <Route path="work-and-education" element={<WorkAndEdu />} />
-
             <Route path="contacts" element={<Contacts />} />
           </Route>
           <Route path="friends" element={<Friends />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
-    </Route>
-  </Routes>
-);
+    </Routes>
+  );
+};
 
 export default AppRoutes;
