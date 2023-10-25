@@ -48,12 +48,12 @@ const Profile = () => {
       </section>
       <div className={classes["content-options"]}>
         <div className={classes["navlink-holder"]}>
-          <NavLink to={`${params.idNumber}`} end>
+          <NavLink to="" end>
             Posts
           </NavLink>
-          <NavLink to={`${params.idNumber}/about`}>About</NavLink>
-          <NavLink to={`${params.idNumber}/friends`}>Friends</NavLink>
-          <NavLink to={`${params.idNumber}/photos`}>Photos</NavLink>
+          <NavLink to={"about"}>About</NavLink>
+          <NavLink to={"friends"}>Friends</NavLink>
+          <NavLink to={"photos"}>Photos</NavLink>
         </div>
       </div>
       <Outlet />

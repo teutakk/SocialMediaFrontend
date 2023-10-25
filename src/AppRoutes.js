@@ -46,17 +46,15 @@ const AppRoutes = () => {
           path="friends"
           element={<RequireAuth component={FriendShip} />}
         />
-        <Route path="id" element={<Profile />}>
-          <Route path=":idNumber" element={<ProfileContent />}>
-            <Route index element={<Posts />} />
-            <Route path="about" element={<About />}>
-              <Route index element={<Overview />} />
-              <Route path="work-and-education" element={<WorkAndEdu />} />
-              <Route path="contacts" element={<Contacts />} />
-            </Route>
-            <Route path="friends" element={<Friends />} />
-            <Route path="photos" element={<h1>Cooming soon!</h1>} />
+        <Route path="id/:idNumber" element={<Profile />}>
+          <Route index element={<Posts />} />
+          <Route path="about" element={<About />}>
+            <Route index element={<Overview />} />
+            <Route path="work-and-education" element={<WorkAndEdu />} />
+            <Route path="contacts" element={<Contacts />} />
           </Route>
+          <Route path="friends" element={<Friends />} />
+          <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
     </Routes>

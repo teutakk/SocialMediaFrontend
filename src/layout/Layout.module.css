@@ -8,7 +8,10 @@
 .main {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+}
+
+.mainElement {
+  grid-column: 1 / span 3;
 }
 
 .left {
@@ -22,8 +25,8 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
-    grid-template-columns: min-content minmax(auto, max-content);
-    gap: 50px;
+    grid-template-columns: max-content minmax(auto, max-content);
+    gap: 45px;
     padding: 0;
   }
 
@@ -36,6 +39,7 @@
     margin-left: 10px;
     padding: 0 5px;
     width: 150px;
+    grid-column: 1;
   }
 
   .right {
@@ -43,6 +47,10 @@
     grid-row: 1;
     margin-right: 10px;
     /* grid-template-columns: 1; */
+  }
+
+  .mainElement {
+    grid-column: 2;
   }
 }
 
@@ -54,7 +62,7 @@
   }
 
   .mainElement {
-    padding: 0 10px;
+    grid-column: 2;
   }
 
   .left,
