@@ -12,7 +12,18 @@
 .CommentSection {
   border-radius: 26px;
   padding: 5px 15px;
-  background-color: #eee;
+  background: rgba(123, 123, 123, 0.1);
+}
+
+.name-and-edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.name-and-edit span {
+  font-size: 18px;
+  cursor: pointer;
 }
 
 .CommentContent img {

@@ -21,6 +21,7 @@
   border-radius: 28px;
   overflow: hidden;
   background-color: #eee;
+  background: rgba(123, 123, 123, 0.1);
   overflow: hidden;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .Comment:focus-within {
-  background-color: #cccccc;
+  background: rgba(123, 123, 123, 0.3);
 }
 
 .Comment textarea {
@@ -67,11 +68,7 @@
   aspect-ratio: 1/1;
   border: none;
   border-left: 1px solid #ccc;
-  color: #ccc;
+  background: rgba(123, 123, 123, 0.1);
   padding: 0;
   transition: all 0.2s ease;
-}
-
-.Comment button:hover {
-  background-color: #ccc;
 }

@@ -7,12 +7,12 @@
 }
 
 .profile {
-  background-color: #ccc;
+  border-radius: 16px;
+  background: rgba(123, 123, 123, 0.1);
   display: flex;
   gap: 15px;
   width: 100%;
   padding: 10px;
-  border-radius: 16px;
   height: 80px;
 }
 .user {
@@ -23,26 +23,53 @@
 }
 
 .routing-options {
-  background-color: #ccc;
-  padding: 10px;
   border-radius: 16px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  border-radius: 16px;
+  background: rgba(123, 123, 123, 0.1);
 }
 
 .route-holder {
-  font-size: 18px;
+  font-size: 16px;
   display: flex;
   gap: 10px;
   align-items: center;
+  padding: 5px 10px;
+}
+
+.route-holder:hover {
+  border-radius: 10px;
+  background: rgba(86, 85, 85, 0.1);
 }
 
 .route-logo {
-  width: 40px;
+  width: 30px;
   aspect-ratio: 1/1;
-  background-color: #777;
-  border-radius: 16px;
   display: grid;
   place-content: center;
+}
+
+.route-feed svg {
+  color: #e33629;
+  width: 25px;
+}
+
+.route-friends svg {
+  color: #63c3eb;
+  width: 25px;
+}
+
+.route-profile svg {
+}
+
+.route-market svg {
+}
+
+@media (min-width: 840px) {
+  .route-holder {
+    font-size: 18px;
+  }
 }

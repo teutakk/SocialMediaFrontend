@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { createPortal } from "react-dom";
 import classes from "./Modal.module.css";
+import { FaXmark } from "react-icons/fa6";
 const Modal = ({ children, showActionButtons, showModal, modal, data }) => {
   useEffect(() => {
     document.body.classList.add("hidden");
@@ -15,7 +16,7 @@ const Modal = ({ children, showActionButtons, showModal, modal, data }) => {
     <div className={classes.Modal}>
       <div className={classes["modal-content"]}>
         <button onClick={showModal} className={classes.close}>
-          X
+          <FaXmark />
         </button>
         {React.cloneElement(children, {
           onCancelHandler,

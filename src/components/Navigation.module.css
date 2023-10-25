@@ -2,7 +2,7 @@
   display: grid;
   position: relative;
   gap: 20px;
-  grid-template-columns: 1fr 1.2fr 2fr 1fr;
+  grid-template-columns: 1.2fr 2.8fr 1.2fr;
   padding: 10px 20px;
   background-color: rgb(234, 234, 234); /* Light grey color */
   position: sticky;
@@ -30,8 +30,23 @@
   align-items: center;
 } */
 
-.navigation-left .logo {
-  display: none;
+.navigation-left .logo-route {
+  width: 130px;
+  display: block;
+}
+
+.navigation-left .logo-route img {
+  width: 100%;
+}
+
+.navigation-main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navlink-holder {
+  display: flex;
+  gap: 10px;
 }
 
 .navigation-main nav {
@@ -74,8 +89,12 @@
   height: 35px;
   background-color: rgb(244, 244, 244);
   border-radius: 50%;
-  color: #f8bd00;
   border: none;
+  cursor: pointer;
+}
+
+.notifications-icon svg {
+  color: #f8bd00;
 }
 
 .notifications {
@@ -109,14 +128,9 @@
 
   .navigation-left .logo {
     display: flex;
-    width: 100%;
     gap: 2%;
     align-items: center;
-  }
-
-  .navigation-left img {
-    width: 60px;
-    aspect-ratio: 1/1;
+    width: 100px;
   }
 
   .route-holder-marketplace .circularContainer {
@@ -141,8 +155,8 @@
     font-size: 18px;
   }
   .userChip {
-    position: absolute;
-    top: 1px; /* Adjust the top distance as needed */
-    left: 800px; /* Adjust the right distance as needed */
+    /* position: absolute; */
+    /* top: 1px; Adjust the top distance as needed */
+    /* left: 800px; Adjust the right distance as needed */
   }
 }

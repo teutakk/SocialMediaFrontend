@@ -15,7 +15,8 @@ export const authenticateUser = createAsyncThunk(
     try {
       const response = await axiosInstance.post(API_ROUTES.login, credentials);
       // if we name it token
-      const token = response.data.token;
+      console.log(response);
+      const token = response.data.user.token;
       // Saving the token to localStorage
       localStorage.setItem("token", token);
 
@@ -44,7 +45,7 @@ const authSlice = createSlice({
       })
       .addCase(authenticateUser.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.user = action.payload;
+        state.user = action.payload.user;
       })
       .addCase(authenticateUser.rejected, (state, action) => {
         state.status = "failed";
