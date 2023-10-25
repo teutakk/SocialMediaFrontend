@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import classes from "./CreatePost.module.css";
 import UserChip from "../UserChip";
 import logo from "../../assets/images/starlabs.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createPost } from "../../store/slices/postsSlice";
 import PostImagePreviewer from "./PostImagePreviewer";
 import button from "../Button.module.css";
+import { selectUser } from "../../store/slices/authSlice";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
+  const loggedInUser = useSelector(selectUser);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
@@ -23,12 +25,23 @@ const CreatePost = () => {
   // submt handler when form gets submitted
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newPost = {
-      username: "users_name",
+      userId: loggedInUser._id,
+      firstName: loggedInUser.firstName,
+      lastName: loggedInUser.lastName,
       description: postText,
-      images: selectedImages,
+      picutures: selectedImages,
     };
-    dispatch(createPost(newPost));
+    console.log("selecteImages: ", selectedImages);
+
+    const formData = new FormData();
+    // Append properties from the newPost object to the FormData
+    for (const key in newPost) {
+      formData.append(key, newPost[key]);
+    }
+
+    dispatch(createPost(formData));
   };
 
   // function to display uploaded photos
