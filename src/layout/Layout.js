@@ -6,6 +6,10 @@ import Sidebar from "../components/Sidebar";
 import Rightsidebar from "../components/Rightsidebar";
 const Layout = () => {
   const location = useLocation();
+  console.log(location);
+  const custumClass = location.pathname.startsWith("./id")
+    ? classes.custumClass
+    : "";
 
   return (
     <div className={classes.Layout}>
@@ -16,9 +20,7 @@ const Layout = () => {
             <Sidebar />
           </aside>
         )}
-        <section className={classes.mainElement}>
-          <Outlet />
-        </section>
+        <Outlet />
         {!location.pathname.startsWith("/id") && (
           <aside className={classes.right}>
             <Rightsidebar />

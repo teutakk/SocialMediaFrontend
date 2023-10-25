@@ -8,9 +8,15 @@
 .main {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding: 0 10px;
 }
 
-.mainElement {
+.customClass {
+  padding: 0;
+}
+
+.customClass {
   grid-column: 1 / span 3;
 }
 
@@ -27,7 +33,7 @@
     display: grid;
     grid-template-columns: max-content minmax(auto, max-content);
     gap: 45px;
-    padding: 0;
+    padding: 10;
   }
 
   /* try to inclde main elment for padding here */

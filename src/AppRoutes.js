@@ -19,15 +19,6 @@ import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 
 const AppRoutes = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log("running: ", !!token);
-    if (token) {
-      dispatch(authenticateUser());
-    }
-  }, [dispatch]);
-
   return (
     <Routes>
       <Route path="register" element={<Register />} />

@@ -186,6 +186,8 @@
 .notifications-icon {
   position: relative;
   cursor: pointer;
+  display: grid;
+  place-content: center;
 }
 
 @media (min-width: 500px) {
