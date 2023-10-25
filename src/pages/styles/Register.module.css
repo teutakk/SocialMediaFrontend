@@ -1,20 +1,42 @@
 .container {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  gap: max(5vw, 40px);
-  max-width: 500;
+  flex-direction: row-reverse;
+  height: 100vh;
+  width: 100vw;
+  background: url("https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
 }
-.background {
-  background-color: rgb(189, 186, 186);
-  background-position: center;
-  background-size: contain;
-  padding: max(200px, 16%);
-  margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
-  position: relative;
-  border-radius: max(14px, 0.9vw);
+
+.container section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  align-items: last baseline;
+  justify-content: last baseline;
 }
+
+.quote {
+  /* margin-top: 100%; */
+  width: 670px;
+  color: #fff;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .formData {
+  background-color: white;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .formData {
   position: absolute;
   top: 0;
   z-index: 10;
@@ -30,7 +52,7 @@
   margin: max(20px, 3vw) auto;
   gap: max(30px, 2vw);
   border-radius: max(1vw, 15px);
-}
+} */
 
 .topData {
   display: flex;
@@ -104,12 +126,12 @@ form div p {
   background-color: #009bc6;
 }
 @media (max-width: 1450px) {
-  .container {
+  /* .container {
     gap: 140px;
-  }
+  } */
 }
 @media (max-width: 500px) {
-  .container {
+  /* .container {
     gap: 0px;
   }
   .background {
@@ -119,15 +141,15 @@ form div p {
   .formData {
     margin: 100px auto 0px auto;
     padding: max(20px, 2vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
-  }
+  } */
 }
 
 @media (max-width: 380px) {
-  .formData {
+  /* .formData {
     left: 0px;
     right: 0px;
     width: 90%;
-  }
+  } */
   .form {
     display: block;
   }
