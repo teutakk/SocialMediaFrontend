@@ -84,6 +84,37 @@ const PostContent = ({ post, type }) => {
     );
   }
 
+  const likes = [1, 2, 3, 4, 5, 7, 8, 9];
+  let likesContent;
+  if (likes.length > 3) {
+    likesContent = (
+      <div className={classes.likesHolder}>
+        <span className={classes.logo}>
+          <img
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="aksd"
+          />
+        </span>
+        <span className={classes.logo}>
+          <img
+            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="sajdasd"
+          />
+        </span>
+        <span className={classes.logo}>
+          <img
+            src="https://images.unsplash.com/flagged/photo-1573740144655-bbb6e88fb18a?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8dXNlcnxlbnwwfHwwfHx8MA%3D%3D"
+            alt="kajdakjsd"
+          />
+        </span>
+        <p>
+          <strong>Endrit Bejta</strong> and {likes.length - 1} others like this
+          post.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className={classes.ContentHolder}>
       <div className={classes.content}>
@@ -101,9 +132,7 @@ const PostContent = ({ post, type }) => {
         </Modal>
       )}
       <div className={classes.PostData}>
-        <div className={classes.likes}>
-          <p>{post.likes.length} likes</p>
-        </div>
+        <div className={classes.likes}>{likesContent}</div>
         <div className={classes.comments}>
           <p>{post.comments.length} comments</p>
         </div>
