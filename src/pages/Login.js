@@ -8,12 +8,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router";
 import React, { useEffect, useState } from "react";
 import classes from "./styles/Login.module.css";
-
 import CustomInput from "../components/CustomInput";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
-import { NavLink } from "react-router-dom";
-import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation();
@@ -56,60 +54,60 @@ const Login = () => {
   };
 
   return (
-    <>
-      <div className={classes.container}>
-        <div className={classes.formData}>
-          <div className={classes.topData}>
-            <h2>Log In</h2>
-          </div>
-          {location.hash === "#auth" && (
-            <p style={{ fontSize: "20px", color: "red" }}>You need to login!</p>
-          )}
-          {location.search === "?registrationsuccess" && (
-            <p style={{ fontSize: "20px", color: "green", fontWeight: "500" }}>
-              Log in to Continue
-            </p>
-          )}
-          <form onSubmit={handleSubmit} className={classes.form}>
-            <CustomInput
-              onChange={handleChange}
-              icon={<AiOutlineMail className={classes.icon} />}
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter Your Email"
-              value={formData.email}
-            >
-              {loginStatus === "failed" && (
-                <p>{loginError && "Invalid email or password"}</p>
-              )}
-            </CustomInput>
-            <CustomInput
-              onChange={handleChange}
-              icon={<MdLockOutline className={classes.icon} />}
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Enter Your Password"
-              value={formData.password}
-              label="Password"
-            >
-              {formErrors.password && (
-                <p className={classes.errorText}>{formErrors.password}</p>
-              )}
-            </CustomInput>
-            <button type="submit" className={classes.button}>
-              Log In
-            </button>
-            <div className={classes.bottomData}>
-              <p>Don't have an account?</p>
-              <NavLink to="/register">Sign Up</NavLink>
-            </div>
-          </form>
+    <div className={classes.container}>
+      <div className={classes.formData}>
+        <span className={classes.photo}></span>
+
+        <div className={classes.topData}>
+          <h2>Log In</h2>
         </div>
-        <Footer />
+        {location.hash === "#auth" && (
+          <p style={{ fontSize: "20px", color: "red" }}>You need to login!</p>
+        )}
+        {location.search === "?registrationsuccess" && (
+          <p style={{ fontSize: "20px", color: "green", fontWeight: "500" }}>
+            Log in to Continue
+          </p>
+        )}
+        <form onSubmit={handleSubmit} className={classes.form}>
+          <CustomInput
+            onChange={handleChange}
+            icon={<AiOutlineMail className={classes.icon} />}
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter Your Email"
+            value={formData.email}
+          >
+            {loginStatus === "failed" && (
+              <p>
+                {loginError && "Invalid email or password, please try again"}
+              </p>
+            )}
+          </CustomInput>
+          <CustomInput
+            onChange={handleChange}
+            icon={<MdLockOutline className={classes.icon} />}
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter Your Password"
+            value={formData.password}
+            label="Password"
+          >
+            {formErrors.password && (
+              <p className={classes.errorText}>{formErrors.password}</p>
+            )}
+          </CustomInput>
+          <button type="submit" className={classes.button}>
+            Log In
+          </button>
+          <p>
+            Don't have an account? <Link to="/register">Sign up</Link>{" "}
+          </p>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
