@@ -109,6 +109,13 @@
   border-bottom: 2px solid rgb(28, 135, 171);
 }
 
+.profile-outlet {
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 @media (min-width: 520px) {
   .navlink-holder {
     justify-content: center;
@@ -159,6 +166,10 @@
 @media (min-width: 1000px) {
   .cover {
     transform: translateX(0);
+  }
+
+  .profile-outlet {
+    align-items: center;
   }
 }
 

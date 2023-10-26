@@ -63,10 +63,12 @@ const Login = () => {
             <h2>Log In</h2>
           </div>
           {location.hash === "#auth" && (
-            <p>You need to login to visit that page</p>
+            <p style={{ fontSize: "20px", color: "red" }}>You need to login!</p>
           )}
           {location.search === "?registrationsuccess" && (
-            <p>Log in to Continue</p>
+            <p style={{ fontSize: "20px", color: "green", fontWeight: "500" }}>
+              Log in to Continue
+            </p>
           )}
           <form onSubmit={handleSubmit} className={classes.form}>
             <CustomInput
@@ -78,7 +80,9 @@ const Login = () => {
               placeholder="Enter Your Email"
               value={formData.email}
             >
-              {loginStatus === "failed" && <p>{loginError}</p>}
+              {loginStatus === "failed" && (
+                <p>{loginError && "Invalid email or password"}</p>
+              )}
             </CustomInput>
             <CustomInput
               onChange={handleChange}

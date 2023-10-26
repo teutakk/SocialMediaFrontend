@@ -322,7 +322,7 @@ export const postsSlice = createSlice({
 });
 
 export const selectPosts = (state) => state.posts.posts;
-export const selectStats = (state) => state.posts.status;
-export const selectError = (state) => state.posts.error;
+export const selectPostStatus = (state) => state.posts.status;
+export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
 export default postsSlice.reducer;

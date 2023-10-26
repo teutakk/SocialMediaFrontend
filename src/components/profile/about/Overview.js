@@ -8,7 +8,11 @@ import {
   PiPhoneCall,
 } from "react-icons/pi";
 import { BiSolidSchool } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { selectProfilePageUser } from "../../../store/slices/profileSlice";
 const Overview = () => {
+  const profilePageUser = useSelector(selectProfilePageUser);
+  console.log("profilePageUser", profilePageUser);
   const data = [
     {
       content: "Studies Electric power at Universiteti i Prishtines",
@@ -19,11 +23,6 @@ const Overview = () => {
       content: "Went to Gjimnazi Hamez Jashari in Skënderaj",
       subContent: "Finished in 2015",
       logo: <BiSolidSchool />,
-    },
-    {
-      content: "Pro cs2 player",
-      subContent: "lv10 Faceit",
-      logo: <PiGameController />,
     },
     {
       content: "Lives in Skënderaj",

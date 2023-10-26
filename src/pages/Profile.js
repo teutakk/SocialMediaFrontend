@@ -4,28 +4,25 @@ import classes from "./styles/Profile.module.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../store/slices/authSlice";
-import { setUser } from "../store/slices/profileSlice";
+import {
+  fetchUserProfile,
+  selectProfilePageUser,
+  setUser,
+} from "../store/slices/profileSlice";
+import axiosInstance from "../api/axiosInstance";
+import { API_ROUTES } from "../api/apiConfig";
 
 const Profile = () => {
   const params = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const profilePageUser = useSelector(selectProfilePageUser);
   const loggedInUser = useSelector(selectUser);
+  const dispatch = useDispatch();
   // get user from profileSlice
   useEffect(() => {
-    console.log(params);
-    if (!params.idNumber) {
-      navigate("endrit");
-    }
-
-    if (params?.id === loggedInUser?.id) {
-      // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
-      dispatch(setUser({ name: "Endrit Bejta" }));
-    } else {
-      // here we dispatch the async function that fetches data of the profile we view
-    }
-    console.log(params);
-  }, []);
+    // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
+    dispatch(fetchUserProfile(`/${params.idNumber}`));
+  }, [params.idNumber]);
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -38,11 +35,17 @@ const Profile = () => {
       </section>
       <section className={classes["profile-info"]}>
         <div className={classes["info-width-controller"]}>
-          <h3>Endrit Bejta</h3>
-          <span>413 friends</span>
+          <h3>
+            {profilePageUser?.firstName} {profilePageUser?.lastName}
+          </h3>
+          <span>13 friends</span>
           <div className={classes.actions}>
-            <button>Add Friend</button>
-            <button>Edit Profile</button>
+            {params.idNumber !== profilePageUser._id && (
+              <button>Add Friend</button>
+            )}
+            {params.idNumber === profilePageUser._id && (
+              <button>Edit Profile</button>
+            )}
           </div>
         </div>
       </section>
@@ -56,7 +59,9 @@ const Profile = () => {
           <NavLink to={"photos"}>Photos</NavLink>
         </div>
       </div>
-      <Outlet />
+      <div className={classes["profile-outlet"]}>
+        <Outlet />
+      </div>
     </div>
   );
 };

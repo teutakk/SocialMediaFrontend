@@ -10,9 +10,10 @@ const initialState = {
 
 export const fetchUserProfile = createAsyncThunk(
   "profilePage/fetchUserProfile",
-  async () => {
+  async (id) => {
     try {
-      const response = await axiosInstance.get(API_ROUTES.user);
+      console.log(id);
+      const response = await axiosInstance.get(API_ROUTES.users + id);
       return response.data;
     } catch (err) {
       throw new Error(err.response.deta.error);
@@ -28,10 +29,24 @@ const profileSlice = createSlice({
       state.user = action.payload;
     },
   },
-  extraReducers: (builder) => {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchUserProfile.pending, (state) => {
+        state.status = "loading";
+        state.error = null;
+      })
+      .addCase(fetchUserProfile.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.user = action.payload;
+      })
+      .addCase(fetchUserProfile.rejected, (state, action) => {
+        state.status = "failed";
+        state.user = action.error.message;
+      });
+  },
 });
 
-export const { selectProfilePageUser } = (state) => state.profile.user;
+export const selectProfilePageUser = (state) => state.profile.user;
 
 export const { setUser } = profileSlice.actions;
 
