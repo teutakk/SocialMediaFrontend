@@ -6,13 +6,23 @@ import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import EditPost from "./EditPost";
+import Modal from "../../layout/Modal";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
+  const [modalOpen, setModalOpen] = useState();
+
+  // function to open and close modal
+  const showModal = () => {
+    setModalOpen((prev) => !prev);
+  };
+
   const handleShowOptions = () => {
     setShowOptions((prev) => !prev);
   };
+
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
   const handleSave = () => {
@@ -66,6 +76,16 @@ const PostHeader = ({ post, type }) => {
             <BiDotsVerticalRounded />
           </span>
         )}
+        {modalOpen && (
+          <Modal
+            data={post}
+            showActionButtons={true}
+            showModal={showModal}
+            modal={modalOpen}
+          >
+            <EditPost />
+          </Modal>
+        )}
         <div
           ref={settingsSectionRef}
           className={`${
@@ -74,7 +94,7 @@ const PostHeader = ({ post, type }) => {
               : classes.options
           }`}
         >
-          <button>
+          <button onClick={showModal}>
             <span>
               <CiEdit />
             </span>

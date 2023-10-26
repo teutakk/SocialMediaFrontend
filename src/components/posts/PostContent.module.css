@@ -99,19 +99,21 @@
 
 .PostData {
   display: flex;
+  justify-content: space-between;
   width: 100%;
   gap: 10px;
   align-items: center;
 }
 
-.likes {
-  flex: 1;
+.modalPostData {
+  font-size: 14px;
 }
 
 .likesHolder {
   display: flex;
   padding: 5px 0px;
   align-items: center;
+  flex: 1;
 }
 
 .likesHolder .logo {
@@ -141,8 +143,26 @@
   object-fit: cover;
 }
 
+.likesHolder .likes {
+  flex: 1;
+  width: 100%;
+}
+
+.PostData .commentsAndShare {
+  display: flex;
+  gap: 5px;
+}
+
+.modalPostData .commentsAndShare {
+  display: none;
+}
+
 .likesHolder p {
   transform: translateX(-20px);
+}
+
+.modalPostData .likesHolder p {
+  width: 80%;
 }
 
 @media (min-width: 440px) {
@@ -162,5 +182,12 @@
   }
   .overlay {
     font-size: 16px;
+  }
+}
+
+@media (min-width: 1285px) {
+  .modalPostData .commentsAndShare {
+    display: flex;
+    gap: 10px;
   }
 }

@@ -25,7 +25,7 @@
   position: absolute;
   z-index: 12;
   align-self: flex-end;
-  width: 30px;
+  height: 40px;
   top: 10px;
   right: 10px;
   aspect-ratio: 1/1;
@@ -50,7 +50,38 @@
 }
 
 .modal-actions {
-  display: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions .save,
+.modal-actions .cancel {
+  border: 1px solid black;
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  text-transform: uppercase;
+  width: 100px;
+  border-color: #373afe;
+}
+
+.modal-actions .cancel {
+  color: #373afe;
+}
+
+.modal-actions .cancel:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.modal-actions .save {
+  background-color: #373afe;
+  color: white;
+}
+.modal-actions .save:hover {
+  background-color: #292dfa;
 }
 
 @media (min-width: 767px) {

@@ -6,6 +6,7 @@ const API_ROUTES = {
   register: "/auth/register",
   posts: "/posts",
   users: "/users",
+  post: "/post",
 };
 
 export { BASE_URL, API_ROUTES };

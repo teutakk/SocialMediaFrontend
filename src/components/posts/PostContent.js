@@ -6,6 +6,7 @@ import ImageSlider from "./ImageSlider";
 const PostContent = ({ post, type }) => {
   const [modalOpen, setModalOpen] = useState();
 
+  // function to open and close modal
   const showModal = () => {
     setModalOpen((prev) => !prev);
   };
@@ -108,8 +109,7 @@ const PostContent = ({ post, type }) => {
           />
         </span>
         <p>
-          <strong>Endrit Bejta</strong> and {likes.length - 1} others like this
-          post.
+          <strong>Endrit</strong> and {likes.length - 1} others like this post.
         </p>
       </div>
     );
@@ -119,6 +119,7 @@ const PostContent = ({ post, type }) => {
     <div className={classes.ContentHolder}>
       <div className={classes.content}>
         <p>{post.description}</p>
+        {/* this type check is done so that when we open the pictures, we dont show pictures + post with pictures, because i reuse SinglePost in modal */}
         {type !== "modal-post" && post.images.length > 0 && photoContent}
       </div>
       {modalOpen && (
@@ -131,12 +132,14 @@ const PostContent = ({ post, type }) => {
           <ImageSlider />
         </Modal>
       )}
-      <div className={classes.PostData}>
+      <div
+        className={`${classes.PostData} ${
+          type === "modal-post" ? classes.modalPostData : " "
+        }`}
+      >
         <div className={classes.likes}>{likesContent}</div>
-        <div className={classes.comments}>
+        <div className={classes.commentsAndShare}>
           <p>{post.comments.length} comments</p>
-        </div>
-        <div className={classes.shares}>
           <p>{post.shares} shares</p>
         </div>
       </div>
