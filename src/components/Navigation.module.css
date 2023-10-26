@@ -151,6 +151,29 @@
   place-content: center;
 }
 
+.notificationsDot {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  border-radius: 100%;
+  display: grid;
+  padding-left: auto;
+  place-content: center;
+  background-color: #f4f4f4;
+}
+
+.notificationsDot .span {
+  background-color: rgb(200, 7, 7);
+  width: 16px;
+  aspect-ratio: 1/1;
+  color: white;
+  font-weight: bold;
+  border-radius: inherit;
+  display: grid;
+  place-content: center;
+  font-size: 10px;
+}
+
 @media (min-width: 440px) {
   .navlink-holder {
     display: flex;

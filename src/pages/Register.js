@@ -41,11 +41,19 @@ const Register = () => {
     if (!formErrors.error) {
       dispatch(registerUser(formData));
     }
+  };
+
+  useEffect(() => {
+    // we do this in case that we navigate from a page to register, so when we register it doesnt automatically return us to the same logged in user
+    localStorage.removeItem("token");
+  }, []);
+
+  useEffect(() => {
     console.log("userStatus", userStatus);
     if (userStatus === "succeeded") {
       navigate("/login?registrationsuccess");
     }
-  };
+  }, [userStatus]);
 
   // input state update handler
   const onChangeHandler = (event) => {
@@ -58,7 +66,7 @@ const Register = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.background}></div>
+      <span className={classes.photo}></span>
       <div className={classes.formData}>
         <div className={classes.topData}>
           <h2>Sign Up</h2>
@@ -160,7 +168,12 @@ const Register = () => {
           </button>
         </form>
       </div>
-      <Footer />
+      <section className={classes.footerSection}>
+        <div className={classes.quote}>
+          Connect, Share, Thrive: Where Social Worlds Unite!
+        </div>
+        <Footer />
+      </section>
     </div>
   );
 };

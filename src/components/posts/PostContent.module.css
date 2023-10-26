@@ -17,17 +17,6 @@
   overflow: hidden;
 }
 
-.PostData {
-  display: flex;
-  width: 100%;
-  gap: 10px;
-}
-
-.likes {
-  justify-self: flex-start;
-  flex: 1;
-}
-
 .comments,
 .shares {
   justify-self: flex-end;
@@ -106,6 +95,54 @@
   max-height: 60vh;
   cursor: pointer;
   object-fit: contain;
+}
+
+.PostData {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  align-items: center;
+}
+
+.likes {
+  flex: 1;
+}
+
+.likesHolder {
+  display: flex;
+  padding: 5px 0px;
+  align-items: center;
+}
+
+.likesHolder .logo {
+  display: block;
+  background-color: white;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.likesHolder .logo:nth-of-type(2) {
+  transform: translateX(-50%);
+}
+
+.likesHolder .logo:nth-of-type(3) {
+  transform: translateX(-100%);
+}
+
+.likesHolder .logo img {
+  width: 90%;
+  height: 90%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.likesHolder p {
+  transform: translateX(-20px);
 }
 
 @media (min-width: 440px) {
