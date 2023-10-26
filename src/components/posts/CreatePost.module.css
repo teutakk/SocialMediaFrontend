@@ -8,7 +8,8 @@
   gap: 10px;
   width: 100%;
   max-width: 720px;
-  background: rgba(123, 123, 123, 0.1);
+  border-radius: 10px;
+  background: rgba(232, 232, 232, 0.3);
 }
 
 .Content {
@@ -28,11 +29,11 @@
   width: calc(100% - 50px);
   max-height: 300px;
   display: flex;
-  background: rgba(123, 123, 123, 0.1);
+  border-radius: 14.824px;
+  background: rgba(232, 232, 232, 0.3);
   font-family: inherit;
   align-items: center;
   padding: 10px;
-  border-radius: 20px;
   font-size: 16px;
   overflow: hidden;
 }

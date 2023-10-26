@@ -78,7 +78,9 @@ const Login = () => {
               placeholder="Enter Your Email"
               value={formData.email}
             >
-              {loginStatus === "failed" && <p>{loginError}</p>}
+              {loginStatus === "failed" && (
+                <p>{loginError && "Invalid email or password"}</p>
+              )}
             </CustomInput>
             <CustomInput
               onChange={handleChange}

@@ -1,145 +1,144 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: max(5vw, 40px);
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: max(5vw, 40px);
+  max-width: 500;
 }
-.background{
-    background-color: rgb(189, 186, 186);
-    background-position: center;
-    background-size: contain;
-    padding: max(200px, 16%);
-    margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
-    position: relative;
-    border-radius: max(14px, .9vw);
+.background {
+  background-color: rgb(189, 186, 186);
+  background-position: center;
+  background-size: contain;
+  padding: max(200px, 16%);
+  margin: max(50px, 5.5vw) max(20px, 5vw) max(10px, 1vw) max(20px, 5vw);
+  position: relative;
+  border-radius: max(14px, 0.9vw);
 }
-.formData{
-    position: absolute;
-    top: 0;
-    z-index: 10;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: max(40px, 5vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
-    background-color: rgba(155, 155, 155, 0.9);
-    width: max(330px, 45%);
-    margin: max(20px, 3vw) auto;
-    gap: max(30px, 2vw);
-    border-radius: max(1vw, 15px);
+.formData {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: max(40px, 5vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
+  background-color: rgba(155, 155, 155, 0.9);
+  width: max(330px, 45%);
+  margin: max(20px, 3vw) auto;
+  gap: max(30px, 2vw);
+  border-radius: max(1vw, 15px);
 }
 
-.topData{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: max(10px, .5vw);
+.topData {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: max(10px, 0.5vw);
 }
-.topData h2{
-    font-size: max(36px, 2.3vw);
-    font-weight: 600;
-    color: #5F5F5F;
+.topData h2 {
+  font-size: max(36px, 2.3vw);
+  font-weight: 600;
+  color: #5f5f5f;
 }
-.topData p{
-    white-space: nowrap;
-    font-size: max(13px, .85vw);
-    font-weight: 500;
+.topData p {
+  white-space: nowrap;
+  font-size: max(13px, 0.85vw);
+  font-weight: 500;
 }
-.topData p a{
-    text-decoration: underline;
-    color: #5F5F5F;
-    margin-left: max(7px, .4vw)
+.topData p a {
+  text-decoration: underline;
+  color: #5f5f5f;
+  margin-left: max(7px, 0.4vw);
 }
 
 .form {
-    display: flex;
-    flex-direction: column; 
-    gap: max(10px, .6vw);   
+  display: flex;
+  flex-direction: column;
+  gap: max(10px, 0.6vw);
 }
-form div p{
-    font-size: max(12px, .75vw);
-    color: rgb(166, 36, 36);
-    font-weight: 500;
-    margin-left: max(10px, .5vw);
-    max-width: 250px; 
+form div p {
+  font-size: max(12px, 0.75vw);
+  color: rgb(166, 36, 36);
+  font-weight: 500;
+  margin-left: max(10px, 0.5vw);
+  max-width: 250px;
 }
 .icon {
-    height: max(1vw, 15px);
-    width: max(1vw, 15px);
-    color: #5f5f5f;
-    display: flex;
-    align-items: center;
-    justify-self: center;
+  height: max(1vw, 15px);
+  width: max(1vw, 15px);
+  color: #5f5f5f;
+  display: flex;
+  align-items: center;
+  justify-self: center;
 }
 .blockInput {
-    display: flex;
-    gap: max(10px, .6vw);
-
+  display: flex;
+  gap: max(10px, 0.6vw);
 }
-.blockInput select{
-    padding: max(10px, .5vw);
-    outline: none;
-    border: none;
-    border-radius: max(14px, .9vw);
-    background-color: #E2E2E2;
-    color: #222222;
-    font-size: max(12px, .8vw);
-    border: 2px solid #5F5F5F;
-    width: 100%;
-
+.blockInput select {
+  padding: max(10px, 0.5vw);
+  outline: none;
+  border: none;
+  border-radius: max(14px, 0.9vw);
+  background-color: #e2e2e2;
+  color: #222222;
+  font-size: max(12px, 0.8vw);
+  border: 2px solid #5f5f5f;
+  width: 100%;
 }
-.button { 
-    width: 100%;
-    border-radius: max(14px, .9vw);
-    padding: max(10px, .5vw);
-    background-color: #5F5F5F;
-    color: #fff;
-    outline: none;
-    border: none;
-    font-size: max(13px, .85vw);
-    cursor: pointer;
+.button {
+  width: 100%;
+  border-radius: max(14px, 0.9vw);
+  padding: max(10px, 0.5vw);
+  background-color: #5f5f5f;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-size: max(13px, 0.85vw);
+  cursor: pointer;
 }
 .button:focus {
-    background-color: #009BC6;
+  background-color: #009bc6;
 }
 @media (max-width: 1450px) {
-    .container{
-        gap: 140px;
-    }
+  .container {
+    gap: 140px;
+  }
 }
 @media (max-width: 500px) {
-    .container{
-        gap: 0px;
-    }
-    .background{
-        padding: 320px max(20px, 18vw);
-        margin: max(50px, 5.5vw) 0;
-    }
-    .formData{
-        margin: 100px auto 0px auto;
-        padding: max(20px, 2vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
-    }
+  .container {
+    gap: 0px;
+  }
+  .background {
+    padding: 320px max(20px, 18vw);
+    margin: max(50px, 5.5vw) 0;
+  }
+  .formData {
+    margin: 100px auto 0px auto;
+    padding: max(20px, 2vw) max(30px, 2vw) max(40px, 5vw) max(30px, 2vw);
+  }
 }
 
 @media (max-width: 380px) {
-    .formData{
-        left: 0px;
-        right: 0px;
-        width: 90%;
-    }
-    .form { 
-        display: block;
-    }
-    .blockInput select { 
-        width: 100%;
-    }
-    .button {
-        margin-top: 10px;
-    }
-    /*  if we want to make the gender and birthdate on a column*/
-    /* .blockInput {
+  .formData {
+    left: 0px;
+    right: 0px;
+    width: 90%;
+  }
+  .form {
+    display: block;
+  }
+  .blockInput select {
+    width: 100%;
+  }
+  .button {
+    margin-top: 10px;
+  }
+  /*  if we want to make the gender and birthdate on a column*/
+  /* .blockInput {
         display: flex;
         flex-direction: column;
     }

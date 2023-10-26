@@ -24,16 +24,6 @@ const Navigation = () => {
     setShowNavigation((prev) => !prev);
   };
 
-  useEffect(() => {
-    if (showNavigation) {
-      document.body.style.overflowY = "hidden";
-      document.body.style.overflowX = "hidden";
-    } else {
-      document.body.style.overflowY = "auto";
-      document.body.style.overflowX = "hidden";
-    }
-  }, [showNavigation]);
-
   const handleShowNotifications = (event) => {
     // this handler gets executed whenever a child of his is clicked, thus making our notification close when we click inside the notif section, a behaviour that we obviously dont want to happen. we check if the clicked target is a child or it is notificationSection itselft, if it is then notthing happens, some of the logic is moved to the Notifications.js to handle the outside click
     if (window.innerWidth < 767) {

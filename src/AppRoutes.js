@@ -17,8 +17,23 @@ import { useDispatch } from "react-redux";
 import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
+import jwtDecode from "jwt-decode";
 
 const AppRoutes = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      console.log("decodedToken:", decodedToken);
+      dispatch(
+        authenticateUser({
+          email: decodedToken.email,
+          password: decodedToken.password,
+        })
+      );
+    }
+  }, []);
   return (
     <Routes>
       <Route path="register" element={<Register />} />

@@ -1,17 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CreatePost.module.css";
 import UserChip from "../UserChip";
 import logo from "../../assets/images/starlabs.png";
-import { useDispatch } from "react-redux";
-import { createPost } from "../../store/slices/postsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  createPost,
+  selectPostErrors,
+  selectPostStatus,
+} from "../../store/slices/postsSlice";
 import PostImagePreviewer from "./PostImagePreviewer";
 import button from "../Button.module.css";
+import { selectUser } from "../../store/slices/authSlice";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
+  const loggedInUser = useSelector(selectUser);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
+
+  const postsStatus = useSelector(selectPostStatus);
+  const postErrors = useSelector(selectPostErrors);
 
   // function to increase the height of the textbox
   const handleInputChange = (e) => {
@@ -23,13 +32,41 @@ const CreatePost = () => {
   // submt handler when form gets submitted
   const handleSubmit = (event) => {
     event.preventDefault();
+
     const newPost = {
-      username: "users_name",
+      userId: loggedInUser._id,
+      firstName: loggedInUser.firstName,
+      lastName: loggedInUser.lastName,
       description: postText,
-      images: selectedImages,
+      picutures: selectedImages,
     };
-    dispatch(createPost(newPost));
+    console.log("selecteImages: ", selectedImages);
+
+    const formData = new FormData();
+    // Append properties from the newPost object to the FormData
+    for (const key in newPost) {
+      formData.append(key, newPost[key]);
+    }
+    dispatch(createPost(formData));
+    if (postsStatus.create === "succeeded") {
+      console.log("running and status: ", postsStatus);
+      setPostText("");
+      setSelectedImages([]);
+    }
   };
+
+  // handle response of backend with useEffect in order to reflect the latest state
+  useEffect(() => {
+    if (postsStatus.create === "failed") {
+      console.log("there was a problem with your post");
+    }
+    if (postsStatus.create === "succeeded") {
+      console.log("running");
+      setPostText("");
+      setSelectedImages([]);
+      setImagePreviews([]);
+    }
+  }, [postsStatus.create]);
 
   // function to display uploaded photos
 
@@ -64,6 +101,7 @@ const CreatePost = () => {
         <UserChip url={logo} />
         <textarea
           onChange={handleInputChange}
+          value={postText}
           placeholder="What's on your mind..."
         />
       </div>
@@ -91,7 +129,7 @@ const CreatePost = () => {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M5 3C5 2.73478 5.10536 2.48043 5.29289 2.29289C5.48043 2.10536 5.73478 2 6 2H18C18.2652 2 18.5196 2.10536 18.7071 2.29289C18.8946 2.48043 19 2.73478 19 3C19 3.26522 18.8946 3.51957 18.7071 3.70711C18.5196 3.89464 18.2652 4 18 4H6C5.73478 4 5.48043 3.89464 5.29289 3.70711C5.10536 3.51957 5 3.26522 5 3ZM5 5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H19C19.5304 21 20.0391 20.7893 20.4142 20.4142C20.7893 20.0391 21 19.5304 21 19V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5ZM19 13.686V7H5V19H5.929L14.237 10.691C14.3531 10.5749 14.4909 10.4828 14.6426 10.4199C14.7942 10.3571 14.9568 10.3248 15.121 10.3248C15.2852 10.3248 15.4478 10.3571 15.5994 10.4199C15.7511 10.4828 15.8889 10.5749 16.005 10.691L19 13.686ZM8.5 12C8.89782 12 9.27936 11.842 9.56066 11.5607C9.84196 11.2794 10 10.8978 10 10.5C10 10.1022 9.84196 9.72064 9.56066 9.43934C9.27936 9.15804 8.89782 9 8.5 9C8.10218 9 7.72064 9.15804 7.43934 9.43934C7.15804 9.72064 7 10.1022 7 10.5C7 10.8978 7.15804 11.2794 7.43934 11.5607C7.72064 11.842 8.10218 12 8.5 12Z"
-                fill="#5F5F5F"
+                fill="currentColor"
               />
             </g>
             <defs>
@@ -107,6 +145,7 @@ const CreatePost = () => {
           style={{ display: "none" }}
           type="file"
           id="upload-image"
+          value={selectedImages}
           accept="images/*"
           multiple
         />
