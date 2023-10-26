@@ -1,66 +1,79 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
+  justify-content: space-between;
   height: 100vh;
-  max-width: 500px;
-  margin: 0 auto;
+  width: 100vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo {
+  background: url("https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  filter: blur(8px);
+  z-index: 0;
+  transform: scale(1.1);
+  background-position: center center;
+  pointer-events: none;
 }
 
 .formData {
+  z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: transparent;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  height: 70%;
-  width: 90%;
-  background-color: rgba(155, 155, 155, 0.9);
-  border-radius: 20px;
+  text-align: center;
 }
 
-.topData {
+.footerSection {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 10px;
 }
+
+.quote {
+  color: #fff;
+  text-align: center;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+}
+
 .topData h2 {
   font-size: max(36px, 2.3vw);
   font-weight: 600;
-  color: #5f5f5f;
+  color: #8487ff;
 }
-.bottomData {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-.bottomData p {
+.topData p {
   white-space: nowrap;
   font-size: max(13px, 0.85vw);
-  font-weight: 600;
-  margin-top: max(2px, 2vw);
+  font-weight: 500;
 }
-.bottomData a {
+.topData p a {
   text-decoration: underline;
-  color: #5f5f5f;
-  font-weight: 600;
-  font-size: max(13px, 0.85vw);
+  color: #8487ff;
   margin-left: max(7px, 0.4vw);
-  margin-top: max(2px, 2vw);
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 80%;
+  gap: max(10px, 0.6vw);
 }
 form div p {
   font-size: max(12px, 0.75vw);
-  color: rgb(0, 0, 0);
+  color: rgb(166, 36, 36);
   font-weight: 500;
   margin-left: max(10px, 0.5vw);
   max-width: 250px;
@@ -73,11 +86,26 @@ form div p {
   align-items: center;
   justify-self: center;
 }
+.blockInput {
+  display: flex;
+  gap: max(10px, 0.6vw);
+}
+.blockInput select {
+  padding: max(10px, 0.5vw);
+  outline: none;
+  border: none;
+  border-radius: max(14px, 0.9vw);
+  color: black;
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: max(12px, 0.8vw);
+  border: 2px solid #5f5f5f;
+  width: 100%;
+}
 .button {
   width: 100%;
   border-radius: max(14px, 0.9vw);
   padding: max(10px, 0.5vw);
-  background-color: #5f5f5f;
+  background-color: #8487ff;
   color: #fff;
   outline: none;
   border: none;
@@ -85,11 +113,62 @@ form div p {
   cursor: pointer;
 }
 .button:focus {
-  background-color: #009bc6;
+  background-color: #6b6efe;
 }
 
-@media (min-width: 440px) {
+@media (min-width: 767px) {
+  .container {
+    flex-direction: row-reverse;
+  }
+
+  .photo {
+    filter: blur(0);
+  }
+
   .formData {
-    width: 100%;
+    width: 50%;
+    background-color: white;
+    height: 100%;
+  }
+  .footerSection {
+    padding: 40px;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    align-items: flex-end;
+    z-index: 10;
+    gap: 20px;
+    align-self: baseline;
+  }
+
+  .form {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1000px) {
+  .formData {
+    width: 40%;
+  }
+
+  .form {
+    width: 80%;
+  }
+
+  .footerSection {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1285px) {
+  .formData {
+    width: 40%;
+  }
+
+  .form {
+    width: 60%;
   }
 }
