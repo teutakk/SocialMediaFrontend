@@ -44,6 +44,11 @@ const Register = () => {
   };
 
   useEffect(() => {
+    // we do this in case that we navigate from a page to register, so when we register it doesnt automatically return us to the same logged in user
+    localStorage.removeItem("token");
+  }, []);
+
+  useEffect(() => {
     console.log("userStatus", userStatus);
     if (userStatus === "succeeded") {
       navigate("/login?registrationsuccess");
