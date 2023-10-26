@@ -84,7 +84,9 @@ const Login = () => {
             value={formData.email}
           >
             {loginStatus === "failed" && (
-              <p>{loginError && "Invalid email or password"}</p>
+              <p>
+                {loginError && "Invalid email or password, please try again"}
+              </p>
             )}
           </CustomInput>
           <CustomInput
