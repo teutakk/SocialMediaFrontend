@@ -25,7 +25,6 @@ const AppRoutes = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log("decodedToken:", decodedToken);
       dispatch(
         authenticateUser({
           email: decodedToken.email,

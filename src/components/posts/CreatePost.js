@@ -40,7 +40,6 @@ const CreatePost = () => {
       description: postText,
       picutures: selectedImages,
     };
-    console.log("selecteImages: ", selectedImages);
 
     const formData = new FormData();
     // Append properties from the newPost object to the FormData
@@ -49,7 +48,6 @@ const CreatePost = () => {
     }
     dispatch(createPost(formData));
     if (postsStatus.create === "succeeded") {
-      console.log("running and status: ", postsStatus);
       setPostText("");
       setSelectedImages([]);
     }
@@ -58,10 +56,8 @@ const CreatePost = () => {
   // handle response of backend with useEffect in order to reflect the latest state
   useEffect(() => {
     if (postsStatus.create === "failed") {
-      console.log("there was a problem with your post");
     }
     if (postsStatus.create === "succeeded") {
-      console.log("running");
       setPostText("");
       setSelectedImages([]);
       setImagePreviews([]);

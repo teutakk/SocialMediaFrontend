@@ -1,55 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import classes from "./EditPost.module.css";
 import PostHeader from "./PostHeader";
 import axiosInstance from "../../api/axiosInstance";
 import { API_ROUTES } from "../../api/apiConfig";
 import { PiX } from "react-icons/pi";
 
-const EditPost = ({ post }) => {
-  // function to increase the height of the textbox
-  const [singlePost, setSinglePost] = useState();
-  const [editPostText, setEdipPostText] = useState();
-  //   console.log("post: ", post);
+const EditPost = ({ post, onChangeDataHandler }) => {
+  // function to increase the heigh
+  const [editPostText, setEdipPostText] = useState(post.description);
+  const [editedImages, setEditedImages] = useState(post.images);
+  const textareaRef = useRef(null);
+  console.log("editedImages:", editedImages);
+
   const handleInputChange = (e) => {
+    console.log("handling: EditPost", editPostText, editedImages);
+    onChangeDataHandler({
+      description: editPostText,
+      images: editedImages,
+    });
     setEdipPostText(e.target.value);
-    e.target.style.height = "36px";
+    e.target.style.height = "auto";
     e.target.style.height = e.target.scrollHeight + "px";
   };
 
+  const removeImageHandler = (id) => {
+    console.log("running: ", id);
+    const updatedImages = [...editedImages];
+    updatedImages.pop(id, 1);
+    console.log(updatedImages);
+    setEditedImages(updatedImages);
+  };
+
   useEffect(() => {
-    const fetchPhoto = async () => {
-      try {
-        const response = await axiosInstance.get(
-          API_ROUTES.posts + "/653a33de8ebe310b14202535"
-        );
-        console.log("RESPONSE: ", response.data);
-        setSinglePost(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchPhoto();
+    const textAreaLength = textareaRef.current.value.length;
+    textareaRef.current.style.height = "auto";
+    textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+    textareaRef.current.setSelectionRange(textAreaLength, textAreaLength);
+    textareaRef.current.focus();
   }, []);
 
   return (
     <div className={classes.Edit}>
       <PostHeader post={post} type={"modal-post"} />
-      <textarea onChange={handleInputChange} value={post.description} />
+      <textarea
+        ref={textareaRef}
+        onChange={handleInputChange}
+        value={editPostText}
+      />
       {/* <PostImagePreviewer setSelectedImages={post.images} /> */}
-      <section className={classes.imageShower}>
-        <div className={classes.imageHolder}>
-          {post.images.map((image, i) => {
-            return (
-              <div key={i} className={classes.image}>
-                <span>
-                  <PiX />
-                </span>
-                <img src={image} />
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      {editedImages.length > 0 && (
+        <section className={classes.imageShower}>
+          <div className={classes.imageHolder}>
+            {editedImages.map((image, i) => {
+              return (
+                <div key={i} className={classes.image}>
+                  <span onClick={() => removeImageHandler(i)}>
+                    <PiX />
+                  </span>
+                  <img src={image} />
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 };

@@ -1,17 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import classes from "./Modal.module.css";
 import { FaXmark } from "react-icons/fa6";
-const Modal = ({ children, showActionButtons, showModal, modal, data }) => {
+const Modal = ({
+  children,
+  showActionButtons,
+  onModalActionHandler,
+  showModal,
+  modal,
+  data,
+}) => {
+  const [updatedData, setUpdatedData] = useState();
+
+  const modalDataChangeHandler = (updatedData) => {
+    setUpdatedData(updatedData);
+  };
+
   useEffect(() => {
     document.body.classList.add("hidden");
     return () => document.body.classList.remove("hidden");
   }, []);
 
-  const onCancelHandler = () => {};
-  const onSaveHandler = () => {
-    showModal();
-  };
   return createPortal(
     <div className={classes.Modal}>
       <div className={classes["modal-content"]}>
@@ -19,18 +28,33 @@ const Modal = ({ children, showActionButtons, showModal, modal, data }) => {
           <FaXmark />
         </button>
         {React.cloneElement(children, {
-          onCancelHandler,
           post: data,
-          onSaveHandler,
+          onChangeDataHandler: modalDataChangeHandler,
         })}
         {showActionButtons && (
           <div className={classes["modal-actions"]}>
             {showActionButtons && (
               <>
-                <button className={classes.cancel} onClick={onCancelHandler}>
+                <button
+                  className={classes.cancel}
+                  onClick={() =>
+                    onModalActionHandler({
+                      action: "cancel",
+                      data,
+                    })
+                  }
+                >
                   cancel
                 </button>
-                <button className={classes.save} onClick={onSaveHandler}>
+                <button
+                  className={classes.save}
+                  onClick={() =>
+                    onModalActionHandler({
+                      action: "save",
+                      data: updatedData,
+                    })
+                  }
+                >
                   save
                 </button>
               </>

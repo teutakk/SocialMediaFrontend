@@ -13,7 +13,6 @@ const Rightsidebar = () => {
       try {
         const response = await axiosInstance.get(API_ROUTES.users);
         setUsers(response.data);
-        console.log("users:", response.data);
       } catch (err) {
         setError(err.response.data);
       }

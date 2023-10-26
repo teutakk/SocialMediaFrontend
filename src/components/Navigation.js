@@ -5,7 +5,7 @@ import UserChip from "./UserChip";
 import logo from "../assets/images/starlabs.png";
 import Notifications from "./notifications/Notifications";
 import SearchBar from "./SearchBar";
-import postify from "../assets/images/postify.png";
+import postify from "../assets/images/postify3.png";
 import { HiXMark } from "react-icons/hi2";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser, selectUser } from "../store/slices/authSlice";
@@ -25,7 +25,6 @@ const Navigation = () => {
   };
 
   const handleLogout = () => {
-    console.log("Loggin out");
     dispatch(logoutUser());
     navigate("");
   };
@@ -74,7 +73,11 @@ const Navigation = () => {
             </svg>
           </span>
           <NavLink to="" end className={classes["logo-route"]}>
-            <img src={postify} alt="postify" />
+            {/* <img src={postify} alt="postify" />
+             */}
+            <div className={classes.textLogo}>
+              <p>p</p>
+            </div>
           </NavLink>
         </div>
         <div className={classes["navigation-main"]}>

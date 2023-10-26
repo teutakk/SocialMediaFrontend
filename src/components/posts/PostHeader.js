@@ -23,6 +23,17 @@ const PostHeader = ({ post, type }) => {
     setShowOptions((prev) => !prev);
   };
 
+  const onModalActionHandler = ({ action, data }) => {
+    if (action === "close") {
+      setModalOpen(false);
+    }
+
+    if (action === "save") {
+      console.log("sent");
+      setModalOpen(false);
+    }
+  };
+
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
   const handleSave = () => {
@@ -82,6 +93,7 @@ const PostHeader = ({ post, type }) => {
             showActionButtons={true}
             showModal={showModal}
             modal={modalOpen}
+            onModalActionHandler={onModalActionHandler}
           >
             <EditPost />
           </Modal>

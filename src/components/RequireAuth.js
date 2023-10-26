@@ -10,8 +10,6 @@ const RequireAuth = ({ component: Component }) => {
   // Check if there is a token in local storage
   const token = localStorage.getItem("token");
   const isUserAuthorized = () => {
-    console.log("require user: ", user);
-    console.log("require token: ", token);
     return token;
   };
 

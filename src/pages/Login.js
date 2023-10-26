@@ -33,10 +33,8 @@ const Login = () => {
   useEffect(() => {
     if (loginStatus === "succeeded") {
       navigate("/");
-      console.log("running");
     }
     if (loginStatus === "failed") {
-      console.log("invalid credentials", loginError);
     }
   }, [loginStatus]);
 
@@ -50,7 +48,6 @@ const Login = () => {
 
     // dispatching the authenticate postreq with use of redux
     if (formData.email && formData.password) {
-      console.log("running dispatch");
       dispatch(authenticateUser(formData));
     }
   };

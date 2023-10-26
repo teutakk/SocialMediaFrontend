@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import { selectProfilePageUser } from "../../../store/slices/profileSlice";
 const Overview = () => {
   const profilePageUser = useSelector(selectProfilePageUser);
-  console.log("profilePageUser", profilePageUser);
   const data = [
     {
       content: "Studies Electric power at Universiteti i Prishtines",
