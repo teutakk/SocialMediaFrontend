@@ -9,7 +9,8 @@
   align-items: center;
   gap: 10px;
   padding: 10px 5px;
-  background-color: #e4e4e4;
+  background-color: var(--color-grey-light-1);
+  box-shadow: var(--shadow-type-4);
 }
 
 .navigation-left {
@@ -143,14 +144,17 @@
 
 .route-home svg {
   color: inherit;
+  color: var(--color-primary-1);
 }
 
 .route-friends svg {
   color: inherit;
+  color: var(--color-primary-1);
 }
 
 .route-marketplace svg {
   color: inherit;
+  color: var(--color-primary-1);
 }
 
 .route-home:hover::after,
@@ -191,6 +195,10 @@
   cursor: pointer;
   display: grid;
   place-content: center;
+}
+
+.notifications-icon svg {
+  color: var(--color-primary-1);
 }
 
 .notificationsDot {
@@ -242,6 +250,7 @@
   border: none;
   font: inherit;
   color: inherit;
+  color: var(--color-primary-1);
   cursor: pointer;
   width: 100%;
   border-radius: 5px;

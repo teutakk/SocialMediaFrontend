@@ -4,7 +4,8 @@
   flex-direction: column;
   gap: 19px;
   border-radius: 10px;
-  background: #f4f4f4;
+  background: var(--color-grey-light-1);
+  box-shadow: var(--shadow-type-1);
   padding: 10px;
   align-items: flex-end;
   width: max-content;

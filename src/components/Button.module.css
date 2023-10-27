@@ -65,7 +65,7 @@
 
 .post {
   height: 36px;
-  background-color: #213547;
+  background-color: var(--color-primary-1);
   border: none;
   color: white;
   font-size: 15px;
@@ -94,13 +94,13 @@
   justify-content: center;
   cursor: pointer;
   background: rgba(232, 232, 232, 0.4);
-  color: inherit;
+  color: var(--color-primary-1);
 }
 
 .uploadSvg {
   width: 24px;
   height: 24px;
-  color: inherit;
+  color: var(--color-primary-1);
 }
 
 /* === Hover & Active === */

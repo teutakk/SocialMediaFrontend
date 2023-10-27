@@ -16,6 +16,8 @@
   place-content: center;
   align-self: start;
   color: inherit;
+  color: var(--color-primary-1);
+
   font-size: 20px;
 }
 

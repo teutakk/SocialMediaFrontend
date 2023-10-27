@@ -6,7 +6,6 @@
 }
 
 .UserChip {
-  border: 1px solid black;
   /* border-radius: 9999px; */
   border-radius: 100%;
   /* aspect-ratio: 1/1; */
@@ -14,6 +13,8 @@
   height: 40px;
   font-size: 44px;
   color: inherit;
+  color: var(--color-primary-2);
+
   display: flex;
   align-items: center;
   justify-content: center;

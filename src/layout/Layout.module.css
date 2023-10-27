@@ -31,7 +31,7 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
-    grid-template-columns: max-content minmax(auto, max-content);
+    grid-template-columns: max-content auto;
     gap: 45px;
     padding: 10;
   }
