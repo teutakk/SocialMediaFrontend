@@ -40,10 +40,10 @@ const Profile = () => {
           </h3>
           <span>13 friends</span>
           <div className={classes.actions}>
-            {params.idNumber !== profilePageUser._id && (
+            {params.idNumber !== loggedInUser?._id && (
               <button>Add Friend</button>
             )}
-            {params.idNumber === profilePageUser._id && (
+            {params.idNumber === loggedInUser?._id && (
               <button>Edit Profile</button>
             )}
           </div>

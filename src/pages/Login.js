@@ -11,7 +11,7 @@ import classes from "./styles/Login.module.css";
 import CustomInput from "../components/CustomInput";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Login = () => {
   const location = useLocation();
@@ -100,7 +100,10 @@ const Login = () => {
             Log In
           </button>
           <p>
-            Don't have an account? <Link to="/register">Sign up</Link>{" "}
+            Don't have an account?{" "}
+            <NavLink className={classes.navlink} to="/register">
+              Sign up
+            </NavLink>
           </p>
         </form>
       </div>

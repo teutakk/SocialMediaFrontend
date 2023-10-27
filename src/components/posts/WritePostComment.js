@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./WritePostComment.module.css";
 import logo from "../../assets/images/starlabs.png";
 import UserChip from "../UserChip";
 import send from "../../assets/svg/send.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addComment, commentPost } from "../../store/slices/postsSlice";
+import { selectUser } from "../../store/slices/authSlice";
+const WritePostComment = ({ post }) => {
+  const [commentText, setCommentText] = useState("");
+  const loggedInUser = useSelector(selectUser);
 
-const WritePostComment = () => {
+  const dispatch = useDispatch();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newComment = {
+      postId: post._id,
+      content: commentText,
+      author: loggedInUser._id,
+    };
+    dispatch(commentPost(newComment));
+    dispatch(addComment(newComment));
+  };
+
+  const handleChange = (e) => {
+    setCommentText(e.target.value);
+  };
   return (
     <section className={classes.WritePostComment}>
-      <UserChip width={40} heigth={40} url={logo} />
-      <form className={classes.Comment}>
-        <textarea rows={1} id="comment" placeholder="Write a comment..." />
+      <UserChip width={40} heigth={40} url={loggedInUser?.profilePicture} />
+      <form onSubmit={submitHandler} className={classes.Comment}>
+        <textarea
+          value={commentText}
+          rows={1}
+          onChange={(e) => handleChange(e)}
+          id="comment"
+          placeholder="Write a comment..."
+        />
         <button type="submit">
           <svg
             xmlns="http://www.w3.org/2000/svg"

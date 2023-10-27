@@ -94,7 +94,7 @@ const CreatePost = () => {
   return (
     <form onSubmit={handleSubmit} className={classes.CreatePost}>
       <div className={classes.Content}>
-        <UserChip url={logo} />
+        <UserChip url={loggedInUser?.profilePicture} />
         <textarea
           onChange={handleInputChange}
           value={postText}
@@ -141,7 +141,6 @@ const CreatePost = () => {
           style={{ display: "none" }}
           type="file"
           id="upload-image"
-          value={selectedImages}
           accept="images/*"
           multiple
         />

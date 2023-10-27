@@ -7,6 +7,7 @@ const API_ROUTES = {
   posts: "/posts",
   users: "/users",
   post: "/post",
+  comment: "/comments",
 };
 
 export { BASE_URL, API_ROUTES };

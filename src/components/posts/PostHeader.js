@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { savePost } from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
@@ -8,12 +8,18 @@ import { BsBookmark } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
+import UserChip from "../UserChip";
+import {
+  fetchUserProfile,
+  selectProfilePageUser,
+} from "../../store/slices/profileSlice";
+import { formatDistanceToNow, parseISO, format } from "date-fns";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const [modalOpen, setModalOpen] = useState();
-
+  const [displayTime, setDisplayTime] = useState("");
   // function to open and close modal
   const showModal = () => {
     setModalOpen((prev) => !prev);
@@ -24,7 +30,7 @@ const PostHeader = ({ post, type }) => {
   };
 
   const onModalActionHandler = ({ action, data }) => {
-    if (action === "close") {
+    if (action === "cancel") {
       setModalOpen(false);
     }
 
@@ -61,17 +67,42 @@ const PostHeader = ({ post, type }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showOptions]);
+  console.log(post.createdAt);
+  // const inputDate = parseISO(post.createdAt);
+  // const currentDate = new Date();
+  // const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+
+  // useEffect(() => {
+  //   const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+
+  //   if (timeAgo.includes("minutes")) {
+  //     // Display time in minutes
+
+  //     setDisplayTime(timeAgo);
+  //   } else if (timeAgo.includes("hour")) {
+  //     // Display time in hours
+  //     const hourAgo = timeAgo.replace("hours", "h");
+
+  //     setDisplayTime(timeAgo);
+  //   } else {
+  //     // Display the actual time
+  //     const formattedTime = format(inputDate, "hh:mm a");
+  //     setDisplayTime(formattedTime);
+  //   }
+  // }, [inputDate, post.createdAt]);
 
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <img src={post.profilePhoto} alt="profile " />
+        <UserChip id={post.userId} />
         <div className={classes["user-and-date-posted"]}>
           <p>
-            <strong>{post.userFullName} </strong>
+            <strong>
+              {post.firstName} {post.lastName}
+            </strong>
           </p>
           <div className={classes["date-and-privacy"]}>
-            <span>10.7.2023</span>
+            {/* <span style={{ fontSize: "12px" }}>{displayTime}</span> */}
           </div>
         </div>
       </div>

@@ -10,7 +10,6 @@ const EditPost = ({ post, onChangeDataHandler }) => {
   const [editPostText, setEdipPostText] = useState(post.description);
   const [editedImages, setEditedImages] = useState(post.images);
   const textareaRef = useRef(null);
-  console.log("editedImages:", editedImages);
 
   const handleInputChange = (e) => {
     console.log("handling: EditPost", editPostText, editedImages);

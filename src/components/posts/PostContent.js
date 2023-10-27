@@ -5,7 +5,6 @@ import ImageSlider from "./ImageSlider";
 
 const PostContent = ({ post, type }) => {
   const [modalOpen, setModalOpen] = useState();
-
   // function to open and close modal
   const showModal = () => {
     setModalOpen((prev) => !prev);
@@ -14,18 +13,18 @@ const PostContent = ({ post, type }) => {
   // Photo content will control how the photos are shown. Different grids in case of different number of images
   let photoContent;
   // for more than 3
-  if (post.images.length > 3) {
+  if (post.picutres?.length > 3) {
     photoContent = (
       <div className={classes.ImageHolder} onClick={showModal}>
         <div className={classes.first}>
           <img src={post.images[0]} alt="laksjdlajsd" />
         </div>
         <div className={classes.second}>
-          <img src={post.images[1]} alt="lkasjdlkajd" />
+          <img src={post.picutres[1]} alt="lkasjdlkajd" />
         </div>
         <div className={classes.third}>
           <img src={post.images[2]} alt="askldjlkasd" />
-          {post.images.length > 3 && (
+          {post.pictures?.length > 3 && (
             <div className={classes.overlay}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,47 +46,49 @@ const PostContent = ({ post, type }) => {
                   fill="#eee"
                 />
               </svg>
-              <p>+{post.images.length - 2} more items</p>
+              <p>+{post.pictures?.length - 2} more items</p>
             </div>
           )}
         </div>
       </div>
     );
     // when there are 3 photos uploaded
-  } else if (post.images.length === 3) {
+  } else if (post.pictures?.length === 3) {
     photoContent = (
       <div className={classes.ImageHolder} onClick={showModal}>
         <div className={classes.first}>
-          <img src={post.images[0]} alt="laksjdlajsd" />
+          <img src={post.pictures[0]} alt="laksjdlajsd" />
         </div>
         <div className={classes.second}>
-          <img src={post.images[1]} alt="lkasjdlkajd" />
+          <img src={post.pictures[1]} alt="lkasjdlkajd" />
         </div>
         <div className={classes.third}>
-          <img src={post.images[2]} alt="askldjlkasd" />
+          <img src={post.pictures[2]} alt="askldjlkasd" />
         </div>
       </div>
     );
     // when there are 2 photos uploaded we show them side by side
-  } else if (post.images.length === 2) {
+  } else if (post.pictures?.length === 2) {
     photoContent = (
       <div className={classes.ImageHolderType2} onClick={showModal}>
-        <img src={post.images[0]} alt="asldkj" />
-        <img src={post.images[1]} alt="kasjhkj" />
+        <img src={post.pictures[0]} alt="asldkj" />
+        <img src={post.pictures[1]} alt="kasjhkj" />
       </div>
     );
     // and when it is one we show it fully on screen
-  } else if (post.images.length === 1) {
+  } else if (post.pictures?.length === 1) {
     photoContent = (
       <div className={classes.ImageHolderType1} onClick={showModal}>
-        <img src={post.images[0]} alt="lasjdkkjasd" />
+        <img src={post.pictures[0]} alt="lasjdkkjasd" />
       </div>
     );
+  } else {
+    photoContent = null;
   }
 
-  const likes = [1, 2, 3, 4, 5, 7, 8, 9];
   let likesContent;
-  if (likes.length > 3) {
+
+  if (post.likes?.length > 5) {
     likesContent = (
       <div className={classes.likesHolder}>
         <span className={classes.logo}>
@@ -109,10 +110,13 @@ const PostContent = ({ post, type }) => {
           />
         </span>
         <p>
-          <strong>Endrit</strong> and {likes.length - 1} others like this post.
+          <strong>Endrit</strong> and {post.likes?.length - 1} others like this
+          post.
         </p>
       </div>
     );
+  } else {
+    likesContent = <p>{post.likes?.length} liked this post</p>;
   }
 
   return (
@@ -120,7 +124,7 @@ const PostContent = ({ post, type }) => {
       <div className={classes.content}>
         <p>{post.description}</p>
         {/* this type check is done so that when we open the pictures, we dont show pictures + post with pictures, because i reuse SinglePost in modal */}
-        {type !== "modal-post" && post.images.length > 0 && photoContent}
+        {type !== "modal-post" && post.pictures?.length > 0 && photoContent}
       </div>
       {modalOpen && (
         <Modal
@@ -139,7 +143,7 @@ const PostContent = ({ post, type }) => {
       >
         <div className={classes.likes}>{likesContent}</div>
         <div className={classes.commentsAndShare}>
-          <p>{post.comments.length} comments</p>
+          <p>{post.comments?.length} comments</p>
           <p>{post.shares} shares</p>
         </div>
       </div>

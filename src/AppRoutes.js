@@ -18,6 +18,7 @@ import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
+import UsersPosts from "./components/profile/UsersPosts";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,7 @@ const AppRoutes = () => {
           element={<RequireAuth component={FriendShip} />}
         />
         <Route path="id/:idNumber" element={<Profile />}>
-          <Route index element={<Posts />} />
+          <Route index element={<UsersPosts />} />
           <Route path="about" element={<About />}>
             <Route index element={<Overview />} />
             <Route path="work-and-education" element={<WorkAndEdu />} />

@@ -71,6 +71,25 @@
   gap: 10px;
 }
 
+.mobileNav .navigationActions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  align-items: center;
+  padding: 0 20px;
+  margin-top: auto;
+}
+
+.navigationActions a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navigationActions p {
+  font-size: 20px;
+}
+
 .cancel {
   position: absolute;
   cursor: pointer;
@@ -195,6 +214,41 @@
   display: grid;
   place-content: center;
   font-size: 10px;
+}
+
+.userChip {
+  position: relative;
+  cursor: pointer;
+}
+
+.userMenu {
+  position: absolute;
+  top: 110%;
+  left: 100%;
+  transform: translateX(-100%);
+  padding: 10px;
+  box-shadow: var(--shadow-image);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: white;
+}
+
+.userMenu .option {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.userChip .option:hover {
+  background-color: rgba(212, 212, 212, 0.3);
 }
 
 @media (min-width: 440px) {

@@ -6,7 +6,7 @@ import UserChip from "./UserChip";
 import logo from "../assets/images/starlabs.png";
 import Notifications from "./notifications/Notifications";
 import SearchBar from "./SearchBar";
-import postify from "../assets/images/postify3.png";
+import postify from "../assets/images/postify.png";
 import { HiXMark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { selectUser, logoutUser } from "../store/slices/authSlice";
@@ -65,6 +65,15 @@ const Navigation = () => {
           <NavLink to={`id/${loggedInUser?._id}`}>Profile</NavLink>
           <NavLink to="friends">Friends</NavLink>
         </ul>
+        <div className={classes.navigationActions}>
+          <NavLink to={`id/${loggedInUser?._id}`}>
+            <UserChip url={loggedInUser?.profilePicuture} />
+            <p>
+              {loggedInUser?.firstName} {loggedInUser?.lastName}
+            </p>
+          </NavLink>
+          <div onClick={handleLogout}>Log Out</div>
+        </div>
         <span
           onClick={() => setShowNavigation(false)}
           className={classes.cancel}
@@ -80,11 +89,10 @@ const Navigation = () => {
             </svg>
           </span>
           <NavLink to="" end className={classes["logo-route"]}>
-            {/* <img src={postify} alt="postify" />
-             */}
-            <div className={classes.textLogo}>
-              <p>p</p>
-            </div>
+            <img src={postify} alt="postify" />
+            {/* <div className={classes.textLogo}> */}
+            {/* <p>p</p> */}
+            {/* </div> */}
           </NavLink>
         </div>
         <div className={classes["navigation-main"]}>
@@ -138,10 +146,24 @@ const Navigation = () => {
             />
           </div>
           <div className={classes.userChip} onClick={handleShowUserMenu}>
-            <UserChip url={logo} />
+            <UserChip url={loggedInUser?.profilePicture} />
             {showUserMenu && (
               <div className={classes.userMenu}>
-                <button onClick={handleLogout}>Logout</button>
+                <NavLink
+                  className={classes.option}
+                  to={`id/${loggedInUser?._id}`}
+                >
+                  Profile
+                </NavLink>
+                <NavLink className={classes.option} to={"/settings"}>
+                  Settings
+                </NavLink>
+                <div
+                  className={`${classes.option} ${classes.logout}`}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </div>
               </div>
             )}
           </div>

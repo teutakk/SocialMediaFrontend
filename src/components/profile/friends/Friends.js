@@ -33,21 +33,23 @@ const Friends = () => {
   const params = useParams();
 
   return (
-    <div className={classes.Friends}>
-      <p className={classes.title}>Friends</p>
-      <div className={classes["friends-holder"]}>
-        {friends.map((friend, i) => (
-          <Bullet
-            key={i}
-            content={friend.name}
-            subContent={friend.mutual}
-            logo={friend.logo}
-          />
-        ))}
-      </div>
-      <NavLink to={`/id/${params.idNumber}/friends`}>See more</NavLink>
-      {/* <button onClick={clickHandler}>See more</button> */}
-    </div>
+    <h1>Cooming soon!</h1>
+    // <div className={classes.Friends}>
+
+    //   <p className={classes.title}>Cooming soon!</p>
+    //   {/* <div className={classes["friends-holder"]}>
+    //     {friends.map((friend, i) => (
+    //       <Bullet
+    //         key={i}
+    //         content={friend.name}
+    //         subContent={friend.mutual}
+    //         logo={friend.logo}
+    //       />
+    //     ))}
+    //   </div>
+    //   <NavLink to={`/id/${params.idNumber}/friends`}>See more</NavLink> */}
+    //   {/* <button onClick={clickHandler}>See more</button> */}
+    // </div>
   );
 };
 

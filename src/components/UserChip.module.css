@@ -12,6 +12,8 @@
   /* aspect-ratio: 1/1; */
   width: 40px;
   height: 40px;
+  font-size: 44px;
+  color: #8487ff;
   display: flex;
   align-items: center;
   justify-content: center;
