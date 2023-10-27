@@ -12,6 +12,7 @@ import CustomInput from "../components/CustomInput";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import { NavLink } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const location = useLocation();
@@ -52,9 +53,8 @@ const Login = () => {
 
   return (
     <div className={classes.container}>
+      <span className={classes.photo}></span>
       <div className={classes.formData}>
-        <span className={classes.photo}></span>
-
         <div className={classes.topData}>
           <h2>Log In</h2>
         </div>
@@ -107,6 +107,12 @@ const Login = () => {
           </p>
         </form>
       </div>
+      <section className={classes.footerSection}>
+        <div className={classes.quote}>
+          Connect, Share, Thrive: Where Social Worlds Unite!
+        </div>
+        <Footer />
+      </section>
     </div>
   );
 };
