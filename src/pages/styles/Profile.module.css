@@ -10,7 +10,7 @@
 .profile-header {
   height: 45vh;
   width: 100%;
-  background-color: white;
+  background-color: var(--color-grey-light-1);
 }
 
 .cover {
@@ -18,7 +18,6 @@
   position: relative;
   max-width: 1150px;
   width: 100vw;
-  transform: translateX(-10px);
   margin: 0 auto;
   background-color: rgb(16, 151, 151);
 }
@@ -51,7 +50,7 @@
 .profile-info {
   padding-top: 80px;
   width: 100%;
-  background-color: #fff;
+  background-color: var(--color-grey-light-1);
 }
 
 .info-width-controller {
@@ -89,15 +88,17 @@
 
 .content-options {
   width: 100%;
+  background-color: var(--color-grey-light-1);
+  border-bottom: 1px solid var(--color-grey-light-4);
 }
 
 .navlink-holder {
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
+  background-color: var(--color-grey-light-1);
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
   justify-content: space-evenly;
 }
 
@@ -114,6 +115,8 @@
   padding: 0 10px;
   display: flex;
   flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @media (min-width: 520px) {

@@ -6,14 +6,15 @@ import Sidebar from "../components/Sidebar";
 import Rightsidebar from "../components/Rightsidebar";
 const Layout = () => {
   const location = useLocation();
-  const custumClass = location.pathname.startsWith("./id")
-    ? classes.custumClass
+  console.log(location);
+  const custumClass = location.pathname.startsWith("/id")
+    ? classes.customClass
     : "";
-
+  console.log("customClass: ", custumClass);
   return (
     <div className={classes.Layout}>
       <Navigation />
-      <main className={classes.main}>
+      <main className={`${classes.main} ${custumClass}`}>
         {!location.pathname.startsWith("/id") && (
           <aside className={classes.left}>
             <Sidebar />

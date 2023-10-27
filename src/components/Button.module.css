@@ -66,6 +66,7 @@
 .post {
   height: 36px;
   background-color: var(--color-primary-1);
+  box-shadow: var(--shadow-type-6);
   border: none;
   color: white;
   font-size: 15px;
