@@ -65,7 +65,7 @@
 
 .post {
   height: 36px;
-  background-color: #8487ff;
+  background-color: #213547;
   border: none;
   color: white;
   font-size: 15px;
@@ -94,13 +94,13 @@
   justify-content: center;
   cursor: pointer;
   background: rgba(232, 232, 232, 0.4);
-  color: #63c3eb;
+  color: inherit;
 }
 
 .uploadSvg {
   width: 24px;
   height: 24px;
-  color: #63c3eb;
+  color: inherit;
 }
 
 /* === Hover & Active === */
@@ -115,7 +115,7 @@
 }
 
 .post:hover {
-  background-color: #6b6efb;
+  background-color: #0d1a25;
 }
 
 .like:active,

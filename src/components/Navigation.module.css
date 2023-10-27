@@ -142,15 +142,15 @@
 }
 
 .route-home svg {
-  color: #e33629;
+  color: inherit;
 }
 
 .route-friends svg {
-  color: #63c3eb;
+  color: inherit;
 }
 
 .route-marketplace svg {
-  color: rgb(139, 66, 78);
+  color: inherit;
 }
 
 .route-home:hover::after,

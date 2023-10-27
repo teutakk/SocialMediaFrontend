@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 19px;
   border-radius: 10px;
-  background: rgba(232, 232, 232, 0.3);
+  background: #f4f4f4;
   padding: 10px;
   align-items: flex-end;
   width: max-content;

@@ -16,14 +16,11 @@ const Posts = () => {
   const postsShown = reversePosts.map((post, index) => (
     <SinglePost post={post} key={index} type="regular" />
   ));
-  const dummyPosts = data.map((post, i) => (
-    <SinglePost post={post} key={i} type="regular-dummy" />
-  ));
 
   return (
     <div className={classes.Posts}>
       <CreatePost />
-      <section className={classes.PostsHolder}>{posts}</section>
+      <section className={classes.PostsHolder}>{postsShown}</section>
     </div>
   );
 };

@@ -84,7 +84,7 @@ const Navigation = () => {
       <section className={classes.Navigation}>
         <div className={classes["navigation-left"]}>
           <span onClick={handleShowNavigation}>
-            <svg viewBox="0 0 512 512" fill="#E4B34C">
+            <svg viewBox="0 0 512 512" fill="currentColor">
               <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm64 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm384 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z" />
             </svg>
           </span>
@@ -134,7 +134,12 @@ const Navigation = () => {
             <div className={classes.notificationsDot}>
               <span className={classes.span}>7</span>
             </div>
-            <svg viewBox="0 0 24 24" fill="#F8BD00" height="32px" width="32px">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              height="32px"
+              width="32px"
+            >
               <path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 003 17v1a1 1 0 001 1h16a1 1 0 001-1v-1a.996.996 0 00-.293-.707L19 14.586z" />
             </svg>
             <Notifications

@@ -23,68 +23,7 @@ import { API_ROUTES } from "../../api/apiConfig";
 const SinglePost = ({ post, type }) => {
   const dispatch = useDispatch();
   const [postState, setPostState] = useState(post);
-  useEffect(() => {
-    const fetchLikes = async () => {
-      try {
-        const response = await axiosInstance.get(
-          API_ROUTES.posts + `/${post._id}` + "/likes"
-        );
-        if (response.data && response.data?.length > 0) {
-          dispatch(addLikes({ likes: response.data, postId: post._id }));
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
 
-    const fetchComments = async () => {
-      try {
-        const response = await axiosInstance.get(
-          API_ROUTES.comment + `/${post._id}`
-        );
-        if (response.data && response.data?.length > 0) {
-          console.log("response: ", response);
-          dispatch(addComment({ comments: response.data, postId: post._id }));
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchComments();
-    fetchLikes();
-  }, []);
-
-  useEffect(() => {
-    const fetchUserInfo = async () => {
-      try {
-        const response = await axiosInstance.get(
-          API_ROUTES.users + `/${post.userId}`
-        );
-
-        dispatch(addUserInfo({ ...response.data, postId: post._id }));
-      } catch (err) {
-        console.log("err:", err);
-      }
-    };
-    fetchUserInfo();
-  }, []);
-
-  // const editState = useSelector(selectEditState);
-  // const isEditing = editState === post.id;
-  // const [editedContent, setEditedContent] = useState(post.content);
-
-  // const currentUser = useSelector((state) => state.user); // You need to get the user from your state or adjust this part accordingly
-  // const isOwner = currentUser && currentUser.id === post.owner.id;
-
-  // const handleEditClick = () => {
-  //   dispatch(startEdit(post.id));
-  // };
-
-  // const handleEditSave = () => {
-  //   dispatch(editPost({ id: post.id, content: editedContent }));
-
-  //   dispatch(finishEdit());
-  // };
   return (
     <div
       className={`${classes.SinglePost} ${

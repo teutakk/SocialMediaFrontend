@@ -8,7 +8,7 @@
 
 .profile {
   border-radius: 10px;
-  background: rgba(232, 232, 232, 0.3);
+  background: #f4f4f4;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -30,7 +30,7 @@
   flex-direction: column;
   gap: 5px;
   border-radius: 10px;
-  background: rgba(232, 232, 232, 0.3);
+  background: #f4f4f4;
 }
 
 .route-holder {
@@ -54,12 +54,10 @@
 }
 
 .route-feed svg {
-  color: #e33629;
   width: 25px;
 }
 
 .route-friends svg {
-  color: #63c3eb;
   width: 25px;
 }
 
