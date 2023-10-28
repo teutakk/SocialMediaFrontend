@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   acceptFriendRequestAsync,
@@ -12,9 +12,15 @@ const FriendShip = () => {
   const [showRequest, setShowRequest] = useState(true);
 
   const friends = useSelector((state) => state.friendship.friends);
-  const pendingRequests = useSelector((state) => state.friendship.pendingRequests);
+  const pendingRequests = useSelector(
+    (state) => state.friendship.pendingRequests
+  );
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleToggle = () => {
     setShowRequest(!showRequest);
@@ -26,19 +32,18 @@ const FriendShip = () => {
   };
 
   const handleAcceptFriendRequest = (friendId) => {
-    dispatch(acceptFriendRequestAsync(friendId))
+    dispatch(acceptFriendRequestAsync(friendId));
     console.log(friendId);
-  }
+  };
 
   const handleRejectFriendRequest = (friendId) => {
-    dispatch(rejectFriendRequestAsync(friendId))
+    dispatch(rejectFriendRequestAsync(friendId));
     console.log(friendId);
-  }
+  };
   const handleRemoveFriendRequest = (friendId) => {
-    dispatch(removeFriendRequestAsync(friendId))
+    dispatch(removeFriendRequestAsync(friendId));
     console.log(friendId);
-  }
-
+  };
 
   return (
     <div>
@@ -61,15 +66,19 @@ const FriendShip = () => {
               return (
                 <div key={req.id}>
                   <FriendList name={req.name} />
-                  <button onClick={() => handleAcceptFriendRequest(req.id)}>Accept Friend</button>
-                  <button onClick={() => handleRejectFriendRequest(req.id)}>Reject Friend</button>
+                  <button onClick={() => handleAcceptFriendRequest(req.id)}>
+                    Accept Friend
+                  </button>
+                  <button onClick={() => handleRejectFriendRequest(req.id)}>
+                    Reject Friend
+                  </button>
                 </div>
               );
             })}
           </div>
         )}
       </div>
-      <button  onClick={() => handleSendFriendRequest({ id: 6, name: "John"})}>
+      <button onClick={() => handleSendFriendRequest({ id: 6, name: "John" })}>
         Send a Friend Request
       </button>
     </div>

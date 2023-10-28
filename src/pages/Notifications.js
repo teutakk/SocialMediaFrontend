@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { notifications } from "../api/dummyData";
 import classes from "./styles/Notifications.module.css";
 import SingleNotification from "../components/notifications/SingleNotification";
 const Notifications = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={classes.Notifications}>
       <h3 className={classes.title}>Notifications center</h3>

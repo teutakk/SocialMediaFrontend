@@ -19,6 +19,10 @@ const Profile = () => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
   // get user from profileSlice
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(() => {
     // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
     dispatch(fetchUserProfile(`/${params.idNumber}`));
