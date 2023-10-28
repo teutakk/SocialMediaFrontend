@@ -31,7 +31,7 @@ const EditPost = ({ post, onChangeDataHandler }) => {
   };
 
   useEffect(() => {
-    const textAreaLength = textareaRef.current.value.length;
+    const textAreaLength = textareaRef.current.value?.length;
     textareaRef.current.style.height = "auto";
     textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     textareaRef.current.setSelectionRange(textAreaLength, textAreaLength);
@@ -47,7 +47,7 @@ const EditPost = ({ post, onChangeDataHandler }) => {
         value={editPostText}
       />
       {/* <PostImagePreviewer setSelectedImages={post.images} /> */}
-      {editedImages.length > 0 && (
+      {editedImages?.length > 0 && (
         <section className={classes.imageShower}>
           <div className={classes.imageHolder}>
             {editedImages.map((image, i) => {

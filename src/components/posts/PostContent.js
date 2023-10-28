@@ -9,21 +9,22 @@ const PostContent = ({ post, type }) => {
   const showModal = () => {
     setModalOpen((prev) => !prev);
   };
-
+  console.log("posti content: ", post.pictures);
   // Photo content will control how the photos are shown. Different grids in case of different number of images
   let photoContent;
   // for more than 3
-  if (post.picutres?.length > 3) {
+  if (post.pictures?.length > 3) {
+    console.log("running done.");
     photoContent = (
       <div className={classes.ImageHolder} onClick={showModal}>
         <div className={classes.first}>
-          <img src={post.images[0]} alt="laksjdlajsd" />
+          <img src={post.pictures[0]} alt="laksjdlajsd" />
         </div>
         <div className={classes.second}>
-          <img src={post.picutres[1]} alt="lkasjdlkajd" />
+          <img src={post.pictures[1]} alt="lkasjdlkajd" />
         </div>
         <div className={classes.third}>
-          <img src={post.images[2]} alt="askldjlkasd" />
+          <img src={post.pictures[2]} alt="askldjlkasd" />
           {post.pictures?.length > 3 && (
             <div className={classes.overlay}>
               <svg
@@ -129,7 +130,7 @@ const PostContent = ({ post, type }) => {
       {modalOpen && (
         <Modal
           data={post}
-          showActionButtons={false}
+          showActionButtons={true}
           showModal={showModal}
           modal={modalOpen}
         >

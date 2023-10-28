@@ -5,9 +5,6 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectPosts } from "../../store/slices/postsSlice";
 const SingleComment = ({ comment }) => {
-  const posts = useSelector(selectPosts);
-  const currentPost = posts.find((post) => post._id === comment.postId);
-  console.log("comment content: ", comment.content);
   return (
     <div className={classes.SingleComment}>
       <UserChip url={comment.profilePhoto} />
@@ -16,7 +13,7 @@ const SingleComment = ({ comment }) => {
           <div className={classes["name-and-edit"]}>
             <p>
               <strong>
-                {currentPost.firstName} {currentPost.lastName}
+                {comment.firstName} {comment.lastName}
               </strong>
             </p>
             <span>

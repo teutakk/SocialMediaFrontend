@@ -21,9 +21,6 @@ import { API_ROUTES } from "../../api/apiConfig";
 
 // type will change some internal post specs, check PostHeader and it will add some conditional cases
 const SinglePost = ({ post, type }) => {
-  const dispatch = useDispatch();
-  const [postState, setPostState] = useState(post);
-
   return (
     <div
       className={`${classes.SinglePost} ${

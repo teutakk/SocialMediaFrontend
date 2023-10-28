@@ -4,7 +4,7 @@ import SinglePost from "./SinglePost";
 const ImageSlider = ({ post }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const nextImageHandler = () => {
-    if (currentImageIndex < post.images.length - 1) {
+    if (currentImageIndex < post.pictures.length - 1) {
       setCurrentImageIndex((currIndex) => currIndex + 1);
     } else {
       setCurrentImageIndex(0);
@@ -14,15 +14,15 @@ const ImageSlider = ({ post }) => {
     if (currentImageIndex > 0) {
       setCurrentImageIndex((currIndex) => currIndex - 1);
     } else {
-      setCurrentImageIndex(post.images.length - 1);
+      setCurrentImageIndex(post.pictures.length - 1);
     }
   };
 
-  const currentImage = <img src={post.images[currentImageIndex]} />;
+  const currentImage = <img src={post.pictures[currentImageIndex]} />;
   return (
     <div className={classes.ImageSlider}>
       <div className={classes.slider}>
-        {post.images.length > 1 && (
+        {post.pictures.length > 1 && (
           <>
             <button className={classes.arrow} onClick={prevImageHandler}>
               &larr;

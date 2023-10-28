@@ -17,10 +17,15 @@ const Posts = () => {
     <SinglePost post={post} key={index} type="regular" />
   ));
 
+  const dummyPosts = data.map((post, index) => (
+    <SinglePost post={post} key={index} type="regular" />
+  ));
+
   return (
     <div className={classes.Posts}>
       <CreatePost />
       <section className={classes.PostsHolder}>{postsShown}</section>
+      <section className={classes.PostsHolder}>{dummyPosts}</section>
     </div>
   );
 };
