@@ -42,6 +42,11 @@
     margin: 0 auto;
   }
 
+  .customClass {
+    width: 100%;
+    max-width: unset;
+  }
+
   /* try to inclde main elment for padding here */
 
   .left {

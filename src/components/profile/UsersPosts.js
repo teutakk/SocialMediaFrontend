@@ -19,7 +19,7 @@ const UsersPosts = () => {
       <h3>Posts</h3>
       <div className={classes.postHolder}>
         {profilePageUserPosts.map((post) => (
-          <SinglePost post={post} id={post._id} />
+          <SinglePost post={post} key={post._id} />
         ))}
       </div>
     </div>
