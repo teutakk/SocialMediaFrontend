@@ -10,7 +10,22 @@
   place-content: center;
 }
 
-.Modal .close {
+.modal-content-edit .close {
+  background-color: rgba(10, 10, 10, 0.3);
+  border-radius: 100%;
+  width: 29px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  border: none;
+  justify-self: flex-end;
+  margin-left: auto;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 101;
+}
+
+.modal-content-show-post .close {
   background-color: rgba(10, 10, 10, 0.3);
   border-radius: 100%;
   width: 29px;
