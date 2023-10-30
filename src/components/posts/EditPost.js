@@ -5,11 +5,13 @@ import axiosInstance from "../../api/axiosInstance";
 import { API_ROUTES } from "../../api/apiConfig";
 import { PiX } from "react-icons/pi";
 
-const EditPost = ({ post, onChangeDataHandler }) => {
+const EditPost = ({ post, onChangeDataHandler, type }) => {
   // function to increase the heigh
   const [editPostText, setEdipPostText] = useState(post.description);
   const [editedImages, setEditedImages] = useState(post.pictures);
   const textareaRef = useRef(null);
+
+  console.log(editedImages);
 
   const handleInputChange = (e) => {
     console.log("handling: EditPost", editPostText, editedImages);

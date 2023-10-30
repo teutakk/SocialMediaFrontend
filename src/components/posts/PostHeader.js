@@ -10,10 +10,12 @@ import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
 import UserChip from "../UserChip";
 import {
-  fetchUserProfile,
-  selectProfilePageUser,
-} from "../../store/slices/profileSlice";
-import { formatDistanceToNow, parseISO, format } from "date-fns";
+  formatDistanceToNow,
+  parseISO,
+  format,
+  isToday,
+  isYesterday,
+} from "date-fns";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
@@ -67,28 +69,35 @@ const PostHeader = ({ post, type }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showOptions]);
-  // const inputDate = parseISO(post.createdAt);
-  // const currentDate = new Date();
-  // const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+  const inputDate = parseISO(post.createdAt);
+  const currentDate = new Date();
+  const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
 
-  // useEffect(() => {
-  //   const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
-
-  //   if (timeAgo.includes("minutes")) {
-  //     // Display time in minutes
-
-  //     setDisplayTime(timeAgo);
-  //   } else if (timeAgo.includes("hour")) {
-  //     // Display time in hours
-  //     const hourAgo = timeAgo.replace("hours", "h");
-
-  //     setDisplayTime(timeAgo);
-  //   } else {
-  //     // Display the actual time
-  //     const formattedTime = format(inputDate, "hh:mm a");
-  //     setDisplayTime(formattedTime);
-  //   }
-  // }, [inputDate, post.createdAt]);
+  useEffect(() => {
+    if (timeAgo.includes("minutes")) {
+      // Display time in minutes
+      setDisplayTime(timeAgo);
+    } else if (timeAgo.includes("hour")) {
+      // Display time in hours
+      const hourAgo = timeAgo.replace("hours", "h");
+      setDisplayTime(hourAgo);
+    } else {
+      // Display different formats based on the date
+      if (isToday(inputDate)) {
+        // Display as "hh:mm" if it's today
+        const formattedTime = format(inputDate, "hh:mm");
+        setDisplayTime(formattedTime);
+      } else if (isYesterday(inputDate)) {
+        // Display as "hh:mm" if it's yesterday
+        const formattedTime = format(inputDate, "hh:mm");
+        setDisplayTime(formattedTime);
+      } else {
+        // For other dates, display as "dd MMMM" (e.g., "27 October")
+        const formattedDate = format(inputDate, "dd MMMM");
+        setDisplayTime(formattedDate);
+      }
+    }
+  }, [inputDate, timeAgo]);
 
   return (
     <div className={classes.PostHeader}>
@@ -101,7 +110,7 @@ const PostHeader = ({ post, type }) => {
             </strong>
           </p>
           <div className={classes["date-and-privacy"]}>
-            {/* <span style={{ fontSize: "12px" }}>{displayTime}</span> */}
+            <span style={{ fontSize: "12px" }}>{displayTime}</span>
           </div>
         </div>
       </div>

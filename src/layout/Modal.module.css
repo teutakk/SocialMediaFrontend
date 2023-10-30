@@ -14,7 +14,7 @@
   .modal-content-edit {
     height: auto;
     width: auto;
-    min-height: 400px;
+    min-height: 200px;
     min-width: 500px;
     max-width: 1050px;
     background-color: white;
@@ -41,10 +41,27 @@
     gap: 10px;
   }
 
+  .modal-content-edit-no-img .modal-main {
+    height: auto;
+  }
+
   .modal-main-header {
     display: flex;
     align-items: center;
     gap: 10px;
+    width: 100%;
+  }
+
+  .modal-header .close {
+    background-color: rgba(10, 10, 10, 0.3);
+    border-radius: 100%;
+    width: 29px;
+    aspect-ratio: 1/1;
+    display: grid;
+    place-content: center;
+    border: none;
+    justify-self: flex-end;
+    margin-left: auto;
   }
 
   .modal-content-edit .modal-actions {

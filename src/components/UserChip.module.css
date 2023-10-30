@@ -14,7 +14,7 @@
   font-size: 46px;
   color: inherit;
 
-  color: var(--color-primary-2);
+  color: var(--color-primary-1);
   cursor: pointer;
   box-shadow: var(--shadow-type-6);
   display: flex;

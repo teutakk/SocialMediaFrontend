@@ -45,30 +45,37 @@ const Modal = ({
   if (type === "EDIT") {
     modalClass = "edit";
   }
-  console.log(type);
-  console.log(modalClass);
+
+  console.log(data.pictures.length > 0);
   return createPortal(
     <div className={classes.Modal}>
-      <div className={classes[`modal-content-${modalClass}`]}>
+      <div
+        className={`${classes[`modal-content-${modalClass}`]} ${
+          data.pictures.length > 0 ? "" : classes["modal-content-edit-no-img"]
+        }`}
+      >
         <div className={classes["modal-header"]}>
-          {type === "EDIT" && (
-            <div className={classes["modal-main-header"]}>
-              <UserChip heigth={35} width={35} />
-              <p>
-                {loggedInUser.firstName} {loggedInUser.lastName}
-              </p>
-            </div>
-          )}
-          <h3 style={{ flex: "1", textAlign: "center" }} className={classes}>
-            {type === "EDIT" ? "Edit post" : ""}
-          </h3>
-          <button onClick={showModal} className={classes.close}>
-            <FaXmark />
-          </button>
+          <div className={classes["modal-main-header"]}>
+            {type === "EDIT" && (
+              <>
+                <UserChip heigth={35} width={35} />
+                <p>
+                  {loggedInUser.firstName} {loggedInUser.lastName}
+                </p>
+              </>
+            )}
+            <h3 style={{ textAlign: "center" }} className={classes.title}>
+              {type === "EDIT" ? "Edit post" : ""}
+            </h3>
+            <button onClick={showModal} className={classes.close}>
+              <FaXmark />
+            </button>
+          </div>
         </div>
         <div className={classes["modal-main"]}>
           {React.cloneElement(children, {
             post: data,
+            type: type,
             onChangeDataHandler: modalDataChangeHandler,
           })}
         </div>

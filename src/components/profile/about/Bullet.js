@@ -2,7 +2,13 @@ import React from "react";
 import classes from "./Bullet.module.css";
 import { PiPen } from "react-icons/pi";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../store/slices/authSlice";
+import { useParams } from "react-router";
 const Bullet = ({ content, subContent, logo }) => {
+  const params = useParams();
+  console.log(params);
+  const loggedInUser = useSelector(selectUser);
   return (
     <div
       className={`${classes["overview-bullet"]} ${
@@ -17,7 +23,7 @@ const Bullet = ({ content, subContent, logo }) => {
         <span>{subContent}</span>
       </div>
       <span className={classes.edit}>
-        {typeof logo === "string" ? <BiDotsVerticalRounded /> : <PiPen />}
+        {loggedInUser?._id === params.idNumber && <PiPen />}
       </span>
     </div>
   );
