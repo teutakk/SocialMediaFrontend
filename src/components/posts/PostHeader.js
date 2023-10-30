@@ -67,7 +67,6 @@ const PostHeader = ({ post, type }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showOptions]);
-  console.log(post.createdAt);
   // const inputDate = parseISO(post.createdAt);
   // const currentDate = new Date();
   // const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
@@ -125,6 +124,7 @@ const PostHeader = ({ post, type }) => {
             showModal={showModal}
             modal={modalOpen}
             onModalActionHandler={onModalActionHandler}
+            type="EDIT"
           >
             <EditPost />
           </Modal>

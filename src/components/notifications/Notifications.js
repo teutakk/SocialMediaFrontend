@@ -47,8 +47,12 @@ const Notifications = ({
       }
     >
       <div className={classes["notifications-actions"]}>
-        <p onClick={onClearHandler}>Clear</p>
-        <p onClick={onMarkAllAsReadHandler}>Mark all as read</p>
+        <p onClick={onClearHandler} className={classes.clear}>
+          Clear
+        </p>
+        <p onClick={onMarkAllAsReadHandler} className={classes.markRead}>
+          Mark all as read
+        </p>
       </div>
       <div className={classes.notifications}>
         {notifications.map((notification) => (

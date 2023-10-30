@@ -3,7 +3,6 @@ import classes from "./PostComments.module.css";
 import SingleComment from "./SingleComment";
 
 const PostComments = ({ post }) => {
-  console.log(post.comments);
   const comments = post.comments?.map((comment) => (
     <SingleComment key={comment.id} comment={comment} />
   ));

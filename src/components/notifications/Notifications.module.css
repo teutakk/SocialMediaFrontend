@@ -26,10 +26,19 @@
     padding: 0 10px;
     position: sticky;
     padding: 10px 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--color-grey-light-5);
     background-color: white;
     z-index: 10;
     top: 0;
+  }
+
+  .notifications-actions .clear {
+    color: var(--color-danger);
+    cursor: pointer;
+  }
+  .notifications-actions .markRead {
+    color: var(--color-primary-1);
+    cursor: pointer;
   }
 
   .notifications {
@@ -39,5 +48,6 @@
 
   .showNotifications {
     display: flex;
+    cursor: default;
   }
 }

@@ -8,7 +8,7 @@ import { PiX } from "react-icons/pi";
 const EditPost = ({ post, onChangeDataHandler }) => {
   // function to increase the heigh
   const [editPostText, setEdipPostText] = useState(post.description);
-  const [editedImages, setEditedImages] = useState(post.images);
+  const [editedImages, setEditedImages] = useState(post.pictures);
   const textareaRef = useRef(null);
 
   const handleInputChange = (e) => {
@@ -40,7 +40,6 @@ const EditPost = ({ post, onChangeDataHandler }) => {
 
   return (
     <div className={classes.Edit}>
-      <PostHeader post={post} type={"modal-post"} />
       <textarea
         ref={textareaRef}
         onChange={handleInputChange}

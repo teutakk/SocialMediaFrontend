@@ -10,6 +10,8 @@ export const data = [
       "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve.",
 
     pictures: [
+      "https://images.unsplash.com/photo-1586348943529-beaae6c28db9?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
+      "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D",
       "https://images.unsplash.com/photo-1675392771657-2cfb43092b72?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDR8SnBnNktpZGwtSGt8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1697462959087-e62e40553882?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDZ8SnBnNktpZGwtSGt8fGVufDB8fHx8fA%3D%3D",
       "https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tfGVufDB8fDB8fHww",
@@ -48,6 +50,7 @@ export const data = [
     description:
       "Pamjet natyrore të Shqipërisë janë të mahnitshme. Sot u bë një ditë e mrekullueshme për një shëtitje në malin e Tomorrit. #Natyrë #Shqipëri",
     pictures: [
+      "https://images.unsplash.com/photo-1493612276216-ee3925520721?auto=format&fit=crop&q=60&w=500&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFuZG9tfGVufDB8fDB8fHww",
       "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fHww",
     ],
     createdAt: "2023-10-26T12:57:22.895Z",

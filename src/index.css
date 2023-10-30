@@ -13,6 +13,8 @@
   --color-primary-1: #003554;
   --color-primary-2: #264653;
 
+  --color-danger: red;
+
   --color-grey-light-1: #fefefa;
   --color-grey-light-2: #e9ecef;
   --color-grey-light-3: #dee2e6;
@@ -62,6 +64,8 @@ body {
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
   background-color: var(--color-grey-light-3);
 }
 

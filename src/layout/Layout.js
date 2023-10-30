@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import classes from "./Layout.module.css";
-import Navigation from "../components/Navigation";
+import Navigation from "../components/header/Navigation";
 import { Outlet, useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 import Rightsidebar from "../components/Rightsidebar";
 const Layout = () => {
   const location = useLocation();
-  console.log(location);
   const custumClass = location.pathname.startsWith("/id")
     ? classes.customClass
     : "";
-  console.log("customClass: ", custumClass);
   return (
     <div className={classes.Layout}>
       <Navigation />

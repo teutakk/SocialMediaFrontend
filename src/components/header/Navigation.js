@@ -2,17 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import classes from "./Navigation.module.css";
-import UserChip from "./UserChip";
-import logo from "../assets/images/starlabs.png";
-import Notifications from "./notifications/Notifications";
+import UserChip from "../UserChip";
+import logo from "../../assets/images/starlabs.png";
+import Notifications from "../notifications/Notifications";
 import SearchBar from "./SearchBar";
-import postify from "../assets/images/postify.png";
+import postify from "../../assets/images/postify.png";
 import { HiXMark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
-import { selectUser, logoutUser } from "../store/slices/authSlice";
+import { selectUser, logoutUser } from "../../store/slices/authSlice";
+import UserDropDownMenu from "./UserDropDownMenu";
 
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
+
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -23,17 +25,15 @@ const Navigation = () => {
   const notificationsRef = useRef(null);
   const notificationsSectionRef = useRef(null);
 
+  const userChipRef = useRef(null);
+  const userDropDownMenuRef = useRef(null);
+
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
   };
 
   const handleShowUserMenu = () => {
     setShowUserMenu((prev) => !prev);
-  };
-
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    navigate("/login");
   };
 
   const handleShowNotifications = (event) => {
@@ -43,10 +43,25 @@ const Navigation = () => {
     }
 
     if (
-      !event.target.closest(`.${notificationsSectionRef.current.classList[0]}`)
+      !event.target.closest(`.${notificationsSectionRef.current?.classList[0]}`)
     ) {
       setShowNotifications((prev) => !prev);
     }
+  };
+
+  const handleShowUserDropDownMenu = (event) => {
+    console.log("userdropdown: ", userDropDownMenuRef);
+    if (
+      !event.target.closest(`.${userDropDownMenuRef.current?.classList[0]}`)
+    ) {
+      setShowUserMenu((prev) => !prev);
+    }
+  };
+
+  const handleLogout = () => {
+    console.log("running");
+    dispatch(logoutUser());
+    navigate("/login");
   };
 
   return (
@@ -150,26 +165,20 @@ const Navigation = () => {
               notificationsSectionRef={notificationsSectionRef}
             />
           </div>
-          <div className={classes.userChip} onClick={handleShowUserMenu}>
+          <div
+            className={classes.userChip}
+            ref={userChipRef}
+            onClick={(e) => handleShowUserDropDownMenu(e)}
+          >
             <UserChip url={loggedInUser?.profilePicture} />
             {showUserMenu && (
-              <div className={classes.userMenu}>
-                <NavLink
-                  className={classes.option}
-                  to={`id/${loggedInUser?._id}`}
-                >
-                  Profile
-                </NavLink>
-                <NavLink className={classes.option} to={"/settings"}>
-                  Settings
-                </NavLink>
-                <div
-                  className={`${classes.option} ${classes.logout}`}
-                  onClick={handleLogout}
-                >
-                  Logout
-                </div>
-              </div>
+              <UserDropDownMenu
+                userDropDownMenuRef={userDropDownMenuRef}
+                handleLogout={handleLogout}
+                userChipRef={userChipRef}
+                showUserMenu={showUserMenu}
+                setShowUserMenu={setShowUserMenu}
+              />
             )}
           </div>
         </div>

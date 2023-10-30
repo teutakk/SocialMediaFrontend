@@ -1,0 +1,40 @@
+.UserDropDownMenu {
+  position: absolute;
+  top: 110%;
+  left: 100%;
+  transform: translateX(-100%);
+  padding: 10px;
+  box-shadow: var(--shadow-image);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background-color: white;
+}
+
+.UserDropDownMenu .option {
+  padding: 5px 10px;
+  background-color: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  color: var(--color-primary-1);
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.option .icon {
+  width: 30px;
+  display: grid;
+  place-content: center;
+  font-size: 24px;
+}
+
+.UserDropDownMenu .option:hover {
+  background-color: rgba(212, 212, 212, 0.3);
+}

@@ -59,3 +59,19 @@ const post = {
     },
   ],
 };
+
+const notification = [
+  {
+    _id: "",
+    type: "friend notif | friendConfirm notif | like notif | comment | notif | share notif etj",
+    notificationSender: {
+      _id: "",
+      firtName: "",
+      lastName: "",
+      profilePicture: "?",
+    },
+    postId: "or commentId",
+
+    content: "if comment, description",
+  },
+];

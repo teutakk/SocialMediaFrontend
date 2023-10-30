@@ -2,16 +2,35 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import classes from "./Modal.module.css";
 import { FaXmark } from "react-icons/fa6";
+import UserChip from "../components/UserChip";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/slices/authSlice";
+
+/**
+ * Modal component.
+ *
+ * @param {object} props - Component props.
+ * @param {React.ReactNode} props.children - Child elements to be rendered within the modal.
+ * @param {boolean} props.showActionButtons - Indicates whether to show action buttons.
+ * @param {function} props.onModalActionHandler - Function to handle modal actions.
+ * @param {boolean} props.showModal - Function that toggles setShowModal from the component called.
+ * @param {React.ReactNode} props.modal - Modal content.
+ * @param {object} props.data - Additional data or properties.
+ * @param {string} props.type - The type of the modal ("EDIT", "SHOW-IMAGE", "SINGLE-POST").
+ *
+ * @returns {JSX.Element} Modal component.
+ */
+
 const Modal = ({
   children,
   showActionButtons,
   onModalActionHandler,
   showModal,
-  modal,
   data,
+  type,
 }) => {
   const [updatedData, setUpdatedData] = useState();
-
+  const loggedInUser = useSelector(selectUser);
   const modalDataChangeHandler = (updatedData) => {
     setUpdatedData(updatedData);
   };
@@ -21,31 +40,42 @@ const Modal = ({
     return () => document.body.classList.remove("hidden");
   }, []);
 
+  let modalClass;
+
+  if (type === "EDIT") {
+    modalClass = "edit";
+  }
+  console.log(type);
+  console.log(modalClass);
   return createPortal(
     <div className={classes.Modal}>
-      <div className={classes["modal-content"]}>
-        <button onClick={showModal} className={classes.close}>
-          <FaXmark />
-        </button>
-        {React.cloneElement(children, {
-          post: data,
-          onChangeDataHandler: modalDataChangeHandler,
-        })}
+      <div className={classes[`modal-content-${modalClass}`]}>
+        <div className={classes["modal-header"]}>
+          {type === "EDIT" && (
+            <div className={classes["modal-main-header"]}>
+              <UserChip heigth={35} width={35} />
+              <p>
+                {loggedInUser.firstName} {loggedInUser.lastName}
+              </p>
+            </div>
+          )}
+          <h3 style={{ flex: "1", textAlign: "center" }} className={classes}>
+            {type === "EDIT" ? "Edit post" : ""}
+          </h3>
+          <button onClick={showModal} className={classes.close}>
+            <FaXmark />
+          </button>
+        </div>
+        <div className={classes["modal-main"]}>
+          {React.cloneElement(children, {
+            post: data,
+            onChangeDataHandler: modalDataChangeHandler,
+          })}
+        </div>
         {showActionButtons && (
           <div className={classes["modal-actions"]}>
             {showActionButtons && (
               <>
-                <button
-                  className={classes.cancel}
-                  onClick={() =>
-                    onModalActionHandler({
-                      action: "cancel",
-                      data,
-                    })
-                  }
-                >
-                  cancel
-                </button>
                 <button
                   className={classes.save}
                   onClick={() =>
@@ -55,7 +85,7 @@ const Modal = ({
                     })
                   }
                 >
-                  save
+                  save changes
                 </button>
               </>
             )}

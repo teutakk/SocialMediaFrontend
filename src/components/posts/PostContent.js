@@ -9,12 +9,10 @@ const PostContent = ({ post, type }) => {
   const showModal = () => {
     setModalOpen((prev) => !prev);
   };
-  console.log("posti content: ", post.pictures);
   // Photo content will control how the photos are shown. Different grids in case of different number of images
   let photoContent;
   // for more than 3
   if (post.pictures?.length > 3) {
-    console.log("running done.");
     photoContent = (
       <div className={classes.ImageHolder} onClick={showModal}>
         <div className={classes.first}>
@@ -133,6 +131,7 @@ const PostContent = ({ post, type }) => {
           showActionButtons={true}
           showModal={showModal}
           modal={modalOpen}
+          type={"SHOW-IMAGEs"}
         >
           <ImageSlider />
         </Modal>

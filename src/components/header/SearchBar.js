@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { data } from "../api/dummyData";
+// import { data } from "../../api/dummyData";
 import search from "./SearchBar.module.css";
 
 function SearchBar() {
