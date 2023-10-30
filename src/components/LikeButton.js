@@ -1,29 +1,31 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { dislikePost, likePost } from "../store/slices/postsSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addLikes, dislikePost, likePost } from "../store/slices/postsSlice";
 import button from "./Button.module.css";
+import { selectUser } from "../store/slices/authSlice";
 // import button from "./Button.module.css";
 
 const LikeButton = ({ post }) => {
   const dispatch = useDispatch();
-  const [like, setLike] = useState(post.likes.length);
+
   const [isLiked, setIsLiked] = useState(false);
+  const loggedInUser = useSelector(selectUser);
 
   const handleLikes = () => {
-    setLike(isLiked ? like - 1 : like + 1); // This can be removed and set the likes array length in Post content
     setIsLiked(!isLiked);
 
     if (!isLiked) {
       // if the user likes the post (Like action)
       const newLike = {
-        username: "user_name",
-        profilePhoto: "img",
-        fullName: "fulln",
+        userId: loggedInUser._id,
+        postId: post._id,
       }; // This is only for example -- update when backend ready!!!
       dispatch(likePost(newLike));
+      // dispatch(addLikes({ postId: post._id, likes: newLike }));
     } else {
+      // console
       // if the user has already liked the post (Dislike action)
-      dispatch(dislikePost(post.id)); // Assuming post.id is used to identify the post
+      dispatch(dislikePost({ postId: post._id, userId: loggedInUser._id })); // Assuming post.id is used to identify the post
     }
   };
 
@@ -48,7 +50,7 @@ const LikeButton = ({ post }) => {
               fill="black"
             />
             <path
-              fill-rule="evenodd"
+              fillRule="evenodd"
               clipRule="evenodd"
               d="M0.598398 6.58608C0.759448 6.57904 0.91699 6.6345 1.03812 6.74087C1.15924 6.84725 1.23458 6.99631 1.2484 7.15692L2.05673 16.5203C2.07042 16.6597 2.05555 16.8004 2.01302 16.9339C1.97048 17.0674 1.90118 17.1909 1.80935 17.2967C1.71752 17.4025 1.60508 17.4885 1.4789 17.5494C1.35272 17.6103 1.21546 17.6448 1.07548 17.6509C0.93551 17.6569 0.795768 17.6344 0.664794 17.5847C0.533819 17.5349 0.41436 17.459 0.313714 17.3615C0.213068 17.264 0.133347 17.1471 0.0794197 17.0178C0.0254925 16.8885 -0.00150883 16.7495 6.50499e-05 16.6094V7.21025C0.000133146 7.04915 0.0624038 6.8943 0.173885 6.77801C0.285366 6.66171 0.437447 6.59296 0.598398 6.58608Z"
               fill="black"

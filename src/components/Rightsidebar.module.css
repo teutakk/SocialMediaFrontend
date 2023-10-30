@@ -4,10 +4,11 @@
   flex-direction: column;
   gap: 19px;
   border-radius: 10px;
-  background: rgba(232, 232, 232, 0.3);
+  background: var(--color-grey-light-1);
+  box-shadow: var(--shadow-type-1);
   padding: 10px;
   align-items: flex-end;
-  width: max-content;
+  max-width: 200px;
   max-height: 83vh;
   overflow-y: auto;
   font-size: 16px;
@@ -44,6 +45,6 @@
 }
 
 .info p {
-  max-width: 90px;
+  /* max-width: 90px; */
   text-align: end;
 }

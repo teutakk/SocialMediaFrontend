@@ -1,0 +1,12 @@
+.Notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+}
+
+.notificationsHolder {
+  border-radius: 10px;
+  box-shadow: var(--shadow-image);
+  overflow: hidden;
+}

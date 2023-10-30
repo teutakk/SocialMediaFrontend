@@ -11,7 +11,8 @@ import classes from "./styles/Login.module.css";
 import CustomInput from "../components/CustomInput";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Login = () => {
   const location = useLocation();
@@ -31,10 +32,8 @@ const Login = () => {
   useEffect(() => {
     if (loginStatus === "succeeded") {
       navigate("/");
-      console.log("running");
     }
     if (loginStatus === "failed") {
-      console.log("invalid credentials", loginError);
     }
   }, [loginStatus]);
 
@@ -48,16 +47,14 @@ const Login = () => {
 
     // dispatching the authenticate postreq with use of redux
     if (formData.email && formData.password) {
-      console.log("running dispatch");
       dispatch(authenticateUser(formData));
     }
   };
 
   return (
     <div className={classes.container}>
+      <span className={classes.photo}></span>
       <div className={classes.formData}>
-        <span className={classes.photo}></span>
-
         <div className={classes.topData}>
           <h2>Log In</h2>
         </div>
@@ -103,10 +100,19 @@ const Login = () => {
             Log In
           </button>
           <p>
-            Don't have an account? <Link to="/register">Sign up</Link>{" "}
+            Don't have an account?{" "}
+            <NavLink className={classes.navlink} to="/register">
+              Sign up
+            </NavLink>
           </p>
         </form>
       </div>
+      <section className={classes.footerSection}>
+        <div className={classes.quote}>
+          Connect, Share, Thrive: Where Social Worlds Unite!
+        </div>
+        <Footer />
+      </section>
     </div>
   );
 };

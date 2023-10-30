@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LikeButton from "../LikeButton";
 import button from "../Button.module.css";
 import classes from "./PostActions.module.css";

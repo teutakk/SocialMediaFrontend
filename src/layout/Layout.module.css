@@ -12,8 +12,13 @@
   padding: 0 10px;
 }
 
+/* this class gets added when we visit profile page, so we dont have a grid system, anymore */
 .customClass {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  width: 100%;
 }
 
 .customClass {
@@ -31,9 +36,15 @@
 @media (min-width: 767px) {
   .main {
     display: grid;
-    grid-template-columns: max-content minmax(auto, max-content);
-    gap: 45px;
-    padding: 10;
+    grid-template-columns: minmax(150px, 200px) auto;
+    gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .customClass {
+    width: 100%;
+    max-width: unset;
   }
 
   /* try to inclde main elment for padding here */
@@ -42,8 +53,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 10px;
-    padding: 0 5px;
     width: 150px;
     grid-column: 1;
   }
@@ -51,7 +60,6 @@
   .right {
     /* display: none; */
     grid-row: 1;
-    margin-right: 10px;
     /* grid-template-columns: 1; */
   }
 
@@ -63,8 +71,7 @@
 @media (min-width: 1000px) {
   .main {
     grid-template-columns: 1fr 2.8fr 1fr;
-    gap: 20px;
-    padding: 0;
+    gap: 30px;
   }
 
   .mainElement {
@@ -73,15 +80,21 @@
 
   .left,
   .right {
-    padding: 0 10px;
     display: flex;
     font-size: 16px;
+  }
+
+  .left {
+    display: flex;
+    width: 100%;
+    /* justify-content: flex-end; */
+    align-items: flex-end;
   }
 
   .right {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     grid-row: unset;
     grid-column: unset;
   }

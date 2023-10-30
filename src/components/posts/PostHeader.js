@@ -1,18 +1,47 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { savePost } from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import EditPost from "./EditPost";
+import Modal from "../../layout/Modal";
+import UserChip from "../UserChip";
+import {
+  formatDistanceToNow,
+  parseISO,
+  format,
+  isToday,
+  isYesterday,
+} from "date-fns";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
+  const [modalOpen, setModalOpen] = useState();
+  const [displayTime, setDisplayTime] = useState("");
+  // function to open and close modal
+  const showModal = () => {
+    setModalOpen((prev) => !prev);
+  };
+
   const handleShowOptions = () => {
     setShowOptions((prev) => !prev);
   };
+
+  const onModalActionHandler = ({ action, data }) => {
+    if (action === "cancel") {
+      setModalOpen(false);
+    }
+
+    if (action === "save") {
+      console.log("sent");
+      setModalOpen(false);
+    }
+  };
+
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
   const handleSave = () => {
@@ -40,17 +69,48 @@ const PostHeader = ({ post, type }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showOptions]);
+  const inputDate = parseISO(post.createdAt);
+  const currentDate = new Date();
+  const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+
+  useEffect(() => {
+    if (timeAgo.includes("minutes")) {
+      // Display time in minutes
+      setDisplayTime(timeAgo);
+    } else if (timeAgo.includes("hour")) {
+      // Display time in hours
+      const hourAgo = timeAgo.replace("hours", "h");
+      setDisplayTime(hourAgo);
+    } else {
+      // Display different formats based on the date
+      if (isToday(inputDate)) {
+        // Display as "hh:mm" if it's today
+        const formattedTime = format(inputDate, "hh:mm");
+        setDisplayTime(formattedTime);
+      } else if (isYesterday(inputDate)) {
+        // Display as "hh:mm" if it's yesterday
+        const formattedTime = format(inputDate, "hh:mm");
+        setDisplayTime(formattedTime);
+      } else {
+        // For other dates, display as "dd MMMM" (e.g., "27 October")
+        const formattedDate = format(inputDate, "dd MMMM");
+        setDisplayTime(formattedDate);
+      }
+    }
+  }, [inputDate, timeAgo]);
 
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <img src={post.profilePhoto} alt="profile " />
+        <UserChip id={post.userId} />
         <div className={classes["user-and-date-posted"]}>
           <p>
-            <strong>{post.userFullName} </strong>
+            <strong>
+              {post.firstName} {post.lastName}
+            </strong>
           </p>
           <div className={classes["date-and-privacy"]}>
-            <span>10.7.2023</span>
+            <span style={{ fontSize: "12px" }}>{displayTime}</span>
           </div>
         </div>
       </div>
@@ -66,6 +126,18 @@ const PostHeader = ({ post, type }) => {
             <BiDotsVerticalRounded />
           </span>
         )}
+        {modalOpen && (
+          <Modal
+            data={post}
+            showActionButtons={true}
+            showModal={showModal}
+            modal={modalOpen}
+            onModalActionHandler={onModalActionHandler}
+            type="EDIT"
+          >
+            <EditPost />
+          </Modal>
+        )}
         <div
           ref={settingsSectionRef}
           className={`${
@@ -74,7 +146,7 @@ const PostHeader = ({ post, type }) => {
               : classes.options
           }`}
         >
-          <button>
+          <button onClick={showModal}>
             <span>
               <CiEdit />
             </span>

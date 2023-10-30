@@ -18,6 +18,8 @@ import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
+import UsersPosts from "./components/profile/UsersPosts";
+import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
 
 const AppRoutes = () => {
@@ -26,7 +28,6 @@ const AppRoutes = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
-      console.log("decodedToken:", decodedToken);
       dispatch(
         authenticateUser({
           email: decodedToken.email,
@@ -41,6 +42,7 @@ const AppRoutes = () => {
       <Route path="login" element={<Login />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />
+        <Route path="posts/:postId" element={<EditPost />} />
         <Route
           path="notifications"
           element={<RequireAuth component={Notifications} />}
@@ -54,7 +56,7 @@ const AppRoutes = () => {
           element={<RequireAuth component={FriendShip} />}
         />
         <Route path="id/:idNumber" element={<Profile />}>
-          <Route index element={<Posts />} />
+          <Route index element={<UsersPosts />} />
           <Route path="about" element={<About />}>
             <Route index element={<Overview />} />
             <Route path="work-and-education" element={<WorkAndEdu />} />

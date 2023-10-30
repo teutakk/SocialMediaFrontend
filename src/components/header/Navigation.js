@@ -2,17 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import classes from "./Navigation.module.css";
-import UserChip from "./UserChip";
-import logo from "../assets/images/starlabs.png";
-import Notifications from "./notifications/Notifications";
+import UserChip from "../UserChip";
+import logo from "../../assets/images/starlabs.png";
+import Notifications from "../notifications/Notifications";
 import SearchBar from "./SearchBar";
-import postify from "../assets/images/postify.png";
+import postify from "../../assets/images/postify.png";
 import { HiXMark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
-import { selectUser, logoutUser } from "../store/slices/authSlice";
+import { selectUser, logoutUser } from "../../store/slices/authSlice";
+import UserDropDownMenu from "./UserDropDownMenu";
 
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
+
   const [showNotifications, setShowNotifications] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
 
@@ -23,18 +25,15 @@ const Navigation = () => {
   const notificationsRef = useRef(null);
   const notificationsSectionRef = useRef(null);
 
+  const userChipRef = useRef(null);
+  const userDropDownMenuRef = useRef(null);
+
   const handleShowNavigation = () => {
     setShowNavigation((prev) => !prev);
   };
 
   const handleShowUserMenu = () => {
     setShowUserMenu((prev) => !prev);
-  };
-
-  const handleLogout = () => {
-    console.log("Loggin out");
-    dispatch(logoutUser());
-    navigate("/login");
   };
 
   const handleShowNotifications = (event) => {
@@ -44,10 +43,25 @@ const Navigation = () => {
     }
 
     if (
-      !event.target.closest(`.${notificationsSectionRef.current.classList[0]}`)
+      !event.target.closest(`.${notificationsSectionRef.current?.classList[0]}`)
     ) {
       setShowNotifications((prev) => !prev);
     }
+  };
+
+  const handleShowUserDropDownMenu = (event) => {
+    console.log("userdropdown: ", userDropDownMenuRef);
+    if (
+      !event.target.closest(`.${userDropDownMenuRef.current?.classList[0]}`)
+    ) {
+      setShowUserMenu((prev) => !prev);
+    }
+  };
+
+  const handleLogout = () => {
+    console.log("running");
+    dispatch(logoutUser());
+    navigate("/login");
   };
 
   return (
@@ -66,6 +80,15 @@ const Navigation = () => {
           <NavLink to={`id/${loggedInUser?._id}`}>Profile</NavLink>
           <NavLink to="friends">Friends</NavLink>
         </ul>
+        <div className={classes.navigationActions}>
+          <NavLink to={`id/${loggedInUser?._id}`}>
+            <UserChip url={loggedInUser?.profilePicuture} />
+            <p>
+              {loggedInUser?.firstName} {loggedInUser?.lastName}
+            </p>
+          </NavLink>
+          <div onClick={handleLogout}>Log Out</div>
+        </div>
         <span
           onClick={() => setShowNavigation(false)}
           className={classes.cancel}
@@ -76,12 +99,15 @@ const Navigation = () => {
       <section className={classes.Navigation}>
         <div className={classes["navigation-left"]}>
           <span onClick={handleShowNavigation}>
-            <svg viewBox="0 0 512 512" fill="#E4B34C">
+            <svg viewBox="0 0 512 512" fill="currentColor">
               <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm64 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm384 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z" />
             </svg>
           </span>
           <NavLink to="" end className={classes["logo-route"]}>
             <img src={postify} alt="postify" />
+            {/* <div className={classes.textLogo}> */}
+            {/* <p>p</p> */}
+            {/* </div> */}
           </NavLink>
         </div>
         <div className={classes["navigation-main"]}>
@@ -123,7 +149,12 @@ const Navigation = () => {
             <div className={classes.notificationsDot}>
               <span className={classes.span}>7</span>
             </div>
-            <svg viewBox="0 0 24 24" fill="#F8BD00" height="32px" width="32px">
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              height="32px"
+              width="32px"
+            >
               <path d="M12 22a2.98 2.98 0 002.818-2H9.182A2.98 2.98 0 0012 22zm7-7.414V10c0-3.217-2.185-5.927-5.145-6.742C13.562 2.52 12.846 2 12 2s-1.562.52-1.855 1.258C7.185 4.074 5 6.783 5 10v4.586l-1.707 1.707A.996.996 0 003 17v1a1 1 0 001 1h16a1 1 0 001-1v-1a.996.996 0 00-.293-.707L19 14.586z" />
             </svg>
             <Notifications
@@ -134,12 +165,20 @@ const Navigation = () => {
               notificationsSectionRef={notificationsSectionRef}
             />
           </div>
-          <div className={classes.userChip} onClick={handleShowUserMenu}>
-            <UserChip url={logo} />
+          <div
+            className={classes.userChip}
+            ref={userChipRef}
+            onClick={(e) => handleShowUserDropDownMenu(e)}
+          >
+            <UserChip url={loggedInUser?.profilePicture} />
             {showUserMenu && (
-              <div className={classes.userMenu}>
-                <button onClick={handleLogout}>Logout</button>
-              </div>
+              <UserDropDownMenu
+                userDropDownMenuRef={userDropDownMenuRef}
+                handleLogout={handleLogout}
+                userChipRef={userChipRef}
+                showUserMenu={showUserMenu}
+                setShowUserMenu={setShowUserMenu}
+              />
             )}
           </div>
         </div>

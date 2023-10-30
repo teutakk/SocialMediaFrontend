@@ -18,16 +18,6 @@ const Sidebar = () => {
               {loggedInUser?.firstName} {loggedInUser?.lastName}
             </strong>
           </p>
-          {/* <p
-            style={{
-              fontSize: "12px",
-              maxWidth: "60px",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-            }}
-          >
-          {loggedInUser?.email}
-          </p> */}
         </div>
       </div>
       <section className={classes["routing-options"]}>
@@ -37,17 +27,8 @@ const Sidebar = () => {
           end
         >
           <span className={classes["route-logo"]}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              // width="28"
-              // height="24"
-              viewBox="0 0 28 24"
-              fill="none"
-            >
-              <path
-                d="M3.6875 0.75C2.94158 0.75 2.22621 1.04632 1.69876 1.57376C1.17132 2.10121 0.875 2.81658 0.875 3.5625V9.1875C0.875 9.93342 1.17132 10.6488 1.69876 11.1762C2.22621 11.7037 2.94158 12 3.6875 12H24.3125C25.0584 12 25.7738 11.7037 26.3012 11.1762C26.8287 10.6488 27.125 9.93342 27.125 9.1875V3.5625C27.125 2.81658 26.8287 2.10121 26.3012 1.57376C25.7738 1.04632 25.0584 0.75 24.3125 0.75H3.6875ZM3.6875 15.75C2.94158 15.75 2.22621 16.0463 1.69876 16.5738C1.17132 17.1012 0.875 17.8166 0.875 18.5625V20.4375C0.875 21.1834 1.17132 21.8988 1.69876 22.4262C2.22621 22.9537 2.94158 23.25 3.6875 23.25H9.3125C10.0584 23.25 10.7738 22.9537 11.3012 22.4262C11.8287 21.8988 12.125 21.1834 12.125 20.4375V18.5625C12.125 17.8166 11.8287 17.1012 11.3012 16.5738C10.7738 16.0463 10.0584 15.75 9.3125 15.75H3.6875ZM18.6875 15.75C17.9416 15.75 17.2262 16.0463 16.6988 16.5738C16.1713 17.1012 15.875 17.8166 15.875 18.5625V20.4375C15.875 21.1834 16.1713 21.8988 16.6988 22.4262C17.2262 22.9537 17.9416 23.25 18.6875 23.25H24.3125C25.0584 23.25 25.7738 22.9537 26.3012 22.4262C26.8287 21.8988 27.125 21.1834 27.125 20.4375V18.5625C27.125 17.8166 26.8287 17.1012 26.3012 16.5738C25.7738 16.0463 25.0584 15.75 24.3125 15.75H18.6875Z"
-                fill="currentColor"
-              />
+            <svg viewBox="0 0 1024 1024" fill="currentColor">
+              <path d="M946.5 505L534.6 93.4a31.93 31.93 0 00-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z" />
             </svg>
           </span>
           <span>Feed</span>
@@ -76,10 +57,7 @@ const Sidebar = () => {
           className={`${classes["route-holder"]} ${classes["route-profile"]}`}
           to={`id/${loggedInUser?._id}`}
         >
-          <span
-            style={{ color: "lightblue", fontSize: "24px" }}
-            className={classes["route-logo"]}
-          >
+          <span style={{ fontSize: "24px" }} className={classes["route-logo"]}>
             <PiUserFill />
           </span>
           <span>Profile</span>
@@ -88,10 +66,7 @@ const Sidebar = () => {
           className={`${classes["route-holder"]} ${classes["route-market"]}`}
           to={"marketplace"}
         >
-          <span
-            style={{ color: "rgb(139,66,78)", width: "24px" }}
-            className={classes["route-logo"]}
-          >
+          <span style={{ width: "24px" }} className={classes["route-logo"]}>
             <svg viewBox="0 0 1024 1024" width={24} fill="currentColor">
               <path d="M882 272.1V144c0-17.7-14.3-32-32-32H174c-17.7 0-32 14.3-32 32v128.1c-16.7 1-30 14.9-30 31.9v131.7a177 177 0 0014.4 70.4c4.3 10.2 9.6 19.8 15.6 28.9v345c0 17.6 14.3 32 32 32h274V736h128v176h274c17.7 0 32-14.3 32-32V535a175 175 0 0015.6-28.9c9.5-22.3 14.4-46 14.4-70.4V304c0-17-13.3-30.9-30-31.9zm-72 568H640V704c0-17.7-14.3-32-32-32H416c-17.7 0-32 14.3-32 32v136.1H214V597.9c2.9 1.4 5.9 2.8 9 4 22.3 9.4 46 14.1 70.4 14.1s48-4.7 70.4-14.1c13.8-5.8 26.8-13.2 38.7-22.1.2-.1.4-.1.6 0a180.4 180.4 0 0038.7 22.1c22.3 9.4 46 14.1 70.4 14.1 24.4 0 48-4.7 70.4-14.1 13.8-5.8 26.8-13.2 38.7-22.1.2-.1.4-.1.6 0a180.4 180.4 0 0038.7 22.1c22.3 9.4 46 14.1 70.4 14.1 24.4 0 48-4.7 70.4-14.1 3-1.3 6-2.6 9-4v242.2zm0-568.1H214v-88h596v88z" />
             </svg>
@@ -102,10 +77,7 @@ const Sidebar = () => {
           className={`${classes["route-holder"]} ${classes["route-market"]}`}
           to={"marketplace"}
         >
-          <span
-            style={{ color: "blueviolet", fontSize: "24px" }}
-            className={classes["route-logo"]}
-          >
+          <span style={{ fontSize: "24px" }} className={classes["route-logo"]}>
             <BsFillBookmarkFill />
           </span>
           <span>Saved</span>

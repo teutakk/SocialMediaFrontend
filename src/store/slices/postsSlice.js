@@ -69,8 +69,13 @@ export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
 export const commentPost = createAsyncThunk(
   "posts/commentPost",
   async (data) => {
-    const response = await axiosInstance.post(API_ROUTES.comment, data);
-    return response.data;
+    try {
+      const response = await axiosInstance.post(API_ROUTES.comment, data);
+      console.log("response", data);
+      return response.data;
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
@@ -113,17 +118,33 @@ export const pinComment = createAsyncThunk("posts/pinComment", async (data) => {
 });
 
 export const likePost = createAsyncThunk("posts/likePost", async (data) => {
-  const response = await axiosInstance.post(
-    API_ROUTES.posts[data.id].likes,
-    data
-  );
-  return response.data;
+  try {
+    const response = await axiosInstance.post(
+      API_ROUTES.posts + "/" + data.postId + "/like",
+      data
+    );
+
+    return response.data;
+  } catch (err) {
+    throw Error(err.message.data.error);
+  }
 });
 
-export const dislikePost = createAsyncThunk("posts/dislikePost", async (id) => {
-  const response = await axiosInstance.delete(API_ROUTES.posts.likes[id]);
-  return response.data;
-});
+export const dislikePost = createAsyncThunk(
+  "posts/dislikePost",
+  async (data) => {
+    try {
+      const response = await axiosInstance.delete(
+        API_ROUTES.posts + `/${data.postId}/unlike`,
+        data
+      );
+      console.log("unliked: ", response.data);
+      return response.data;
+    } catch (err) {
+      console.log("err: ", err);
+    }
+  }
+);
 
 export const sharePost = createAsyncThunk("posts/sharePost", async () => {
   // share logic here
@@ -133,7 +154,27 @@ export const sharePost = createAsyncThunk("posts/sharePost", async () => {
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    addUserInfo: (state, action) => {
+      const postIndex = state.posts.findIndex(
+        (post) => post._id === action.payload.postId
+      );
+      state.posts[postIndex].firstName = action.payload.firstName;
+      state.posts[postIndex].lastName = action.payload.lastName;
+    },
+    addLikes: (state, action) => {
+      const postIndex = state.posts.findIndex(
+        (post) => post._id === action.payload.postId
+      );
+      state.posts[postIndex].likes = action.payload.likes;
+    },
+    addComment: (state, action) => {
+      const postIndex = state.posts.findIndex(
+        (post) => post._id === action.payload.postId
+      );
+      state.posts[postIndex].comments = action.payload.comments;
+    },
+  },
   extraReducers: (builder) => {
     builder
       // Fetching posts, handling all cases of responses
@@ -201,14 +242,9 @@ export const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        const { postId, comment } = action.payload;
-        //finding the post that user wants to add a comment
-        const post = state.posts.find((post) => post.id === postId);
-        if (post) {
-          //adding the comment to the post that was found
-          post.comments.push(comment);
-        }
-        state.comments.push(comment);
+        // const { postId, content, author } = action.payload;
+        // const postIndex = state.posts.findIndex((post) => post._id === postId);
+        // state.posts[postIndex].comments.push({ author, content });
       })
       .addCase(commentPost.rejected, (state, action) => {
         state.status.comment = "failed";
@@ -297,8 +333,14 @@ export const postsSlice = createSlice({
         state.status.like = "loading";
       })
       .addCase(likePost.fulfilled, (state, action) => {
-        state.posts.likes = action.payload;
         state.status.like = "succeeded";
+        // state.posts[action.payload.newLike.postId].likes.push =
+        //   action.payload.newLike;
+        // const postsIndex = state.posts.findIndex(
+        //   (post) => post._id === action.payload.newLike.postId
+        // );
+        // console.log(state.posts[postsIndex].likes);
+        // state.posts[postsIndex].likes.push(action.payload.newLike);
       })
       .addCase(likePost.rejected, (state, action) => {
         state.status.like = "failed";
@@ -325,4 +367,7 @@ export const selectPosts = (state) => state.posts.posts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
+
+export const { addUserInfo, addLikes, addComment } = postsSlice.actions;
+
 export default postsSlice.reducer;

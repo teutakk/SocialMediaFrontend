@@ -1,72 +1,132 @@
 .Modal {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
   z-index: 100;
-}
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  padding: 0px;
 
-.modal-header {
-  display: flex;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  /* position: absolute; */
-  top: 10px;
-  right: 10px;
-}
-
-.Modal .close {
-  position: absolute;
-  z-index: 12;
-  align-self: flex-end;
-  width: 30px;
-  top: 10px;
-  right: 10px;
-  aspect-ratio: 1/1;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
-  border-radius: 100%;
-  border: none;
   display: grid;
   place-content: center;
 }
 
-.modal-content {
-  /* height: 100%; */
-  /* height: 90%; */
-  width: 100%;
-  overflow-y: auto;
-  padding: 10px 20px;
-  gap: 5px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+.Modal .close {
+  background-color: rgba(10, 10, 10, 0.3);
+  border-radius: 100%;
+  width: 29px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  border: none;
+  justify-self: flex-end;
+  margin-left: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 101;
 }
 
-.modal-actions {
+.modal-content-show-post .modal-main {
+  height: 100%;
+}
+
+.Modal .modal-actions {
   display: none;
 }
 
 @media (min-width: 767px) {
   .Modal {
-    padding: 20px;
+    padding: 40px;
   }
-  .modal-content {
-    height: calc(100% - 80px);
-    border-radius: 20px;
+  /* STYLING FOR EDIT POST */
+  .modal-content-edit {
+    height: auto;
+    width: auto;
+    min-height: 200px;
+    min-width: 500px;
+    max-width: 850px;
     background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px 10px;
+  }
+
+  .modal-content-edit .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .modal-content-edit .modal-main {
+    /* height: auto; */
+    height: 60vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-content-edit-no-img .modal-main {
+    height: auto;
+  }
+
+  .Modal .modal-actions {
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
   }
 
   .Modal .close {
+    /* position: relative; */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* inset: unset; */
+  }
+
+  .modal-header .modal-header-user-holder {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-header-user-holder p {
+    font-weight: 500;
+  }
+
+  .modal-header h3 {
+    flex: 1;
+  }
+
+  .Modal .save {
+    min-width: 150px;
+    background-color: var(--color-primary-1);
+    border-radius: 10px;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font: inherit;
+  }
+
+  /* STYLING FOR SHOW FULL POST */
+  .modal-content-show-post {
+    background-color: white;
+    height: 100%;
+    max-height: 85vh;
     position: relative;
-    z-index: unset;
-    top: unset;
-    right: unset;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .modal-content-show-post .modal-main {
+    height: calc(85vh - 100px);
   }
 }

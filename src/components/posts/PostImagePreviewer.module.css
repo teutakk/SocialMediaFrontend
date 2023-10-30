@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.ImagePreviewer::-webkit-scrollbar {
+  height: 4px;
+}
+
 .ImageHolder {
   box-shadow: var(--shadow-image);
   border-radius: 10px;

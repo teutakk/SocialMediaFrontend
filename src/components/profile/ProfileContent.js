@@ -4,7 +4,6 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 const ProfileContent = () => {
   const params = useParams();
   const activeRoute = params.id && params["*"];
-  console.log(activeRoute);
 
   return (
     <section className={classes["profile-content"]}>

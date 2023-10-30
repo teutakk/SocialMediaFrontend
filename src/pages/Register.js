@@ -49,7 +49,6 @@ const Register = () => {
   }, []);
 
   useEffect(() => {
-    console.log("userStatus", userStatus);
     if (userStatus === "succeeded") {
       navigate("/login?registrationsuccess");
     }

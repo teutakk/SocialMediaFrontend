@@ -12,7 +12,6 @@ export const fetchUserProfile = createAsyncThunk(
   "profilePage/fetchUserProfile",
   async (id) => {
     try {
-      console.log(id);
       const response = await axiosInstance.get(API_ROUTES.users + id);
       return response.data;
     } catch (err) {

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Lumanosimo&family=Playpen+Sans:wght@600;700;800&family=Pacifico&family=Roboto&display=swap");
 
 *,
 *::before,
@@ -10,28 +10,48 @@
 
 :root {
   /* set up the colors of project, those are not the actual colors of our project */
-  --color-primary: red;
-  --color-primary-light: blue;
-  --color-primary-dark: green;
+  --color-primary-1: #6582ba;
+  --color-primary-2: #264653;
 
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: -#ccc;
+  --color-danger: red;
 
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
+  --color-grey-light-1: #fefefa;
+  --color-grey-light-2: #e9ecef;
+  --color-grey-light-3: #dee2e6;
+  --color-grey-light-4: #ced4da;
+  --color-grey-light-5: #adb5bd;
+
+  --color-grey-dark-1: #212529;
+  --color-grey-dark-2: #343a40;
+  --color-grey-dark-3: #495057;
+  --color-grey-dark-4: #6c757d;
 
   /* set up any shadow we will use  */
 
   --shadow-image: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-
+  --shadow-type-2: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  --shadow-type-3: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  --shadow-type-4: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  /* check shadow under */
+  --shadow-type-5: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  --shadow-type-6: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  --shadow-type-7: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  --shadow-type-8: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px,
+    rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  --shadow-type-9: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+  --shadow-type-1: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+    rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   /* here we setup breakpoints for media queries, those are not the real values */
   --breakpoint-notepad: 800px;
   --breakpoint-phone: 500px;
-  color: #213547;
+  color: #212529;
   scroll-behavior: smooth;
+  background-color: rgba(121, 121, 121, 0.3);
 }
 
 #portal {
@@ -43,6 +63,10 @@ body {
   font-family: "Montserrat", sans-serif;
   position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  background-color: var(--color-grey-light-3);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -10,45 +10,35 @@ import {
 import { BiSolidSchool } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { selectProfilePageUser } from "../../../store/slices/profileSlice";
+import AddInfo from "../AddInfo";
 const Overview = () => {
   const profilePageUser = useSelector(selectProfilePageUser);
-  console.log("profilePageUser", profilePageUser);
   const data = [
     {
-      content: "Studies Electric power at Universiteti i Prishtines",
-      subContent: "Started in 2015",
-      logo: <PiGraduationCapLight />,
+      title: "University",
+      content: "Add university",
     },
     {
-      content: "Went to Gjimnazi Hamez Jashari in Skënderaj",
-      subContent: "Finished in 2015",
-      logo: <BiSolidSchool />,
+      title: "High school",
+      content: "Add high school",
     },
     {
-      content: "Lives in Skënderaj",
-      subContent: null,
-      logo: <PiMapPin />,
+      title: "Birthplace",
+      content: "Add a birthplace",
     },
     {
-      content: "From Kosovo",
-      subContent: null,
-      logo: <PiMapPin />,
+      title: "Country",
+      content: "Add a country",
     },
     {
-      content: "+383 49 69247420",
-      subContent: "Mobile",
-      logo: <PiPhoneCall />,
+      title: "Phone",
+      content: "Add a phone number",
     },
   ];
   return (
     <div className={classes.Overview}>
       {data.map((bullet, i) => (
-        <Bullet
-          key={i}
-          content={bullet.content}
-          subContent={bullet.subContent}
-          logo={bullet.logo}
-        />
+        <AddInfo key={i} title={bullet.content} content={bullet.content} />
       ))}
     </div>
   );

@@ -8,6 +8,10 @@
   margin: 0 auto;
 }
 
+.content-options {
+  background-color: white;
+}
+
 .profile-content .content-main {
   display: flex;
   flex-direction: column;
