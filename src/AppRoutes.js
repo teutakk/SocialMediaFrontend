@@ -20,6 +20,7 @@ import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
+import Page404 from "./pages/Page-404";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -65,6 +66,7 @@ const AppRoutes = () => {
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
+      <Route path="*" element={<RequireAuth component={Page404} />} />
     </Routes>
   );
 };
