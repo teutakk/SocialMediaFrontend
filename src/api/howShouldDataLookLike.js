@@ -21,16 +21,15 @@ const user = {
 const post = {
   _id: "",
   userId: "",
-  firstName: "",
-  lastName: "",
+  author: "",
   description: "",
   pictures: [{}, {}],
   likes: [
     {
       _id: "",
       userId: "",
-      firstName: "",
-      lastName: "",
+      author: "",
+      profilePicture: "",
     },
   ],
   comments: [
@@ -38,8 +37,7 @@ const post = {
       _id: "",
       userId: "",
       profilePicture: "?when we complete the saving of images",
-      firstName: "",
-      lastName: "",
+      author: "",
       likes: [
         {
           _id: "",

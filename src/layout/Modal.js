@@ -44,6 +44,8 @@ const Modal = ({
 
   if (type === "EDIT") {
     modalClass = "edit";
+  } else if (type === "SHOW-FULL-POST") {
+    modalClass = "show-post";
   }
 
   console.log(data.pictures.length > 0);
@@ -55,7 +57,7 @@ const Modal = ({
         }`}
       >
         <div className={classes["modal-header"]}>
-          <div className={classes["modal-main-header"]}>
+          <div className={classes["modal-header-user-holder"]}>
             {type === "EDIT" && (
               <>
                 <UserChip heigth={35} width={35} />
@@ -64,13 +66,13 @@ const Modal = ({
                 </p>
               </>
             )}
-            <h3 style={{ textAlign: "center" }} className={classes.title}>
-              {type === "EDIT" ? "Edit post" : ""}
-            </h3>
-            <button onClick={showModal} className={classes.close}>
-              <FaXmark />
-            </button>
           </div>
+          <h3 className={classes.title}>
+            {type === "EDIT" ? "Edit post" : ""}
+          </h3>
+          <button onClick={showModal} className={classes.close}>
+            <FaXmark />
+          </button>
         </div>
         <div className={classes["modal-main"]}>
           {React.cloneElement(children, {

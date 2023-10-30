@@ -19,6 +19,7 @@ import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
 import UsersPosts from "./components/profile/UsersPosts";
+import EditPost from "./components/posts/EditPost";
 
 const AppRoutes = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const AppRoutes = () => {
       <Route path="login" element={<Login />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />
+        <Route path="posts/:postId" element={<EditPost />} />
         <Route
           path="notifications"
           element={<RequireAuth component={Notifications} />}

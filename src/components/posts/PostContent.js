@@ -128,10 +128,10 @@ const PostContent = ({ post, type }) => {
       {modalOpen && (
         <Modal
           data={post}
-          showActionButtons={true}
+          showActionButtons={false}
           showModal={showModal}
           modal={modalOpen}
-          type={"SHOW-IMAGEs"}
+          type={"SHOW-FULL-POST"}
         >
           <ImageSlider />
         </Modal>

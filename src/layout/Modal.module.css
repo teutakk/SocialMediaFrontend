@@ -1,22 +1,51 @@
+.Modal {
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  width: 100%;
+  padding: 0px;
+
+  display: grid;
+  place-content: center;
+}
+
+.Modal .close {
+  background-color: rgba(10, 10, 10, 0.3);
+  border-radius: 100%;
+  width: 29px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  border: none;
+  justify-self: flex-end;
+  margin-left: auto;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 101;
+}
+
+.modal-content-show-post .modal-main {
+  height: 100%;
+}
+
+.Modal .modal-actions {
+  display: none;
+}
+
 @media (min-width: 767px) {
   .Modal {
-    position: fixed;
-    z-index: 100;
-    background-color: rgba(0, 0, 0, 0.7);
-    height: 100%;
-    width: 100%;
     padding: 40px;
-
-    display: grid;
-    place-content: center;
   }
-
+  /* STYLING FOR EDIT POST */
   .modal-content-edit {
     height: auto;
     width: auto;
     min-height: 200px;
     min-width: 500px;
-    max-width: 1050px;
+    max-width: 850px;
     background-color: white;
     border-radius: 10px;
     display: flex;
@@ -45,32 +74,34 @@
     height: auto;
   }
 
-  .modal-main-header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .modal-header .close {
-    background-color: rgba(10, 10, 10, 0.3);
-    border-radius: 100%;
-    width: 29px;
-    aspect-ratio: 1/1;
-    display: grid;
-    place-content: center;
-    border: none;
-    justify-self: flex-end;
-    margin-left: auto;
-  }
-
-  .modal-content-edit .modal-actions {
+  .Modal .modal-actions {
     min-height: 30px;
     display: flex;
     justify-content: center;
   }
 
-  .modal-content-edit .save {
+  .Modal .close {
+    /* position: relative; */
+    background-color: rgba(0, 0, 0, 0.2);
+    /* inset: unset; */
+  }
+
+  .modal-header .modal-header-user-holder {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .modal-header-user-holder p {
+    font-weight: 500;
+  }
+
+  .modal-header h3 {
+    flex: 1;
+  }
+
+  .Modal .save {
     min-width: 150px;
     background-color: var(--color-primary-1);
     border-radius: 10px;
@@ -78,5 +109,24 @@
     border: none;
     text-transform: uppercase;
     font: inherit;
+  }
+
+  /* STYLING FOR SHOW FULL POST */
+  .modal-content-show-post {
+    background-color: white;
+    height: 100%;
+    max-height: 85vh;
+    position: relative;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 1200px;
+    padding: 5px 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .modal-content-show-post .modal-main {
+    height: calc(85vh - 100px);
   }
 }
