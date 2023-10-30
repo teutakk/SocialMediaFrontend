@@ -1,0 +1,34 @@
+.dataError{
+    display: flex;  
+    margin: 0 auto;
+    height: 100%;
+    padding: 14%;
+}
+.dataImage{
+    background: url("../../assets/images/search.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 20%;
+}
+.dataText{    
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column  ;
+    align-items: center;
+    justify-content: center;
+    gap: max(15px, 1vw);
+    width: 50%;
+}
+.paragraph{
+   font-size: max(40px, 3vw);
+   text-align: center;
+}
+.text{
+    text-align: center;
+    line-height: 1.7;
+}
+.link{
+    padding: 10px;
+    border: 2px solid #fff;
+}
