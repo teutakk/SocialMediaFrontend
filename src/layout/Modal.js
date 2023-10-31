@@ -61,9 +61,7 @@ const Modal = ({
             {type === "EDIT" && (
               <>
                 <UserChip heigth={35} width={35} />
-                <p>
-                  {loggedInUser.firstName} {loggedInUser.lastName}
-                </p>
+                <p>{loggedInUser?.author}</p>
               </>
             )}
           </div>

@@ -24,11 +24,8 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
     e.target.style.height = e.target.scrollHeight + "px";
   };
 
-  const removeImageHandler = (id) => {
-    console.log("running: ", id);
-    const updatedImages = [...editedImages];
-    updatedImages.pop(id, 1);
-    console.log(updatedImages);
+  const removeImageHandler = (image) => {
+    const updatedImages = editedImages.filter((img) => img !== image);
     setEditedImages(updatedImages);
   };
 
@@ -39,6 +36,8 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
     textareaRef.current.setSelectionRange(textAreaLength, textAreaLength);
     textareaRef.current.focus();
   }, []);
+
+  useEffect(() => {}, [editedImages]);
 
   return (
     <div className={classes.Edit}>
@@ -54,7 +53,7 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
             {editedImages.map((image, i) => {
               return (
                 <div key={i} className={classes.image}>
-                  <span onClick={() => removeImageHandler(i)}>
+                  <span onClick={() => removeImageHandler(image)}>
                     <PiX />
                   </span>
                   <img src={image} />
