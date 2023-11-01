@@ -11,14 +11,17 @@ import {
 } from "../store/slices/friendshipSlice";
 import FriendList from "../components/friendship/FriendList";
 import { selectUser } from "../store/slices/authSlice";
+import classes from "./styles/Friendship.module.css"
+import {FaSpinner} from "react-icons/fa"
 
 const FriendShip = () => {
   const [showRequest, setShowRequest] = useState(true);
   const [users, setUsers] = useState([])
+  const [loadingStates, setLoadingStates] = useState({})
 
   const selectedUser = useSelector(selectUser)
-  const friends = useSelector(state => state.friendship.friends)
-  console.log(friends);
+  const pendingRequests = useSelector(state => state.friendship.pendingRequests)
+  console.log("pendingRequests", pendingRequests);
   const userId = selectedUser?._id
 
   useEffect(() => {
@@ -31,17 +34,21 @@ const FriendShip = () => {
     setShowRequest(!showRequest);
   };
 
-  const handleFetchFriends = (userId) => {
-    dispatch(fetchFriends(userId)).then((response) => {
-      setUsers(response.payload.data)
-      console.log(users); 
-    })
-    console.log(userId);
-  }
+  
 
   useEffect(() => {
-    handleFetchFriends(userId)
-  }, [])
+    const handleFetchFriends = () => {
+        try {
+          dispatch(fetchFriends(userId)).then((response) => {
+            setUsers(response.payload.data);
+        })
+        console.log(userId);
+      } catch (error) {
+      console.log(error);
+      }
+    }
+    handleFetchFriends()
+  }, [dispatch, userId])
 
   const handleSendFriendRequest = (friendRequestData) => {
     dispatch(sendFriendRequestAsync(friendRequestData));
@@ -49,14 +56,16 @@ const FriendShip = () => {
   };
 
   const handleAcceptFriendRequest = ({rid, senderUserId, status}) => {
+    setLoadingStates({ ...loadingStates, [rid]: true });
     dispatch(acceptFriendRequestAsync({
       rid: rid,
       senderUserId: senderUserId,
       status: status
-    })).then((response) => console.log(response.payload)
-      ).catch((error) => {
+    })).then((response) => {console.log(response.payload);  setLoadingStates({ ...loadingStates, [rid]: false }) })  
+      .catch((error) => {
         console.log(error);
-      })
+        setLoadingStates({ ...loadingStates, [rid]: false });
+      }) 
   }
 
   const handleRejectFriendRequest = (friendId) => {
@@ -68,26 +77,41 @@ const FriendShip = () => {
     console.log(friendId);
   }
 
-
   return (
     <div>
       <h3>Friend Requests</h3>
-      {users?.map((relation) => {
-        return(
+      {pendingRequests?.map((relation) => {
+        return (
           <div key={relation._id}>
             <div>
               {relation?.requestFrom && (
                 <div>
                   <div>
                     <FriendList name={relation.requestFrom?.firstName} />
-                    <button onClick={() => handleAcceptFriendRequest({senderUserId: relation.requestFrom._id, rid: relation._id, status: "Accepted"})}>Accept Friend</button>
-                    {/* <button onClick={() => handleRejectFriendRequest(user.requestFrom?._id)}>Reject Friend</button> */}
+                    {loadingStates[relation._id] ?
+                      <button className={classes.button}><span><FaSpinner className={classes.spinner} /> </span></button>
+                      :
+                      <button
+                      className={classes.button}
+                        onClick={() =>
+                          handleAcceptFriendRequest({
+                            senderUserId: relation.requestFrom._id,
+                            rid: relation._id,
+                            status: "Accepted",
+                          })
+                        }
+                      >
+                        Accept Friend
+                      </button>
+                      
+                    }
                   </div>
+
                 </div>
               )}
             </div>
           </div>
-        )
+        );
       })}
     </div>
   );

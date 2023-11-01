@@ -103,7 +103,8 @@ const friendshipSlice = createSlice({
         console.log("Pending");
       })
       .addCase(fetchFriends.fulfilled, (state, action) => {
-        state.friends = action.payload;
+        state.pendingRequests = action.payload.data;
+        console.log(action.payload.data);
         state.loading = "succeeded";
       })
       .addCase(fetchFriends.rejected, (state, action) => {

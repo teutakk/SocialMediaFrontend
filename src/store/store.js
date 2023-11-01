@@ -30,17 +30,11 @@ const store = configureStore({
     authentication: authSlice,
     register: registerSlice,
     posts: postsSlice,
-    friendship: persistedFriendshipSlice,
+    friendship: friendshipSlice,
     profile: profileSlice,
-  },
-  middleware: (getDefaultMiddleware) =>
-  getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+  }
 });
 
-const persistor = persistStore(store)
+// const persistor = persistStore(store)
 
-export {store , persistor};
+export default store;

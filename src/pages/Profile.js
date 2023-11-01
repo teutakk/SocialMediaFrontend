@@ -76,7 +76,7 @@ const Profile = () => {
             {profilePageUser?.firstName} {profilePageUser?.lastName}
           </h3>
           <span>13 friends</span>
-          <div className={classes.actions}>
+          {<div className={classes.actions}>
             {loggedInUser._id !== profilePageUser._id && (
               <button
                 style={{ color: "red" }}
@@ -88,7 +88,7 @@ const Profile = () => {
             {loggedInUser._id === profilePageUser._id && (
               <button>Edit Profile</button>
             )}
-          </div>
+          </div>}
         </div>
       </section>
       <div className={classes["content-options"]}>
