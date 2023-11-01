@@ -4,11 +4,9 @@
   flex-direction: column;
   background-color: white;
   padding: 10px;
-  border-radius: 20px;
   gap: 10px;
   width: 100%;
   max-width: 680px;
-  border-radius: 10px;
   background: var(--color-grey-light-1);
   box-shadow: var(--shadow-type-1);
 }
@@ -52,6 +50,12 @@
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
+}
+
+@media (min-width: 460px) {
+  .CreatePost {
+    border-radius: 15px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./PostImagePreviewer.module.css";
+import { PiX } from "react-icons/pi";
 
 const PostImagePreviewer = ({
   imagePreviews,
@@ -26,7 +27,7 @@ const PostImagePreviewer = ({
               onClick={() => handleRemoveImage(index)}
               className={classes.removeImage}
             >
-              x
+              <PiX />
             </span>
             <img
               src={preview}

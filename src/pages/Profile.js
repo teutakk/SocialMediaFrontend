@@ -7,6 +7,7 @@ import { selectUser } from "../store/slices/authSlice";
 import {
   fetchUserProfile,
   selectProfilePageUser,
+  selectProfilePageUserStatus,
   setUser,
 } from "../store/slices/profileSlice";
 import axiosInstance from "../api/axiosInstance";
@@ -16,6 +17,7 @@ const Profile = () => {
   const params = useParams();
   const navigate = useNavigate();
   const profilePageUser = useSelector(selectProfilePageUser);
+  const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
   // get user from profileSlice
@@ -27,6 +29,12 @@ const Profile = () => {
     // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
     dispatch(fetchUserProfile(`/${params.idNumber}`));
   }, [params.idNumber]);
+
+  useEffect(() => {
+    if (profilePageUserStatus === "failed") {
+      navigate(`/404?${params.idNumber}doesNotExist`);
+    }
+  }, [profilePageUserStatus]);
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>

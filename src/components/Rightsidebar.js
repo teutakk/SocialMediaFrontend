@@ -30,11 +30,9 @@ const Rightsidebar = () => {
             key={friend._id}
             className={classes["one-friend"]}
           >
-            <div className={classes.info}>
-              <p>
-                {friend.firstName} {friend.lastName}
-              </p>
-            </div>
+            <p>
+              {friend.firstName} {friend.lastName}
+            </p>
             <UserChip width={40} heigth={40} url={friend.profilePicture} />
           </NavLink>
         ))}

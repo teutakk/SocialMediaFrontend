@@ -105,9 +105,7 @@ const PostHeader = ({ post, type }) => {
         <UserChip id={post.userId} />
         <div className={classes["user-and-date-posted"]}>
           <p>
-            <strong>
-              {post.firstName} {post.lastName}
-            </strong>
+            <strong>{post.author}</strong>
           </p>
           <div className={classes["date-and-privacy"]}>
             <span style={{ fontSize: "12px" }}>{displayTime}</span>

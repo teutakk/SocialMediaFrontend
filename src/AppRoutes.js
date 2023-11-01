@@ -28,6 +28,7 @@ const AppRoutes = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const decodedToken = jwtDecode(token);
+      console.log(decodedToken);
       dispatch(
         authenticateUser({
           email: decodedToken.email,
@@ -66,6 +67,7 @@ const AppRoutes = () => {
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
+      <Route path="404" element={<RequireAuth component={Page404} />} />
       <Route path="*" element={<RequireAuth component={Page404} />} />
     </Routes>
   );

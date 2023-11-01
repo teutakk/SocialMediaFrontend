@@ -5,7 +5,6 @@
   width: 100%;
   max-width: 680px;
   padding: 20px;
-  border-radius: 10px;
   box-shadow: var(--shadow-type-1);
   background: var(--color-grey-light-1);
 }
@@ -15,6 +14,12 @@
   background-color: unset;
   padding: 0;
   border-radius: unset;
+}
+
+@media (min-width: 460px) {
+  .SinglePost {
+    border-radius: 15px;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
