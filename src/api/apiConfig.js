@@ -6,6 +6,7 @@ const API_ROUTES = {
   register: "/auth/register",
   posts: "/posts",
   users: "/users",
+  user: "/users/",
   post: "/post",
   comment: "/comments",
   friendRequest: "/friend-request",

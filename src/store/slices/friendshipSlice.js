@@ -5,6 +5,7 @@ import axiosInstance from "../../api/axiosInstance";
 const initialState = {
   friends: [],
   pendingRequests: [],
+  sentRequests: [],
   error: null,
   loading: "idle",
 };
@@ -115,7 +116,9 @@ const friendshipSlice = createSlice({
         console.log("Friend request pending...");
       })
       .addCase(sendFriendRequestAsync.fulfilled, (state, action) => {
-        state.pendingRequests = action.payload;
+        state.sentRequests = action.payload.data;
+
+        console.log(action.payload.data);
         state.loading = "succeeded";
         console.log("Friend request successful");
 
@@ -130,8 +133,16 @@ const friendshipSlice = createSlice({
       }) 
       .addCase(acceptFriendRequestAsync.fulfilled, (state, action) => {
         state.friends = action.payload;
+        state.pendingRequests = state.pendingRequests.filter(
+          (friend) => friend.requestFrom._id !== action.payload.senderUserId
+        );
+        console.log(action.payload.senderUserId);
         state.loading = "succeeded";
-      }) 
+      })
+      .addCase(acceptFriendRequestAsync.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message;
+      })
       .addCase(removeFriendRequestAsync.pending, (state) => {
         console.log("Remove friend request pending");
       })

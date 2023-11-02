@@ -8,11 +8,15 @@ import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
 
 const Bullet = ({ content, subContent, logo }) => {
+  
   const params = useParams();
-  console.log(params);
-  const loggedInUser = useSelector(selectUser);
   const location = useLocation()
+
+  console.log(params);
+
+  const loggedInUser = useSelector(selectUser);
   const path = location.pathname
+
   return (
     <div
       className={`${classes["overview-bullet"]} ${

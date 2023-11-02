@@ -9,23 +9,23 @@ import {
   selectProfilePageUser,
   setUser,
 } from "../store/slices/profileSlice";
-import axiosInstance from "../api/axiosInstance";
-import { API_ROUTES } from "../api/apiConfig";
 import { fetchFriends, sendFriendRequestAsync } from "../store/slices/friendshipSlice";
 
 const Profile = () => {
 
   const [users, setUsers] = useState([])
-
+  const [isSentRequest, setIsSentRequest] = useState(false)
   const params = useParams();
   const dispatch = useDispatch();
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  
   const profilePageUser = useSelector(selectProfilePageUser);
+  const sentRequests = useSelector((state) => state.friendship.sentRequests)
   const loggedInUser = useSelector(selectUser);
+  console.log(sentRequests);
 
   const userId = loggedInUser?._id
 
@@ -40,26 +40,28 @@ const Profile = () => {
   }, [userId])
 
   const handleSendFriendRequest = () => {
+    setIsSentRequest(false)
     dispatch(
       sendFriendRequestAsync({
         recipientUserId: profilePageUser._id,
         senderUserId: loggedInUser._id,
       })
-      ).then((response) => 
-        response.payload
-      ).catch((error) => {
+      ).then((response) =>  {
+          if(response.payload){
+          setIsSentRequest(true)
+        }})
+      .catch((error) => {
         console.log(error);
+        setIsSentRequest(false)
       })
   }
 
-  // console.log(isSentRequest);
   // get user from profileSlice
   useEffect(() => {
     // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
     dispatch(fetchUserProfile(`/${params.idNumber}`));
   }, [params.idNumber]);
 
-  // nese ekziston id e userit tek requestTo ne persist ose ne requestFrom athere aty shfaqe buttonin cancel Request always 
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -75,15 +77,14 @@ const Profile = () => {
           <h3>
             {profilePageUser?.firstName} {profilePageUser?.lastName}
           </h3>
-          <span>13 friends</span>
           {<div className={classes.actions}>
             {loggedInUser._id !== profilePageUser._id && (
               <button
                 style={{ color: "red" }}
                 onClick={handleSendFriendRequest}
               >
-               Add Friend
-              </button>
+              {isSentRequest ? "Cancel Request" : "Add Friend"}
+              </button> 
             )}
             {loggedInUser._id === profilePageUser._id && (
               <button>Edit Profile</button>
