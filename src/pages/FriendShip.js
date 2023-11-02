@@ -23,10 +23,6 @@ const FriendShip = () => {
   console.log("pendingRequests", pendingRequests);
   const userId = selectedUser?._id;
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
