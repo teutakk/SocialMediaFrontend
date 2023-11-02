@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -14,7 +14,6 @@ import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
 import Contacts from "./components/profile/friends/Contacts";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
-import jwtDecode from "jwt-decode";
 import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";

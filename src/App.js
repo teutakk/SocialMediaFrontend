@@ -7,6 +7,8 @@ import jwtDecode from "jwt-decode";
 import { logInWithToken, selectUser } from "./store/slices/authSlice";
 import axiosInstance from "./api/axiosInstance";
 import { API_ROUTES } from "./api/apiConfig";
+import ScrollToTop from "./ScrollToTop";
+
 function App() {
   const dispatch = useDispatch();
   const loggedInUser = useSelector(selectUser);
