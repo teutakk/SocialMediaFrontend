@@ -7,14 +7,11 @@ import FriendShip from "./pages/FriendShip";
 import RequireAuth from "./components/RequireAuth";
 import Layout from "./layout/Layout";
 import Profile from "./pages/Profile";
-import ProfileContent from "./components/profile/ProfileContent";
 import About from "./components/profile/about/About";
 import Overview from "./components/profile/about/Overview";
 import Friends from "./components/profile/friends/Friends";
 import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
 import Contacts from "./components/profile/friends/Contacts";
-import { useDispatch } from "react-redux";
-import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
@@ -24,20 +21,6 @@ import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
 
 const AppRoutes = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      console.log(decodedToken);
-      dispatch(
-        authenticateUser({
-          email: decodedToken.email,
-          password: decodedToken.password,
-        })
-      );
-    }
-  }, []);
   return (
     <Routes>
       <Route path="register" element={<Register />} />

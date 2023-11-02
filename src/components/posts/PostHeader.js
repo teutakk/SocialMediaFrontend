@@ -147,7 +147,7 @@ const PostHeader = ({ post, type }) => {
               : classes.options
           }`}
         >
-          {loggedInUser._id === post.userId && (
+          {loggedInUser?._id === post.userId && (
             <button onClick={showModal}>
               <span>
                 <CiEdit />
@@ -167,7 +167,7 @@ const PostHeader = ({ post, type }) => {
             </span>
             <p>save</p>
           </button>
-          {loggedInUser._id === post.userId && (
+          {loggedInUser?._id === post.userId && (
             <button>
               <span>
                 <MdDelete />
