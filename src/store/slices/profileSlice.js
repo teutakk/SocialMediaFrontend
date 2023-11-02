@@ -46,6 +46,8 @@ const profileSlice = createSlice({
 });
 
 export const selectProfilePageUser = (state) => state.profile.user;
+export const selectProfilePageUserStatus = (state) => state.profile.status;
+export const selectProfilePageUserError = (state) => state.profile.error;
 
 export const { setUser } = profileSlice.actions;
 

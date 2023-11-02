@@ -77,8 +77,8 @@
   }
 
   .modal-content-edit .modal-main {
-    /* height: auto; */
-    height: 60vh;
+    height: auto;
+    max-height: 60vh;
     display: flex;
     justify-content: space-between;
     flex-direction: column;

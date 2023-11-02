@@ -2,13 +2,14 @@
   display: flex;
   position: fixed;
   flex-direction: column;
-  gap: 19px;
+  gap: 10px;
   border-radius: 10px;
   background: var(--color-grey-light-1);
   box-shadow: var(--shadow-type-1);
   padding: 10px;
   align-items: flex-end;
   max-width: 200px;
+  height: auto;
   max-height: 83vh;
   overflow-y: auto;
   font-size: 16px;
@@ -16,7 +17,7 @@
 
 .friends-holder {
   overflow-y: scroll;
-  height: 80vh;
+  height: auto;
   display: flex;
   flex-direction: column;
 }
@@ -32,6 +33,10 @@
   align-items: center;
   padding: 5px 10px;
   border-radius: 10px;
+}
+
+.one-friend p {
+  width: calc(100% - 60px);
 }
 
 .one-friend:hover {

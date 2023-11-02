@@ -87,7 +87,7 @@ const PostContent = ({ post, type }) => {
 
   let likesContent;
 
-  if (post.likes?.length > 5) {
+  if (post.likes?.length >= 3) {
     likesContent = (
       <div className={classes.likesHolder}>
         <span className={classes.logo}>
@@ -109,13 +109,21 @@ const PostContent = ({ post, type }) => {
           />
         </span>
         <p>
-          <strong>Endrit</strong> and {post.likes?.length - 1} others like this
+          {post.likes[0].author} and {post.likes?.length - 1} others like this
           post.
         </p>
       </div>
     );
-  } else {
-    likesContent = <p>{post.likes?.length} liked this post</p>;
+  } else if (post.likes.length === 2) {
+    likesContent = (
+      <p>
+        {post.likes[0].author} and {post.likes[1].author} liked this post
+      </p>
+    );
+  } else if (post.likes.length === 1) {
+    likesContent = <p>{post.likes[0]?.author} liked this post</p>;
+  } else if (post.likes.length === 0) {
+    likesContent = <p>0 likes</p>;
   }
 
   return (
