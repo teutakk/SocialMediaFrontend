@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addLikes, dislikePost, likePost } from "../store/slices/postsSlice";
 import button from "./Button.module.css";
@@ -11,21 +11,39 @@ const LikeButton = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
   const loggedInUser = useSelector(selectUser);
 
-  const handleLikes = () => {
-    setIsLiked(!isLiked);
+  useEffect(() => {
+    const findIsLiked = post.likes?.find(
+      (like) => like.userId === loggedInUser._id
+    );
+    if (findIsLiked) {
+      setIsLiked(true);
+    } else setIsLiked(false);
+  }, [post.likes]);
 
+  const handleLikes = () => {
     if (!isLiked) {
       // if the user likes the post (Like action)
       const newLike = {
         userId: loggedInUser._id,
         postId: post._id,
+        firstName: loggedInUser.firstName,
+        lastName: loggedInUser.lastName,
       }; // This is only for example -- update when backend ready!!!
       dispatch(likePost(newLike));
       // dispatch(addLikes({ postId: post._id, likes: newLike }));
     } else {
       // console
+
+      const likeIndex = post.likes.findIndex(
+        (likes) => likes.userId === loggedInUser._id
+      );
+      console.log("likeIndex: ", likeIndex);
+      const unLike = {
+        userId: loggedInUser._id,
+        postId: post._id,
+      };
       // if the user has already liked the post (Dislike action)
-      dispatch(dislikePost({ postId: post._id, userId: loggedInUser._id })); // Assuming post.id is used to identify the post
+      dispatch(dislikePost(unLike)); // Assuming post.id is used to identify the post
     }
   };
 

@@ -135,13 +135,14 @@ export const dislikePost = createAsyncThunk(
   async (data) => {
     try {
       const response = await axiosInstance.delete(
-        API_ROUTES.posts + `/${data.postId}/unlike`,
-        data
+        API_ROUTES.posts + "/" + data.postId + "/unlike",
+        { data }
       );
-      console.log("unliked: ", response.data);
+      console.log(response.data);
       return response.data;
-    } catch (err) {
-      console.log("err: ", err);
+    } catch (error) {
+      console.log("error: ", error);
+      throw Error(error.response.data.error);
     }
   }
 );
@@ -154,27 +155,7 @@ export const sharePost = createAsyncThunk("posts/sharePost", async () => {
 export const postsSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {
-    addUserInfo: (state, action) => {
-      const postIndex = state.posts.findIndex(
-        (post) => post._id === action.payload.postId
-      );
-      state.posts[postIndex].firstName = action.payload.firstName;
-      state.posts[postIndex].lastName = action.payload.lastName;
-    },
-    addLikes: (state, action) => {
-      const postIndex = state.posts.findIndex(
-        (post) => post._id === action.payload.postId
-      );
-      state.posts[postIndex].likes = action.payload.likes;
-    },
-    addComment: (state, action) => {
-      const postIndex = state.posts.findIndex(
-        (post) => post._id === action.payload.postId
-      );
-      state.posts[postIndex].comments = action.payload.comments;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // Fetching posts, handling all cases of responses
@@ -334,13 +315,13 @@ export const postsSlice = createSlice({
       })
       .addCase(likePost.fulfilled, (state, action) => {
         state.status.like = "succeeded";
-        // state.posts[action.payload.newLike.postId].likes.push =
-        //   action.payload.newLike;
-        // const postsIndex = state.posts.findIndex(
-        //   (post) => post._id === action.payload.newLike.postId
-        // );
-        // console.log(state.posts[postsIndex].likes);
-        // state.posts[postsIndex].likes.push(action.payload.newLike);
+        console.log(action.payload);
+
+        const postsIndex = state.posts.findIndex(
+          (post) => post._id === action.payload.newLike.postId
+        );
+        console.log(state.posts[postsIndex].likes);
+        state.posts[postsIndex].likes.push(action.payload.newLike);
       })
       .addCase(likePost.rejected, (state, action) => {
         state.status.like = "failed";
@@ -350,10 +331,16 @@ export const postsSlice = createSlice({
         state.status.dislike = "loading";
       })
       .addCase(dislikePost.fulfilled, (state, action) => {
-        state.posts.likes = state.posts.likes.filter(
-          (like) => like.id !== action.payload.id
+        console.log(action.payload);
+        const postIndex = state.posts.findIndex(
+          (post) => post._id === action.payload.postId
         );
-        state.status.dislike = "succeeded";
+        console.log(postIndex);
+        const newLikes = state.posts[postIndex].likes.filter(
+          (like) => like.userId !== action.payload.userId
+        );
+        console.log(newLikes);
+        state.posts[postIndex].likes = newLikes;
       })
       .addCase(dislikePost.rejected, (state, action) => {
         state.status.dislike = "failed";
