@@ -16,6 +16,7 @@ import {
   isToday,
   isYesterday,
 } from "date-fns";
+import { selectUser } from "../../store/slices/authSlice";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const PostHeader = ({ post, type }) => {
   const [modalOpen, setModalOpen] = useState();
   const [displayTime, setDisplayTime] = useState("");
   // function to open and close modal
+
+  const loggedInUser = useSelector(selectUser);
   const showModal = () => {
     setModalOpen((prev) => !prev);
   };
@@ -144,12 +147,14 @@ const PostHeader = ({ post, type }) => {
               : classes.options
           }`}
         >
-          <button onClick={showModal}>
-            <span>
-              <CiEdit />
-            </span>
-            <p>edit</p>
-          </button>
+          {loggedInUser._id === post.userId && (
+            <button onClick={showModal}>
+              <span>
+                <CiEdit />
+              </span>
+              <p>edit</p>
+            </button>
+          )}
           <button>
             <span>
               <MdOutlineReport />
@@ -162,12 +167,14 @@ const PostHeader = ({ post, type }) => {
             </span>
             <p>save</p>
           </button>
-          <button>
-            <span>
-              <MdDelete />
-            </span>
-            <p>delete</p>
-          </button>
+          {loggedInUser._id === post.userId && (
+            <button>
+              <span>
+                <MdDelete />
+              </span>
+              <p>delete</p>
+            </button>
+          )}
         </div>
       </div>
     </div>
