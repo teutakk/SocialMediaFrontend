@@ -18,10 +18,6 @@ const Profile = () => {
   const params = useParams();
   const dispatch = useDispatch();
   
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-  
   const profilePageUser = useSelector(selectProfilePageUser);
   const sentRequests = useSelector((state) => state.friendship.sentRequests)
   const loggedInUser = useSelector(selectUser);

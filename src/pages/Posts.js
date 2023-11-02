@@ -13,10 +13,6 @@ const Posts = () => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const reversePosts = [...posts].reverse();
   const postsShown = reversePosts.map((post, index) => (
     <SinglePost post={post} key={index} type="regular" />
