@@ -109,11 +109,17 @@
   font-size: 14px;
 }
 
-.likesHolder {
-  display: flex;
+.likesHolder,
+.likesHolderType1 {
   padding: 5px 0px;
   align-items: center;
   flex: 1;
+  font-size: 14px;
+  display: none;
+}
+
+.likesHolderSmall {
+  display: flex;
 }
 
 .likesHolder .logo {
@@ -172,6 +178,18 @@
   .overlay svg {
     width: 63px;
     height: 63px;
+  }
+
+  .likesHolder {
+    display: flex;
+  }
+
+  .likesHolderSmall {
+    display: none;
+  }
+
+  .likesHolderType1 {
+    display: flex;
   }
 }
 @media (min-width: 767px) {
