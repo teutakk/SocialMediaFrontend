@@ -10,21 +10,56 @@ import {
   selectProfilePageUserStatus,
   setUser,
 } from "../store/slices/profileSlice";
-import axiosInstance from "../api/axiosInstance";
-import { API_ROUTES } from "../api/apiConfig";
+import {
+  fetchFriends,
+  sendFriendRequestAsync,
+} from "../store/slices/friendshipSlice";
 
 const Profile = () => {
+  const [users, setUsers] = useState([]);
+  const [isSentRequest, setIsSentRequest] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-  const profilePageUser = useSelector(selectProfilePageUser);
   const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
-  const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
-  // get user from profileSlice
+
+  const profilePageUser = useSelector(selectProfilePageUser);
+  const sentRequests = useSelector((state) => state.friendship.sentRequests);
+  const loggedInUser = useSelector(selectUser);
+  console.log(sentRequests);
+
+  const userId = loggedInUser?._id;
+
+  const handleFetchFriends = (loggedInUser) => {
+    dispatch(fetchFriends(loggedInUser)).then((response) => {
+      setUsers(response.payload.data);
+    });
+  };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    handleFetchFriends(userId);
+  }, [userId]);
+
+  const handleSendFriendRequest = () => {
+    setIsSentRequest(false);
+    dispatch(
+      sendFriendRequestAsync({
+        recipientUserId: profilePageUser._id,
+        senderUserId: loggedInUser._id,
+      })
+    )
+      .then((response) => {
+        if (response.payload) {
+          setIsSentRequest(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsSentRequest(false);
+      });
+  };
+
+  // get user from profileSlice
   useEffect(() => {
     // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
     dispatch(fetchUserProfile(`/${params.idNumber}`));
@@ -50,15 +85,21 @@ const Profile = () => {
           <h3>
             {profilePageUser?.firstName} {profilePageUser?.lastName}
           </h3>
-          <span>13 friends</span>
-          <div className={classes.actions}>
-            {params.idNumber !== loggedInUser?._id && (
-              <button>Add Friend</button>
-            )}
-            {params.idNumber === loggedInUser?._id && (
-              <button>Edit Profile</button>
-            )}
-          </div>
+          {
+            <div className={classes.actions}>
+              {loggedInUser._id !== profilePageUser._id && (
+                <button
+                  style={{ color: "red" }}
+                  onClick={handleSendFriendRequest}
+                >
+                  {isSentRequest ? "Cancel Request" : "Add Friend"}
+                </button>
+              )}
+              {loggedInUser._id === profilePageUser._id && (
+                <button>Edit Profile</button>
+              )}
+            </div>
+          }
         </div>
       </section>
       <div className={classes["content-options"]}>
@@ -69,6 +110,9 @@ const Profile = () => {
           <NavLink to={"about"}>About</NavLink>
           <NavLink to={"friends"}>Friends</NavLink>
           <NavLink to={"photos"}>Photos</NavLink>
+          {profilePageUser._id === loggedInUser._id && (
+            <NavLink to={"requests"}>Requests</NavLink>
+          )}
         </div>
       </div>
       <div className={classes["profile-outlet"]}>
