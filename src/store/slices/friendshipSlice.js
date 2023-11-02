@@ -3,15 +3,9 @@ import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 
 const initialState = {
-  friends: [
-    { id: 1, name: "Alix"},
-    { id: 2, name: "Sara"},
-    { id: 3, name: "Alice"},
-  ],
-  pendingRequests: [
-    { id: 4, name: "Anna" },
-    { id: 5, name: "Elsa" },
-  ],
+  friends: [],
+  pendingRequests: [],
+  sentRequests: [],
   error: null,
   loading: "idle",
 };
@@ -20,8 +14,8 @@ export const fetchFriends = createAsyncThunk(
   "friendship/fetchFriends",
   async (userId) => {
     try {
-      const response = await axiosInstance.get(API_ROUTES.fetchFriends + { userId });
-      const data = await response.json();
+      const response = await axiosInstance.post(API_ROUTES.getFriendRequest, {userId} );
+      const data = await response.data;
       return data;
     } catch (error) {
       console.log("An error occurred while fetching friends");
@@ -30,12 +24,13 @@ export const fetchFriends = createAsyncThunk(
 );
 export const sendFriendRequestAsync = createAsyncThunk(
   "friendship/sendFriendRequest",
-  async (recipientUserId) => {
+  async ({recipientUserId, senderUserId}) => {
     try {
-      const response = await axiosInstance.post(API_ROUTES.sendFriendRequest, {
-        recipientUserId,
-      });
-
+      const response = await axiosInstance.post(API_ROUTES.friendRequest, 
+       { requestTo: recipientUserId,
+        user: { userId: senderUserId }
+        })
+ 
       const data = await response.data;
 
       return data;
@@ -48,11 +43,15 @@ export const sendFriendRequestAsync = createAsyncThunk(
 
 export const acceptFriendRequestAsync = createAsyncThunk(
   "friendship/acceptFriendRequest",
-  async (senderUserId) => {
+  async ({rid, senderUserId, status}) => {
     try {
       const response = await axiosInstance.post(
         API_ROUTES.acceptFriendRequest,
-        senderUserId
+        { 
+          rid: rid,
+          user: {userId: senderUserId},
+          status: status,
+        }
       );
       const data = await response.data;
       return data;
@@ -105,7 +104,8 @@ const friendshipSlice = createSlice({
         console.log("Pending");
       })
       .addCase(fetchFriends.fulfilled, (state, action) => {
-        state.friends = action.payload;
+        state.pendingRequests = action.payload.data;
+        console.log(action.payload.data);
         state.loading = "succeeded";
       })
       .addCase(fetchFriends.rejected, (state, action) => {
@@ -116,10 +116,15 @@ const friendshipSlice = createSlice({
         console.log("Friend request pending...");
       })
       .addCase(sendFriendRequestAsync.fulfilled, (state, action) => {
-        state.pendingRequests = action.payload;
+        state.sentRequests = action.payload.data;
+
+        console.log(action.payload.data);
         state.loading = "succeeded";
+        console.log("Friend request successful");
+
       })
       .addCase(sendFriendRequestAsync.rejected, (state, action) => {
+        console.log("Friend request failed...");
         state.loading = "failed";
         state.error = action.error.message;   
       })
@@ -128,8 +133,16 @@ const friendshipSlice = createSlice({
       }) 
       .addCase(acceptFriendRequestAsync.fulfilled, (state, action) => {
         state.friends = action.payload;
+        state.pendingRequests = state.pendingRequests.filter(
+          (friend) => friend.requestFrom._id !== action.payload.senderUserId
+        );
+        console.log(action.payload.senderUserId);
         state.loading = "succeeded";
-      }) 
+      })
+      .addCase(acceptFriendRequestAsync.rejected, (state, action) => {
+        state.loading = "failed";
+        state.error = action.error.message;
+      })
       .addCase(removeFriendRequestAsync.pending, (state) => {
         console.log("Remove friend request pending");
       })

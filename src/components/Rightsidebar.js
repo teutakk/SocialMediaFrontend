@@ -21,7 +21,7 @@ const Rightsidebar = () => {
   }, []);
   return (
     <section className={classes.Rightsidebar}>
-      <h3>Friends</h3>
+      <h3>Suggested for you</h3>
       <div className={classes["friends-holder"]}>
         {users?.map((friend) => (
           // each friend should be a NavLink that send u to the profile of the friend, waiting for profilepage to be designed and change it

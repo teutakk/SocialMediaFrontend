@@ -18,6 +18,7 @@ import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
 import jwtDecode from "jwt-decode";
+import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
@@ -63,6 +64,7 @@ const AppRoutes = () => {
             <Route path="contacts" element={<Contacts />} />
           </Route>
           <Route path="friends" element={<Friends />} />
+          <Route path="requests" element={<Requests />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
