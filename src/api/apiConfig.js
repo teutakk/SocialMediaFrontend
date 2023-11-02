@@ -11,7 +11,7 @@ const API_ROUTES = {
   comment: "/comments",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
-  acceptFriendRequest: "/accept-request"
+  acceptFriendRequest: "/accept-request",
 };
 
 export { BASE_URL, API_ROUTES };

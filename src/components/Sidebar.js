@@ -23,7 +23,7 @@ const Sidebar = () => {
       <section className={classes["routing-options"]}>
         <NavLink
           className={`${classes["route-holder"]} ${classes["route-feed"]}`}
-          to={""}
+          to={"/"}
           end
         >
           <span className={classes["route-logo"]}>

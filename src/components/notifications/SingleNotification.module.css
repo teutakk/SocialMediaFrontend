@@ -34,7 +34,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  max-width: 80%;
+  width: 100%;
+  max-width: calc(100% - 50px);
 }
 .actions {
   display: flex;

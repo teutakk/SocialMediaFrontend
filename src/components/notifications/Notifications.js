@@ -3,6 +3,7 @@ import classes from "./Notifications.module.css";
 import SingleNotification from "./SingleNotification";
 
 import { notifications } from "../../api/dummyData";
+import { NavLink } from "react-router-dom";
 const Notifications = ({
   showNotifications,
   setShowNotifications,
@@ -61,6 +62,9 @@ const Notifications = ({
             notification={notification}
           />
         ))}
+      </div>
+      <div className={classes.footer}>
+        <NavLink to={"notifications"}>See all</NavLink>
       </div>
     </div>
   );

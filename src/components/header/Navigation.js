@@ -73,7 +73,7 @@ const Navigation = () => {
       >
         <img src={postify} width={120} />
         <ul className={classes.mobileRoutes}>
-          <NavLink to={""} end>
+          <NavLink to={"/"} end>
             Home
           </NavLink>
           <NavLink to="marketplace">Marketplace</NavLink>
@@ -103,7 +103,7 @@ const Navigation = () => {
               <path d="M0 96c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zm64 160c0-17.7 14.3-32 32-32h384c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32zm384 160c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h384c17.7 0 32 14.3 32 32z" />
             </svg>
           </span>
-          <NavLink to="" end className={classes["logo-route"]}>
+          <NavLink to="/" end className={classes["logo-route"]}>
             <img src={postify} alt="postify" />
             {/* <div className={classes.textLogo}> */}
             {/* <p>p</p> */}
@@ -115,7 +115,7 @@ const Navigation = () => {
           <nav className={classes["navlink-holder"]}>
             <NavLink
               className={`${classes.route} ${classes["route-home"]}`}
-              to=""
+              to="/"
               end
             >
               <svg viewBox="0 0 1024 1024" fill="currentColor">

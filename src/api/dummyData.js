@@ -2,8 +2,7 @@ export const data = [
   {
     id: 1,
     userName: "sejdijaha123",
-    firstName: "Sejdi",
-    lastName: "Jaha",
+    author: "Sejdi Jaha",
     createdAt: "2023-10-26T18:57:22.895Z",
     profilePhoto: "https://randomuser.me/api/portraits/men/83.jpg",
     description:
@@ -44,8 +43,7 @@ export const data = [
   {
     id: 2,
     userName: "albpetro",
-    firstName: "Alban",
-    lastName: "Petrovani",
+    author: "Alban Petrovani",
     profilePhoto: "https://randomuser.me/api/portraits/men/86.jpg",
     description:
       "Pamjet natyrore të Shqipërisë janë të mahnitshme. Sot u bë një ditë e mrekullueshme për një shëtitje në malin e Tomorrit. #Natyrë #Shqipëri",

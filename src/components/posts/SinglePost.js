@@ -16,8 +16,6 @@ import WritePostComment from "./WritePostComment";
 import PostContent from "./PostContent";
 import classes from "./SinglePost.module.css";
 import PostComments from "./PostComments";
-import axiosInstance from "../../api/axiosInstance";
-import { API_ROUTES } from "../../api/apiConfig";
 
 // type will change some internal post specs, check PostHeader and it will add some conditional cases
 const SinglePost = ({ post, type }) => {

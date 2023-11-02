@@ -35,8 +35,7 @@ const CreatePost = () => {
 
     const newPost = {
       userId: loggedInUser._id,
-      firstName: loggedInUser.firstName,
-      lastName: loggedInUser.lastName,
+      author: loggedInUser.firstName + " " + loggedInUser.lastName,
       description: postText,
       picutures: selectedImages,
     };

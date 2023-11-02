@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 0 10px;
 }
 
 /* this class gets added when we visit profile page, so we dont have a grid system, anymore */
@@ -31,6 +30,12 @@
 
 .right {
   display: none;
+}
+
+@media (min-width: 460px) {
+  .main {
+    padding: 0 10px;
+  }
 }
 
 @media (min-width: 890px) {

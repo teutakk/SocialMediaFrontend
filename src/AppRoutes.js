@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
@@ -7,36 +7,19 @@ import FriendShip from "./pages/FriendShip";
 import RequireAuth from "./components/RequireAuth";
 import Layout from "./layout/Layout";
 import Profile from "./pages/Profile";
-import ProfileContent from "./components/profile/ProfileContent";
 import About from "./components/profile/about/About";
 import Overview from "./components/profile/about/Overview";
 import Friends from "./components/profile/friends/Friends";
 import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
 import Contacts from "./components/profile/friends/Contacts";
-import { useDispatch } from "react-redux";
-import { authenticateUser } from "./store/slices/authSlice";
 import MarketPlace from "./pages/MarketPlace";
 import Notifications from "./pages/Notifications";
-import jwtDecode from "jwt-decode";
 import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
 
 const AppRoutes = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      dispatch(
-        authenticateUser({
-          email: decodedToken.email,
-          password: decodedToken.password,
-        })
-      );
-    }
-  }, []);
   return (
     <Routes>
       <Route path="register" element={<Register />} />
@@ -68,6 +51,7 @@ const AppRoutes = () => {
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>
+      <Route path="404" element={<RequireAuth component={Page404} />} />
       <Route path="*" element={<RequireAuth component={Page404} />} />
     </Routes>
   );

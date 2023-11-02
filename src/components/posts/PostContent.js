@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./PostContent.module.css";
 import Modal from "../../layout/Modal";
 import ImageSlider from "./ImageSlider";
@@ -87,7 +87,7 @@ const PostContent = ({ post, type }) => {
 
   let likesContent;
 
-  if (post.likes?.length > 5) {
+  if (post.likes?.length >= 3) {
     likesContent = (
       <div className={classes.likesHolder}>
         <span className={classes.logo}>
@@ -109,14 +109,38 @@ const PostContent = ({ post, type }) => {
           />
         </span>
         <p>
-          <strong>Endrit</strong> and {post.likes?.length - 1} others like this
+          {post.likes[0].author} and {post.likes?.length - 1} others like this
           post.
         </p>
       </div>
     );
-  } else {
-    likesContent = <p>{post.likes?.length} liked this post</p>;
+  } else if (post.likes.length === 2) {
+    likesContent = (
+      <div className={classes.likesHolderType1}>
+        <p>
+          {post.likes[0].author} and {post.likes[1].author} liked this post
+        </p>
+      </div>
+    );
+  } else if (post.likes.length === 1) {
+    likesContent = (
+      <div className={classes.likesHolderType1}>
+        <p>{post.likes[0]?.author} liked this post</p>
+      </div>
+    );
+  } else if (post.likes.length === 0) {
+    likesContent = (
+      <div className={classes.likesHolderType1}>
+        <p>0 likes</p>
+      </div>
+    );
   }
+
+  const likesContentSmall = (
+    <div className={classes.likesHolderSmall}>
+      <p>{post.likes.length} likes</p>
+    </div>
+  );
 
   return (
     <div className={classes.ContentHolder}>
@@ -141,7 +165,10 @@ const PostContent = ({ post, type }) => {
           type === "modal-post" ? classes.modalPostData : " "
         }`}
       >
-        <div className={classes.likes}>{likesContent}</div>
+        <div className={classes.likes}>
+          {likesContent}
+          {likesContentSmall}
+        </div>
         <div className={classes.commentsAndShare}>
           <p>{post.comments?.length} comments</p>
           <p>{post.shares} shares</p>

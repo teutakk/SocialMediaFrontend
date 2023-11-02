@@ -50,4 +50,15 @@
     display: flex;
     cursor: default;
   }
+
+  .footer {
+    display: flex;
+    padding: 5px 10px;
+    justify-content: flex-end;
+    border-top: 1px solid var(--color-grey-light-5);
+  }
+
+  .footer a {
+    text-decoration: underline;
+  }
 }
