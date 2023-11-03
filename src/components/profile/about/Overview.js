@@ -27,7 +27,7 @@ const Overview = () => {
     },
     {
       title: "Phone",
-      content: "123123123",
+      content: "",
     },
   ]);
 
@@ -48,6 +48,7 @@ const Overview = () => {
   }, [params.idNumber]);
 
   const handleDataUpdate = (property, value) => {
+    setInputValue(value);
     userDetails.property = value;
   };
 

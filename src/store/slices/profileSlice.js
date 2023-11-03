@@ -20,6 +20,18 @@ export const fetchUserProfile = createAsyncThunk(
   }
 );
 
+export const fetchUserDetails = createAsyncThunk(
+  "profilePage/fetchUserDetails",
+  async (id) => {
+    try {
+      console.log(API_ROUTES.users + "/" + id + "/about");
+      return await axiosInstance.get(API_ROUTES.users + "/" + id + "/about");
+    } catch (err) {
+      throw new Error(err.response.deta.error);
+    }
+  }
+);
+
 const profileSlice = createSlice({
   name: "profilePage",
   initialState,
