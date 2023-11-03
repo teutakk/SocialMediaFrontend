@@ -1,4 +1,4 @@
-.AddInfo {
+.ShowInfo {
   display: flex;
   gap: 5px;
   flex-direction: column;
@@ -25,5 +25,4 @@
 .title {
   font-weight: 500;
   font-size: 18px;
-  color: rgb(82, 80, 85);
 }
