@@ -48,7 +48,6 @@ const Modal = ({
     modalClass = "show-post";
   }
 
-  console.log(data.pictures.length > 0);
   return createPortal(
     <div className={classes.Modal}>
       <div

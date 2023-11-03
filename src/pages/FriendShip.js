@@ -20,7 +20,6 @@ const FriendShip = () => {
   const pendingRequests = useSelector(
     (state) => state.friendship.pendingRequests
   );
-  console.log("pendingRequests", pendingRequests);
   const userId = selectedUser?._id;
 
   const dispatch = useDispatch();
@@ -31,17 +30,13 @@ const FriendShip = () => {
         dispatch(fetchFriends(userId)).then((response) => {
           setUsers(response.payload.data);
         });
-        console.log(userId);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     handleFetchFriends();
   }, [dispatch, userId]);
 
   const handleSendFriendRequest = (friendRequestData) => {
     dispatch(sendFriendRequestAsync(friendRequestData));
-    console.log(friendRequestData);
   };
 
   const handleAcceptFriendRequest = ({ rid, senderUserId, status }) => {
@@ -54,22 +49,18 @@ const FriendShip = () => {
       })
     )
       .then((response) => {
-        console.log(response.payload);
         setLoadingStates({ ...loadingStates, [rid]: false });
       })
       .catch((error) => {
-        console.log(error);
         setLoadingStates({ ...loadingStates, [rid]: false });
       });
   };
 
   const handleRejectFriendRequest = (friendId) => {
     dispatch(rejectFriendRequestAsync(friendId));
-    console.log(friendId);
   };
   const handleRemoveFriendRequest = (friendId) => {
     dispatch(removeFriendRequestAsync(friendId));
-    console.log(friendId);
   };
 
   return (

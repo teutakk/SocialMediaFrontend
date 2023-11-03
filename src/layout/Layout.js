@@ -9,7 +9,6 @@ const Layout = () => {
   const custumClass = location.pathname.startsWith("/id")
     ? classes.customClass
     : "";
-  console.log("main: ", custumClass);
   return (
     <div className={classes.Layout}>
       <Navigation />

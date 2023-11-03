@@ -30,7 +30,6 @@ const UserDropDownMenu = ({
         !event.target.closest(`.${notificationIconClass}`) &&
         !event.target.closest(`.${parentClass}`)
       ) {
-        console.log("executing");
         setShowUserMenu((prev) => !prev);
       }
     };

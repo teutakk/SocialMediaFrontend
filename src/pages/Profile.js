@@ -44,8 +44,8 @@ const Profile = () => {
     setIsSentRequest(false);
     dispatch(
       sendFriendRequestAsync({
-        recipientUserId: profilePageUser._id,
-        senderUserId: loggedInUser._id,
+        recipientUserId: profilePageUser?._id,
+        senderUserId: loggedInUser?._id,
       })
     )
       .then((response) => {
@@ -87,7 +87,7 @@ const Profile = () => {
           </h3>
           {
             <div className={classes.actions}>
-              {loggedInUser._id !== profilePageUser._id && (
+              {loggedInUser?._id !== profilePageUser?._id && (
                 <button
                   style={{ color: "red" }}
                   onClick={handleSendFriendRequest}
@@ -95,7 +95,7 @@ const Profile = () => {
                   {isSentRequest ? "Cancel Request" : "Add Friend"}
                 </button>
               )}
-              {loggedInUser._id === profilePageUser._id && (
+              {loggedInUser?._id === profilePageUser?._id && (
                 <button>Edit Profile</button>
               )}
             </div>
@@ -110,7 +110,7 @@ const Profile = () => {
           <NavLink to={"about"}>About</NavLink>
           <NavLink to={"friends"}>Friends</NavLink>
           <NavLink to={"photos"}>Photos</NavLink>
-          {profilePageUser._id === loggedInUser._id && (
+          {profilePageUser._id === loggedInUser?._id && (
             <NavLink to={"requests"}>Requests</NavLink>
           )}
         </div>

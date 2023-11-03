@@ -17,10 +17,8 @@ function App() {
     const token = localStorage.getItem("token");
     if (token && !loggedInUser) {
       const decodedToken = jwtDecode(localStorage.getItem("token"));
-      console.log("logged In", decodedToken);
       const isExpired = () => {
         const dateNow = Date.now() / 1000;
-        console.log(dateNow > decodedToken.exp);
         return dateNow > decodedToken.exp;
       };
       if (!isExpired()) {
@@ -31,9 +29,7 @@ function App() {
             );
             const data = response.data;
             dispatch(logInWithToken(data));
-          } catch (error) {
-            console.log("error: ", error);
-          }
+          } catch (error) {}
         };
 
         fetchUserWithToken();

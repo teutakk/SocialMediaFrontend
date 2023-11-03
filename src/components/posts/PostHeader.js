@@ -40,7 +40,6 @@ const PostHeader = ({ post, type }) => {
     }
 
     if (action === "save") {
-      console.log("sent");
       setModalOpen(false);
     }
   };

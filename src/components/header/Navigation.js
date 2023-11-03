@@ -50,7 +50,6 @@ const Navigation = () => {
   };
 
   const handleShowUserDropDownMenu = (event) => {
-    console.log("userdropdown: ", userDropDownMenuRef);
     if (
       !event.target.closest(`.${userDropDownMenuRef.current?.classList[0]}`)
     ) {
@@ -59,7 +58,6 @@ const Navigation = () => {
   };
 
   const handleLogout = () => {
-    console.log("running");
     dispatch(logoutUser());
     navigate("/login");
   };
