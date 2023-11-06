@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import classes from "./ShowInfo.module.css";
-import { AiOutlineMore } from "react-icons/ai";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
 
 const ShowInfo = ({ title, initialContent, onSave, onEditMode = false }) => {
   const [isEditing, setIsEditing] = useState(onEditMode);
@@ -37,7 +37,7 @@ const ShowInfo = ({ title, initialContent, onSave, onEditMode = false }) => {
         <div>
           <p className={classes.content}>{content}</p>
           <div className={classes.dropdown}>
-            <AiOutlineMore onClick={toggleEditing} />
+            <AiOutlineMenuUnfold onClick={toggleEditing} />
           </div>
         </div>
       )}

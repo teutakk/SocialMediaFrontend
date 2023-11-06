@@ -76,6 +76,20 @@ export const updateUserDetails = createAsyncThunk(
   }
 );
 
+export const deleteUserDetails = createAsyncThunk(
+  "profilePage/deleteUserDetails",
+  async (userId) => {
+    try {
+      const response = await axiosInstance.delete(
+        API_ROUTES.users + "/" + userId + "/about"
+      );
+      return response;
+    } catch (error) {
+      console.error("Error deleting user details:", error);
+    }
+  }
+);
+
 const profileSlice = createSlice({
   name: "profilePage",
   initialState,

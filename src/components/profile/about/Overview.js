@@ -77,7 +77,7 @@ const Overview = () => {
 
   const handleAddInput = (index) => {
     const updatedItems = [...data];
-    updatedItems[index].editMode = true; // Update the specific element by index
+    updatedItems[index].editMode = true;
     setData(updatedItems);
   };
 
@@ -86,7 +86,6 @@ const Overview = () => {
       {data.map((bullet, i) => (
         <div key={i}>
           {userDetails[bullet.key] || bullet.editMode ? (
-            // Render ShowInfo component
             <ShowInfo
               title={bullet.title}
               initialContent={userDetails[bullet.key]}
