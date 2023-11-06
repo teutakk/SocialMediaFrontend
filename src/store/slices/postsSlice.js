@@ -64,7 +64,6 @@ export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
   // here we need to be careful where we send the data, we need to post these data to the userId
   try {
     const response = await axiosInstance.post(API_ROUTES.saved, postId);
-    console.log();
     return response.data;
   } catch (error) {}
 });
@@ -74,11 +73,8 @@ export const commentPost = createAsyncThunk(
   async (data) => {
     try {
       const response = await axiosInstance.post(API_ROUTES.comment, data);
-      console.log("response", data);
       return response.data;
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   }
 );
 
@@ -141,10 +137,8 @@ export const dislikePost = createAsyncThunk(
         API_ROUTES.posts + "/" + data.postId + "/unlike",
         { data }
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
-      console.log("error: ", error);
       throw Error(error.response.data.error);
     }
   }
@@ -318,12 +312,10 @@ export const postsSlice = createSlice({
       })
       .addCase(likePost.fulfilled, (state, action) => {
         state.status.like = "succeeded";
-        console.log(action.payload);
 
         const postsIndex = state.posts.findIndex(
           (post) => post._id === action.payload.newLike.postId
         );
-        console.log(state.posts[postsIndex].likes);
         state.posts[postsIndex].likes.push(action.payload.newLike);
       })
       .addCase(likePost.rejected, (state, action) => {
@@ -334,15 +326,12 @@ export const postsSlice = createSlice({
         state.status.dislike = "loading";
       })
       .addCase(dislikePost.fulfilled, (state, action) => {
-        console.log(action.payload);
         const postIndex = state.posts.findIndex(
           (post) => post._id === action.payload.postId
         );
-        console.log(postIndex);
         const newLikes = state.posts[postIndex].likes.filter(
           (like) => like.userId !== action.payload.userId
         );
-        console.log(newLikes);
         state.posts[postIndex].likes = newLikes;
       })
       .addCase(dislikePost.rejected, (state, action) => {

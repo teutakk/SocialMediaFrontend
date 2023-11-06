@@ -9,11 +9,9 @@ import classes from "./UsersPosts.module.css";
 const UsersPosts = () => {
   const profilePageUser = useSelector(selectProfilePageUser);
   const posts = useSelector(selectPosts);
-  console.log(profilePageUser);
   const profilePageUserPosts = posts.filter(
     (post) => post.userId === profilePageUser._id
   );
-  console.log("profilepage: ", profilePageUserPosts);
   return (
     <div className={classes.UsersPosts}>
       <h3>Posts</h3>

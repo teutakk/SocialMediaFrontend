@@ -37,7 +37,6 @@ const LikeButton = ({ post }) => {
       const likeIndex = post.likes.findIndex(
         (likes) => likes.userId === loggedInUser?._id
       );
-      console.log("likeIndex: ", likeIndex);
       const unLike = {
         userId: loggedInUser?._id,
         postId: post?._id,
