@@ -4,7 +4,7 @@ import SingleComment from "./SingleComment";
 
 const PostComments = ({ post }) => {
   const comments = post.comments?.map((comment) => (
-    <SingleComment key={comment.id} comment={comment} />
+    <SingleComment key={comment?._id} comment={comment} />
   ));
   return <div className={classes.Comments}>{comments}</div>;
 };
