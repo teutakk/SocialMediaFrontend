@@ -29,8 +29,8 @@ const Requests = () => {
       <p className={classes.title}>Friend Requests</p>
       {users ? (
         <div className={classes["request-holder"]}>
-          {users.map((friend, i) => (
-            <Bullet key={i} content={friend.requestFrom.firstName} logo="s" />
+          {users?.map((friend, i) => (
+            <Bullet key={i} content={friend.requestFrom?.firstName} logo="s" />
           ))}
           <NavLink to={`/id/${params.idNumber}/requests`}>See more</NavLink>
         </div>

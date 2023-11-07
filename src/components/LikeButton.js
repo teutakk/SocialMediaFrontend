@@ -16,8 +16,8 @@ const LikeButton = ({ post }) => {
       (like) => like.userId === loggedInUser?._id
     );
     if (findIsLiked) {
-      // setIsLiked(true);
-    } else;
+      setIsLiked(true);
+    } else setIsLiked(false);
   }, [post.likes]);
 
   const handleLikes = () => {
@@ -48,7 +48,7 @@ const LikeButton = ({ post }) => {
 
   return (
     <button
-      // onClick={handleLikes} // waiting for backend to catch up
+      onClick={handleLikes} // waiting for backend to catch up
       className={`${isLiked ? button.dislike : button.like} ${
         button.postPosition
       }`}
