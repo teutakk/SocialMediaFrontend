@@ -5,6 +5,7 @@ import CreatePost from "../components/posts/CreatePost";
 import classes from "./styles/Posts.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
+import Stories from "../components/Stories";
 const Posts = () => {
   const posts = useSelector(selectPosts);
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Posts = () => {
 
   return (
     <div className={classes.Posts}>
+      <Stories />
       <CreatePost />
       <section className={classes.PostsHolder}>{postsShown}</section>
       <section className={classes.PostsHolder}>{dummyPosts}</section>
