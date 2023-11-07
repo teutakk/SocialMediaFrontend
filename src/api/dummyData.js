@@ -1,9 +1,10 @@
 export const data = [
   {
-    id: 1,
+    _id: 1,
     userName: "sejdijaha123",
     author: "Sejdi Jaha",
     createdAt: "2023-10-26T18:57:22.895Z",
+    updatedAt: "2023-10-26T18:57:22.895Z",
     profilePhoto: "https://randomuser.me/api/portraits/men/83.jpg",
     description:
       "Politika në Shqipëri është në një fazë të rëndësishme të zhvillimit. Sfidat janë të mëdha, por shpresat janë të larta. Një nga sfidat kryesore është lufta kundër korrupsionit dhe reforma në drejtësi. Këto janë procese të rëndësishme për të siguruar sundimin e ligjit dhe pavarësinë e institucioneve.",
@@ -19,7 +20,7 @@ export const data = [
     privacy: "public",
     likes: [
       {
-        id: 1,
+        _id: 1,
         userName: "ramizi123",
         profilePhoto: "https://randomuser.me/api/portraits/men/73.jpg",
         firstName: "Ramiz",
@@ -28,7 +29,7 @@ export const data = [
     ],
     comments: [
       {
-        id: 1,
+        _id: 1,
         userName: "ramizi123",
         firstName: "Ramiz",
         lastName: "Konushevci",
@@ -41,7 +42,7 @@ export const data = [
   },
   // 10 more posts with random content
   {
-    id: 2,
+    _id: 2,
     userName: "albpetro",
     author: "Alban Petrovani",
     profilePhoto: "https://randomuser.me/api/portraits/men/86.jpg",
@@ -52,6 +53,7 @@ export const data = [
       "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?auto=format&fit=crop&q=60&w=900&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fHww",
     ],
     createdAt: "2023-10-26T12:57:22.895Z",
+    updatedAt: "2023-10-26T12:57:22.895Z",
     privacy: "public",
     likes: [],
     comments: [],

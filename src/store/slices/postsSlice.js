@@ -326,9 +326,11 @@ export const postsSlice = createSlice({
         state.status.dislike = "loading";
       })
       .addCase(dislikePost.fulfilled, (state, action) => {
+        console.log(action.payload);
         const postIndex = state.posts.findIndex(
           (post) => post._id === action.payload.postId
         );
+        console.log(state.posts[postIndex]);
         const newLikes = state.posts[postIndex].likes.filter(
           (like) => like.userId !== action.payload.userId
         );
