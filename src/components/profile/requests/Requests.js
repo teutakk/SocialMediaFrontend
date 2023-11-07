@@ -1,42 +1,71 @@
-import React, { useEffect, useState } from "react";
 import classes from "./Requests.module.css";
 import Bullet from "../about/Bullet";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import { fetchFriends } from "../../../store/slices/friendshipSlice";
+import { NavLink, useParams } from "react-router-dom";
 import { selectUser } from "../../../store/slices/authSlice";
-import { useSelector, useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux"
+import { useState } from "react";
+import { acceptFriendRequestAsync } from "../../../store/slices/friendshipSlice";
 
 const Requests = () => {
-  const [users, setUsers] = useState([]);
+  const [loadingStates, setLoadingStates] = useState({}); 
+
+  const dispatch = useDispatch()
   const params = useParams();
-  const dispatch = useDispatch();
-
   const loggedInUser = useSelector(selectUser);
-  const userId = loggedInUser._id;
+  const pendingRequests = useSelector((state) => state.friendship.pendingRequests)
+  const userId = loggedInUser?._id
 
-  const handleFetchFriends = (userId) => {
-    dispatch(fetchFriends(userId)).then((response) => {
-      setUsers(response.payload.data);
+
+  const handleAcceptFriendRequest = ({ rid, senderUserId, status }) => {
+    setLoadingStates({ ...loadingStates, [rid]: { status: status } });
+    dispatch(
+      acceptFriendRequestAsync({
+        rid: rid,
+        senderUserId: senderUserId,
+        status: status,
+      })
+    )
+    .then(() => {
+      // When the request is successful, set the loading state to false
+      setLoadingStates((prevLoadingStates) => ({
+        ...prevLoadingStates,
+        [rid]: false,
+      }));
+    })
+    .catch((error) => {
+      console.log(error);
+      setLoadingStates((prevLoadingStates) => ({
+        ...prevLoadingStates,
+        [rid]: false,
+      }));
     });
   };
-
-  useEffect(() => {
-    handleFetchFriends(userId);
-  }, []);
-
   return (
     <div className={classes.Friends}>
       <p className={classes.title}>Friend Requests</p>
-      {users ? (
-        <div className={classes["request-holder"]}>
-          {users?.map((friend, i) => (
-            <Bullet key={i} content={friend.requestFrom?.firstName} logo="s" />
+      <div className={classes["request-holder"]}>
+          {pendingRequests?.map((friend, i) => (
+            userId === friend?.requestTo &&
+            <Bullet
+              key={i}
+              content={friend?.requestFrom?.firstName}
+              subContent={friend?.requestFrom?._id}
+              acceptFriendRequest={() => handleAcceptFriendRequest({
+                senderUserId: friend.requestFrom._id,
+                rid: friend._id,
+                status: "Accepted",
+              })}
+              rejectFriendRequest={() => handleAcceptFriendRequest({
+                senderUserId: friend.requestFrom._id,
+                rid: friend._id,
+                status: "Rejected",
+              })}
+              loadingStates={loadingStates[friend._id]}
+            />
           ))}
-          <NavLink to={`/id/${params.idNumber}/requests`}>See more</NavLink>
-        </div>
-      ) : (
-        <p className={classes.paragraph}>No new requests</p>
-      )}
+        </div> 
+        {pendingRequests.length !== 0 && <NavLink to={`/id/${params.idNumber}/requests`}>See more</NavLink> }
+        {pendingRequests.length === 0 && <p className={classes.paragraph}>No new requests</p>  }
     </div>
   );
 };

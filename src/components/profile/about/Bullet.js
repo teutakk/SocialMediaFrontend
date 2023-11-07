@@ -1,18 +1,15 @@
 import React from "react";
 import classes from "./Bullet.module.css";
-import { PiPen } from "react-icons/pi";
-import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../../store/slices/authSlice";
 import { useParams } from "react-router";
 import { useLocation } from "react-router-dom";
+import { FaSpinner } from "react-icons/fa";
 
-const Bullet = ({ content, subContent, logo }) => {
+const Bullet = ({ content, subContent, logo, loadingStates, acceptFriendRequest, rejectFriendRequest }) => {
+  
   const params = useParams();
-  const location = useLocation();
+  const location = useLocation()
 
-  const loggedInUser = useSelector(selectUser);
-  const path = location.pathname;
+  const path = location.pathname
 
   return (
     <div
@@ -28,14 +25,31 @@ const Bullet = ({ content, subContent, logo }) => {
         <span>{subContent}</span>
       </div>
       {path === `/id/${params.idNumber}/requests` && (
-        <div>
-          <button>Accept</button>
-          <button>Reject</button>
+        <div className={classes.buttons}>
+         {loadingStates &&  loadingStates?.status === "Accepted" ? (
+            <button className={classes.button}>
+              <span>
+                <FaSpinner className={classes.spinner} />{" "}
+              </span>
+            </button>
+          ) : (
+            <button onClick={acceptFriendRequest}>Accept</button>
+          )}
+          {loadingStates && loadingStates?.status === "Rejected" ? (
+            <button className={classes.button}>
+              <span>
+                <FaSpinner className={classes.spinner} />{" "}
+              </span>
+            </button>
+          ) : (
+            <button onClick={rejectFriendRequest}>Reject</button>
+          )}
+
         </div>
       )}
-      <span className={classes.edit}>
+      {/* <span className={classes.edit}>
         {loggedInUser?._id === params.idNumber && <PiPen />}
-      </span>
+      </span> */}
     </div>
   );
 };

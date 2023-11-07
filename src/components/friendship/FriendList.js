@@ -9,7 +9,7 @@ const FriendList = (props) => {
           className={classes.icon}
           src="https://www.pngarts.com/files/5/User-Avatar-Transparent-Images.png"
         />
-        <p>{props.name}</p>
+        <p>{props.name} {props.lastName}</p>
       </div>
     </div>
   );

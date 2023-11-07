@@ -19,8 +19,28 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
-
-.Friends a {
+.paragraph{
+  color: grey;
+  margin: 10px auto;
+  text-align: center;
+}
+.spinnerLoad{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.spinner {
+  width: max(1.3vw, 20px);
+  height: max(1.3vw, 20px);
+  animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.Friends .navLink {
   display: block;
   width: 80%;
   margin: 10px auto;

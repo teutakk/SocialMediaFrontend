@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import classes from "./Navigation.module.css";
@@ -58,6 +58,7 @@ const Navigation = () => {
   };
 
   const handleLogout = () => {
+    console.log("running")
     dispatch(logoutUser());
     navigate("/login");
   };
