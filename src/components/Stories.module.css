@@ -9,6 +9,10 @@
   padding-right: 5px;
 }
 
+.storyContainer::-webkit-scrollbar {
+  height: 4px;
+}
+
 .story {
   width: 160px;
   height: 180px;
@@ -22,8 +26,8 @@
 }
 
 .storyList {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .story:hover {
@@ -37,14 +41,14 @@
 }
 
 .underUsername {
-    z-index: 20;
-    position: absolute;
-    bottom: 1px;
-    left: 16.5px;
-    width: 80%;
-    text-align: center;
-    font-size: 14px;
-    color: black;
+  z-index: 20;
+  position: absolute;
+  bottom: 1px;
+  left: 16.5px;
+  width: 80%;
+  text-align: center;
+  font-size: 14px;
+  color: black;
 }
 
 .userProfile {
