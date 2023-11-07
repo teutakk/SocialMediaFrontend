@@ -151,7 +151,10 @@
   color: inherit;
   color: var(--color-primary-1);
 }
-
+.route-chat svg{
+  color: inherit;
+  color: var(--color-primary-1);
+}
 .route-marketplace svg {
   color: inherit;
   color: var(--color-primary-1);
