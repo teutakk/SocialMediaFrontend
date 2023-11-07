@@ -19,7 +19,10 @@ export const fetchFriends = createAsyncThunk(
       });
       const data = await response.data;
       return data;
-    } catch (error) {}
+    } catch (error) {
+      console.log("An error occurred while fetching friends");
+      throw error;
+    }
   }
 );
 export const sendFriendRequestAsync = createAsyncThunk(
@@ -97,10 +100,14 @@ export const removeFriendRequestAsync = createAsyncThunk(
 const friendshipSlice = createSlice({
   name: "friendship",
   initialState,
-  reducers: {},
+  reducers: {
+   
+  },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchFriends.pending, (state) => {})
+      .addCase(fetchFriends.pending, (state) => {
+        state.loading="idle"
+      })
       .addCase(fetchFriends.fulfilled, (state, action) => {
         state.pendingRequests = action.payload.data;
         state.loading = "succeeded";
@@ -109,29 +116,36 @@ const friendshipSlice = createSlice({
         state.loading = "failed";
         state.error = action.error.message;
       })
-      .addCase(sendFriendRequestAsync.pending, (state) => {})
+      .addCase(sendFriendRequestAsync.pending, (state) => {
+        console.log("Friend request pending...");
+        state.loading = "idle"
+      })
       .addCase(sendFriendRequestAsync.fulfilled, (state, action) => {
         state.sentRequests = action.payload.data;
-
         state.loading = "succeeded";
       })
       .addCase(sendFriendRequestAsync.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message;
       })
-      .addCase(acceptFriendRequestAsync.pending, (state) => {})
+      .addCase(acceptFriendRequestAsync.pending, (state) => {
+        console.log("Friend request pending...");
+        state.loading = "idle"
+      }) 
       .addCase(acceptFriendRequestAsync.fulfilled, (state, action) => {
         state.friends = action.payload;
-        state.pendingRequests = state.pendingRequests.filter(
-          (friend) => friend.requestFrom._id !== action.payload.senderUserId
-        );
+        const acceptedFriendId = action.payload.user.userId;
+        state.pendingRequests = state.pendingRequests.filter((friend) => friend._id !== acceptedFriendId);
         state.loading = "succeeded";
       })
       .addCase(acceptFriendRequestAsync.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message;
       })
-      .addCase(removeFriendRequestAsync.pending, (state) => {})
+      .addCase(removeFriendRequestAsync.pending, (state) => {
+        console.log("Remove friend request pending");
+        state.loading = "idle"
+      })
       .addCase(removeFriendRequestAsync.fulfilled, (state, action) => {
         state.friends = state.friends.filter(
           (friend) => friend.id !== action.payload.friendId
@@ -145,7 +159,6 @@ const friendshipSlice = createSlice({
 });
 
 // export const {
-
 // } = friendshipSlice.actions;
 
 export default friendshipSlice.reducer;

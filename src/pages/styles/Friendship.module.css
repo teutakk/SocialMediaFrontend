@@ -1,3 +1,13 @@
+.container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.friends{
+  display: flex;
+  flex-direction: column; 
+  gap: 15px;
+}
 .spinner {
     width: max(1.3vw, 20px);
     height: max(1.3vw, 20px);

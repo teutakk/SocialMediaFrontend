@@ -14,7 +14,7 @@
   display: block;
   display: grid;
   place-content: center;
-  align-self: start;
+  align-self: center;
   color: inherit;
   color: var(--color-primary-1);
 
@@ -45,4 +45,32 @@
 .border {
   border: 1px solid #aaa;
   border-radius: 10px;
+}
+.buttons{
+  display: flex;
+  flex-direction: column;
+  gap: max(20px);
+  width: max(100px);
+
+}
+.buttons button:nth-child(1) {
+  background-color: #5E59FA;
+  color: #fff;
+}
+.buttons button{
+  width: max(6vw, 70px);
+  height: max(40px, 3vw);
+  border: none;
+  outline: none;
+  padding: max(10px, .4vw);
+}
+.spinner {
+  width: max(1.3vw, 20px);
+  height: max(1.3vw, 20px);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

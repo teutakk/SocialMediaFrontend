@@ -7,40 +7,42 @@ import { selectUser } from "../store/slices/authSlice";
 import {
   fetchUserProfile,
   selectProfilePageUser,
-  selectProfilePageUserStatus,
-  setUser,
+  selectProfilePageUserStatus
 } from "../store/slices/profileSlice";
 import {
   fetchFriends,
   sendFriendRequestAsync,
 } from "../store/slices/friendshipSlice";
 
+
 const Profile = () => {
-  const [users, setUsers] = useState([]);
   const [isSentRequest, setIsSentRequest] = useState(false);
+
   const params = useParams();
   const navigate = useNavigate();
-  const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
   const dispatch = useDispatch();
 
+  const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
   const profilePageUser = useSelector(selectProfilePageUser);
-  const sentRequests = useSelector((state) => state.friendship.sentRequests);
   const loggedInUser = useSelector(selectUser);
-  console.log(sentRequests);
 
   const userId = loggedInUser?._id;
 
-  const handleFetchFriends = (loggedInUser) => {
-    dispatch(fetchFriends(loggedInUser)).then((response) => {
-      setUsers(response.payload.data);
-    });
-  };
-
   useEffect(() => {
+    const handleFetchFriends = (loggedInUserId) => {
+      try {
+        dispatch(fetchFriends(loggedInUserId))
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    };
+
     handleFetchFriends(userId);
-  }, [userId]);
+  }, [dispatch, userId]);
 
   const handleSendFriendRequest = () => {
+    //nese tek users.map ekziston id e profilepageuser._id say sentIssent request true
     setIsSentRequest(false);
     dispatch(
       sendFriendRequestAsync({
@@ -58,18 +60,24 @@ const Profile = () => {
         setIsSentRequest(false);
       });
   };
+  //get the user that is logged in, his friends
+  const userFriendIds = loggedInUser?.friends;
+
+  //friends te userit qe osht logged in me u shfaqe si Friend ose Remove Friend
+  const isFriend = userFriendIds?.some((friendId) => friendId === profilePageUser?._id);
 
   // get user from profileSlice
   useEffect(() => {
     // here we dispatch an action that will update the profile slice without sending a request, because we already have the info about user
     dispatch(fetchUserProfile(`/${params.idNumber}`));
-  }, [params.idNumber]);
+  }, [params.idNumber, dispatch]);
 
   useEffect(() => {
     if (profilePageUserStatus === "failed") {
       navigate(`/404?${params.idNumber}doesNotExist`);
     }
-  }, [profilePageUserStatus]);
+  }, [profilePageUserStatus, navigate, params.idNumber]);
+
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -87,16 +95,21 @@ const Profile = () => {
           </h3>
           {
             <div className={classes.actions}>
-              {loggedInUser?._id !== profilePageUser?._id && (
+              {loggedInUser?._id !== profilePageUser?._id && !isFriend && (
                 <button
                   style={{ color: "red" }}
                   onClick={handleSendFriendRequest}
                 >
-                  {isSentRequest ? "Cancel Request" : "Add Friend"}
+                  {isSentRequest ? "Cancel Request": "Add Friend"}
                 </button>
               )}
               {loggedInUser?._id === profilePageUser?._id && (
                 <button>Edit Profile</button>
+              )}
+              { loggedInUser?._id !== profilePageUser?._id && isFriend && (
+                <button >
+                  Remove Friend
+                </button>
               )}
             </div>
           }
@@ -104,13 +117,11 @@ const Profile = () => {
       </section>
       <div className={classes["content-options"]}>
         <div className={classes["navlink-holder"]}>
-          <NavLink to="" end>
-            Posts
-          </NavLink>
+          <NavLink to="" end>Posts</NavLink>
           <NavLink to={"about"}>About</NavLink>
           <NavLink to={"friends"}>Friends</NavLink>
           <NavLink to={"photos"}>Photos</NavLink>
-          {profilePageUser._id === loggedInUser?._id && (
+          {profilePageUser?._id === loggedInUser?._id && (
             <NavLink to={"requests"}>Requests</NavLink>
           )}
         </div>
