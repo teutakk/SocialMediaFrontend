@@ -83,6 +83,10 @@ const Modal = ({
             {showActionButtons && (
               <>
                 <button
+                  disabled={
+                    data.description === updatedData?.description ||
+                    updatedData?.description.trim().length === 0
+                  }
                   className={classes.save}
                   onClick={() =>
                     onModalActionHandler({

@@ -126,6 +126,11 @@
     font: inherit;
   }
 
+  .Modal .save:disabled {
+    background-color: rgb(184, 178, 178);
+    cursor: not-allowed;
+  }
+
   /* STYLING FOR SHOW FULL POST */
   .modal-content-show-post {
     background-color: white;
