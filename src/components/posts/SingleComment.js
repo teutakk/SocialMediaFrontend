@@ -2,8 +2,6 @@ import React from "react";
 import classes from "./SingleComment.module.css";
 import UserChip from "../UserChip";
 import { BiDotsVerticalRounded } from "react-icons/bi";
-import { useSelector } from "react-redux";
-import { selectPosts } from "../../store/slices/postsSlice";
 const SingleComment = ({ comment }) => {
   return (
     <div className={classes.SingleComment}>

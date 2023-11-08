@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./CreatePost.module.css";
 import UserChip from "../UserChip";
-import logo from "../../assets/images/starlabs.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createPost,
@@ -20,7 +19,6 @@ const CreatePost = () => {
   const [selectedImages, setSelectedImages] = useState([]);
 
   const postsStatus = useSelector(selectPostStatus);
-  const postErrors = useSelector(selectPostErrors);
 
   // function to increase the height of the textbox
   const handleInputChange = (e) => {

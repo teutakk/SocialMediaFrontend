@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Rightsidebar.module.css";
-import { friends } from "../api/dummyData";
 import UserChip from "./UserChip";
 import axiosInstance from "../api/axiosInstance";
 import { API_ROUTES } from "../api/apiConfig";

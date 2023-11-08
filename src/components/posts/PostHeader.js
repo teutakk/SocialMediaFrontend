@@ -1,11 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  editPost,
-  savePost,
-  selectPostStatus,
-} from "../../store/slices/postsSlice";
+import { editPost, savePost } from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
@@ -27,7 +23,7 @@ const PostHeader = ({ post, type }) => {
   const [showOptions, setShowOptions] = useState();
   const [modalOpen, setModalOpen] = useState();
   const [displayTime, setDisplayTime] = useState("");
-  const selectPostsStatus = useSelector(selectPostStatus);
+  // const selectPostsStatus = useSelector(selectPostStatus);
   // function to open and close modal
 
   const loggedInUser = useSelector(selectUser);
@@ -74,7 +70,6 @@ const PostHeader = ({ post, type }) => {
     };
   }, [showOptions]);
   const inputDate = parseISO(post.createdAt);
-  const currentDate = new Date();
   const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
 
   useEffect(() => {

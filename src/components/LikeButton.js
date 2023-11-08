@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addLikes, dislikePost, likePost } from "../store/slices/postsSlice";
+import { dislikePost, likePost } from "../store/slices/postsSlice";
 import button from "./Button.module.css";
 import { selectUser } from "../store/slices/authSlice";
 // import button from "./Button.module.css";

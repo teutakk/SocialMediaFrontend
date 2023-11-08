@@ -3,8 +3,6 @@ import { createPortal } from "react-dom";
 import classes from "./Modal.module.css";
 import { FaXmark } from "react-icons/fa6";
 import UserChip from "../components/UserChip";
-import { useSelector } from "react-redux";
-import { selectUser } from "../store/slices/authSlice";
 
 /**
  * Modal component.
@@ -30,7 +28,7 @@ const Modal = ({
   type,
 }) => {
   const [updatedData, setUpdatedData] = useState();
-  const loggedInUser = useSelector(selectUser);
+  // const loggedInUser = useSelector(selectUser);
   const modalDataChangeHandler = (updatedData) => {
     setUpdatedData(updatedData);
   };
