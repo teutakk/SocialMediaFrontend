@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Contacts.module.css";
+import { format, parseISO } from "date-fns";
+import Bullet from "../about/Bullet";
+import { PiEnvelope, PiPerson, PiCake, PiClock } from "react-icons/pi";
 import AddInfo from "../AddInfo";
 import ShowInfo from "../ShowInfo";
 import {
+  selectProfilePageUser,
   fetchUserDetails,
   updateUserDetails,
   createUserDetails,
 } from "../../../store/slices/profileSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 const Contacts = () => {
@@ -31,6 +35,13 @@ const Contacts = () => {
 
   const [userDetails, setUserDetails] = useState({});
   const [userDetailsAlreadyExist, setUserDetailsAlreadyExist] = useState(false);
+
+  const profilePageUser = useSelector(selectProfilePageUser);
+
+  const dateString = profilePageUser.birthday;
+  const birthDate = dateString ? parseISO(dateString) : null;
+  const yearOfBirth = birthDate ? format(birthDate, "yyyy") : "";
+  const formatedDayAndMonth = birthDate ? format(birthDate, "MMMM dd") : "";
 
   const params = useParams();
   const dispatch = useDispatch();
@@ -99,6 +110,24 @@ const Contacts = () => {
           )}
         </div>
       ))}
+
+      {profilePageUser.gender && (
+        <Bullet
+          content={profilePageUser.gender}
+          subContent={"Gender"}
+          logo={<PiPerson />}
+        />
+      )}
+      {formatedDayAndMonth && (
+        <Bullet
+          content={formatedDayAndMonth}
+          subContent={"Birthday"}
+          logo={<PiCake />}
+        />
+      )}
+      {yearOfBirth && (
+        <Bullet content={yearOfBirth} subContent={"Year"} logo={<PiClock />} />
+      )}
     </div>
   );
 };
