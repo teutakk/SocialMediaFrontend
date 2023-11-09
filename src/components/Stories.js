@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classes from "./Stories.module.css";
+import CreateStory from "./CreateStory";
 
 // Dummy data for stories (Replace when backend is ready)
 const dummyStories = [
@@ -282,6 +283,7 @@ const Stories = () => {
   return (
     <div className={classes.storyContainer}>
       <div className={classes.storyList}>
+        <CreateStory />
         {userStoryKeys.map((userId) => {
           const userStoriesForUser = userStories[userId];
           if (userStoriesForUser.length > 0) {

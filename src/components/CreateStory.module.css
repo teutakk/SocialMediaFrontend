@@ -1,0 +1,29 @@
+.addStory {
+  width: 160px;
+  height: 180px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  background: linear-gradient(45deg, var(--color-primary-1) 37%, #f8f8f8);
+  /* background-color: #f8f8f8; */
+  transition: background 1.4s;
+  font-size: 18px;
+}
+
+.addStory p {
+  position: absolute;
+  bottom: 25%;
+}
+
+.addStorySVG {
+  width: 40px;
+}
+
+.addStory:hover {
+  background: var(--color-primary-1);
+  transform: scale(1.03);
+}
