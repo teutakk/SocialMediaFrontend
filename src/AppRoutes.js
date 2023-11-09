@@ -18,6 +18,7 @@ import Notifications from "./pages/Notifications";
 import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
+import EditPostPage from "./pages/EditPost";
 import Page404 from "./pages/Page-404";
 
 const AppRoutes = () => {
@@ -40,10 +41,7 @@ const AppRoutes = () => {
           path="friends"
           element={<RequireAuth component={FriendShip} />}
         />
-        <Route
-          path="chat"
-          element={<RequireAuth component={Chats}/>}
-        />
+        <Route path="chat" element={<RequireAuth component={Chats} />} />
 
         <Route path="id/:idNumber" element={<Profile />}>
           <Route index element={<UsersPosts />} />
@@ -56,7 +54,12 @@ const AppRoutes = () => {
           <Route path="requests" element={<Requests />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
+        <Route
+          path="edit/:postId"
+          element={<RequireAuth component={EditPostPage} />}
+        />
       </Route>
+
       <Route path="404" element={<RequireAuth component={Page404} />} />
       <Route path="*" element={<RequireAuth component={Page404} />} />
     </Routes>

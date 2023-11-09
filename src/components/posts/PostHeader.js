@@ -2,9 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { editPost, savePost } from "../../store/slices/postsSlice";
-import { CiEdit } from "react-icons/ci";
-import { MdOutlineReport, MdDelete } from "react-icons/md";
-import { BsBookmark } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
@@ -17,6 +14,7 @@ import {
   isYesterday,
 } from "date-fns";
 import { selectUser } from "../../store/slices/authSlice";
+import PostSettings from "./PostSettings";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
@@ -123,6 +121,13 @@ const PostHeader = ({ post, type }) => {
             <BiDotsVerticalRounded />
           </span>
         )}
+        <PostSettings
+          post={post}
+          showModal={showModal}
+          settingsSectionRef={settingsSectionRef}
+          showOptions={showOptions}
+          setShowOptions={handleShowOptions}
+        />
         {modalOpen && (
           <Modal
             data={post}
@@ -135,43 +140,6 @@ const PostHeader = ({ post, type }) => {
             <EditPost />
           </Modal>
         )}
-        <div
-          ref={settingsSectionRef}
-          className={`${
-            showOptions
-              ? `${classes.options} ${classes.showOptions}`
-              : classes.options
-          }`}
-        >
-          {loggedInUser?._id === post.userId && (
-            <button onClick={showModal}>
-              <span>
-                <CiEdit />
-              </span>
-              <p>edit</p>
-            </button>
-          )}
-          <button>
-            <span>
-              <MdOutlineReport />
-            </span>
-            <p>report</p>
-          </button>
-          <button onClick={handleSave}>
-            <span>
-              <BsBookmark />
-            </span>
-            <p>save</p>
-          </button>
-          {loggedInUser?._id === post.userId && (
-            <button>
-              <span>
-                <MdDelete />
-              </span>
-              <p>delete</p>
-            </button>
-          )}
-        </div>
       </div>
     </div>
   );
