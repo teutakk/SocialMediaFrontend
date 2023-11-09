@@ -34,52 +34,6 @@
   cursor: pointer;
 }
 
-.options {
-  display: none;
-}
-
-.showOptions {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: max-content;
-  top: 30px;
-  left: 0;
-  transform: translateX(-90%);
-  border-radius: 10px;
-  background-color: white;
-  box-shadow: var(--shadow-image);
-  padding: 10px;
-}
-
-.showOptions button {
-  display: flex;
-  gap: 10px;
-  background-color: transparent;
-  align-items: center;
-  border: none;
-  font-size: 16px;
-  color: inherit;
-  color: var(--color-primary-1);
-
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.showOptions span {
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-}
-
-.showOptions p {
-  text-transform: capitalize;
-}
-
-.showOptions button:hover {
-  background-color: #eee;
-}
-
 @media (prefers-color-scheme: dark) {
   .showOptions {
     background-color: var(--color-grey-dark-2);

@@ -1,0 +1,106 @@
+.PostSettings {
+  display: none;
+}
+.showPostSettings {
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.settingsHolder {
+  width: 100%;
+  /* height: 30%; */
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-top: 1px solid grey;
+  transform: translateY(100%);
+  transition: transform 0.4s 0.4s ease;
+}
+
+.closeSettings {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.closeSettings .closeButton {
+  padding: 4px 8px;
+  color: red;
+  margin-right: 5px;
+}
+
+.showPostSettings .settingsHolder {
+  transform: translateY(100%);
+  animation: slideIn 0.3s ease-out;
+  animation-fill-mode: both;
+}
+
+.showPostSettings button {
+  display: flex;
+  gap: 10px;
+  background-color: transparent;
+  align-items: center;
+  border: none;
+  font-size: 16px;
+  color: inherit;
+  color: var(--color-primary-1);
+
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.showPostSettings span {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.showPostSettings p {
+  text-transform: capitalize;
+}
+
+.showPostSettings button:hover {
+  background-color: #eee;
+}
+
+@media (min-width: 767px) {
+  .showPostSettings {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: max-content;
+    top: 30px;
+    left: 0;
+    height: unset;
+    width: unset;
+    transform: translateX(-90%);
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: var(--shadow-image);
+    padding: 10px;
+  }
+
+  .closeSettings {
+    display: none;
+  }
+
+  .settingsHolder {
+    background-color: white;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}

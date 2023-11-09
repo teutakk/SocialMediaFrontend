@@ -17,6 +17,7 @@ import {
   isYesterday,
 } from "date-fns";
 import { selectUser } from "../../store/slices/authSlice";
+import PostSettings from "./PostSettings";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
@@ -145,6 +146,13 @@ const PostHeader = ({ post, type }) => {
             <BiDotsVerticalRounded />
           </span>
         )}
+        <PostSettings
+          post={post}
+          showModal={showModal}
+          settingsSectionRef={settingsSectionRef}
+          showOptions={showOptions}
+          setShowOptions={handleShowOptions}
+        />
         {modalOpen && (
           <Modal
             data={post}
