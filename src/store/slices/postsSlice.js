@@ -1,3 +1,5 @@
+//post slice
+
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -37,9 +39,17 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
     throw error; // Handle errors appropriately
   }
 });
+
 export const editPost = createAsyncThunk("posts/editPost", async (data) => {
-  const response = await axiosInstance.patch(API_ROUTES.posts[data.id], data);
-  return response.data;
+  try {
+    const response = await axiosInstance.put(
+      API_ROUTES.posts + `/${data._id}`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    throw Error(error.response.data.error);
+  }
 });
 
 export const selectEditState = (state) => state.posts.editing;
@@ -74,7 +84,9 @@ export const commentPost = createAsyncThunk(
     try {
       const response = await axiosInstance.post(API_ROUTES.comment, data);
       return response.data;
-    } catch (err) {}
+    } catch (err) {
+      throw Error(err.respnse.data.error);
+    }
   }
 );
 
@@ -168,25 +180,23 @@ export const postsSlice = createSlice({
         state.error.fetch = action.error.message;
       })
       // Editing posts, handling all cases of responses
-      .addCase(editPost.pending, (state, action) => {
-        state.state.edit = "loading";
+      .addCase(editPost.pending, (state) => {
+        state.status.edit = "loading";
         state.error.edit = null;
       })
       .addCase(editPost.fulfilled, (state, action) => {
-        state.state.edit = "succeeded";
-        // find index of the edited post, this is done with the meaning of the patch request sending back a response with the whole edited post.
-        const index = state.posts.findIndex(
-          (post) => post.id === action.payload.id
+        state.status.edit = "succeeded";
+        const postIndex = state.posts.findIndex(
+          (post) => post._id === action.payload.post._id
         );
-        // updating the edited post so we can show it to the user
-        state.posts[index] = action.payload;
-        state.error.edit = null;
+        if (postIndex !== -1) {
+          state.posts[postIndex] = action.payload.post;
+        }
       })
       .addCase(editPost.rejected, (state, action) => {
-        state.state.edit = "failed";
+        state.status.edit = "failed";
         state.error.edit = action.error.message;
       })
-
       // Deleting posts, handling all cases of responses
       .addCase(deletePost.pending.type, (state, action) => {
         state.status.delete = "loading";
@@ -220,9 +230,9 @@ export const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        // const { postId, content, author } = action.payload;
-        // const postIndex = state.posts.findIndex((post) => post._id === postId);
-        // state.posts[postIndex].comments.push({ author, content });
+        const { postId } = action.payload.comment;
+        const postIndex = state.posts.findIndex((post) => post._id === postId);
+        state.posts[postIndex].comments.push(action.payload.comment);
       })
       .addCase(commentPost.rejected, (state, action) => {
         state.status.comment = "failed";
@@ -348,7 +358,5 @@ export const selectPosts = (state) => state.posts.posts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
-
-export const { addUserInfo, addLikes, addComment } = postsSlice.actions;
 
 export default postsSlice.reducer;
