@@ -25,12 +25,15 @@ const PostSettings = ({
     }
   };
   useEffect(() => {
-    document.body.classList.add("hidden");
+    if (window.innerWidth < 767 && showOptions) {
+      document.body.classList.add("hidden");
+    }
     return () => document.body.classList.remove("hidden");
-  }, []);
+  }, [showOptions]);
 
   return (
     <div
+      onClick={setShowOptions}
       ref={settingsSectionRef}
       className={`${
         showOptions
@@ -40,9 +43,7 @@ const PostSettings = ({
     >
       <section className={classes.settingsHolder}>
         <div className={classes.closeSettings}>
-          <button onClick={setShowOptions} className={classes.closeButton}>
-            Close
-          </button>
+          <button className={classes.closeButton}>Close</button>
         </div>
         {loggedInUser?._id === post.userId && (
           <button onClick={handleEditClick}>

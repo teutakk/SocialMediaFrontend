@@ -151,7 +151,7 @@
   color: inherit;
   color: var(--color-primary-1);
 }
-.route-chat svg{
+.route-chat svg {
   color: inherit;
   color: var(--color-primary-1);
 }
@@ -162,7 +162,8 @@
 
 .route-home:hover::after,
 .route-friends:hover::after,
-.route-marketplace:hover::after {
+.route-marketplace:hover::after,
+.route-chat::after {
   display: block;
   bottom: -100%;
   left: 0;
@@ -185,6 +186,11 @@
 
 .route-marketplace:hover::after {
   content: "Marketplace";
+}
+
+.route-chat:hover::after {
+  content: "Chat";
+  transform: translateX(-18%);
 }
 
 .navigation-right {
