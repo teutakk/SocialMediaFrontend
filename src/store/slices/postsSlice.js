@@ -1,3 +1,5 @@
+//post slice
+
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -82,7 +84,9 @@ export const commentPost = createAsyncThunk(
     try {
       const response = await axiosInstance.post(API_ROUTES.comment, data);
       return response.data;
-    } catch (err) {}
+    } catch (err) {
+      throw Error(err.respnse.data.error);
+    }
   }
 );
 
@@ -226,9 +230,9 @@ export const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        // const { postId, content, author } = action.payload;
-        // const postIndex = state.posts.findIndex((post) => post._id === postId);
-        // state.posts[postIndex].comments.push({ author, content });
+        const { postId } = action.payload.comment;
+        const postIndex = state.posts.findIndex((post) => post._id === postId);
+        state.posts[postIndex].comments.push(action.payload.comment);
       })
       .addCase(commentPost.rejected, (state, action) => {
         state.status.comment = "failed";
@@ -354,7 +358,5 @@ export const selectPosts = (state) => state.posts.posts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
-
-export const { addUserInfo, addLikes, addComment } = postsSlice.actions;
 
 export default postsSlice.reducer;

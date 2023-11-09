@@ -10,9 +10,7 @@ const SingleComment = ({ comment }) => {
         <div className={classes.CommentSection}>
           <div className={classes["name-and-edit"]}>
             <p>
-              <strong>
-                {comment.firstName} {comment.lastName}
-              </strong>
+              <strong>{comment.author}</strong>
             </p>
             <span>
               <BiDotsVerticalRounded />
