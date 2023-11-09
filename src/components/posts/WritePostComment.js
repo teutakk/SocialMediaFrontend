@@ -16,10 +16,10 @@ const WritePostComment = ({ post }) => {
     const newComment = {
       postId: post._id,
       content: commentText,
-      author: loggedInUser._id,
+      userId: loggedInUser._id,
     };
     dispatch(commentPost(newComment));
-    dispatch(addComment(newComment));
+    setCommentText("");
   };
 
   const handleChange = (e) => {
