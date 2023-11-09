@@ -1,15 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  editPost,
-  startEdit,
-  finishEdit,
-  selectEditState,
-  addUserInfo,
-  selectPosts,
-  addLikes,
-  addComment,
-} from "../../store/slices/postsSlice";
+import React from "react";
 import PostActions from "./PostActions";
 import PostHeader from "./PostHeader";
 import WritePostComment from "./WritePostComment";

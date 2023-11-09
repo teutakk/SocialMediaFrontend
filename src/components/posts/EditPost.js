@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import classes from "./EditPost.module.css";
-import PostHeader from "./PostHeader";
-import axiosInstance from "../../api/axiosInstance";
-import { API_ROUTES } from "../../api/apiConfig";
 import { PiX } from "react-icons/pi";
 
 const EditPost = ({ post, onChangeDataHandler, type }) => {
@@ -11,11 +8,15 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
   const [editedImages, setEditedImages] = useState(post.pictures);
   const textareaRef = useRef(null);
 
-  const handleInputChange = (e) => {
+  useEffect(() => {
     onChangeDataHandler({
       description: editPostText,
       images: editedImages,
+      _id: post._id,
     });
+  }, [editPostText, editedImages, post._id]);
+
+  const handleInputChange = (e) => {
     setEdipPostText(e.target.value);
     e.target.style.height = "auto";
     e.target.style.height = e.target.scrollHeight + "px";

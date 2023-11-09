@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import classes from "./WritePostComment.module.css";
-import logo from "../../assets/images/starlabs.png";
 import UserChip from "../UserChip";
-import send from "../../assets/svg/send.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment, commentPost } from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
+
 const WritePostComment = ({ post }) => {
   const [commentText, setCommentText] = useState("");
   const loggedInUser = useSelector(selectUser);
