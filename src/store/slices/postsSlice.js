@@ -1,5 +1,3 @@
-//post slice
-
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -113,11 +111,15 @@ export const deleteComment = createAsyncThunk(
 
 export const likeComment = createAsyncThunk(
   "posts/likeComment",
-  async (commentId) => {
-    const response = await axiosInstance.post(
-      API_ROUTES.comment + `/${commentId}/like`
-    );
-    return response.data;
+  async (data) => {
+    try {
+      const response = await axiosInstance.post(
+        API_ROUTES.likeComment + `/${data.id}/false`
+      );
+      return response.data;
+    } catch (err) {
+      throw Error(err.response.data.error);
+    }
   }
 );
 
@@ -230,9 +232,9 @@ export const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        const { postId } = action.payload.comment;
+        const { postId } = action.payload;
         const postIndex = state.posts.findIndex((post) => post._id === postId);
-        state.posts[postIndex].comments.push(action.payload.comment);
+        state.posts[postIndex].comments.push(action.payload);
       })
       .addCase(commentPost.rejected, (state, action) => {
         state.status.comment = "failed";
@@ -288,7 +290,7 @@ export const postsSlice = createSlice({
         if (post) {
           const likedComment = post.comments.find((c) => c.id === commentId);
           if (likedComment) {
-            likeComment.likes = likes;
+            likedComment.likes = likes;
           }
         }
         state.status.comment = "succeeded";
@@ -336,11 +338,9 @@ export const postsSlice = createSlice({
         state.status.dislike = "loading";
       })
       .addCase(dislikePost.fulfilled, (state, action) => {
-        console.log(action.payload);
         const postIndex = state.posts.findIndex(
           (post) => post._id === action.payload.postId
         );
-        console.log(state.posts[postIndex]);
         const newLikes = state.posts[postIndex].likes.filter(
           (like) => like.userId !== action.payload.userId
         );
