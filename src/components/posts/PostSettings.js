@@ -5,7 +5,6 @@ import { selectUser } from "../../store/slices/authSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
-import { useNavigate } from "react-router";
 
 const PostSettings = ({
   post,
@@ -16,13 +15,8 @@ const PostSettings = ({
 }) => {
   const loggedInUser = useSelector(selectUser);
 
-  const navigate = useNavigate();
   const handleEditClick = () => {
-    if (window.innerWidth < 767) {
-      navigate(`/edit/${post._id}`);
-    } else {
-      showModal();
-    }
+    showModal();
   };
   useEffect(() => {
     if (window.innerWidth < 767 && showOptions) {
