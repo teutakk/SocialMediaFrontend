@@ -10,6 +10,12 @@
   place-content: center;
 }
 
+.modal-content-edit {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
 .modal-content-edit .close {
   background-color: rgba(10, 10, 10, 0.3);
   border-radius: 100%;
