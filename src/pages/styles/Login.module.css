@@ -55,6 +55,9 @@
   font-weight: 600;
 }
 
+.error-message {
+  color: red;
+}
 .topData {
   display: flex;
   flex-direction: column;

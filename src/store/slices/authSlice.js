@@ -14,14 +14,13 @@ export const authenticateUser = createAsyncThunk(
   async (credentials) => {
     try {
       const response = await axiosInstance.post(API_ROUTES.login, credentials);
-      // if we name it token
       const token = response.data.token;
-      // Saving the token to localStorage
       localStorage.setItem("token", token);
 
       return response.data;
     } catch (err) {
-      throw Error(err.response.data.error);
+      console.log("Error in authenticateUser thunk:", err);
+      throw Error(`Authentication failed: ${err.message}`);
     }
   }
 );
