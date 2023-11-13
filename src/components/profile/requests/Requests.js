@@ -3,8 +3,8 @@ import Bullet from "../about/Bullet";
 import { NavLink, useParams } from "react-router-dom";
 import { selectUser } from "../../../store/slices/authSlice";
 import {useDispatch, useSelector} from "react-redux"
-import { useState } from "react";
-import { acceptFriendRequestAsync } from "../../../store/slices/friendshipSlice";
+import { useEffect, useState } from "react";
+import { acceptFriendRequestAsync, fetchFriends } from "../../../store/slices/friendshipSlice";
 
 const Requests = () => {
   const [loadingStates, setLoadingStates] = useState({}); 
@@ -14,7 +14,14 @@ const Requests = () => {
   const loggedInUser = useSelector(selectUser);
   const pendingRequests = useSelector((state) => state.friendship.pendingRequests)
   const userId = loggedInUser?._id
+  console.log(pendingRequests);
 
+  useEffect(() => {
+    const handleFetchFriendRequests = () => {
+     dispatch(fetchFriends(userId))
+    }
+    handleFetchFriendRequests()
+  }, [])
 
   const handleAcceptFriendRequest = ({ rid, senderUserId, status }) => {
     setLoadingStates({ ...loadingStates, [rid]: { status: status } });

@@ -71,10 +71,15 @@
   align-self: center;
 }
 
+
 .actions button {
   padding: 5px 10px;
   background-color: transparent;
-  border-radius: 10px;
+  border-radius: 15px;
+  width: max(8vw, 120px);
+  height: max(30px, 2vw);
+  border: none;
+  outline: none;
 }
 
 .actions button:first-of-type {
@@ -164,6 +169,17 @@
   .navlink-holder {
     justify-content: flex-start;
   }
+}
+
+.spinner {
+  width: max(1vw, 15px);
+  height: max(1vw, 15px);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media (min-width: 1000px) {
