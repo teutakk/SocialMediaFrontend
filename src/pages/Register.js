@@ -13,6 +13,7 @@ import { BiSolidUser } from "react-icons/bi";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Footer from "../components/Footer";
+import Navigation from '../components/header/Navigation'
 
 const Register = () => {
   const [formData, setFormData] = useState({
