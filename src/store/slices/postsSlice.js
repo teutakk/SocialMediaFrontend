@@ -118,6 +118,19 @@ export const likeComment = createAsyncThunk(
       );
       return response.data;
     } catch (err) {
+      console.error("Error in likeComment", err);
+      throw Error(err.response.data.error);
+    }
+  }
+);
+
+export const replyComment = createAsyncThunk(
+  "posts/replyComment",
+  async (data) => {
+    try {
+      const response = await axiosInstance.post(API_ROUTES.replyComment, data);
+      return response.data;
+    } catch (err) {
       throw Error(err.response.data.error);
     }
   }

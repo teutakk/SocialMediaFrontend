@@ -11,14 +11,22 @@ const SingleComment = ({ comment }) => {
 
   const dispatch = useDispatch();
   const [isLiked, setIsLiked] = useState(comment.isLiked || false);
+
   const handleLikeComment = async () => {
     try {
+      if (!comment._id) {
+        console.error("Comment ID is undefined.");
+        return;
+      }
       const data = {
         userId: loggedInUser?._id,
         id: comment._id,
       };
+
+      console.log("Before dispatching likeComment:", data);
       dispatch(likeComment(data));
       setIsLiked(true);
+      console.log("After dispatching likeComment");
     } catch (error) {
       console.error("Error liking comment:", error);
     }
