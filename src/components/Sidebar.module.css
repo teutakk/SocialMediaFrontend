@@ -24,6 +24,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-self: stretch;
+  width: calc(100% - 53px);
 }
 
 .routing-options {

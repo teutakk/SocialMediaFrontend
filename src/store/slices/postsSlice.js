@@ -230,9 +230,9 @@ export const postsSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        const { postId } = action.payload.comment;
+        const { postId } = action.payload;
         const postIndex = state.posts.findIndex((post) => post._id === postId);
-        state.posts[postIndex].comments.push(action.payload.comment);
+        state.posts[postIndex].comments.push(action.payload);
       })
       .addCase(commentPost.rejected, (state, action) => {
         state.status.comment = "failed";
