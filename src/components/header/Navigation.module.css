@@ -186,6 +186,7 @@
 
 .route-marketplace:hover::after {
   content: "Marketplace";
+  transform: translateX(-35%);
 }
 
 .route-chat:hover::after {
