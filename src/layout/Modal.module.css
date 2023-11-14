@@ -160,6 +160,10 @@
   }
   
   .modal-content-edit .close {
+    margin-left: auto; 
+  }
+
+  v.modal-content-edit .close {
     margin-left: auto;
   }
   /* STYLING FOR SHOW FULL POST */
