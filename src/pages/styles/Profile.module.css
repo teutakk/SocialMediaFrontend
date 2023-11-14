@@ -87,8 +87,27 @@
   border: 1px solid lightblue;
 }
 
-.actions button:nth-of-type(2) {
-  border: 1px solid red;
+.buttons {
+  display: flex;
+  gap: max(10px, .4vw);
+}
+.buttons .acceptButton{
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 15px;
+  width: max(8vw, 120px);
+  height: max(30px, 2vw);
+  border: none;
+  outline: none;
+}
+.buttons .rejectButton{
+  padding: 5px 10px;
+  background-color: #DEE2E6;
+  border-radius: 15px;
+  width: max(8vw, 120px);
+  height: max(30px, 2vw);
+  border: none;
+  outline: none;
 }
 
 .content-options {

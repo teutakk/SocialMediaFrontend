@@ -86,12 +86,11 @@ const Friends = () => {
           {!loader &&
             friendsData?.map((friend, i) => {
               return (
-                <NavLink to={`../../../id/${friend._id}`} key={i}>
                   <Bullet
+                    navigation={`../../../id/${friend._id}`}
                     subContent={friend.email}
                     content={friend.firstName}
                   />
-                </NavLink>
               );
             })}
         </div>

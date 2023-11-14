@@ -10,7 +10,9 @@ import {
   selectProfilePageUserStatus
 } from "../store/slices/profileSlice";
 import {
+  acceptFriendRequestAsync,
   cancelFriendRequest,
+  fetchFriends,
   getSentRequests,
   removeFriendRequestAsync,
   sendFriendRequestAsync,
@@ -20,7 +22,8 @@ import { FaSpinner } from "react-icons/fa";
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAFriend, setIsAFriend] = useState(false);
-  const [isSentRequest, setIsSentRequest] = useState(false)
+  const [isSentRequest, setIsSentRequest] = useState(false);
+  const [acceptFriend, setAcceptFriend] = useState(false);
 
   const params = useParams();
   const navigate = useNavigate();
@@ -30,6 +33,7 @@ const Profile = () => {
   const profilePageUser = useSelector(selectProfilePageUser);
   const loggedInUser = useSelector(selectUser);
   const sentRequests = useSelector((state) => state.friendship.sentRequests);
+  const pendingRequests = useSelector((state) => state.friendship.pendingRequests);
   const userId = loggedInUser?._id;
 
   useEffect(() => {
@@ -45,7 +49,18 @@ const Profile = () => {
     handleGetSentRequests(userId);
   }, [dispatch, userId]);
 
+  useEffect(() => {
+    const handleFetchFriends = (userId) => {
+      try {
+        dispatch(fetchFriends(userId))
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    };
 
+    handleFetchFriends(userId);
+  }, [dispatch, userId]);
   const handleSendFriendRequest = () => {
     setIsLoading(true)
     setIsSentRequest(false);
@@ -72,7 +87,7 @@ const Profile = () => {
   const requestData = sentRequests.find(
     (sr) => sr?.requestTo?._id === profilePageUser?._id
   );
-
+  
   const handleCancelFriendRequest = () => {
     setIsLoading(true)
     dispatch(
@@ -115,6 +130,12 @@ const Profile = () => {
       })
   }
 
+  //get which friends you should accept and reject their request
+  const acceptRejectRequests = pendingRequests.find(
+    (request) => request?.requestFrom?._id === profilePageUser?._id
+  );
+  console.log(acceptRejectRequests);
+
   //check the sentRequest array for changes ?
   useEffect(() => {
     const sentRequestExist = sentRequests?.some(
@@ -122,8 +143,16 @@ const Profile = () => {
     );
     if(sentRequestExist){
       setIsSentRequest(true)
+    }else{
+      setIsSentRequest(false)
     }
-  }, [sentRequests, profilePageUser]);
+
+    const acceptRejectRequests = pendingRequests.some(
+      (request) => request?.requestFrom?._id === profilePageUser?._id
+    );
+    setAcceptFriend(acceptRejectRequests)
+    console.log(acceptRejectRequests);
+  }, [sentRequests, profilePageUser, pendingRequests]);
 
   // get user from profileSlice
   useEffect(() => { 
@@ -138,6 +167,27 @@ const Profile = () => {
     }
   }, [profilePageUserStatus, navigate, params.idNumber]);
 
+  useEffect(() => {
+
+  })
+  const handleAcceptFriendRequest = ({status}) => {
+    setIsLoading(true)
+    dispatch(
+      acceptFriendRequestAsync({
+        rid: acceptRejectRequests._id,
+        senderUserId: acceptRejectRequests.requestFrom._id,
+        status: status,
+      })
+    )
+    .then(() => {
+      status === "Accepted" && setIsAFriend(true)
+      setIsLoading(false)
+    })
+    .catch((error) => {
+      console.log(error);
+      setIsLoading(false)
+    });
+  };
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -158,12 +208,14 @@ const Profile = () => {
               {loggedInUser?._id !== profilePageUser?._id &&
                 !isLoading &&
                 !isAFriend &&
+                !acceptFriend &&
                 !isSentRequest && (
                   <button onClick={handleSendFriendRequest}>Add Friend</button>
                 )}
               {loggedInUser?._id !== profilePageUser?._id &&
                 !isLoading &&
                 !isAFriend &&
+                !acceptFriend &&
                 isSentRequest && (
                   <button onClick={handleCancelFriendRequest}>
                     Cancel Request
@@ -179,14 +231,35 @@ const Profile = () => {
                     Remove Friend
                   </button>
                 )}
-                 {loggedInUser?._id !== profilePageUser?._id &&
-                  isLoading && (
-                    <button>
-                      <span>
-                        <FaSpinner className={classes.spinner} />{" "}
-                      </span>
+              {loggedInUser?._id !== profilePageUser?._id &&
+                !isLoading &&
+                acceptFriend && (
+                  <div className={classes.buttons}>
+                    <button
+                      className={classes.acceptButton}
+                      onClick={() =>
+                        handleAcceptFriendRequest({ status: "Accepted" })
+                      }
+                    >
+                      Accept
                     </button>
-                  )}
+                    <button
+                      className={classes.rejectButton}
+                      onClick={() =>
+                        handleAcceptFriendRequest({ status: "Rejected" })
+                      }
+                    >
+                      Reject
+                    </button>
+                  </div>
+                )}
+              {loggedInUser?._id !== profilePageUser?._id && isLoading && (
+                <button>
+                  <span>
+                    <FaSpinner className={classes.spinner} />{" "}
+                  </span>
+                </button>
+              )}
             </div>
           }
         </div>

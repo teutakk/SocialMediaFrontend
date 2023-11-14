@@ -53,25 +53,26 @@ const Requests = () => {
       <div className={classes["request-holder"]}>
           {pendingRequests?.map((friend, i) => (
             userId === friend?.requestTo &&
-            <Bullet
-              key={i}
-              content={friend?.requestFrom?.firstName}
-              subContent={friend?.requestFrom?._id}
-              acceptFriendRequest={() => handleAcceptFriendRequest({
-                senderUserId: friend.requestFrom._id,
-                rid: friend._id,
-                status: "Accepted",
-              })}
-              rejectFriendRequest={() => handleAcceptFriendRequest({
-                senderUserId: friend.requestFrom._id,
-                rid: friend._id,
-                status: "Rejected",
-              })}
-              loadingStates={loadingStates[friend._id]}
-            />
+              <Bullet
+                navigation={`/id/${friend.requestFrom._id}`}
+                key={i}
+                content={friend?.requestFrom?.firstName}
+                subContent={friend?.requestFrom?._id}
+                acceptFriendRequest={() => handleAcceptFriendRequest({
+                  senderUserId: friend.requestFrom._id,
+                  rid: friend._id,
+                  status: "Accepted",
+                })}
+                rejectFriendRequest={() => handleAcceptFriendRequest({
+                  senderUserId: friend.requestFrom._id,
+                  rid: friend._id,
+                  status: "Rejected",
+                })}
+                loadingStates={loadingStates[friend._id]}
+              />
           ))}
         </div> 
-        {pendingRequests.length !== 0 && <NavLink to={`/id/${params.idNumber}/requests`}>See more</NavLink> }
+        {pendingRequests.length !== 0 && <NavLink className={classes.navLink} to={`/id/${params.idNumber}/requests`}>See more</NavLink> }
         {pendingRequests.length === 0 && <p className={classes.paragraph}>No new requests</p>  }
     </div>
   );
