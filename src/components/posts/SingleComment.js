@@ -10,7 +10,9 @@ const SingleComment = ({ comment }) => {
   const loggedInUser = useSelector(selectUser);
 
   const dispatch = useDispatch();
-  const [isLiked, setIsLiked] = useState(comment.isLiked || false);
+  const [isLiked, setIsLiked] = useState(
+    comment.likes?.includes(loggedInUser?._id)
+  );
 
   const handleLikeComment = async () => {
     try {
