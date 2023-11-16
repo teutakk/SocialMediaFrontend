@@ -17,9 +17,6 @@ const Friends = () => {
 
   const profilePageUser = useSelector(selectProfilePageUser);
   const loggedInUser = useSelector(selectUser);
-  //wait for data
-  // const friends = useSelector((state) => state.friendship.friends);
-  // console.log(friends);
 
   //nese some friends te loggedInUser.friends jane te barabarte me profilePageUser._id athere fetchFriendsData below
   useEffect(() => {
@@ -28,8 +25,7 @@ const Friends = () => {
       try {
         // check if the users you visit is friends with you, if yes then show the friends of that user
         const loggedUserFriends = loggedInUser?.friends;
-        console.log(loggedUserFriends);
-        //me shtu diqka qe me kqyr prap nese aj user tek i cili ndodhemi me u recheck again nese e bojm remove nje friend prej profilit
+
         const isAFriend = loggedUserFriends.some(
           (friend) => friend === profilePageUser?._id
         );
@@ -83,13 +79,14 @@ const Friends = () => {
       )}
       {
         <div className={classes["friends-holder"]}>
-          {!loader &&
+          {!loader && showFriends &&
             friendsData?.map((friend, i) => {
               return (
                   <Bullet
-                    navigation={`../../../id/${friend._id}`}
-                    subContent={friend.email}
-                    content={friend.firstName}
+                    key={i}
+                    navigation={`../../../id/${friend?._id}`}
+                    subContent={friend?.email}
+                    content={friend?.firstName}
                   />
               );
             })}
@@ -107,7 +104,7 @@ const Friends = () => {
         <p className={classes.paragraph}>No Friends... yet</p>
       )}
       {!showFriends && !loader && (
-        <p className={classes.paragraph}>Can't see users posts!</p>
+        <p className={classes.paragraph}>Can't see user's friends!</p>
       )}
     </div>
   );
