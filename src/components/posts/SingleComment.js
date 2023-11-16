@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./SingleComment.module.css";
 import UserChip from "../UserChip";
 import { BiDotsVerticalRounded } from "react-icons/bi";
@@ -8,11 +8,19 @@ import { selectUser } from "../../store/slices/authSlice";
 
 const SingleComment = ({ comment }) => {
   const loggedInUser = useSelector(selectUser);
-
   const dispatch = useDispatch();
+
+  const storedLikeStatus = localStorage.getItem(`comment_like_${comment._id}`);
   const [isLiked, setIsLiked] = useState(
-    comment.likes?.includes(loggedInUser?._id)
+    storedLikeStatus ? JSON.parse(storedLikeStatus) : false
   );
+
+  useEffect(() => {
+    localStorage.setItem(
+      `comment_like_${comment._id}`,
+      JSON.stringify(isLiked)
+    );
+  }, [isLiked, comment._id]);
 
   const handleLikeComment = async () => {
     try {
@@ -26,11 +34,11 @@ const SingleComment = ({ comment }) => {
       };
 
       console.log("Before dispatching likeComment:", data);
-      dispatch(likeComment(data));
-      setIsLiked(true);
+      await dispatch(likeComment(data));
+      setIsLiked((prevIsLiked) => !prevIsLiked); // Toggle the like status
       console.log("After dispatching likeComment");
     } catch (error) {
-      console.error("Error liking comment:", error);
+      console.error("Error liking/disliking comment:", error);
     }
   };
 
@@ -49,10 +57,9 @@ const SingleComment = ({ comment }) => {
           </div>
           <p>{comment.content}</p>
         </div>
-        {/* <img src={logo1} width={200} height={200} alt="photo if photo" /> */}
         <div className={classes.Actions}>
-          <button onClick={handleLikeComment} disabled={isLiked}>
-            {isLiked ? "Liked" : "Like"}
+          <button onClick={handleLikeComment}>
+            {isLiked ? "Dislike" : "Like"}
           </button>
           <span>Reply</span>
         </div>
