@@ -287,16 +287,25 @@ export const postsSlice = createSlice({
       })
       .addCase(likeComment.fulfilled, (state, action) => {
         const { postId, commentId, likes } = action.payload;
-        //let the user find the post and comment to update the likes
-        const post = state.posts.find((post) => post.id === postId);
+        const post = state.posts.find((post) => post._id === postId);
+
         if (post) {
-          const likedComment = post.comments.find((c) => c.id === commentId);
+          const likedComment = post.comments.find((c) => c._id === commentId);
+
           if (likedComment) {
             likedComment.likes = likes;
+          } else {
+            console.warn(
+              `Comment with ID ${commentId} not found in post with ID ${postId}`
+            );
           }
+        } else {
+          console.warn(`Post with ID ${postId} not found`);
         }
+
         state.status.comment = "succeeded";
       })
+
       .addCase(likeComment.rejected, (state, action) => {
         state.status.comment = "failed";
         state.error.comment = action.error.message;
