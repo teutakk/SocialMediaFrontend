@@ -9,6 +9,7 @@ const API_ROUTES = {
   user: "/users/",
   post: "/post",
   comment: "/comments",
+  likeComment: "/like-comment",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
   acceptFriendRequest: "/accept-request",
