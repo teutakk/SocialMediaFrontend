@@ -17,7 +17,7 @@ const CreatePost = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
-
+  console.log("selectedImages", selectedImages);
   const postsStatus = useSelector(selectPostStatus);
 
   // function to increase the height of the textbox
@@ -73,6 +73,7 @@ const CreatePost = () => {
 
   const handleFileInputChange = (e) => {
     const selectedFiles = e.target.files;
+    console.log(selectedFiles);
     setSelectedImages(selectedFiles);
     // Create an array to store image previews
     const previews = [];
@@ -151,7 +152,7 @@ const CreatePost = () => {
           multiple
           name="pictures"
         />
-        <button className={button.post} type="submit">
+        <button onClick={handleSubmit} className={button.post} type="submit">
           POST
         </button>
       </div>
