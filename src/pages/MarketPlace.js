@@ -13,7 +13,7 @@ const productsData = [
     },
     name: "Product 1",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
     price: "19.99$",
     images: [
       "https://m.media-amazon.com/images/I/81Mlvwip4dL._AC_SX679_.jpg",
@@ -100,23 +100,25 @@ const Marketplace = () => {
       <h1 className={classes.pageTitle}>Marketplace</h1>
       <div className={classes.productsList}>
         {productsData.map((product) => (
-          <div
-            key={product.id}
-            className={classes.product}
-            onClick={() => openModal(product)}
-          >
-            <p className={classes.username}>{product.user.username}</p>
+          <div key={product.id} className={classes.product}>
+            <div className={classes.user}>
+              <img src={product.user.profilePicture} />
+              <p className={classes.username}>{product.user.username}</p>
+            </div>
             <p className={classes.productName}>{product.name}</p>
+            <p className={classes.productPrice}>{product.price}</p>
             <p className={classes.productDescription}>{product.description}</p>
             <div className={classes.productImages}>
               <img
                 src={product.images[0]}
                 alt={`Product ${product.id} Image 0`}
                 className={classes.mainImage}
+                onClick={() => openModal(product)}
               />
               <div className={classes.smallImages}>
                 {product.images.slice(1, 3).map((image, index) => (
                   <img
+                    onClick={() => openModal(product)}
                     key={index}
                     src={image}
                     className={classes.smallImg}
@@ -124,7 +126,10 @@ const Marketplace = () => {
                   />
                 ))}
                 {product.images.length > 3 && (
-                  <div className={classes.moreImages}>
+                  <div
+                    className={classes.moreImages}
+                    onClick={() => openModal(product)}
+                  >
                     +{product.images.length - 3} images
                   </div>
                 )}

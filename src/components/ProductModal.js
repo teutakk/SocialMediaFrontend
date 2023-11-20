@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import "./productmodal.css";
+import classes from "./ProductModal.module.css";
 
 const ProductModal = ({ product, closeModal }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -24,36 +24,43 @@ const ProductModal = ({ product, closeModal }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="close-button" onClick={closeModal}>
+    <div className={classes.modalContainer}>
+      <div className={classes.modalContent}>
+        <button className={classes.closeModal} onClick={closeModal}>
           Close
         </button>
-        <div className="modal-images" ref={imagesContainerRef}>
+        <div className={classes.modalImages} ref={imagesContainerRef}>
           <img
             src={product.images[currentIndex]}
             alt={`Product ${product.id} Image ${currentIndex}`}
-            className="main-image"
+            className={classes.mainImage}
           />
         </div>
-        <div className="scroll-buttons">
+        <div className={classes.scrollButtons}>
           <button
             onClick={() => scrollImages("prev")}
             disabled={currentIndex === 0}
+            className={classes.previousBtn}
           >
-            Previous
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z" />
+            </svg>
           </button>
           <button
             onClick={() => scrollImages("next")}
             disabled={currentIndex === product.images.length - 1}
+            className={classes.nextBtn}
           >
-            Next
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+              <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
+            </svg>
           </button>
         </div>
-        <div className="modal-details">
-          <h2>{product.title}</h2>
-          <p>{product.description}</p>
-          <p>{product.price}</p>
+        <div className={classes.modalDetails}>
+          <h3 className={classes.userName}>{product.user.username}</h3>
+          <h2 className={classes.productName}>{product.name}</h2>
+          <p className={classes.productDesc}>{product.description}</p>
+          <p className={classes.productPrice}>{product.price}</p>
         </div>
       </div>
     </div>
