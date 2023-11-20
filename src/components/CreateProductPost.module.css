@@ -1,0 +1,115 @@
+.createProductForm {
+    width: 100%;
+    background: var(--color-grey-light-1);
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    height: auto;
+}
+
+.productForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 5px;
+}
+
+.productLabel {
+    width: 32.8%;
+    height: 60px;
+}
+
+.productNameInput,
+.productPriceInput {
+    padding: 5px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.productDescriptionInput {
+    height: 40px;
+    resize: none;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+button {
+    margin: 10px;
+}
+
+.imagePreview {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.imagePreview img {
+    width: calc(32.8% - 10px); 
+    height: 150px; 
+}
+
+.imageModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.imageModal img {
+    max-width: 90%;
+    max-height: 90%;
+    cursor: pointer;
+}
+
+.closeModal {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid black;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.currencyDropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.currencyIcon {
+  cursor: pointer;
+}
+
+.currencyOptions {
+  position: absolute;
+  top: 100%;
+  right: -10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.currencyOptions div {
+  padding: 8px;
+  cursor: pointer;
+}

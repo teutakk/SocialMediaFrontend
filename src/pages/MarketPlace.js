@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductModal from "../components/ProductModal";
 import classes from "./styles/MarketPlace.module.css";
+import CreateProductPost from "../components/CreateProductPost";
 
 const productsData = [
   {
@@ -84,6 +85,8 @@ const productsData = [
 const Marketplace = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
+  // const [productsData, setProductsData] = useState([productsData]);
+  const [isCreateFormVisible, setCreateFormVisible] = useState(false);
 
   const openModal = (product) => {
     setSelectedProduct(product);
@@ -95,9 +98,50 @@ const Marketplace = () => {
     setModalOpen(false);
   };
 
+  // const createProduct = (newProduct) => {
+  //   // Add the new product to the existing productsData
+  //   setProductsData((prevProducts) => [...prevProducts, newProduct]);
+  // };
+
   return (
     <div>
       <h1 className={classes.pageTitle}>Marketplace</h1>
+      <p className={classes.creationTxt}>Create a Post for Product</p>
+      <div className={classes.createPostText}>
+        {isCreateFormVisible ? (
+          <div className={classes.creationBtns}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className={classes.closeCreate}
+              onClick={() => setCreateFormVisible(!isCreateFormVisible)}
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            <span onClick={() => setCreateFormVisible(!isCreateFormVisible)}>
+              Close
+            </span>
+          </div>
+        ) : (
+          <div className={classes.creationBtns}>
+            <svg
+              className={classes.openCreate}
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 512 512"
+              onClick={() => setCreateFormVisible(!isCreateFormVisible)}
+            >
+              <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+            </svg>
+          </div>
+        )}
+      </div>
+      {isCreateFormVisible && <CreateProductPost />}
       <div className={classes.productsList}>
         {productsData.map((product) => (
           <div key={product.id} className={classes.product}>
