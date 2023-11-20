@@ -1,5 +1,3 @@
-//post slice
-
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -113,11 +111,17 @@ export const deleteComment = createAsyncThunk(
 
 export const likeComment = createAsyncThunk(
   "posts/likeComment",
-  async (commentId) => {
-    const response = await axiosInstance.post(
-      API_ROUTES.comment + `/${commentId}/like`
-    );
-    return response.data;
+  async (data) => {
+    try {
+      const response = await axiosInstance.post(
+        API_ROUTES.likeComment + `/${data.id}`,
+        data
+      );
+      return response.data;
+    } catch (err) {
+      console.error("Error in likeComment", err);
+      throw Error(err.response.data.error);
+    }
   }
 );
 
@@ -283,16 +287,25 @@ export const postsSlice = createSlice({
       })
       .addCase(likeComment.fulfilled, (state, action) => {
         const { postId, commentId, likes } = action.payload;
-        //let the user find the post and comment to update the likes
-        const post = state.posts.find((post) => post.id === postId);
+        const post = state.posts.find((post) => post._id === postId);
+
         if (post) {
-          const likedComment = post.comments.find((c) => c.id === commentId);
+          const likedComment = post.comments.find((c) => c._id === commentId);
+
           if (likedComment) {
-            likeComment.likes = likes;
+            likedComment.likes = likes;
+          } else {
+            console.warn(
+              `Comment with ID ${commentId} not found in post with ID ${postId}`
+            );
           }
+        } else {
+          console.warn(`Post with ID ${postId} not found`);
         }
+
         state.status.comment = "succeeded";
       })
+
       .addCase(likeComment.rejected, (state, action) => {
         state.status.comment = "failed";
         state.error.comment = action.error.message;
@@ -336,11 +349,9 @@ export const postsSlice = createSlice({
         state.status.dislike = "loading";
       })
       .addCase(dislikePost.fulfilled, (state, action) => {
-        console.log(action.payload);
         const postIndex = state.posts.findIndex(
           (post) => post._id === action.payload.postId
         );
-        console.log(state.posts[postIndex]);
         const newLikes = state.posts[postIndex].likes.filter(
           (like) => like.userId !== action.payload.userId
         );

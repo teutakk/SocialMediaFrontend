@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchFriends
-} from "../store/slices/friendshipSlice";
+import { useSelector } from "react-redux";
 import FriendList from "../components/friendship/FriendList";
 import { selectUser } from "../store/slices/authSlice";
 import classes from "./styles/Friendship.module.css";
@@ -13,21 +10,8 @@ const FriendShip = () => {
   const [friendsData, setFriendsData] = useState([]);
 
   const loggedInUser = useSelector(selectUser);
-  const userId = loggedInUser?._id;
-  console.log(userId);
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const handleFetchFriends = () => {
-      try {
-        dispatch(fetchFriends(userId))
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
-    };
-    handleFetchFriends();
-  }, [dispatch, userId]);
+  console.log(loggedInUser);
 
   useEffect(() => {
     const fetchFriendsData = async () => {
@@ -42,13 +26,13 @@ const FriendShip = () => {
 
         setFriendsData(friendData);
         
+        console.log(friendsData);
       } catch (error) {
         console.error("Error fetching friends' data", error);
       }
     };
     fetchFriendsData();
-  }, [loggedInUser?.friends]);
-
+  }, [loggedInUser]);
 
   return (
     <div className={classes.container}>

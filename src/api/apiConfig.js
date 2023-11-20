@@ -9,9 +9,14 @@ const API_ROUTES = {
   user: "/users/",
   post: "/post",
   comment: "/comments",
+  likeComment: "/like-comment",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
   acceptFriendRequest: "/accept-request",
+  removeFriendRequest: "/delete-friend",
+  suggestedFriends: "/suggested-friends",
+  getSentRequests: "/get-send-request",
+  cancelFriendRequest: "/cancel-request",
 };
 
 export { BASE_URL, API_ROUTES };

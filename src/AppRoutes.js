@@ -20,11 +20,13 @@ import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
 import EditPostPage from "./pages/EditPost";
 import Page404 from "./pages/Page-404";
-
+import Verified from "./pages/Verified";
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="register" element={<Register />} />
+      <Route path="/users/verify/:userId/:token" element={<Verified />} />
+
       <Route path="login" element={<Login />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />

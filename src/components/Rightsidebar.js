@@ -4,26 +4,33 @@ import UserChip from "./UserChip";
 import axiosInstance from "../api/axiosInstance";
 import { API_ROUTES } from "../api/apiConfig";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../store/slices/authSlice";
+
 const Rightsidebar = () => {
-  const [users, setUsers] = useState();
-  const [error, setError] = useState(null);
+  const [suggestedFriends, setSuggestedFriends] = useState([]);
+
+  const loggedInUser = useSelector(selectUser);
+  const userId = loggedInUser?._id
+
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchSuggestedFriends = async () => {
       try {
-        const response = await axiosInstance.get(API_ROUTES.users);
-        setUsers(response.data);
-      } catch (err) {
-        setError(err.response.data);
+        const response = await axiosInstance.post(API_ROUTES.suggestedFriends, {userId})
+        console.log(response.data);
+        setSuggestedFriends(response?.data?.data)
+      } catch (error) {
+        console.log(error);
       }
-    };
-    fetchUsers();
-  }, []);
+    }
+    fetchSuggestedFriends()
+  }, [userId])
+
   return (
     <section className={classes.Rightsidebar}>
       <h3>Suggested for you</h3>
       <div className={classes["friends-holder"]}>
-        {users?.map((friend) => (
-          // each friend should be a NavLink that send u to the profile of the friend, waiting for profilepage to be designed and change it
+        {suggestedFriends?.map((friend) => (
           <NavLink
             to={`id/${friend._id}`}
             key={friend._id}

@@ -1,10 +1,10 @@
 import React from "react";
 import classes from "./Bullet.module.css";
 import { useParams } from "react-router";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
-const Bullet = ({ content, subContent, logo, loadingStates, acceptFriendRequest, rejectFriendRequest }) => {
+const Bullet = ({navigation, content, subContent, logo, loadingStates, acceptFriendRequest, rejectFriendRequest }) => {
   
   const params = useParams();
   const location = useLocation()
@@ -20,10 +20,10 @@ const Bullet = ({ content, subContent, logo, loadingStates, acceptFriendRequest,
       <span className={classes.logo}>
         {typeof logo === "string" ? <img src={logo} alt={content} /> : logo}
       </span>
-      <div className={classes["bullet-content"]}>
+      <NavLink to={navigation} className={classes["bullet-content"]}>
         <p>{content}</p>
         <span>{subContent}</span>
-      </div>
+      </NavLink>
       {path === `/id/${params.idNumber}/requests` && (
         <div className={classes.buttons}>
          {loadingStates &&  loadingStates?.status === "Accepted" ? (

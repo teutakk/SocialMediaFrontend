@@ -32,6 +32,7 @@ const CommentActions = ({
       setCommentText("");
     }
   };
+
   const handleEditComment = () => {
     if (isEditing && commentText) {
       dispatch(
@@ -47,9 +48,11 @@ const CommentActions = ({
       setCommentText(onCommentEdit);
     }
   };
+
   const handleDeleteComment = () => {
     dispatch(deleteComment({ postId, commentId }));
   };
+
   const handleLikeComment = () => {
     if (!isLiking) {
       setIsLiking(true);
@@ -58,6 +61,7 @@ const CommentActions = ({
       });
     }
   };
+
   const handlePinComment = () => {
     if (!isPinning) {
       setIsPinning(true);
@@ -68,6 +72,7 @@ const CommentActions = ({
       );
     }
   };
+
   return (
     <div>
       <textarea
@@ -82,7 +87,7 @@ const CommentActions = ({
       </button>
       <button onClick={handleDeleteComment}>Delete Comment</button>
       <button onClick={handleLikeComment} disabled={isLiking}>
-        {isLiked ? "Unlike" : "Like"}
+        {isLiked ? "Liked" : "Like"}
       </button>
       <button onClick={handlePinComment} disabled={isPinning}>
         {isPinned ? "Unpin" : "Pin"}
@@ -90,4 +95,5 @@ const CommentActions = ({
     </div>
   );
 };
+
 export default CommentActions;

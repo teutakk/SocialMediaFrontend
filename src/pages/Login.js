@@ -77,7 +77,7 @@ const Login = () => {
             value={formData.email}
           >
             {loginStatus === "failed" && (
-              <p>
+              <p style={{ color: "red" }}>
                 {loginError && "Invalid email or password, please try again"}
               </p>
             )}
