@@ -96,10 +96,14 @@ const SingleComment = ({ comment }) => {
             <button onClick={handleReplyComment}>Save</button>
           </div>
         )}
-        {comment.replies &&
-          comment.replies.map((reply) => (
-            <ReplyComment key={reply._id} reply={reply} />
-          ))}
+        <div className={classes.RepliesContainer}>
+          {comment.replies &&
+            comment.replies.map((reply) => (
+              <label key={reply._id} className={classes.ReplyLabel}>
+                <ReplyComment reply={reply} />
+              </label>
+            ))}
+        </div>
       </div>
     </div>
   );
