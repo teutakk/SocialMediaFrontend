@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -132,7 +133,10 @@ export const replyComment = createAsyncThunk(
     try {
       console.log("Sending request to:", API_ROUTES.replyComment);
       console.log("API route:", API_ROUTES.replyComment);
-      const response = await axiosInstance.post(API_ROUTES.replyComment, data);
+      const response = await axiosInstance.post(
+        API_ROUTES.replyComment + "/" + data._id,
+        data
+      );
 
       console.log("Response:", response.data);
 
@@ -335,23 +339,18 @@ export const postsSlice = createSlice({
       })
       .addCase(replyComment.fulfilled, (state, action) => {
         state.status.comment = "succeeded";
-        const { postId, updatedComment } = action.payload;
-        const postIndex = state.posts.findIndex((post) => post._id === postId);
-
-        if (postIndex !== -1) {
-          const post = state.posts[postIndex];
-
-          const commentedPost = {
-            ...post,
-            comments: post.comments.map((comment) =>
-              comment._id === updatedComment._id ? updatedComment : comment
-            ),
-          };
-
-          state.posts[postIndex] = commentedPost;
-        } else {
-          console.warn(`Post with ID ${postId} not found`);
-        }
+        console.log("actionPayload: ", action.payload);
+        const { _id: commentId, postId } = action.payload;
+        const indexOfPostThatReplyIsDone = state.posts.findIndex(
+          (post) => post._id === postId
+        );
+        console.log(indexOfPostThatReplyIsDone);
+        const indexOfCommentThatReplyIsDone = state.posts[
+          indexOfPostThatReplyIsDone
+        ].comments.findIndex((comment) => comment._id === commentId);
+        state.posts[indexOfPostThatReplyIsDone].comments[
+          indexOfCommentThatReplyIsDone
+        ].replies = action.payload.replies;
       })
       .addCase(replyComment.rejected, (state, action) => {
         state.status.comment = "failed";
