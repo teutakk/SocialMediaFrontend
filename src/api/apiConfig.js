@@ -10,6 +10,7 @@ const API_ROUTES = {
   post: "/post",
   comment: "/comments",
   likeComment: "/like-comment",
+  replyComment: "/reply-comment",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
   acceptFriendRequest: "/accept-request",

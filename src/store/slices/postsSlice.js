@@ -12,6 +12,7 @@ const initialState = {
     like: "idle",
     save: "idle",
     dislike: "idle",
+    replyComment: "idle",
   },
   error: {
     fetch: null,
@@ -21,6 +22,7 @@ const initialState = {
     like: null,
     create: null,
     dislike: null,
+    replyComment: null,
   },
   editPostId: null,
 };
@@ -120,6 +122,23 @@ export const likeComment = createAsyncThunk(
       return response.data;
     } catch (err) {
       console.error("Error in likeComment", err);
+      throw Error(err.response.data.error);
+    }
+  }
+);
+export const replyComment = createAsyncThunk(
+  "posts/replyComment",
+  async (data) => {
+    try {
+      console.log("Sending request to:", API_ROUTES.replyComment);
+      console.log("API route:", API_ROUTES.replyComment);
+      const response = await axiosInstance.post(API_ROUTES.replyComment, data);
+
+      console.log("Response:", response.data);
+
+      return response.data;
+    } catch (err) {
+      console.error("Error in replyToComment", err);
       throw Error(err.response.data.error);
     }
   }
@@ -310,6 +329,35 @@ export const postsSlice = createSlice({
         state.status.comment = "failed";
         state.error.comment = action.error.message;
       })
+      // reply to a comment, handling all cases of response
+      .addCase(replyComment.pending, (state, action) => {
+        state.status.comment = "loading";
+      })
+      .addCase(replyComment.fulfilled, (state, action) => {
+        state.status.comment = "succeeded";
+        const { postId, updatedComment } = action.payload;
+        const postIndex = state.posts.findIndex((post) => post._id === postId);
+
+        if (postIndex !== -1) {
+          const post = state.posts[postIndex];
+
+          const commentedPost = {
+            ...post,
+            comments: post.comments.map((comment) =>
+              comment._id === updatedComment._id ? updatedComment : comment
+            ),
+          };
+
+          state.posts[postIndex] = commentedPost;
+        } else {
+          console.warn(`Post with ID ${postId} not found`);
+        }
+      })
+      .addCase(replyComment.rejected, (state, action) => {
+        state.status.comment = "failed";
+        state.error.comment = action.error.message;
+      })
+
       // pinning a comment, handling all cases of responses
       .addCase(pinComment.pending, (state, action) => {
         state.status.comment = "loading";
