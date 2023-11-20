@@ -5,7 +5,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { likeComment, replyComment } from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
-
+import ReplyComment from "./ReplyComment";
 const SingleComment = ({ comment }) => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -50,18 +50,15 @@ const SingleComment = ({ comment }) => {
 
   const handleReplyComment = async () => {
     try {
-      console.log("loggedInUser:", loggedInUser);
-
       const data = {
         userId: loggedInUser?._id,
         content: replyContent,
         _id: comment._id,
       };
 
-      console.log("Before dispatching replyToComment:", data);
       dispatch(replyComment(data));
       setReplyContent("");
-      console.log("After dispatching replyToComment");
+      setIsReplying(false);
     } catch (error) {
       console.error("Error replying to comment:", error);
     }
@@ -99,6 +96,10 @@ const SingleComment = ({ comment }) => {
             <button onClick={handleReplyComment}>Save</button>
           </div>
         )}
+        {comment.replies &&
+          comment.replies.map((reply) => (
+            <ReplyComment key={reply._id} reply={reply} />
+          ))}
       </div>
     </div>
   );
