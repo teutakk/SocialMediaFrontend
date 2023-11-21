@@ -3,12 +3,14 @@ import classes from "./SingleComment.module.css";
 import UserChip from "../UserChip";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { likeComment } from "../../store/slices/postsSlice";
+import { likeComment, replyComment } from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
-
+import ReplyComment from "./ReplyComment";
 const SingleComment = ({ comment }) => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
+  const [replyContent, setReplyContent] = useState("");
+  const [isReplying, setIsReplying] = useState(false);
 
   const storedLikeStatus = localStorage.getItem(`comment_like_${comment._id}`);
   const [isLiked, setIsLiked] = useState(
@@ -34,11 +36,31 @@ const SingleComment = ({ comment }) => {
       };
 
       console.log("Before dispatching likeComment:", data);
-      await dispatch(likeComment(data));
-      setIsLiked((prevIsLiked) => !prevIsLiked); // Toggle the like status
+      dispatch(likeComment(data));
+      setIsLiked((prevIsLiked) => !prevIsLiked);
       console.log("After dispatching likeComment");
     } catch (error) {
       console.error("Error liking/disliking comment:", error);
+    }
+  };
+
+  const handleToggleReply = () => {
+    setIsReplying((prevIsReplying) => !prevIsReplying);
+  };
+
+  const handleReplyComment = async () => {
+    try {
+      const data = {
+        userId: loggedInUser?._id,
+        content: replyContent,
+        _id: comment._id,
+      };
+
+      dispatch(replyComment(data));
+      setReplyContent("");
+      setIsReplying(false);
+    } catch (error) {
+      console.error("Error replying to comment:", error);
     }
   };
 
@@ -61,7 +83,26 @@ const SingleComment = ({ comment }) => {
           <button onClick={handleLikeComment}>
             {isLiked ? "Dislike" : "Like"}
           </button>
-          <span>Reply</span>
+          <button onClick={handleToggleReply}>Reply</button>
+        </div>
+        {isReplying && (
+          <div className={classes.ReplySection}>
+            <textarea
+              rows="2"
+              value={replyContent}
+              onChange={(e) => setReplyContent(e.target.value)}
+              placeholder="Type your reply..."
+            />
+            <button onClick={handleReplyComment}>Save</button>
+          </div>
+        )}
+        <div className={classes.RepliesContainer}>
+          {comment.replies &&
+            comment.replies.map((reply) => (
+              <label key={reply._id} className={classes.ReplyLabel}>
+                <ReplyComment reply={reply} />
+              </label>
+            ))}
         </div>
       </div>
     </div>

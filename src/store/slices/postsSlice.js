@@ -1,3 +1,4 @@
+import { id } from "date-fns/locale";
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -12,6 +13,7 @@ const initialState = {
     like: "idle",
     save: "idle",
     dislike: "idle",
+    replyComment: "idle",
   },
   error: {
     fetch: null,
@@ -21,6 +23,7 @@ const initialState = {
     like: null,
     create: null,
     dislike: null,
+    replyComment: null,
   },
   editPostId: null,
 };
@@ -120,6 +123,26 @@ export const likeComment = createAsyncThunk(
       return response.data;
     } catch (err) {
       console.error("Error in likeComment", err);
+      throw Error(err.response.data.error);
+    }
+  }
+);
+export const replyComment = createAsyncThunk(
+  "posts/replyComment",
+  async (data) => {
+    try {
+      console.log("Sending request to:", API_ROUTES.replyComment);
+      console.log("API route:", API_ROUTES.replyComment);
+      const response = await axiosInstance.post(
+        API_ROUTES.replyComment + "/" + data._id,
+        data
+      );
+
+      console.log("Response:", response.data);
+
+      return response.data;
+    } catch (err) {
+      console.error("Error in replyToComment", err);
       throw Error(err.response.data.error);
     }
   }
@@ -310,6 +333,30 @@ export const postsSlice = createSlice({
         state.status.comment = "failed";
         state.error.comment = action.error.message;
       })
+      // reply to a comment, handling all cases of response
+      .addCase(replyComment.pending, (state, action) => {
+        state.status.comment = "loading";
+      })
+      .addCase(replyComment.fulfilled, (state, action) => {
+        state.status.comment = "succeeded";
+        console.log("actionPayload: ", action.payload);
+        const { _id: commentId, postId } = action.payload;
+        const indexOfPostThatReplyIsDone = state.posts.findIndex(
+          (post) => post._id === postId
+        );
+        console.log(indexOfPostThatReplyIsDone);
+        const indexOfCommentThatReplyIsDone = state.posts[
+          indexOfPostThatReplyIsDone
+        ].comments.findIndex((comment) => comment._id === commentId);
+        state.posts[indexOfPostThatReplyIsDone].comments[
+          indexOfCommentThatReplyIsDone
+        ].replies = action.payload.replies;
+      })
+      .addCase(replyComment.rejected, (state, action) => {
+        state.status.comment = "failed";
+        state.error.comment = action.error.message;
+      })
+
       // pinning a comment, handling all cases of responses
       .addCase(pinComment.pending, (state, action) => {
         state.status.comment = "loading";
