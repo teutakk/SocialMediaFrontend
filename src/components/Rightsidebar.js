@@ -14,7 +14,7 @@ const Rightsidebar = () => {
   const userId = loggedInUser?._id
 
   useEffect(() => {
-    const fetchSuggestedFriends = async () => {
+    const fetchSuggestedFriends = async (userId) => {
       try {
         const response = await axiosInstance.post(API_ROUTES.suggestedFriends, {userId})
         console.log(response.data);
@@ -23,7 +23,7 @@ const Rightsidebar = () => {
         console.log(error);
       }
     }
-    fetchSuggestedFriends()
+    fetchSuggestedFriends(userId)
   }, [userId])
 
   return (
