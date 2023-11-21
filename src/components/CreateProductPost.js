@@ -53,6 +53,16 @@ const CreateProductPost = () => {
     setImageModalOpen(false);
   };
 
+  const removeImage = (index, e) => {
+    e.preventDefault(); // Prevent the form submission
+    const updatedImages = [...formData.images];
+    updatedImages.splice(index, 1);
+    setFormData((prevData) => ({
+      ...prevData,
+      images: updatedImages,
+    }));
+  };
+
   return (
     <div className={classes.createProductForm}>
       <h2>Create a New Product's Post</h2>
@@ -122,12 +132,19 @@ const CreateProductPost = () => {
         {formData.images.length > 0 && (
           <div className={classes.imagePreview}>
             {formData.images.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Image Preview ${index + 1}`}
-                onClick={() => openImageModal(image)}
-              />
+              <div key={index} className={classes.imageContainer}>
+                <img
+                  src={image}
+                  alt={`Image Preview ${index + 1}`}
+                  onClick={() => openImageModal(image)}
+                />
+                <button
+                  className={classes.deleteButton}
+                  onClick={(e) => removeImage(index, e)}
+                >
+                  X
+                </button>
+              </div>
             ))}
           </div>
         )}
