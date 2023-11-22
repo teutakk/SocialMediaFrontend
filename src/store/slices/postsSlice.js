@@ -1,4 +1,3 @@
-import { id } from "date-fns/locale";
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -14,6 +13,7 @@ const initialState = {
     save: "idle",
     dislike: "idle",
     replyComment: "idle",
+    deleteComment: "idle",
   },
   error: {
     fetch: null,
@@ -24,6 +24,7 @@ const initialState = {
     create: null,
     dislike: null,
     replyComment: null,
+    deleteComment: null,
   },
   editPostId: null,
 };
@@ -101,17 +102,22 @@ export const editComment = createAsyncThunk(
     return response.data;
   }
 );
-
 export const deleteComment = createAsyncThunk(
   "posts/deleteComment",
-  async (commentId) => {
-    const response = await axiosInstance.delete(
-      API_ROUTES.comment + `/${commentId}`
-    );
-    return response.data;
+  async (data) => {
+    try {
+      const response = await axiosInstance.delete(
+        API_ROUTES.comment + `/${data.id}`,
+        data
+      );
+      console.log("Delete Comment Response:", response);
+
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
   }
 );
-
 export const likeComment = createAsyncThunk(
   "posts/likeComment",
   async (data) => {
@@ -293,7 +299,6 @@ export const postsSlice = createSlice({
       })
       .addCase(deleteComment.fulfilled, (state, action) => {
         const { postId, commentId } = action.payload;
-        //let the user find the comment in a post and then delete it
         const post = state.posts.find((post) => post.id === postId);
         if (post) {
           post.comments = post.comments.filter((c) => c.id !== commentId);
