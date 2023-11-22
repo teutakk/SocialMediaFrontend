@@ -3,15 +3,20 @@ import classes from "./SingleComment.module.css";
 import UserChip from "../UserChip";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { likeComment, replyComment } from "../../store/slices/postsSlice";
+import {
+  likeComment,
+  replyComment,
+  deleteComment,
+} from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
 import ReplyComment from "./ReplyComment";
+
 const SingleComment = ({ comment }) => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
   const [isReplying, setIsReplying] = useState(false);
-
+  const [showDeleteButton, setShowDeleteButton] = useState(false);
   const storedLikeStatus = localStorage.getItem(`comment_like_${comment._id}`);
   const [isLiked, setIsLiked] = useState(
     storedLikeStatus ? JSON.parse(storedLikeStatus) : false
@@ -35,10 +40,8 @@ const SingleComment = ({ comment }) => {
         id: comment._id,
       };
 
-      console.log("Before dispatching likeComment:", data);
       dispatch(likeComment(data));
       setIsLiked((prevIsLiked) => !prevIsLiked);
-      console.log("After dispatching likeComment");
     } catch (error) {
       console.error("Error liking/disliking comment:", error);
     }
@@ -49,6 +52,18 @@ const SingleComment = ({ comment }) => {
   };
 
   const handleReplyComment = async () => {
+    console.log("loggedInUser:", loggedInUser);
+    console.log("comment:", comment);
+
+    if (!loggedInUser || !loggedInUser._id) {
+      console.error("User information is missing or incomplete.");
+      return;
+    }
+
+    if (!comment || !comment._id || !comment.postId) {
+      console.error("Comment information is missing or incomplete.");
+      return;
+    }
     try {
       const data = {
         userId: loggedInUser?._id,
@@ -64,6 +79,22 @@ const SingleComment = ({ comment }) => {
     }
   };
 
+  const handleDeleteComment = () => {
+    try {
+      const data = {
+        userId: loggedInUser?._id,
+        id: comment._id,
+        postId: comment.postId,
+      };
+
+      console.log("Before dispatching deleteComment:", data);
+      dispatch(deleteComment(data));
+      console.log("After dispatching deleteComment");
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
+
   return (
     <div className={classes.SingleComment}>
       <UserChip url={comment.profilePhoto} />
@@ -73,9 +104,14 @@ const SingleComment = ({ comment }) => {
             <p>
               <strong>{comment.author}</strong>
             </p>
-            <span>
-              <BiDotsVerticalRounded />
-            </span>
+            <div className={classes.ActionSection}>
+              <BiDotsVerticalRounded
+                onClick={() => setShowDeleteButton(!showDeleteButton)}
+              />
+              {showDeleteButton && (
+                <button onClick={handleDeleteComment}>Delete</button>
+              )}
+            </div>
           </div>
           <p>{comment.content}</p>
         </div>
@@ -108,5 +144,4 @@ const SingleComment = ({ comment }) => {
     </div>
   );
 };
-
 export default SingleComment;

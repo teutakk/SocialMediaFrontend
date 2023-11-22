@@ -16,6 +16,7 @@ const CommentActions = ({
   isLiked,
   onCommentEdit,
   onReply,
+  onDelete,
 }) => {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
@@ -23,6 +24,7 @@ const CommentActions = ({
   const [isLiking, setIsLiking] = useState(false);
   const [isPinning, setIsPinning] = useState(false);
   const [isReplying, setIsReplying] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const handleAddComment = () => {
     if (commentText) {
       dispatch(
@@ -52,7 +54,12 @@ const CommentActions = ({
   };
 
   const handleDeleteComment = () => {
-    dispatch(deleteComment({ postId, commentId }));
+    if (!isDeleting) {
+      setIsDeleting(true);
+      dispatch(deleteComment({ postId, commentId })).then(() => {
+        setIsDeleting(false);
+      });
+    }
   };
 
   const handleLikeComment = () => {
