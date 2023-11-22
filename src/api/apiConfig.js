@@ -11,6 +11,7 @@ const API_ROUTES = {
   comment: "/comments",
   likeComment: "/like-comment",
   replyComment: "/reply-comment",
+  deleteComment: "/delete-comment",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
   acceptFriendRequest: "/accept-request",
