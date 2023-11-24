@@ -9,12 +9,11 @@ import { acceptFriendRequestAsync, fetchFriends } from "../../../store/slices/fr
 const Requests = () => {
   const [loadingStates, setLoadingStates] = useState({}); 
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const params = useParams();
   const loggedInUser = useSelector(selectUser);
-  const pendingRequests = useSelector((state) => state.friendship.pendingRequests)
-  const userId = loggedInUser?._id
-  console.log(pendingRequests);
+  const pendingRequests = useSelector((state) => state.friendship.pendingRequests);
+  const userId = loggedInUser?._id;
 
   useEffect(() => {
     const handleFetchFriendRequests = () => {
@@ -48,27 +47,27 @@ const Requests = () => {
     });
   };
   return (
-    <div className={classes.Friends}>
+    <div className={classes.Requests}>
       <p className={classes.title}>Friend Requests</p>
       <div className={classes["request-holder"]}>
           {pendingRequests?.map((friend, i) => (
             userId === friend?.requestTo &&
               <Bullet
-                navigation={`/id/${friend.requestFrom._id}`}
                 key={i}
+                navigation={`/id/${friend?.requestFrom?._id}`}
                 content={friend?.requestFrom?.firstName}
                 subContent={friend?.requestFrom?._id}
                 acceptFriendRequest={() => handleAcceptFriendRequest({
-                  senderUserId: friend.requestFrom._id,
-                  rid: friend._id,
+                  senderUserId: friend?.requestFrom?._id,
+                  rid: friend?._id,
                   status: "Accepted",
                 })}
                 rejectFriendRequest={() => handleAcceptFriendRequest({
-                  senderUserId: friend.requestFrom._id,
-                  rid: friend._id,
+                  senderUserId: friend?.requestFrom?._id,
+                  rid: friend?._id,
                   status: "Rejected",
                 })}
-                loadingStates={loadingStates[friend._id]}
+                loadingStates={loadingStates[friend?._id]}
               />
           ))}
         </div> 

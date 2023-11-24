@@ -61,6 +61,8 @@ const Profile = () => {
 
     handleFetchFriends(userId);
   }, [dispatch, userId]);
+
+  //Send A Friend Request
   const handleSendFriendRequest = () => {
     setIsLoading(true)
     setIsSentRequest(false);
@@ -88,6 +90,7 @@ const Profile = () => {
     (sr) => sr?.requestTo?._id === profilePageUser?._id
   );
   
+  //Cancel Sent Request
   const handleCancelFriendRequest = () => {
     setIsLoading(true)
     dispatch(
@@ -136,7 +139,7 @@ const Profile = () => {
   );
   console.log(acceptRejectRequests);
 
-  //check the sentRequest array for changes ?
+  //check the sentRequest array for changes
   useEffect(() => {
     const sentRequestExist = sentRequests?.some(
       (sentRequest) => sentRequest?.requestTo?._id === profilePageUser?._id
@@ -151,7 +154,6 @@ const Profile = () => {
       (request) => request?.requestFrom?._id === profilePageUser?._id
     );
     setAcceptFriend(acceptRejectRequests)
-    console.log(acceptRejectRequests);
   }, [sentRequests, profilePageUser, pendingRequests]);
 
   // get user from profileSlice

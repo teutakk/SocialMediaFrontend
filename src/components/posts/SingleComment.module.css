@@ -43,6 +43,13 @@
   text-decoration: underline;
 }
 
+.ReplyLabel {
+  display: block;
+  margin-bottom: 10px;
+  border: none;
+  padding: 10px;
+}
+
 @media (prefers-color-scheme: dark) {
   .CommentSection {
     background-color: var(--color-grey-dark-3);

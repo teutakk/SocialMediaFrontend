@@ -6,6 +6,7 @@ import {
   deleteComment,
   likeComment,
   pinComment,
+  replyComment,
 } from "../store/slices/postsSlice";
 
 const CommentActions = ({
@@ -14,13 +15,14 @@ const CommentActions = ({
   isPinned,
   isLiked,
   onCommentEdit,
+  onReply,
 }) => {
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const [isEditing, setIsEditing] = useState(false);
   const [isLiking, setIsLiking] = useState(false);
   const [isPinning, setIsPinning] = useState(false);
-
+  const [isReplying, setIsReplying] = useState(false);
   const handleAddComment = () => {
     if (commentText) {
       dispatch(
@@ -57,6 +59,14 @@ const CommentActions = ({
     if (!isLiking) {
       setIsLiking(true);
       dispatch(likeComment({ postId, commentId })).then(() => {
+        setIsLiking(false);
+      });
+    }
+  };
+  const handleReplyComment = () => {
+    if (!isReplying) {
+      setIsReplying(true);
+      dispatch(replyComment({ postId, commentId })).then(() => {
         setIsLiking(false);
       });
     }
