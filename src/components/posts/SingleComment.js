@@ -11,7 +11,7 @@ import {
 import { selectUser } from "../../store/slices/authSlice";
 import ReplyComment from "./ReplyComment";
 
-const SingleComment = ({ comment }) => {
+const SingleComment = ({ postId, comment }) => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
@@ -87,24 +87,14 @@ const SingleComment = ({ comment }) => {
       }
 
       setIsDeleting(true);
-      console.log("loggedInUser:", loggedInUser);
-      console.log("comment:", comment);
-      console.log("comment.post:", comment.post);
-      const postId = comment.post ? comment.post._id : undefined;
       const data = {
         userId: loggedInUser?._id,
         _id: comment._id,
         postId: postId,
       };
 
-      console.log("Data sent to backend:", data);
-
-      console.log("Comment Object:", comment);
-      console.log("Before dispatching deleteComment:", data);
-
+      console.log(data);
       dispatch(deleteComment(data));
-
-      console.log("After dispatching deleteComment");
 
       setIsDeleting(false);
     } catch (error) {

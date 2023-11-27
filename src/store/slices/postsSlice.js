@@ -106,14 +106,13 @@ export const deleteComment = createAsyncThunk(
   "posts/deleteComment",
   async (data) => {
     try {
-      console.log("Deleting comment with ID:", data.id);
-
+      console.log("data: ", data);
       const response = await axiosInstance.delete(
-        API_ROUTES.comment + `/${data.id}`,
-        data
+        API_ROUTES.comment + `/${data._id}`,
+        { data }
       );
-      console.log("Delete Comment Response:", response);
-
+      response.data.postId = data.postId;
+      console.log("obj: ", response.data);
       return response.data;
     } catch (error) {
       console.error("Error deleting comment:", error);
@@ -301,10 +300,14 @@ export const postsSlice = createSlice({
         state.status.comment = "loading";
       })
       .addCase(deleteComment.fulfilled, (state, action) => {
-        const { postId, commentId } = action.payload;
-        const post = state.posts.find((post) => post.id === postId);
+        const { postId, _id: commentId } = action.payload;
+        console.log(postId, commentId);
+        /// comment id is found, post is found, now we have to find the post with that postId
+        const post = state.posts.find((post) => post._id === postId);
+        console.log("post: ", post);
+        // when we find the post we have to go to the comments and filter by the comment we dont have to have
         if (post) {
-          post.comments = post.comments.filter((c) => c.id !== commentId);
+          post.comments = post.comments.filter((c) => c._id !== commentId);
         }
         state.status.comment = "succeeded";
       })
