@@ -1,7 +1,7 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+import { id } from "date-fns/locale";
 const initialState = {
   posts: [],
   status: {
@@ -106,6 +106,8 @@ export const deleteComment = createAsyncThunk(
   "posts/deleteComment",
   async (data) => {
     try {
+      console.log("Deleting comment with ID:", data.id);
+
       const response = await axiosInstance.delete(
         API_ROUTES.comment + `/${data.id}`,
         data
@@ -114,7 +116,8 @@ export const deleteComment = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      return error.message;
+      console.error("Error deleting comment:", error);
+      throw error;
     }
   }
 );

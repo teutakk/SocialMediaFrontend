@@ -16,6 +16,7 @@ const SingleComment = ({ comment }) => {
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
   const [isReplying, setIsReplying] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteButton, setShowDeleteButton] = useState(false);
   const storedLikeStatus = localStorage.getItem(`comment_like_${comment._id}`);
   const [isLiked, setIsLiked] = useState(
@@ -79,17 +80,33 @@ const SingleComment = ({ comment }) => {
     }
   };
 
-  const handleDeleteComment = () => {
+  const handleDeleteComment = async () => {
     try {
+      if (isDeleting) {
+        return;
+      }
+
+      setIsDeleting(true);
+      console.log("loggedInUser:", loggedInUser);
+      console.log("comment:", comment);
+      console.log("comment.post:", comment.post);
+      const postId = comment.post ? comment.post._id : undefined;
       const data = {
         userId: loggedInUser?._id,
-        id: comment._id,
-        postId: comment.postId,
+        _id: comment._id,
+        postId: postId,
       };
 
+      console.log("Data sent to backend:", data);
+
+      console.log("Comment Object:", comment);
       console.log("Before dispatching deleteComment:", data);
+
       dispatch(deleteComment(data));
+
       console.log("After dispatching deleteComment");
+
+      setIsDeleting(false);
     } catch (error) {
       console.error("Error deleting comment:", error);
     }
