@@ -126,6 +126,9 @@ form div p {
 }
 .button {
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: max(14px, 0.9vw);
   padding: max(10px, 0.5vw);
   background-color: #8487ff;
@@ -137,6 +140,20 @@ form div p {
 }
 .button:focus {
   background-color: #6b6efe;
+}
+
+.spinner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max(1.3vw, 20px);
+  height: max(1.3vw, 20px);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 @media (min-width: 767px) {

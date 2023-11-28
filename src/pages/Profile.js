@@ -16,6 +16,7 @@ import {
   getSentRequests,
   removeFriendRequestAsync,
   sendFriendRequestAsync,
+  viewProfile,
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
 
@@ -34,7 +35,10 @@ const Profile = () => {
   const loggedInUser = useSelector(selectUser);
   const sentRequests = useSelector((state) => state.friendship.sentRequests);
   const pendingRequests = useSelector((state) => state.friendship.pendingRequests);
+ 
   const userId = loggedInUser?._id;
+  const profileUserId = profilePageUser?._id
+
 
   useEffect(() => {
     const handleGetSentRequests = (userId) => {
@@ -61,8 +65,7 @@ const Profile = () => {
 
     handleFetchFriends(userId);
   }, [dispatch, userId]);
-
-  //Send A Friend Request
+  
   const handleSendFriendRequest = () => {
     setIsLoading(true)
     setIsSentRequest(false);
@@ -113,7 +116,6 @@ const Profile = () => {
 
     //friends te userit qe osht logged in me u shfaqe si Friend ose Remove Friend
     const isFriend = userFriendIds?.some((friendId) => friendId === profilePageUser?._id);
-      console.log("User Friends", userFriendIds);
     
     setIsAFriend(isFriend)
     
@@ -137,23 +139,19 @@ const Profile = () => {
   const acceptRejectRequests = pendingRequests.find(
     (request) => request?.requestFrom?._id === profilePageUser?._id
   );
-  console.log(acceptRejectRequests);
 
-  //check the sentRequest array for changes
   useEffect(() => {
     const sentRequestExist = sentRequests?.some(
       (sentRequest) => sentRequest?.requestTo?._id === profilePageUser?._id
     );
-    if(sentRequestExist){
-      setIsSentRequest(true)
-    }else{
-      setIsSentRequest(false)
-    }
+
+    setIsSentRequest(sentRequestExist)
 
     const acceptRejectRequests = pendingRequests.some(
       (request) => request?.requestFrom?._id === profilePageUser?._id
     );
     setAcceptFriend(acceptRejectRequests)
+
   }, [sentRequests, profilePageUser, pendingRequests]);
 
   // get user from profileSlice
@@ -190,6 +188,30 @@ const Profile = () => {
       setIsLoading(false)
     });
   };
+
+  useEffect(() => {
+    const getProfileViews = () => {
+        try {
+            const loggedUserViews = loggedInUser?.views;
+            const hasViewedProfile = loggedUserViews?.some(
+                (view) => view === profilePageUser?._id
+            );
+            
+            if (!hasViewedProfile && profileUserId !== userId) {
+              dispatch(viewProfile({
+                userId,
+                profileUserId: profileUserId
+              }))
+            }
+            console.log("the users that have viewed your page: ", loggedUserViews);
+        } catch (error) {
+            console.error(error);
+            throw error
+        }
+    }
+    getProfileViews()
+  }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id])
+
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -272,10 +294,13 @@ const Profile = () => {
             Posts
           </NavLink>
           <NavLink to={"about"}>About</NavLink>
-          <NavLink to={"friends"}>Friends</NavLink>
           <NavLink to={"photos"}>Photos</NavLink>
+          <NavLink to={"friends"}>Friends</NavLink>
           {profilePageUser?._id === loggedInUser?._id && (
             <NavLink to={"requests"}>Requests</NavLink>
+          )}
+           {profilePageUser?._id === loggedInUser?._id && (
+            <NavLink to={"views "}>Profile Views</NavLink>
           )}
         </div>
       </div>

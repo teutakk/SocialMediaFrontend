@@ -13,11 +13,24 @@
     font-weight: bold;
     padding: 10px;
   }
+
+  .Requests .search{
+    width: max(25vw, 270px);
+    display: flex;
+    margin: 0 auto;
+    padding: max(5px, .3vw) max(7px, .4vw);
+    background-color: #d9d9d9;
+    border: none;
+    outline: none;
+    border-radius: max(12px, .8vw);
+    margin-bottom: max(30px);
+  }
   
   .request-holder {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: max(10px, .5vw);
   }
   .paragraph{
     color: grey;
@@ -34,9 +47,6 @@
     color: white;
     text-align: center;
     max-width: 150px;
-  }
-  .friendNav{
-    border-bottom: 1px solid rgb(213, 213, 213);
   }
   
   @media (min-width: 767px) {

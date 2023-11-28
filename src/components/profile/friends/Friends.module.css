@@ -14,6 +14,18 @@
   padding: 10px;
 }
 
+.Friends .search{
+  width: max(25vw, 270px);
+  display: flex;
+  margin: 0 auto;
+  padding: max(5px, .3vw) max(7px, .4vw);
+  background-color: #d9d9d9;
+  border: none;
+  outline: none;
+  border-radius: max(12px, .8vw);
+  margin-bottom: max(30px);
+}
+
 .friends-holder {
   display: grid;
   grid-template-columns: 1fr;
