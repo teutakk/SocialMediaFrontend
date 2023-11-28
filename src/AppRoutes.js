@@ -20,6 +20,7 @@ import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
 import Verified from "./pages/Verified";
+import Views from "./components/profile/views/Views";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -53,6 +54,7 @@ const AppRoutes = () => {
           </Route>
           <Route path="friends" element={<Friends />} />
           <Route path="requests" element={<Requests />} />
+          <Route path="views" element={<Views />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
       </Route>

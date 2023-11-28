@@ -8,12 +8,13 @@ import { acceptFriendRequestAsync, fetchFriends } from "../../../store/slices/fr
 
 const Requests = () => {
   const [loadingStates, setLoadingStates] = useState({}); 
+  const [search, setSearch] = useState("")
 
   const dispatch = useDispatch();
   const params = useParams();
   const loggedInUser = useSelector(selectUser);
-  const pendingRequests = useSelector((state) => state.friendship.pendingRequests);
-  const userId = loggedInUser?._id;
+  const pendingRequests = useSelector((state) => state.friendship.pendingRequests)
+  const userId = loggedInUser?._id
 
   useEffect(() => {
     const handleFetchFriendRequests = () => {
@@ -49,12 +50,23 @@ const Requests = () => {
   return (
     <div className={classes.Requests}>
       <p className={classes.title}>Friend Requests</p>
+      <input
+        className={classes.search}
+        onChange={(e) => setSearch(e.target.value)}
+        name="firstName"
+        type="text"
+        placeholder="Search"
+      />
       <div className={classes["request-holder"]}>
-          {pendingRequests?.map((friend, i) => (
+          {pendingRequests?.filter((item) => {
+                return search.toLowerCase() === ""
+                  ? item
+                  : item.requestFrom.firstName.toLowerCase().includes(search.toLowerCase());
+              }).map((friend, i) => (
             userId === friend?.requestTo &&
               <Bullet
-                key={i}
                 navigation={`/id/${friend?.requestFrom?._id}`}
+                key={i}
                 content={friend?.requestFrom?.firstName}
                 subContent={friend?.requestFrom?._id}
                 acceptFriendRequest={() => handleAcceptFriendRequest({
@@ -71,7 +83,7 @@ const Requests = () => {
               />
           ))}
         </div> 
-        {pendingRequests.length !== 0 && <NavLink className={classes.navLink} to={`/id/${params.idNumber}/requests`}>See more</NavLink> }
+        {/* {pendingRequests.length !== 0 && <NavLink className={classes.navLink} to={`/id/${params.idNumber}/requests`}>See more</NavLink> } */}
         {pendingRequests.length === 0 && <p className={classes.paragraph}>No new requests</p>  }
     </div>
   );
