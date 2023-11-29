@@ -1,8 +1,6 @@
-import { id } from "date-fns/locale";
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   posts: [],
   status: {
@@ -14,6 +12,7 @@ const initialState = {
     save: "idle",
     dislike: "idle",
     replyComment: "idle",
+    deleteComment: "idle",
   },
   error: {
     fetch: null,
@@ -24,6 +23,7 @@ const initialState = {
     create: null,
     dislike: null,
     replyComment: null,
+    deleteComment: null,
   },
   editPostId: null,
 };
@@ -60,10 +60,17 @@ export const startEdit = createAsyncThunk("posts/startEdit", (postId) => {
 export const finishEdit = createAsyncThunk("posts/finishEdit", () => {
   return null;
 });
-export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
-  // this action can be performed only by the owner of the post. CHECK FOR THAT
-  const response = await axiosInstance.delete(API_ROUTES.posts.id);
-  return response.data;
+
+export const deletePost = createAsyncThunk("posts/deletePost", async (data) => {
+  try {
+    const response = await axiosInstance.delete(
+      API_ROUTES.posts + `/${data._id}`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    throw Error(error.response.data.error);
+  }
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
@@ -101,17 +108,24 @@ export const editComment = createAsyncThunk(
     return response.data;
   }
 );
-
 export const deleteComment = createAsyncThunk(
   "posts/deleteComment",
-  async (commentId) => {
-    const response = await axiosInstance.delete(
-      API_ROUTES.comment + `/${commentId}`
-    );
-    return response.data;
+  async (data) => {
+    try {
+      console.log("data: ", data);
+      const response = await axiosInstance.delete(
+        API_ROUTES.comment + `/${data._id}`,
+        { data }
+      );
+      response.data.postId = data.postId;
+      console.log("obj: ", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+      throw error;
+    }
   }
 );
-
 export const likeComment = createAsyncThunk(
   "posts/likeComment",
   async (data) => {
@@ -292,11 +306,14 @@ export const postsSlice = createSlice({
         state.status.comment = "loading";
       })
       .addCase(deleteComment.fulfilled, (state, action) => {
-        const { postId, commentId } = action.payload;
-        //let the user find the comment in a post and then delete it
-        const post = state.posts.find((post) => post.id === postId);
+        const { postId, _id: commentId } = action.payload;
+        console.log(postId, commentId);
+        /// comment id is found, post is found, now we have to find the post with that postId
+        const post = state.posts.find((post) => post._id === postId);
+        console.log("post: ", post);
+        // when we find the post we have to go to the comments and filter by the comment we dont have to have
         if (post) {
-          post.comments = post.comments.filter((c) => c.id !== commentId);
+          post.comments = post.comments.filter((c) => c._id !== commentId);
         }
         state.status.comment = "succeeded";
       })
