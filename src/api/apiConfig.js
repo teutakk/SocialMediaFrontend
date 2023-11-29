@@ -19,6 +19,7 @@ const API_ROUTES = {
   suggestedFriends: "/suggested-friends",
   getSentRequests: "/get-send-request",
   cancelFriendRequest: "/cancel-request",
+  profileViews: "/profile-view",
 };
 
 export { BASE_URL, API_ROUTES };
