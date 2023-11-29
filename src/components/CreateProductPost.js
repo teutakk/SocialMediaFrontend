@@ -139,7 +139,7 @@ const CreateProductPost = () => {
                   onClick={() => openImageModal(image)}
                 />
                 <button
-                  className={classes.deleteButton}
+                  className={`${classes.deleteButton} ${classes.btnMargin}`}
                   onClick={(e) => removeImage(index, e)}
                 >
                   X
@@ -148,7 +148,7 @@ const CreateProductPost = () => {
             ))}
           </div>
         )}
-        <button type="submit" className={button.post}>
+        <button type="submit" className={`${button.post} ${classes.btnMargin}`}>
           POST
         </button>
       </form>
@@ -156,7 +156,9 @@ const CreateProductPost = () => {
       {/* Image Modal */}
       {isImageModalOpen && (
         <div className={classes.imageModal} onClick={closeImageModal}>
-          <button className={classes.closeModal}>Close</button>
+          <button className={`${classes.closeModal} ${classes.btnMargin}`}>
+            Close
+          </button>
           <img
             src={selectedImage}
             alt="Selected Image"
