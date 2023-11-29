@@ -1,7 +1,6 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   posts: [],
   savedPosts: [],
