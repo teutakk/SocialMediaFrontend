@@ -60,10 +60,17 @@ export const startEdit = createAsyncThunk("posts/startEdit", (postId) => {
 export const finishEdit = createAsyncThunk("posts/finishEdit", () => {
   return null;
 });
-export const deletePost = createAsyncThunk("posts/deletePost", async (id) => {
-  // this action can be performed only by the owner of the post. CHECK FOR THAT
-  const response = await axiosInstance.delete(API_ROUTES.posts.id);
-  return response.data;
+
+export const deletePost = createAsyncThunk("posts/deletePost", async (data) => {
+  try {
+    const response = await axiosInstance.delete(
+      API_ROUTES.posts + `/${data._id}`,
+      data
+    );
+    return response.data;
+  } catch (error) {
+    throw Error(error.response.data.error);
+  }
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
