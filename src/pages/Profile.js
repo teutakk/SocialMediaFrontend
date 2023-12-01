@@ -286,6 +286,8 @@ const Profile = () => {
               )}
             </div>
           }
+        <p>{(profilePageUser?.friends)?.length} Friends</p>
+
         </div>
       </section>
       <div className={classes["content-options"]}>

@@ -49,7 +49,7 @@ const Requests = () => {
   };
   return (
     <div className={classes.Requests}>
-      <p className={classes.title}>Friend Requests</p>
+      {/* <p className={classes.title}>Friend Requests</p> */}
       <input
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
