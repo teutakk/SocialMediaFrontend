@@ -39,12 +39,10 @@ const Register = () => {
   const handleSubmit = (event) => {
     // prevent the reload
     event.preventDefault();
-    setLoading(true)  
     // when the inputs are filled, we validate the form data, and let the useEffect dispatch the action of sending the post register request, depending on the validity of formErrors
     setFormErrors(validateForm(formData));
     if (!formErrors.error) {
       dispatch(registerUser(formData)).then(() =>  setLoading(false)).catch((error) => {
-        setLoading(false)
         console.log(error);
       })
     }

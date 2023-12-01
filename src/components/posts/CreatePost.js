@@ -30,20 +30,28 @@ const CreatePost = () => {
   // submt handler when form gets submitted
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(selectedImages);
     const newPost = {
       userId: loggedInUser._id,
       author: loggedInUser.firstName + " " + loggedInUser.lastName,
       description: postText,
-      picutures: selectedImages,
+      pictures: selectedImages,
     };
 
     const formData = new FormData();
     // Append properties from the newPost object to the FormData
-    for (const key in newPost) {
-      formData.append(key, newPost[key]);
+    formData.append("userId", loggedInUser?._id)
+    formData.append("author", loggedInUser?.firstName + " " + loggedInUser?.lastName)
+    formData.append("description", postText)
+    for (let i = 0; i < selectedImages.length; i++) {
+      formData.append("pictures", selectedImages[i]);
     }
-    dispatch(createPost(formData));
+
+    //check formData key and value pairs
+    // for (const pair of formData.entries()) {
+    //   console.log(pair[0], pair[1]);
+    // } 
+    dispatch(createPost(formData)).then((response) => console.log(response.payload));
     if (postsStatus.create === "succeeded") {
       setPostText("");
       setSelectedImages([]);
@@ -71,12 +79,13 @@ const CreatePost = () => {
     // Iterate through selected files
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
-
+      console.log(file);
       // Use FileReader to read the file as a data URL
       const reader = new FileReader();
 
       reader.onload = (event) => {
         previews.push(event.target.result);
+        console.log(previews);
         // If all previews are generated, update state
         if (previews.length === selectedFiles.length) {
           setImagePreviews(previews);
@@ -89,7 +98,7 @@ const CreatePost = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={classes.CreatePost}>
+    <form onSubmit={handleSubmit} className={classes.CreatePost} encType="multipart/form-data">
       <div className={classes.Content}>
         <UserChip url={loggedInUser?.profilePicture} />
         <textarea
@@ -135,11 +144,12 @@ const CreatePost = () => {
         </label>
         <input
           onChange={handleFileInputChange}
-          style={{ display: "none" }}
+          // style={{ display: "none" }}
           type="file"
           id="upload-image"
           accept="images/*"
           multiple
+          name="pictures"
         />
         <button className={button.post} type="submit">
           POST

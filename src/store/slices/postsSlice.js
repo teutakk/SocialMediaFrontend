@@ -74,7 +74,7 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (data) => {
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-  const response = await axiosInstance.post(API_ROUTES.posts, data);
+  const response = await axiosInstance.post(API_ROUTES.posts, data, {headers: {'Content-Type': 'multipart/form-data'}});
   return response.data;
 });
 
