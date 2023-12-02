@@ -74,8 +74,8 @@ const Sidebar = () => {
           <span>Marketplace</span>
         </NavLink>
         <NavLink
-          className={`${classes["route-holder"]} ${classes["route-market"]}`}
-          to={"marketplace"}
+          className={`${classes["route-holder"]} ${classes["route-saved"]}`}
+          to={"Saved"}
         >
           <span style={{ fontSize: "24px" }} className={classes["route-logo"]}>
             <BsFillBookmarkFill />

@@ -19,12 +19,13 @@ import {
 import { selectUser } from "../../store/slices/authSlice";
 import PostSettings from "./PostSettings";
 
-const PostHeader = ({ post, type }) => {
+const PostHeader = ({ post, type, postId }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const [modalOpen, setModalOpen] = useState();
   const [displayTime, setDisplayTime] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   // const selectPostsStatus = useSelector(selectPostStatus);
   // function to open and close modal
 
@@ -122,6 +123,37 @@ const PostHeader = ({ post, type }) => {
     }
   };
 
+  const handleSave = async () => {
+    try {
+      console.log("loggedInUser:", loggedInUser);
+
+      if (!loggedInUser || !loggedInUser._id) {
+        console.error(
+          "User information is missing or incomplete. loggedInUser:",
+          loggedInUser
+        );
+        return;
+      }
+
+      if (!post || !post._id) {
+        console.error("Post information is missing or incomplete. Post:", post);
+        return;
+      }
+
+      const data = {
+        userId: loggedInUser._id,
+        id: post._id,
+      };
+
+      console.log("Post object:", post);
+      dispatch(savePost(data));
+
+      setIsSaved((prevIsSaved) => !prevIsSaved);
+    } catch (error) {
+      console.error("Error saving post:", error);
+    }
+  };
+
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
@@ -192,7 +224,7 @@ const PostHeader = ({ post, type }) => {
             <span>
               <BsBookmark />
             </span>
-            <p>save</p>
+            <p>{isSaved ? "Saved" : "Save"}</p>
           </button>
           {loggedInUser?._id === post.userId && (
             <button onClick={handleDeleteClick}>
