@@ -21,6 +21,7 @@ import EditPost from "./components/posts/EditPost";
 import Page404 from "./pages/Page-404";
 import Verified from "./pages/Verified";
 import Views from "./components/profile/views/Views";
+import Saved from "./pages/Saved";
 const AppRoutes = () => {
   return (
     <Routes>
@@ -30,6 +31,8 @@ const AppRoutes = () => {
       <Route path="login" element={<Login />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />
+        <Route path="saved" element={<RequireAuth component={Saved} />} />
+
         <Route path="posts/:postId" element={<EditPost />} />
         <Route
           path="notifications"

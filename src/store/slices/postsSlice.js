@@ -13,6 +13,7 @@ const initialState = {
     dislike: "idle",
     replyComment: "idle",
     deleteComment: "idle",
+    savePost: "idle",
   },
   error: {
     fetch: null,
@@ -24,6 +25,7 @@ const initialState = {
     dislike: null,
     replyComment: null,
     deleteComment: null,
+    savePost: null,
   },
   editPostId: null,
 };
@@ -78,13 +80,23 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
   return response.data;
 });
 
-export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
-  // here we need to be careful where we send the data, we need to post these data to the userId
-  try {
-    const response = await axiosInstance.post(API_ROUTES.saved, postId);
-    return response.data;
-  } catch (error) {}
-});
+export const savePost = createAsyncThunk(
+  "posts/savePost",
+  async (data, post) => {
+    try {
+      console.log("Before request:", data);
+      const response = await axiosInstance.post(
+        API_ROUTES.saved + `/${data.post._id}`,
+        data
+      );
+      console.log("After request:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error during post saving:", error);
+      throw error;
+    }
+  }
+);
 
 export const commentPost = createAsyncThunk(
   "posts/commentPost",
@@ -300,6 +312,32 @@ export const postsSlice = createSlice({
       .addCase(editComment.rejected, (state, action) => {
         state.status.comment = "failed";
         state.error.comment = action.error.message;
+      })
+
+      //saving a post
+      .addCase(savePost.pending, (state) => {
+        console.log("Save post action pending. Current state:", state);
+        state.status.edit = "loading";
+        state.error.edit = null;
+      })
+      .addCase(savePost.fulfilled, (state, action) => {
+        console.log("Save post action fulfilled. Updated state:", state);
+
+        state.status.edit = "succeeded";
+        const updatedPost = action.payload;
+        const postIndex = state.posts.findIndex(
+          (post) => post._id === updatedPost._id
+        );
+
+        if (postIndex !== -1) {
+          state.posts[postIndex] = updatedPost;
+        }
+      })
+      .addCase(savePost.rejected, (state, action) => {
+        console.error("Save post action rejected:", action.error);
+
+        state.status.edit = "failed";
+        state.error.edit = action.error.message;
       })
       // deleting a comment, handling all cases of responses
       .addCase(deleteComment.pending, (state, action) => {
