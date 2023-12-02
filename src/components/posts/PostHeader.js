@@ -29,7 +29,7 @@ import PostSettings from "./PostSettings";
 import { selectUser } from "../../store/slices/authSlice";
 import PostSettings from "./PostSettings";
 
-const PostHeader = ({ post, type }) => {
+const PostHeader = ({ post, type, postId }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const [modalOpen, setModalOpen] = useState();
