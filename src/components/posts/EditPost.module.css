@@ -1,7 +1,7 @@
 .Edit {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 50px);
+  height: 100%;
   justify-content: flex-end;
 }
 
@@ -14,7 +14,7 @@
 
 .imageShower {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
@@ -23,7 +23,7 @@
 .imageHolder {
   padding: 10px;
   width: 100%;
-  /* height: 100%; */
+  height: 100%;
   overflow-x: auto;
   display: flex;
   gap: 10px;
@@ -38,14 +38,14 @@
   height: 100%;
   width: 100%;
   min-width: 200px;
-  max-height: 400px;
   box-shadow: var(--shadow-image);
   border-radius: 10px;
   position: relative;
   overflow: hidden;
   object-fit: contain;
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
-  margin-top: auto;
+  /* margin-top: auto; */
 }
 
 .image span {
@@ -81,7 +81,7 @@
   height: 100%;
   border-radius: inherit;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @media (min-width: 567px) {
@@ -107,6 +107,10 @@
     margin-inline: 10px;
     padding: 10px;
     max-height: 400px;
+  }
+  .imageHolder .image {
+  max-height: 400px;
+
   }
 
   .Edit textarea:focus,
