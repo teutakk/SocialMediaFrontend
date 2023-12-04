@@ -18,6 +18,7 @@ import Notifications from "./pages/Notifications";
 import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
 import EditPost from "./components/posts/EditPost";
+import EditPostPage from "./pages/EditPost";
 import Page404 from "./pages/Page-404";
 import Verified from "./pages/Verified";
 import Views from "./components/profile/views/Views";
@@ -57,7 +58,12 @@ const AppRoutes = () => {
           <Route path="views" element={<Views />} />
           <Route path="photos" element={<h1>Cooming soon!</h1>} />
         </Route>
+        <Route
+          path="edit/:postId"
+          element={<RequireAuth component={EditPostPage} />}
+        />
       </Route>
+
       <Route path="404" element={<RequireAuth component={Page404} />} />
       <Route path="*" element={<RequireAuth component={Page404} />} />
     </Routes>

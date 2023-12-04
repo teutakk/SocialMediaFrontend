@@ -10,6 +10,28 @@
   place-content: center;
 }
 
+.modal-content-edit {
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-top: 10px;
+  h3 {
+    display: none;
+  }
+}
+
+.modal-header-user-holder {
+  display: flex;
+  align-items: center;
+}
+
 .modal-content-edit .close {
   background-color: rgba(10, 10, 10, 0.3);
   border-radius: 100%;
@@ -19,7 +41,6 @@
   place-content: center;
   border: none;
   justify-self: flex-end;
-  margin-left: auto;
   position: relative;
   background-color: rgba(255, 255, 255, 0.7);
   z-index: 101;
@@ -42,17 +63,38 @@
   z-index: 101;
 }
 
-.modal-content-show-post .modal-main {
-  height: 100%;
+.modal-content-edit .modal-main {
+  height: 89%;
+  padding-block: 20px;
 }
 
 .Modal .modal-actions {
-  display: none;
+  display: flex;
+  justify-content: center;
+  height: 5%;
 }
 
-@media (min-width: 767px) {
+.Modal .save {
+  min-width: 150px;
+  background-color: var(--color-primary-1);
+  border-radius: 10px;
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font: inherit;
+}
+
+.Modal .save:disabled {
+  background-color: rgb(184, 178, 178);
+  cursor: not-allowed;
+}
+
+@media (min-width: 567px) {
   .Modal {
     padding: 40px;
+    h3 {
+      display: unset;
+    }
   }
   /* STYLING FOR EDIT POST */
   .modal-content-edit {
@@ -116,19 +158,8 @@
     flex: 1;
   }
 
-  .Modal .save {
-    min-width: 150px;
-    background-color: var(--color-primary-1);
-    border-radius: 10px;
-    color: white;
-    border: none;
-    text-transform: uppercase;
-    font: inherit;
-  }
-
-  .Modal .save:disabled {
-    background-color: rgb(184, 178, 178);
-    cursor: not-allowed;
+  .modal-content-edit .close {
+    margin-left: auto;
   }
 
   /* STYLING FOR SHOW FULL POST */

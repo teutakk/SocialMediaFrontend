@@ -8,6 +8,7 @@ const PostImagePreviewer = ({
   setSelectedImages,
   selectedImages,
 }) => {
+  console.log("imagePreviews: ", imagePreviews);
   const handleRemoveImage = (id) => {
     const uploadedImagePreviews = imagePreviews.filter((_, i) => i !== id);
     const updateSelectedImages = {};
