@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
 
-const Bullet = ({navigation, content, subContent, logo, loadingStates, acceptFriendRequest, rejectFriendRequest }) => {
+const Bullet = ({navigation, content, content2, subContent, logo, loadingStates, acceptFriendRequest, rejectFriendRequest, removeFriend }) => {
   
   const params = useParams();
   const location = useLocation()
@@ -21,7 +21,10 @@ const Bullet = ({navigation, content, subContent, logo, loadingStates, acceptFri
         {typeof logo === "string" ? <img src={logo} alt={content} /> : logo}
       </span>
       <NavLink to={navigation} className={classes["bullet-content"]}>
-        <p>{content}</p>
+        <div className={classes.blockContent}>
+          <p>{content}</p>
+          <p>{content2}</p>
+        </div>
         <span>{subContent}</span>
       </NavLink>
       {path === `/id/${params.idNumber}/requests` && (
@@ -42,14 +45,24 @@ const Bullet = ({navigation, content, subContent, logo, loadingStates, acceptFri
               </span>
             </button>
           ) : (
-            <button onClick={rejectFriendRequest}>Reject</button>
+            <button onClick={rejectFriendRequest}>Reject</button> 
           )}
 
         </div>
       )}
-      {/* <span className={classes.edit}>
-        {loggedInUser?._id === params.idNumber && <PiPen />}
-      </span> */}
+
+      {path === `/id/${params.idNumber}/friends` && (
+        <div className={classes.friendsButtons}>
+        {loadingStates ? <button className={classes.button}>
+              <span>
+                <FaSpinner className={classes.spinner} />{" "}
+              </span>
+            </button> : <button onClick={removeFriend} className={classes.unfriend}>Unfriend</button>}
+        </div>
+      )}
+      {/* {path === `/id/${params.idNumber}/views` && (
+        <button className={classes.friend}>Friend</button>
+      )} */}
     </div>
   );
 };

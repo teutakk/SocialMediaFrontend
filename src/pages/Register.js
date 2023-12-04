@@ -13,7 +13,7 @@ import { BiSolidUser } from "react-icons/bi";
 import { AiOutlineMail } from "react-icons/ai";
 import { MdLockOutline } from "react-icons/md";
 import Footer from "../components/Footer";
-import Navigation from '../components/header/Navigation'
+import { FaSpinner } from "react-icons/fa";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -25,6 +25,8 @@ const Register = () => {
     confirmPassword: "",
     birthday: "",
   });
+
+  const [loading, setLoading] = useState(false)
 
   const userStatus = useSelector(selectRegisteredStatus);
   const userError = useSelector(selectRegisteredError);
@@ -40,7 +42,9 @@ const Register = () => {
     // when the inputs are filled, we validate the form data, and let the useEffect dispatch the action of sending the post register request, depending on the validity of formErrors
     setFormErrors(validateForm(formData));
     if (!formErrors.error) {
-      dispatch(registerUser(formData));
+      dispatch(registerUser(formData)).then(() =>  setLoading(false)).catch((error) => {
+        console.log(error);
+      })
     }
   };
 
@@ -163,9 +167,18 @@ const Register = () => {
               label="Birthday"
             />
           </div>
-          <button type="submit" className={classes.button}>
-            Sign Up
+          {!loading &&
+            <button type="submit" className={classes.button}>
+              Sign Up
+            </button>
+          }
+          {loading && 
+            <button className={classes.button}>
+              <span>
+                <FaSpinner className={classes.spinner} />{" "}
+              </span>
           </button>
+          }
         </form>
       </div>
       <section className={classes.footerSection}>

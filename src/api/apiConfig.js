@@ -8,9 +8,11 @@ const API_ROUTES = {
   users: "/users",
   user: "/users/",
   post: "/post",
+  deletePost: "/delete-post",
   comment: "/comments",
   likeComment: "/like-comment",
   replyComment: "/reply-comment",
+  deleteComment: "/delete-comment",
   friendRequest: "/friend-request",
   getFriendRequest: "/get-friend-request",
   acceptFriendRequest: "/accept-request",
@@ -18,6 +20,7 @@ const API_ROUTES = {
   suggestedFriends: "/suggested-friends",
   getSentRequests: "/get-send-request",
   cancelFriendRequest: "/cancel-request",
+  profileViews: "/profile-view",
 };
 
 export { BASE_URL, API_ROUTES };

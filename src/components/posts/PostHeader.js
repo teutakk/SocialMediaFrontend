@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { editPost, savePost } from "../../store/slices/postsSlice";
+import { editPost, savePost, deletePost } from "../../store/slices/postsSlice";
+import { CiEdit } from "react-icons/ci";
+import { MdOutlineReport, MdDelete } from "react-icons/md";
+import { BsBookmark } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
@@ -19,8 +22,9 @@ import PostSettings from "./PostSettings";
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
-  const [modalOpen, setModalOpen] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [displayTime, setDisplayTime] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   // const selectPostsStatus = useSelector(selectPostStatus);
   // function to open and close modal
 
@@ -96,6 +100,27 @@ const PostHeader = ({ post, type }) => {
     }
   }, [inputDate, timeAgo]);
 
+  const handleDeleteClick = async () => {
+    try {
+      if (isDeleting) {
+        return;
+      }
+
+      setIsDeleting(true);
+
+      const data = {
+        _id: post._id,
+      };
+
+      console.log(data);
+      dispatch(deletePost(data));
+
+      setIsDeleting(false);
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
@@ -124,6 +149,7 @@ const PostHeader = ({ post, type }) => {
         <PostSettings
           post={post}
           showModal={showModal}
+          handleDeleteClick={handleDeleteClick}
           settingsSectionRef={settingsSectionRef}
           showOptions={showOptions}
           setShowOptions={handleShowOptions}
@@ -140,6 +166,43 @@ const PostHeader = ({ post, type }) => {
             <EditPost />
           </Modal>
         )}
+        {/* <div
+          ref={settingsSectionRef}
+          className={`${
+            showOptions
+              ? `${classes.options} ${classes.showOptions}`
+              : classes.options
+          }`}
+        >
+          {loggedInUser?._id === post.userId && (
+            <button onClick={showModal}>
+              <span>
+                <CiEdit />
+              </span>
+              <p>edit</p>
+            </button>
+          )}
+          <button>
+            <span>
+              <MdOutlineReport />
+            </span>
+            <p>report</p>
+          </button>
+          <button onClick={handleSave}>
+            <span>
+              <BsBookmark />
+            </span>
+            <p>save</p>
+          </button>
+          {loggedInUser?._id === post.userId && (
+            <button onClick={handleDeleteClick}>
+              <span>
+                <MdDelete />
+              </span>
+              <p>delete</p>
+            </button>
+          )}
+        </div> */}
       </div>
     </div>
   );
