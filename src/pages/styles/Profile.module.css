@@ -122,7 +122,6 @@
   margin: 0 auto;
   background-color: var(--color-grey-light-1);
   display: flex;
-  gap: 10px;
   justify-content: space-evenly;
 }
 
@@ -146,6 +145,7 @@
 @media (min-width: 520px) {
   .navlink-holder {
     justify-content: center;
+    gap: 10px;
   }
 }
 
