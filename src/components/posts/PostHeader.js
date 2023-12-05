@@ -141,7 +141,7 @@ const PostHeader = ({ post, type, postId }) => {
 
       const data = {
         userId: loggedInUser?._id,
-        postId: postId,
+        postId: post._id,
       };
 
       console.log("Post object:", post);
