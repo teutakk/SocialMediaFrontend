@@ -47,7 +47,7 @@ const PostHeader = ({ post, type }) => {
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
   const handleSave = () => {
-    dispatch(savePost(post.id));
+    dispatch(savePost(post._id));
   };
 
   useEffect(() => {
