@@ -87,7 +87,7 @@ export const savePost = createAsyncThunk("posts/savePost", async (data) => {
   try {
     console.log("Before request:", data);
     const response = await axiosInstance.post(
-      API_ROUTES.savePost + `/${data.post._id}`,
+      `${API_ROUTES.posts}/${data.postId}/save`,
       data
     );
     console.log("After request:", response.data);
