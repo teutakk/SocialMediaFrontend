@@ -80,23 +80,20 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
   return response.data;
 });
 
-export const savePost = createAsyncThunk(
-  "posts/savePost",
-  async (data, post) => {
-    try {
-      console.log("Before request:", data);
-      const response = await axiosInstance.post(
-        API_ROUTES.saved + `/${data.post._id}`,
-        data
-      );
-      console.log("After request:", response.data);
-      return response.data;
-    } catch (error) {
-      console.error("Error during post saving:", error);
-      throw error;
-    }
+export const savePost = createAsyncThunk("posts/savePost", async (data) => {
+  try {
+    console.log("Before request:", data);
+    const response = await axiosInstance.post(
+      API_ROUTES.saved + `/${data.post._id}`,
+      data
+    );
+    console.log("After request:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error during post saving:", error);
+    throw error;
   }
-);
+});
 
 export const commentPost = createAsyncThunk(
   "posts/commentPost",

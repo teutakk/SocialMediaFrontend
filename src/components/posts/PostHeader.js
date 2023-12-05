@@ -129,15 +129,14 @@ const PostHeader = ({ post, type, postId }) => {
         );
         return;
       }
-
       if (!post || !post._id) {
         console.error("Post information is missing or incomplete. Post:", post);
         return;
       }
 
       const data = {
-        userId: loggedInUser._id,
-        id: post._id,
+        userId: loggedInUser?._id,
+        postId: postId,
       };
 
       console.log("Post object:", post);
