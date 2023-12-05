@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Friends.module.css";
 import Bullet from "../about/Bullet";
-import { NavLink, useParams } from "react-router-dom";
 import { API_ROUTES } from "../../../api/apiConfig";
 import axiosInstance from "../../../api/axiosInstance";
 import { selectProfilePageUser } from "../../../store/slices/profileSlice";
@@ -16,7 +15,6 @@ const Friends = () => {
   const [loader, setLoader] = useState(false);
   const [loadingStates, setLoadingStates] = useState({});
   const [showFriends, setShowFriends] = useState(false);
-  const params = useParams();
   const dispatch = useDispatch();
 
   const profilePageUser = useSelector(selectProfilePageUser);
@@ -94,13 +92,13 @@ const Friends = () => {
 
   return (
     <div className={classes.Friends}>
-      <input
+      {friendsData?.length > 0 && <input
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
         name="firstName"
         type="text"
         placeholder="Search"
-      />
+      />}
       {loader && (
         <p className={classes.spinnerLoad}>
           <FaSpinner className={classes.spinner} />
@@ -120,8 +118,8 @@ const Friends = () => {
                   <Bullet
                     key={i}
                     navigation={`../../../id/${friend?._id}`}
-                    subContent={friend?.email}
                     content={friend?.firstName}
+                    content2={friend?.lastName}
                     removeFriend={() =>
                       handleRemoveFriendRequest({
                         did: friend?._id,
