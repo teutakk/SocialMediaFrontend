@@ -1,7 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { editPost, savePost, deletePost } from "../../store/slices/postsSlice";
+import {
+  editPost,
+  savePost,
+  deletePost,
+  selectSavedPosts,
+} from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
@@ -19,15 +24,29 @@ import {
 import { selectUser } from "../../store/slices/authSlice";
 import PostSettings from "./PostSettings";
 
-const PostHeader = ({ post, type, postId }) => {
+const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
   const [modalOpen, setModalOpen] = useState();
   const [displayTime, setDisplayTime] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const savedPosts = useSelector(selectSavedPosts);
   // const selectPostsStatus = useSelector(selectPostStatus);
   // function to open and close modal
+
+  useEffect(() => {
+    const isPostSaved = savedPosts.findIndex((savedPost) => {
+      return savedPost.postId === post._id;
+    });
+
+    console.log("isPostSaved: ", isPostSaved);
+    if (isPostSaved !== -1) {
+      setIsSaved(true);
+    } else {
+      setIsSaved(false);
+    }
+  }, [savedPosts]);
 
   const loggedInUser = useSelector(selectUser);
   const showModal = () => {
@@ -124,33 +143,15 @@ const PostHeader = ({ post, type, postId }) => {
   };
 
   const handleSave = async () => {
-    try {
-      console.log("loggedInUser:", loggedInUser);
+    const data = {
+      userId: loggedInUser?._id,
+      postId: post._id,
+    };
 
-      if (!loggedInUser || !loggedInUser._id) {
-        console.error(
-          "User information is missing or incomplete. loggedInUser:",
-          loggedInUser
-        );
-        return;
-      }
-      if (!post || !postId) {
-        console.error("Post information is missing or incomplete. Post:", post);
-        return;
-      }
+    console.log("Post object:", post);
+    dispatch(savePost(data));
 
-      const data = {
-        userId: loggedInUser?._id,
-        postId: postId,
-      };
-
-      console.log("Post object:", post);
-      dispatch(savePost(data));
-
-      setIsSaved((prevIsSaved) => !prevIsSaved);
-    } catch (error) {
-      console.error("Error saving post:", error);
-    }
+    setIsSaved((prevIsSaved) => !prevIsSaved);
   };
 
   return (
