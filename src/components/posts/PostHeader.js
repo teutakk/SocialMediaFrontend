@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   editPost,
   savePost,
+  unsavePost,
   deletePost,
   selectSavedPosts,
 } from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
@@ -136,19 +137,39 @@ const PostHeader = ({ post, type }) => {
       console.error("Error deleting post:", error);
     }
   };
-
   const handleSave = async () => {
-    const data = {
-      userId: loggedInUser?._id,
-      postId: post._id,
-    };
+    try {
+      if (!loggedInUser || !loggedInUser._id) {
+        console.error(
+          "User information is missing or incomplete. loggedInUser:",
+          loggedInUser
+        );
+        return;
+      }
 
-    console.log("Post object:", post);
-    dispatch(savePost(data));
+      if (!post || !post._id) {
+        console.error("Post information is missing or incomplete. Post:", post);
+        return;
+      }
 
-    setIsSaved((prevIsSaved) => !prevIsSaved);
+      const data = {
+        userId: loggedInUser?._id,
+        postId: post._id,
+      };
+
+      console.log("Post object:", post);
+
+      if (isSaved) {
+        dispatch(unsavePost(data));
+      } else {
+        dispatch(savePost(data));
+      }
+
+      setIsSaved((prevIsSaved) => !prevIsSaved);
+    } catch (error) {
+      console.error("Error saving/unsaving post:", error);
+    }
   };
-
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
@@ -209,11 +230,10 @@ const PostHeader = ({ post, type }) => {
             <p>report</p>
           </button>
           <button onClick={handleSave}>
-            <span>
-              <BsBookmark />
-            </span>
+            <span>{isSaved ? <BsBookmarkFill /> : <BsBookmark />}</span>
             <p>{isSaved ? "Saved" : "Save"}</p>
           </button>
+
           {loggedInUser?._id === post.userId && (
             <button onClick={handleDeleteClick}>
               <span>
