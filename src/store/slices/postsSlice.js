@@ -115,6 +115,20 @@ export const savePost = createAsyncThunk("posts/savePost", async (data) => {
   }
 });
 
+export const unsavePost = createAsyncThunk("posts/unsavePost", async (data) => {
+  try {
+    const response = await axiosInstance.delete(
+      `${API_ROUTES.posts}/${data.postId}/unsave`,
+      { data }
+    );
+    console.log("data request (unsave):", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error during post unsaving:", error);
+    throw error;
+  }
+});
+
 export const commentPost = createAsyncThunk(
   "posts/commentPost",
   async (data) => {
@@ -359,6 +373,24 @@ export const postsSlice = createSlice({
         state.status.edit = "failed";
         state.error.edit = action.error.message;
       })
+
+      //unsaving a post
+      .addCase(unsavePost.pending, (state) => {
+        state.status.edit = "loading";
+        state.error.edit = null;
+      })
+      .addCase(unsavePost.fulfilled, (state, action) => {
+        state.status.edit = "succeeded";
+        const unsavedPostId = action.payload.postId;
+        state.savedPosts = state.savedPosts.filter(
+          (post) => post.postId !== unsavedPostId
+        );
+      })
+      .addCase(unsavePost.rejected, (state, action) => {
+        state.status.edit = "failed";
+        state.error.edit = action.error.message;
+      })
+
       // deleting a comment, handling all cases of responses
       .addCase(deleteComment.pending, (state, action) => {
         state.status.comment = "loading";
