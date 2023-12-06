@@ -1,8 +1,10 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   posts: [],
+  savedPosts: [],
   status: {
     fetch: "idle",
     edit: "idle",
@@ -43,6 +45,21 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   }
 });
 
+export const fetchSavedPosts = createAsyncThunk(
+  "posts/fetchSavedPosts",
+  async (id) => {
+    try {
+      const response = await axiosInstance.get(
+        API_ROUTES.savedPosts + "/" + id
+      );
+      console.log("response: ", response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
 export const editPost = createAsyncThunk("posts/editPost", async (data) => {
   try {
     const response = await axiosInstance.put(
@@ -82,12 +99,12 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 
 export const savePost = createAsyncThunk("posts/savePost", async (data) => {
   try {
-    console.log("Before request:", data);
     const response = await axiosInstance.post(
       `${API_ROUTES.posts}/${data.postId}/save`,
       data
     );
-    console.log("After request:", response.data);
+    response.data.postId = data.postId;
+    console.log("data request:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error during post saving:", error);
@@ -229,6 +246,18 @@ export const postsSlice = createSlice({
         state.status.fetch = "failed";
         state.error.fetch = action.error.message;
       })
+      // fetchSaved posts
+      .addCase(fetchSavedPosts.pending, (state, action) => {
+        state.status.fetch = "loading";
+      })
+      .addCase(fetchSavedPosts.fulfilled, (state, action) => {
+        state.savedPosts = action.payload;
+        state.status.fetch = "succeeded";
+      })
+      .addCase(fetchSavedPosts.rejected, (state, action) => {
+        state.status.fetch = "failed";
+        state.error.fetch = action.error.message;
+      })
       // Editing posts, handling all cases of responses
       .addCase(editPost.pending, (state) => {
         state.status.edit = "loading";
@@ -318,17 +347,8 @@ export const postsSlice = createSlice({
         state.error.edit = null;
       })
       .addCase(savePost.fulfilled, (state, action) => {
-        console.log("Save post action fulfilled. Updated state:", state);
-
         state.status.edit = "succeeded";
-        const updatedPost = action.payload;
-        const postIndex = state.posts.findIndex(
-          (post) => post._id === updatedPost._id
-        );
-
-        if (postIndex !== -1) {
-          state.posts[postIndex] = updatedPost;
-        }
+        state.savedPosts.push({ postId: action.payload.postId });
       })
       .addCase(savePost.rejected, (state, action) => {
         console.error("Save post action rejected:", action.error);
@@ -465,6 +485,7 @@ export const postsSlice = createSlice({
 });
 
 export const selectPosts = (state) => state.posts.posts;
+export const selectSavedPosts = (state) => state.posts.savedPosts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
