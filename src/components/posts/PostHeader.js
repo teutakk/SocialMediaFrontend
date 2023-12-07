@@ -138,37 +138,33 @@ const PostHeader = ({ post, type }) => {
     }
   };
   const handleSave = async () => {
-    try {
-      if (!loggedInUser || !loggedInUser._id) {
-        console.error(
-          "User information is missing or incomplete. loggedInUser:",
-          loggedInUser
-        );
-        return;
-      }
-
-      if (!post || !post._id) {
-        console.error("Post information is missing or incomplete. Post:", post);
-        return;
-      }
-
-      const data = {
-        userId: loggedInUser?._id,
-        postId: post._id,
-      };
-
-      console.log("Post object:", post);
-
-      if (isSaved) {
-        dispatch(unsavePost(data));
-      } else {
-        dispatch(savePost(data));
-      }
-
-      setIsSaved((prevIsSaved) => !prevIsSaved);
-    } catch (error) {
-      console.error("Error saving/unsaving post:", error);
+    if (!loggedInUser || !loggedInUser._id) {
+      console.error(
+        "User information is missing or incomplete. loggedInUser:",
+        loggedInUser
+      );
+      return;
     }
+
+    if (!post || !post._id) {
+      console.error("Post information is missing or incomplete. Post:", post);
+      return;
+    }
+
+    const data = {
+      userId: loggedInUser?._id,
+      postId: post._id,
+    };
+
+    console.log("Post object:", post);
+
+    if (isSaved) {
+      dispatch(unsavePost(data));
+    } else {
+      dispatch(savePost(data));
+    }
+
+    setIsSaved((prevIsSaved) => !prevIsSaved);
   };
   return (
     <div className={classes.PostHeader}>

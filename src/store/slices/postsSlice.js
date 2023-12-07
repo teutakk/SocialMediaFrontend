@@ -115,10 +115,10 @@ export const savePost = createAsyncThunk("posts/savePost", async (data) => {
 export const unsavePost = createAsyncThunk("posts/unsavePost", async (data) => {
   try {
     const response = await axiosInstance.delete(
-      `${API_ROUTES.posts}/${data.postId}/unsave`,
-      { data }
+      API_ROUTES.unsavePost(data.postId),
+      data
     );
-    console.log("data request (unsave):", response.data);
+    console.log("Unsave post response:", response.data);
     return response.data;
   } catch (error) {
     console.error("Error during post unsaving:", error);
@@ -372,18 +372,19 @@ export const postsSlice = createSlice({
       })
 
       //unsaving a post
+
       .addCase(unsavePost.pending, (state) => {
+        console.log("Unsave post action pending. Current state:", state);
         state.status.edit = "loading";
         state.error.edit = null;
       })
       .addCase(unsavePost.fulfilled, (state, action) => {
         state.status.edit = "succeeded";
-        const unsavedPostId = action.payload.postId;
-        state.savedPosts = state.savedPosts.filter(
-          (post) => post.postId !== unsavedPostId
-        );
+        state.unsavePost.push({ postId: action.payload.postId });
       })
       .addCase(unsavePost.rejected, (state, action) => {
+        console.error("Save post action rejected:", action.error);
+
         state.status.edit = "failed";
         state.error.edit = action.error.message;
       })
@@ -521,5 +522,6 @@ export const selectSavedPosts = (state) => state.posts.savedPosts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
+export const selectunsavePosts = (state) => state.posts.unsavePosts;
 
 export default postsSlice.reducer;
