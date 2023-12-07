@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FaSpinner } from "react-icons/fa";
 import { selectUser } from "../../../store/slices/authSlice";
 import { removeFriendRequestAsync } from "../../../store/slices/friendshipSlice";
+import { BiSearch } from "react-icons/bi";
 
 const Friends = () => {
   const [friendsData, setFriendsData] = useState([]);
@@ -92,13 +93,17 @@ const Friends = () => {
 
   return (
     <div className={classes.Friends}>
-      {friendsData?.length > 0 && <input
+      {friendsData?.length > 0 && (<div className={classes.searchInput}>
+        <label>
+          <BiSearch />
+        </label>
+        <input
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
         name="firstName"
         type="text"
         placeholder="Search"
-      />}
+      /></div>)}
       {loader && (
         <p className={classes.spinnerLoad}>
           <FaSpinner className={classes.spinner} />
