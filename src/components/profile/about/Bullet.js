@@ -3,6 +3,9 @@ import classes from "./Bullet.module.css";
 import { useParams } from "react-router";
 import { NavLink, useLocation } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../store/slices/authSlice";
+import { selectProfilePageUser } from "../../../store/slices/profileSlice";
 
 const Bullet = ({
   navigation,
@@ -19,6 +22,12 @@ const Bullet = ({
 }) => {
   const params = useParams();
   const location = useLocation();
+
+  const loggedInUser = useSelector(selectUser);
+  const loggedInUserId = loggedInUser?._id
+  const profilePageUser = useSelector(selectProfilePageUser);
+  const profileUserId = profilePageUser?._id
+
 
   const path = location.pathname;
 
@@ -62,7 +71,7 @@ const Bullet = ({
         </div>
       )}
 
-      {path === `/id/${params.idNumber}/friends` && (
+      {path === `/id/${params.idNumber}/friends` && loggedInUserId === profileUserId &&(
         <div className={classes.friendsButtons}>
           {loadingStates ? (
             <button className={classes.button}>
