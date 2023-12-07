@@ -19,7 +19,7 @@ import {
   viewProfile,
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
-import { selectPosts } from "../store/slices/postsSlice";
+import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +32,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
-  const usersPost = useSelector(selectPosts);
+  const allPosts = useSelector(selectPosts);
   const profilePageUser = useSelector(selectProfilePageUser);
   const loggedInUser = useSelector(selectUser);
   const sentRequests = useSelector((state) => state.friendship.sentRequests);
@@ -41,6 +41,10 @@ const Profile = () => {
   const userId = loggedInUser?._id;
   const profileUserId = profilePageUser?._id
 
+
+  const userPosts = allPosts?.filter((post) => 
+    post?.userId === profileUserId
+  )
 
   useEffect(() => {
     const handleGetSentRequests = (userId) => {
@@ -214,6 +218,7 @@ const Profile = () => {
     getProfileViews()
   }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id])
 
+
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -295,6 +300,12 @@ const Profile = () => {
               {profilePageUser?.friends?.length}
             </strong>{" "}
             Friends
+          </p>
+          <p className={classes.friendsData}>
+            <strong className={classes.friendsNum}>
+              {userPosts.length}
+            </strong>{" "}
+            Posts
           </p>
         </div>
       </section>

@@ -81,12 +81,9 @@ export const createPost = createAsyncThunk("posts/createPost", async (data) => {
 export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
   // here we need to be careful where we send the data, we need to post these data to the userId
   try {
-    const response = await axiosInstance.post(`${API_ROUTES.saved}${postId}/save`);
+    const response = await axiosInstance.post(API_ROUTES.saved, postId);
     return response.data;
-  } catch (error) {
-    console.error(error);
-    throw Error
-  }
+  } catch (error) {}
 });
 
 export const commentPost = createAsyncThunk(
