@@ -8,6 +8,7 @@ import { logInWithToken, selectUser } from "./store/slices/authSlice";
 import axiosInstance from "./api/axiosInstance";
 import { API_ROUTES } from "./api/apiConfig";
 import ScrollToTop from "./ScrollToTop";
+import { fetchPosts } from "./store/slices/postsSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,11 @@ function App() {
       }
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
+
   return (
     <Router>
       <ScrollToTop />
