@@ -5,6 +5,7 @@ const API_ROUTES = {
   login: "/auth/login",
   register: "/auth/register",
   posts: "/posts",
+  saved: "/posts/",
   users: "/users",
   user: "/users/",
   post: "/post",

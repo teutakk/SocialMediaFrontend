@@ -19,6 +19,7 @@ import {
   viewProfile,
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
+import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +32,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   const profilePageUserStatus = useSelector(selectProfilePageUserStatus);
+  const allPosts = useSelector(selectPosts);
   const profilePageUser = useSelector(selectProfilePageUser);
   const loggedInUser = useSelector(selectUser);
   const sentRequests = useSelector((state) => state.friendship.sentRequests);
@@ -39,6 +41,10 @@ const Profile = () => {
   const userId = loggedInUser?._id;
   const profileUserId = profilePageUser?._id
 
+
+  const userPosts = allPosts?.filter((post) => 
+    post?.userId === profileUserId
+  )
 
   useEffect(() => {
     const handleGetSentRequests = (userId) => {
@@ -212,6 +218,7 @@ const Profile = () => {
     getProfileViews()
   }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id])
 
+
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
@@ -224,9 +231,6 @@ const Profile = () => {
       </section>
       <section className={classes["profile-info"]}>
         <div className={classes["info-width-controller"]}>
-          <h3>
-            {profilePageUser?.firstName} {profilePageUser?.lastName}
-          </h3>
           {
             <div className={classes.actions}>
               {loggedInUser?._id !== profilePageUser?._id &&
@@ -286,8 +290,23 @@ const Profile = () => {
               )}
             </div>
           }
-        <p>{(profilePageUser?.friends)?.length} Friends</p>
-
+        </div>
+        <div className={classes.profileData}>
+          <h3>
+            {profilePageUser?.firstName} {profilePageUser?.lastName}
+          </h3>
+          <p className={classes.friendsData}>
+            <strong className={classes.friendsNum}>
+              {profilePageUser?.friends?.length}
+            </strong>{" "}
+            Friends
+          </p>
+          <p className={classes.friendsData}>
+            <strong className={classes.friendsNum}>
+              {userPosts.length}
+            </strong>{" "}
+            Posts
+          </p>
         </div>
       </section>
       <div className={classes["content-options"]}>
@@ -301,7 +320,7 @@ const Profile = () => {
           {profilePageUser?._id === loggedInUser?._id && (
             <NavLink to={"requests"}>Requests</NavLink>
           )}
-           {profilePageUser?._id === loggedInUser?._id && (
+          {profilePageUser?._id === loggedInUser?._id && (
             <NavLink to={"views "}>Profile Views</NavLink>
           )}
         </div>

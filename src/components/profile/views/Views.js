@@ -7,10 +7,14 @@ import { selectProfilePageUser } from '../../../store/slices/profileSlice'
 import { viewProfile } from '../../../store/slices/friendshipSlice'
 import axiosInstance from '../../../api/axiosInstance'
 import { API_ROUTES } from '../../../api/apiConfig'
+import { FaSpinner } from 'react-icons/fa'
 
 const Views = () => {
 
     const [views, setViews] = useState([])
+    const [search, setSearch] = useState("")
+    const [loader, setLoader] = useState(false)
+    const [isFriend, setIsFriend] = useState(false)
 
     const loggedInUser = useSelector(selectUser)
     const profilePageUser = useSelector(selectProfilePageUser)
@@ -21,6 +25,7 @@ const Views = () => {
     useEffect(() => {
       const getProfileViews = async() => {
         try {
+            setLoader(true)
             const loggedUserViews = loggedInUser?.views; 
             console.log(loggedUserViews);
             if (loggedUserViews) {
@@ -33,6 +38,8 @@ const Views = () => {
             
               const viewData = await Promise.all(getUserViewsPromises);
               setViews(viewData)
+              setLoader(false)
+
             }
           } catch (error) {
               console.error(error);
@@ -42,23 +49,50 @@ const Views = () => {
       getProfileViews()
   }, [loggedInUser?.views])
 
+
+  // ?.filter((item) => {
+  //   return search.toLowerCase() === ""
+  //     ? item
+  //     : item.firstName
+  //         .toLowerCase()
+  //         .includes(search.toLowerCase()) ||
+  //         item.lastName
+  //           .toLowerCase()
+  //           .includes(search.toLowerCase());
+  // })
+
+  
   return (
   <div className={classes.Views}>
     <p className={classes.title}>Who viewed your profile</p>
+    {loader && (
+        <p className={classes.spinnerLoad}>
+          <FaSpinner className={classes.spinner} />
+        </p>
+      )}
+    {/* {views?.length > 0 && <input
+        className={classes.search}
+        onChange={(e) => setSearch(e.target.value)}
+        name="firstName"
+        type="text"
+        placeholder="Search"
+      />} */}
     <div className={classes["views-holder"]}>    
-      {views?.map((view, i) => {
+      { !loader && views.map((view, i) => {
+                const isFriend = loggedInUser?.friends.includes(view?._id);
         return(
         <div className={classes.viewBlock} key={i}>
           <Bullet 
               navigation={`../../../id/${view?._id}`}
               content={view?.firstName}
               content2={view?.lastName}
-              subContent={view?.email}
+              smallText="Viewed your profile"
+              isFriend={isFriend}
           />
         </div>
         )
       })}
-      {!views.length ? <p className={classes.paragraph}>No profile viewers</p> : ""}
+      {!views.length && !loader ? <p className={classes.paragraph}>No profile viewers</p> : ""}
     </div> 
   </div>
   )
