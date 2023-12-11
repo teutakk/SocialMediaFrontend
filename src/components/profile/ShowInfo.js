@@ -22,32 +22,38 @@ const ShowInfo = ({ title, initialContent, onSave, onEditMode = false }) => {
   return (
     <div className={classes.ShowInfo}>
       <p className={classes.title}>{title}</p>
-      {isEditing ? (
-        <div>
-          <input
-            type="text"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <button onClick={handleSave}>Save</button>
-          <button onClick={handleCancel}>Cancel</button>
-        </div>
-      ) : (
-        <div>
-          <p className={classes.content}>{content}</p>
-          <div className={classes.dropdown}>
+      <div className={classes.contentContainer}>
+        {isEditing ? (
+          <div>
+            <input
+              type="text"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <button onClick={handleSave}>Save</button>
+            <button onClick={handleCancel}>Cancel</button>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <p className={classes.content}>{content}</p>
             <button
               onClick={toggleEditing}
+              className={classes.editButton}
               style={{
                 display: "flex",
                 alignItems: "center",
                 cursor: "pointer",
                 background: "none",
-                border: "2px #ccc",
-                borderLeft: "4px black ",
-                borderRight: "4px  ",
+                border: "1px solid grey",
                 borderRadius: "32px",
-                padding: "0px",
+                padding: "4px",
+                marginLeft: "1px",
               }}
             >
               <svg
@@ -56,7 +62,7 @@ const ShowInfo = ({ title, initialContent, onSave, onEditMode = false }) => {
                 viewBox="-18 -18 60.00 60.00"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                style={{ marginRight: "8px" }}
+                style={{ marginRight: "2px" }}
               >
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g
@@ -98,8 +104,8 @@ const ShowInfo = ({ title, initialContent, onSave, onEditMode = false }) => {
               Edit
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
