@@ -73,14 +73,13 @@ const About = () => {
             >
               <span>Contacts</span>
               <svg
-                width="28"
-                height="28"
-                viewBox="0 0 5 3"
+                width="18"
+                height="14"
+                viewBox="0 0 4 3"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 style={{
-                  marginLeft: "8px",
-                  width: "1em",
+                  marginLeft: "9px",
                   height: "1em",
                 }}
               >
