@@ -100,7 +100,7 @@
 .form a {
   color: #8487ff;
 }
-form div p {
+.container form div p {
   font-size: max(12px, 0.75vw);
   color: rgb(166, 36, 36);
   font-weight: 500;

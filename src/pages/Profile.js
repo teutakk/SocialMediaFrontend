@@ -20,13 +20,16 @@ import {
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
 import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
+import Modal from "../components/profile/editProfile/Modal";
+import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
+
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAFriend, setIsAFriend] = useState(false);
   const [isSentRequest, setIsSentRequest] = useState(false);
   const [acceptFriend, setAcceptFriend] = useState(false);
-
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,6 +49,14 @@ const Profile = () => {
     post?.userId === profileUserId
   )
 
+
+  const handleOpenEditProfileModal = () => {
+    setIsEditProfileModalOpen(true);
+  };
+
+  const handleCloseEditProfileModal = () => {
+    setIsEditProfileModalOpen(false);
+  };
   useEffect(() => {
     const handleGetSentRequests = (userId) => {
       try {
@@ -250,7 +261,13 @@ const Profile = () => {
                   </button>
                 )}
               {loggedInUser?._id === profilePageUser?._id && (
-                <button>Edit Profile</button>
+                <div>
+                <button onClick={handleOpenEditProfileModal}>Edit Profile</button>
+                <EditProfileModal
+                  isOpen={isEditProfileModalOpen}
+                  onClose={handleCloseEditProfileModal}
+                />
+              </div>
               )}
               {loggedInUser?._id !== profilePageUser?._id &&
                 isAFriend &&
