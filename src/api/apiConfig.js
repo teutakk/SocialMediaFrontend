@@ -9,6 +9,7 @@ const API_ROUTES = {
   saved: "/posts/",
   users: "/users",
   user: "/users/",
+  updateUser: "/update/",
   post: "/post",
   deletePost: "/delete-post",
   savedPosts: "/savedPosts",
