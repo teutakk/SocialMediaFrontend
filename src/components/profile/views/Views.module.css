@@ -8,14 +8,43 @@
   background-color: white;
 }
 
+.Views .search{
+  width: max(25vw, 270px);
+  display: flex;
+  margin: 0 auto;
+  padding: max(5px, .3vw) max(7px, .4vw);
+  background-color: #d9d9d9;
+  border: none;
+  outline: none;
+  border-radius: max(12px, .8vw);
+  margin-bottom: max(30px);
+}
 
 .Views .title {
-  font-size: max(1.7vw, 27px);
-  font-weight: 500;
   display: flex;
   justify-content: center;
   margin: 0 auto;
   padding: max(15px, 1vw);
+  text-align: center;
+  font-weight: 500;
+  font-size: max(1.7vw, 27px);
+}
+
+.spinnerLoad{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.spinner {
+  width: max(1.3vw, 20px);
+  height: max(1.3vw, 20px);
+  animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .views-holder {
@@ -23,15 +52,13 @@
   grid-template-columns: 1fr;
   gap: 10px;
 }
-.paragraph{
-  color: grey;
-  margin: 10px auto;
-  text-align: center;
+.Views .paragraph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
-.viewBlock{
-  width: max(200px, 19vw);
-} 
 .friendNav{
   border-bottom: 1px solid rgb(213, 213, 213);
 }

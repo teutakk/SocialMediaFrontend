@@ -46,6 +46,17 @@ const Modal = ({
     modalClass = "show-post";
   }
 
+  const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
+
+  useEffect(() => {
+  // Check if any changes are made
+  const isDescriptionChanged = data.description !== updatedData?.description;
+  const isPicturesChanged = JSON.stringify(data.pictures) !== JSON.stringify(updatedData?.pictures);
+
+  // Enable the save button if changes are made
+  setSaveButtonDisabled(!(isDescriptionChanged || isPicturesChanged));
+  }, [data, updatedData]);
+
   return createPortal(
     <div className={classes.Modal}>
       <div
@@ -81,10 +92,7 @@ const Modal = ({
             {showActionButtons && (
               <>
                 <button
-                  disabled={
-                    data.description === updatedData?.description ||
-                    updatedData?.description.trim().length === 0
-                  }
+                  disabled={saveButtonDisabled}
                   className={classes.save}
                   onClick={() =>
                     onModalActionHandler({

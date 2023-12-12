@@ -23,11 +23,12 @@ import {
   isYesterday,
 } from "date-fns";
 import { selectUser } from "../../store/slices/authSlice";
+import PostSettings from "./PostSettings";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
-  const [modalOpen, setModalOpen] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [displayTime, setDisplayTime] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -191,6 +192,14 @@ const PostHeader = ({ post, type }) => {
             <BiDotsVerticalRounded />
           </span>
         )}
+        <PostSettings
+          post={post}
+          showModal={showModal}
+          handleDeleteClick={handleDeleteClick}
+          settingsSectionRef={settingsSectionRef}
+          showOptions={showOptions}
+          setShowOptions={handleShowOptions}
+        />
         {modalOpen && (
           <Modal
             data={post}
@@ -203,7 +212,7 @@ const PostHeader = ({ post, type }) => {
             <EditPost />
           </Modal>
         )}
-        <div
+        {/* <div
           ref={settingsSectionRef}
           className={`${
             showOptions
@@ -238,7 +247,7 @@ const PostHeader = ({ post, type }) => {
               <p>delete</p>
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

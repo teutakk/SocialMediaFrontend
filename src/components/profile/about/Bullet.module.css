@@ -3,6 +3,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  position: relative;
 }
 
 .overview-bullet .logo {
@@ -32,9 +33,7 @@
 
 .bullet-content {
   width: calc(100% - 80px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin: auto 0;
   gap: max(7px, .5vw);
 }
 .bullet-content .blockContent{
@@ -114,4 +113,15 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+.friend{
+  background-color: rgba(217, 217, 217, 1);
+  padding: max(6px, .4vw) max(24px, 1.3vw);
+  border-radius: max(8px, .4vw);
+}
+
+.smallText {
+  font-size: max(9px, .6vw);
+  color: rgba(85, 85, 85, 0.503);
 }

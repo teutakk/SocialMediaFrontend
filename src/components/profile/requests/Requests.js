@@ -1,6 +1,5 @@
 import classes from "./Requests.module.css";
 import Bullet from "../about/Bullet";
-import { NavLink, useParams } from "react-router-dom";
 import { selectUser } from "../../../store/slices/authSlice";
 import {useDispatch, useSelector} from "react-redux"
 import { useEffect, useState } from "react";
@@ -11,7 +10,6 @@ const Requests = () => {
   const [search, setSearch] = useState("")
 
   const dispatch = useDispatch();
-  const params = useParams();
   const loggedInUser = useSelector(selectUser);
   const pendingRequests = useSelector((state) => state.friendship.pendingRequests)
   const userId = loggedInUser?._id
@@ -49,14 +47,14 @@ const Requests = () => {
   };
   return (
     <div className={classes.Requests}>
-      <p className={classes.title}>Friend Requests</p>
-      <input
+      {/* <p className={classes.title}>Friend Requests</p> */}
+      {pendingRequests?.length > 0 && <input
         className={classes.search}
         onChange={(e) => setSearch(e.target.value)}
         name="firstName"
         type="text"
         placeholder="Search"
-      />
+      />}
       <div className={classes["request-holder"]}>
           {pendingRequests?.filter((item) => {
                 return search.toLowerCase() === ""
@@ -68,7 +66,7 @@ const Requests = () => {
                 navigation={`/id/${friend?.requestFrom?._id}`}
                 key={i}
                 content={friend?.requestFrom?.firstName}
-                subContent={friend?.requestFrom?._id}
+                content2={friend?.requestFrom?.lastName}
                 acceptFriendRequest={() => handleAcceptFriendRequest({
                   senderUserId: friend?.requestFrom?._id,
                   rid: friend?._id,

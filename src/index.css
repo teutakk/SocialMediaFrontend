@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&family=Lumanosimo&family=Playpen+Sans:wght@600;700;800&family=Pacifico&family=Roboto&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap'); 
 *,
 *::before,
 *::after {
@@ -60,7 +59,7 @@
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Inter", sans-serif;
   position: relative;
   overflow-x: hidden;
   min-height: 100vh;

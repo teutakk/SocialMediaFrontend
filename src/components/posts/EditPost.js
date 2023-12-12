@@ -11,7 +11,7 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
   useEffect(() => {
     onChangeDataHandler({
       description: editPostText,
-      images: editedImages,
+      pictures: editedImages,
       _id: post._id,
     });
   }, [editPostText, editedImages, post._id]);

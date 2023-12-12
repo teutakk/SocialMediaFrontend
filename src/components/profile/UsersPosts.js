@@ -12,6 +12,7 @@ const UsersPosts = () => {
   const profilePageUserPosts = posts.filter(
     (post) => post.userId === profilePageUser._id
   );
+  console.log(profilePageUserPosts);
   return (
     <div className={classes.UsersPosts}>
       <h3>Posts</h3>
