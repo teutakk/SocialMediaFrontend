@@ -296,6 +296,7 @@ const Stories = () => {
                 <img
                   src={userStoriesForUser[0].imageUrl}
                   alt={`Story by ${userStoriesForUser[0].user.username}`}
+                  className={classes.storyImages}
                 />
                 <div className={classes.userProfile}>
                   <img
