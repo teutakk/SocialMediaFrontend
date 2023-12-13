@@ -99,6 +99,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
   const updateUser = async (userData) => {
     try {
       setPersonalInfoLoading(true)
+     
       const res = await axiosInstance.put(`${API_ROUTES.updateUser}${userId}`, userData)
       setPersonalInfoLoading(false)
     } catch (error) {
@@ -227,7 +228,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 Save Changes
               </button>
             )}
-            {personalInfoLoading && (
+            {personalInfoLoading && toggleEditing &&(
               <button>
                 <span>
                   <FaSpinner className={classes.spinner} />{" "}
@@ -267,7 +268,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 Save Changes
               </button>
             )}
-            {personalInfoLoading && (
+            {personalInfoLoading && toggleEditingEmail && (
               <button>
                 <span>
                   <FaSpinner className={classes.spinner} />{" "}
