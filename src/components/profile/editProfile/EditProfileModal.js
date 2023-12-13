@@ -20,6 +20,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
   const [inputs, setInputs] = useState({})
   const [selectedImages, setSelectedImages] = useState([]);
 
+  console.log(selectedImages);
   const dispatch = useDispatch()
   const params = useParams();
 
