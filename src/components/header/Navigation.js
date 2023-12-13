@@ -82,7 +82,7 @@ const Navigation = () => {
         </ul>
         <div className={classes.navigationActions}>
           <NavLink to={`id/${loggedInUser?._id}`}>
-            <UserChip url={loggedInUser?.profilePicuture} />
+            <UserChip url={loggedInUser?.profilePicture} />
             <p>
               {loggedInUser?.firstName} {loggedInUser?.lastName}
             </p>
