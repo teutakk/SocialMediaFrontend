@@ -12,15 +12,9 @@ import { FaSpinner } from 'react-icons/fa'
 const Views = () => {
 
     const [views, setViews] = useState([])
-    const [search, setSearch] = useState("")
     const [loader, setLoader] = useState(false)
-    const [isFriend, setIsFriend] = useState(false)
 
     const loggedInUser = useSelector(selectUser)
-    const profilePageUser = useSelector(selectProfilePageUser)
-    const userId = loggedInUser?._id
-    const profileUserId = profilePageUser?._id
-
 
     useEffect(() => {
       const getProfileViews = async() => {
@@ -49,18 +43,6 @@ const Views = () => {
       getProfileViews()
   }, [loggedInUser?.views])
 
-
-  // ?.filter((item) => {
-  //   return search.toLowerCase() === ""
-  //     ? item
-  //     : item.firstName
-  //         .toLowerCase()
-  //         .includes(search.toLowerCase()) ||
-  //         item.lastName
-  //           .toLowerCase()
-  //           .includes(search.toLowerCase());
-  // })
-
   
   return (
   <div className={classes.Views}>
@@ -70,13 +52,6 @@ const Views = () => {
           <FaSpinner className={classes.spinner} />
         </p>
       )}
-    {/* {views?.length > 0 && <input
-        className={classes.search}
-        onChange={(e) => setSearch(e.target.value)}
-        name="firstName"
-        type="text"
-        placeholder="Search"
-      />} */}
     <div className={classes["views-holder"]}>    
       { !loader && views.map((view, i) => {
                 const isFriend = loggedInUser?.friends.includes(view?._id);
@@ -88,6 +63,7 @@ const Views = () => {
               content2={view?.lastName}
               smallText="Viewed your profile"
               isFriend={isFriend}
+              imageUrl={view?.profilePicture}
           />
         </div>
         )

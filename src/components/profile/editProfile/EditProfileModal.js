@@ -3,12 +3,11 @@ import Modal from "./Modal";
 import { NavLink, useParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import classes from "./EditProfileModal.module.css";
-import logo from "../../../assets/images/starlabs.png";
+import logo from "../../../assets/images/userSvg2.svg";
 import axiosInstance from "../../../api/axiosInstance";
 import { API_ROUTES } from "../../../api/apiConfig";
 import { selectUser } from "../../../store/slices/authSlice";
 import { IoMdClose } from "react-icons/io";
-import { LuPencilLine } from "react-icons/lu";
 import { FaSpinner, FaUser } from "react-icons/fa";
 import { fetchUserProfile } from "../../../store/slices/profileSlice";
 
@@ -18,11 +17,9 @@ const EditProfileModal = ({ isOpen, onClose }) => {
   const [toggleEditingEmail, setToggleEditingEmail] = useState(false);
   const [pictureLoading, setPictureLoading] = useState(false);
   const [personalInfoLoading, setPersonalInfoLoading] = useState(false);
-  const [emailLoading, setEmailLoading] = useState(false);
   const [inputs, setInputs] = useState({})
   const [selectedImages, setSelectedImages] = useState([]);
 
-  console.log(selectedImages);
   const dispatch = useDispatch()
   const params = useParams();
 
@@ -42,7 +39,6 @@ const EditProfileModal = ({ isOpen, onClose }) => {
 
     setSelectedImages(selectedFiles);
     
-    console.log(selectedImages);
     if (file) {
       const reader = new FileReader();
 
@@ -61,7 +57,6 @@ const EditProfileModal = ({ isOpen, onClose }) => {
       for (let i = 0; i < selectedImages.length; i++) {
         formData.append("profilePicture", selectedImages[i]);
       }
-      
       const res = await axiosInstance.put(`${API_ROUTES.addProfilePic}${userId}`, formData,  {headers: {
         'Content-Type': 'multipart/form-data',
       }})
@@ -91,8 +86,6 @@ const EditProfileModal = ({ isOpen, onClose }) => {
 
   const handleChange = (e) => {
     setInputs((prev) => {
-      console.log(e.target.value)
-
       return{...prev, [e.target.name]: e.target.value}
     })    
   }
@@ -101,6 +94,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
       setPersonalInfoLoading(true)
      
       const res = await axiosInstance.put(`${API_ROUTES.updateUser}${userId}`, userData)
+
       setPersonalInfoLoading(false)
     } catch (error) {
       console.log(error);
@@ -135,7 +129,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
           <div className={classes.dataContainer}>
             <div className={classes.imageData}>
               <img
-                src={imagePreview ?  imagePreview : loggedinUser?.profilePicture}
+                src={imagePreview ?  imagePreview : loggedinUser?.profilePicture.length === 0 ? logo : loggedinUser?.profilePicture}
                 alt="Click to upload"
                 style={{ width: "100px", cursor: "pointer" }}
                 onClick={openFileInput}

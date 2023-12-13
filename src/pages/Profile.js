@@ -19,9 +19,10 @@ import {
   viewProfile,
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
-import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
-import Modal from "../components/profile/editProfile/Modal";
+import { selectPosts } from "../store/slices/postsSlice";
 import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
+import logo from "../assets/images/userSvg2.svg";
+
 
 
 const Profile = () => {
@@ -44,11 +45,9 @@ const Profile = () => {
   const userId = loggedInUser?._id;
   const profileUserId = profilePageUser?._id
 
-
   const userPosts = allPosts?.filter((post) => 
     post?.userId === profileUserId
   )
-
 
   const handleOpenEditProfileModal = () => {
     setIsEditProfileModalOpen(true);
@@ -220,7 +219,6 @@ const Profile = () => {
                 profileUserId: profileUserId
               }))
             }
-            console.log("the users that have viewed your page: ", loggedUserViews);
         } catch (error) {
             console.error(error);
             throw error
@@ -229,14 +227,13 @@ const Profile = () => {
     getProfileViews()
   }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id])
 
-
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
         <div className={classes.cover}>
           <div className={classes["profile-pic"]}>
          
-            <img src={loggedInUser?.profilePicture} alt="" />
+            <img src={profilePageUser?.profilePicture?.length === 0 ? logo : profilePageUser?.profilePicture} alt="" />
           </div>
         </div>
       </section>
