@@ -18,7 +18,8 @@ const Bullet = ({
   rejectFriendRequest,
   removeFriend,
   isFriend,
-  smallText
+  smallText,
+  imageUrl
 }) => {
   const params = useParams();
   const location = useLocation();
@@ -38,7 +39,7 @@ const Bullet = ({
       }`}
     >
       <span className={classes.logo}>
-        {typeof logo === "string" ? <img src={logo} alt={content} /> : logo}
+        {<img src={imageUrl} alt={content} /> }
       </span>
       <NavLink to={navigation} className={classes["bullet-content"]}>
         <div className={classes.blockContent}>

@@ -9,6 +9,7 @@ import { FaSpinner } from "react-icons/fa";
 import { selectUser } from "../../../store/slices/authSlice";
 import { removeFriendRequestAsync } from "../../../store/slices/friendshipSlice";
 import { BiSearch } from "react-icons/bi";
+import logo from "../../../assets/images/userSvg2.svg"
 
 const Friends = () => {
   const [friendsData, setFriendsData] = useState([]);
@@ -132,6 +133,7 @@ const Friends = () => {
                       })
                     }
                     loadingStates={loadingStates[friend?._id]}
+                    imageUrl= {friend?.profilePicture}
                   />
                 );
               })}

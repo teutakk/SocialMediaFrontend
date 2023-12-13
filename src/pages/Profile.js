@@ -20,9 +20,10 @@ import {
 } from "../store/slices/friendshipSlice";
 import { FiCamera } from "react-icons/fi";
 import { FaSpinner } from "react-icons/fa";
-import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
-import Modal from "../components/profile/editProfile/Modal";
+import { selectPosts } from "../store/slices/postsSlice";
 import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
+import logo from "../assets/images/userSvg2.svg";
+
 
 
 const Profile = () => {
