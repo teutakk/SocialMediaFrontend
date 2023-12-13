@@ -151,7 +151,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
 
               <label>Change the profile image</label>
             </div>
-            {!pictureLoading && <button onClick={handlePictureSubmit} type="submit">Save</button>}
+            {!pictureLoading && <button disabled={!selectedImages || !imagePreview} onClick={handlePictureSubmit} type="submit">Save</button>}
             {pictureLoading && (
               <button>
                 <span>
