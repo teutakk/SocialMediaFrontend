@@ -234,9 +234,9 @@ const Profile = () => {
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
         <div className={classes.cover}>
-          <img src="" alt="" />
           <div className={classes["profile-pic"]}>
-            <span></span>
+         
+            <img src={loggedInUser?.profilePicture} alt="" />
           </div>
         </div>
       </section>
