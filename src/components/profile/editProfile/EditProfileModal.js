@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Modal from "./Modal";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import classes from "./EditProfileModal.module.css";
 import logo from "../../../assets/images/starlabs.png";
@@ -10,28 +10,39 @@ import { selectUser } from "../../../store/slices/authSlice";
 import { IoMdClose } from "react-icons/io";
 import { LuPencilLine } from "react-icons/lu";
 import { FaSpinner, FaUser } from "react-icons/fa";
+import { fetchUserProfile } from "../../../store/slices/profileSlice";
 
 const EditProfileModal = ({ isOpen, onClose }) => {
-  const [imagePreview, setImagePreview] = useState(logo);
+  const [imagePreview, setImagePreview] = useState();
   const [toggleEditing, setToggleEditing] = useState(false);
   const [toggleEditingEmail, setToggleEditingEmail] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [pictureLoading, setPictureLoading] = useState(false);
+  const [personalInfoLoading, setPersonalInfoLoading] = useState(false);
+  const [emailLoading, setEmailLoading] = useState(false);
   const [inputs, setInputs] = useState({})
+  const [selectedImages, setSelectedImages] = useState([]);
 
+  console.log(selectedImages);
   const dispatch = useDispatch()
+  const params = useParams();
+
 
   const loggedinUser = useSelector(selectUser)
   const userId = loggedinUser?._id
 
-  const openFileInput = () => {
-    // Trigger the click event on the hidden file input
+  const openFileInput = (e) => {
     document.getElementById("fileInput").click();
   };
 
   const previewImage = (input) => {
-    // Display the selected image preview
+
     const file = input.files[0];
 
+    const selectedFiles = [file];
+
+    setSelectedImages(selectedFiles);
+    
+    console.log(selectedImages);
     if (file) {
       const reader = new FileReader();
 
@@ -43,9 +54,29 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     }
   };
 
+  const handlePictureSubmit = async() => {
+    try {
+      setPictureLoading(true)
+      const formData = new FormData();
+      for (let i = 0; i < selectedImages.length; i++) {
+        formData.append("profilePicture", selectedImages[i]);
+      }
+      
+      const res = await axiosInstance.put(`${API_ROUTES.addProfilePic}${userId}`, formData,  {headers: {
+        'Content-Type': 'multipart/form-data',
+      }})
+      dispatch(fetchUserProfile(`/${params.idNumber}`));
+
+      setPictureLoading(false)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const isEmailValid = (email) => {
-    // Add your email validation logic here
+
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     return emailRegex.test(email);
   };
 
@@ -67,29 +98,17 @@ const EditProfileModal = ({ isOpen, onClose }) => {
   }
   const updateUser = async (userData) => {
     try {
-      setLoading(true)
+      setPersonalInfoLoading(true)
       const res = await axiosInstance.put(`${API_ROUTES.updateUser}${userId}`, userData)
-      console.log(res.data)
-      setLoading(false)
+      setPersonalInfoLoading(false)
     } catch (error) {
       console.log(error);
-      setLoading(false)
+      setPersonalInfoLoading(false)
     }
   }
   const handleUpdateUser = (e) => {
   
     e.preventDefault()
-
-    // if (
-    //   (toggleEditing && !inputs.firstName) ||
-    //   (toggleEditing && !inputs.lastName) ||
-    //   (toggleEditing && !inputs.gender) ||
-    //   (toggleEditingEmail && !inputs.email)
-    // ) {
-    //   // You can add an error message or handle this case as needed
-    //   console.log("Please fill in all required fields");
-    //   return;
-    // }
   
     const newData = {
       firstName: toggleEditing ? inputs.firstName || loggedinUser?.firstName : loggedinUser?.firstName,
@@ -103,7 +122,6 @@ const EditProfileModal = ({ isOpen, onClose }) => {
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} className={classes.modal}>
-      {/* Add your edit profile form or content here */}
       <h2>Edit Profile</h2>
       <div className={classes.container}>
         <div className={classes.leftContainer}>
@@ -111,30 +129,35 @@ const EditProfileModal = ({ isOpen, onClose }) => {
             <p>Edit Profile</p>
             <FaUser />
           </NavLink>
-          {/* <NavLink to="privacy">Privacy</NavLink> */}
         </div>
         <div className={classes.imageUpload}>
           <div className={classes.dataContainer}>
             <div className={classes.imageData}>
               <img
-                src={imagePreview}
+                src={imagePreview ?  imagePreview : loggedinUser?.profilePicture}
                 alt="Click to upload"
                 style={{ width: "100px", cursor: "pointer" }}
                 onClick={openFileInput}
               />
-
-              {/* File Input */}
               <input
                 type="file"
                 id="fileInput"
                 accept="image/*"
+                name="profilePicture"
                 style={{ display: "none" }}
                 onChange={(e) => previewImage(e.target)}
               />
 
               <label>Change the profile image</label>
             </div>
-            <button>Save</button>
+            {!pictureLoading && <button onClick={handlePictureSubmit} type="submit">Save</button>}
+            {pictureLoading && (
+              <button>
+                <span>
+                  <FaSpinner className={classes.spinner} />{" "}
+                </span>
+              </button>
+            )}
           </div>
           <form className={classes.userAbout}>
             <div className={classes.firstRow}>
@@ -194,7 +217,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 )}
               </div>
             </div>
-            {!loading && toggleEditing && (
+            {!personalInfoLoading && toggleEditing && (
               <button
                 disabled={
                   (!inputs.firstName && !inputs.lastName && !inputs.gender)
@@ -204,7 +227,7 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 Save Changes
               </button>
             )}
-            {loading && (
+            {personalInfoLoading && (
               <button>
                 <span>
                   <FaSpinner className={classes.spinner} />{" "}
@@ -239,12 +262,12 @@ const EditProfileModal = ({ isOpen, onClose }) => {
                 )}
               </div>
             </div>
-            {!loading && toggleEditingEmail && (
+            {!personalInfoLoading && toggleEditingEmail && (
               <button disabled={!toggleEditingEmail || !(inputs.email?.trim()) || !isEmailValid(inputs.email)} onClick={handleUpdateUser}>
                 Save Changes
               </button>
             )}
-            {loading && (
+            {personalInfoLoading && (
               <button>
                 <span>
                   <FaSpinner className={classes.spinner} />{" "}
@@ -253,7 +276,6 @@ const EditProfileModal = ({ isOpen, onClose }) => {
             )}
           </form>
         </div>
-        {/* Add your form fields, buttons, etc. */}
       </div>
     </Modal>
   );
