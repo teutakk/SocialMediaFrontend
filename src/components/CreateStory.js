@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import classes from "./CreateStory.module.css";
+import { addStory } from "../store/slices/storiesSlice";
+import { useDispatch } from "react-redux";
 
 const CreateStory = () => {
+  const dispatch = useDispatch();
   const [imagePreviews, setImagePreviews] = useState([]);
   const [selectedImages, setSelectedImages] = useState([]);
 
@@ -9,9 +12,13 @@ const CreateStory = () => {
     event.preventDefault();
 
     // Object that will be sent when backend ready !!!
-    const newStory = {};
+    const newStory = {
+      imageUrl: "your_image_url_here",
+      userId: "user_id_here",
+      timestamp: new Date().toISOString(),
+    };
 
-    // dispatch function here to send the object !!!
+    // dispatch(addStory(newStory));
   };
 
   return (

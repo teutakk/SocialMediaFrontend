@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import classes from "./Stories.module.css";
 import CreateStory from "./CreateStory";
 
@@ -139,11 +140,16 @@ const dummyStories = [
 ];
 
 const Stories = () => {
+  // const dispatch = useDispatch();
   const [openStory, setOpenStory] = useState({
     userId: null,
     currentIndex: null,
   });
   let userStories = {};
+
+  // useEffect(() => {
+  //   dispatch(fetchStories());
+  // }, [dispatch]);
 
   dummyStories.forEach((story) => {
     const userId = story.user.id;
