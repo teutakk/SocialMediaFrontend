@@ -76,8 +76,8 @@ const Rightsidebar = () => {
         {suggestedFriends?.map((friend) => (
           <div className={classes["one-friend"]}>
             <NavLink
-              to={`id/${friend?._id}`}
-              key={friend?._id}
+              to={`id/${friend._id}`}
+              key={friend._id}
               className={classes.navData}
             >
               <UserChip width={40} heigth={40} url={friend.profilePicture} />

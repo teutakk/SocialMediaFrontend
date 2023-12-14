@@ -39,6 +39,7 @@ const PostHeader = ({ post, type }) => {
 
   const onModalActionHandler = ({ action, data }) => {
     if (action === "save") {
+      console.log("data", data);
       dispatch(editPost(data));
       showModal();
     }
@@ -120,8 +121,6 @@ const PostHeader = ({ post, type }) => {
       console.error("Error deleting post:", error);
     }
   };
-
-  console.log(post);
 
   return (
     <div className={classes.PostHeader}>
