@@ -78,6 +78,7 @@ const Requests = () => {
                   status: "Rejected",
                 })}
                 loadingStates={loadingStates[friend?._id]}
+                imageUrl={friend?.requestFrom?.profilePicture}
               />
           ))}
         </div> 

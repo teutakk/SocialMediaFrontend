@@ -6,12 +6,21 @@ import { selectUser } from "../store/slices/authSlice";
 import { NavLink } from "react-router-dom";
 import { PiUserFill } from "react-icons/pi";
 import { BsFillBookmarkFill } from "react-icons/bs";
+import logo from "../assets/images/userSvg2.svg";
 const Sidebar = () => {
   const loggedInUser = useSelector(selectUser);
   return (
     <div className={classes.Sidebar}>
       <div className={classes.profile}>
-        <UserChip url={loggedInUser?.profilePicture} width={43} heigth={43} />
+        <UserChip
+          width={43}
+          heigth={43}
+          url={
+            loggedInUser?.profilePicture.length === 0
+              ? logo
+              : loggedInUser?.profilePicture
+          }
+        />
         <div className={classes.user}>
           <p>
             <strong>
@@ -74,8 +83,8 @@ const Sidebar = () => {
           <span>Marketplace</span>
         </NavLink>
         <NavLink
-          className={`${classes["route-holder"]} ${classes["route-market"]}`}
-          to={"marketplace"}
+          className={`${classes["route-holder"]} ${classes["route-saved"]}`}
+          to={"Saved"}
         >
           <span style={{ fontSize: "24px" }} className={classes["route-logo"]}>
             <BsFillBookmarkFill />

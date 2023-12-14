@@ -80,7 +80,7 @@ const Rightsidebar = () => {
               key={friend._id}
               className={classes.navData}
             >
-              <UserChip width={40} heigth={40} url={friend.profilePicture} />
+              <UserChip width={40} heigth={40} url={friend?.profilePicture} />
               <p>
                 {friend.firstName} {friend.lastName}
               </p>
