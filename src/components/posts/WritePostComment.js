@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import classes from "./WritePostComment.module.css";
 import UserChip from "../UserChip";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment, commentPost } from "../../store/slices/postsSlice";
+import { commentPost } from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
+import logo from "../../assets/images/userSvg2.svg"
 
 const WritePostComment = ({ post }) => {
   const [commentText, setCommentText] = useState("");
@@ -17,7 +18,9 @@ const WritePostComment = ({ post }) => {
       postId: post._id,
       content: commentText,
       userId: loggedInUser._id,
+      commenterProfilePicture: loggedInUser?.profilePicture
     };
+    console.log(newComment);
     dispatch(commentPost(newComment));
     setCommentText("");
   };
@@ -27,7 +30,7 @@ const WritePostComment = ({ post }) => {
   };
   return (
     <section className={classes.WritePostComment}>
-      <UserChip width={40} heigth={40} url={loggedInUser?.profilePicture} />
+      <UserChip width={40} heigth={40} url={loggedInUser?.profilePicture.length === 0 || loggedInUser?.profilePicture === undefined ? logo : loggedInUser?.profilePicture} />
       <form onSubmit={submitHandler} className={classes.Comment}>
         <textarea
           value={commentText}
