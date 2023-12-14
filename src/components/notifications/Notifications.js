@@ -56,12 +56,12 @@ const Notifications = ({
         </p>
       </div>
       <div className={classes.notifications}>
-        {notifications.map((notification) => (
+        {/* {notifications.map((notification) => (
           <SingleNotification
             key={notification.id}
             notification={notification}
           />
-        ))}
+        ))} */}
       </div>
       <div className={classes.footer}>
         <NavLink to={"notifications"}>See all</NavLink>
