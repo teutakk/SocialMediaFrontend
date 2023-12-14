@@ -211,6 +211,11 @@
     display: none;
   }
 
+  .previousBtn:active{
+    background-color: rgba(128, 128, 128, 0.15);
+    -webkit-tap-highlight-color: transparent;
+  }
+
   .nextBtn {
     right: 0;
     width: 50%;
@@ -222,6 +227,11 @@
 
   .nextBtn svg {
     display: none;
+  }
+
+  .nextBtn:active{
+    background-color: rgba(128, 128, 128, 0.1);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .storyModalBtn {
