@@ -121,10 +121,12 @@ const PostHeader = ({ post, type }) => {
     }
   };
 
+  console.log(post);
+
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <UserChip id={post.userId} />
+        <UserChip url={post.profilePicture} id={post.userId} />
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.author}</strong>

@@ -11,7 +11,7 @@ const Sidebar = () => {
   return (
     <div className={classes.Sidebar}>
       <div className={classes.profile}>
-        <UserChip width={43} heigth={43} />
+        <UserChip url={loggedInUser?.profilePicture} width={43} heigth={43} />
         <div className={classes.user}>
           <p>
             <strong>

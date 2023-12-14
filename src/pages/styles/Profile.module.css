@@ -34,6 +34,44 @@
   background-color: white;
 }
 
+.profile-photo-uploader,
+.cover-photo-uploader {
+  position: absolute;
+  top: 75%;
+  background-color: gainsboro;
+  border: 3px solid white;
+  padding: 5px;
+  border-radius: 100%;
+  width: 35px;
+  aspect-ratio: 1/1;
+  display: grid;
+  place-content: center;
+  right: 10%;
+  cursor: pointer;
+}
+
+.profile-photo-uploader input,
+.cover-photo-uploader input {
+  display: none;
+}
+
+.cover-photo-uploader {
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  top: unset;
+  aspect-ratio: unset;
+  width: auto;
+  font-size: 18px;
+  background-color: gainsboro;
+  border-radius: 5px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* height: 40px; */
+}
+
 .cover {
   display: flex;
   justify-content: flex-end;
@@ -52,7 +90,6 @@
   width: 100%;
   background-color: var(--color-grey-light-1);
   /* border: 2px solid red; */
-
 }
 
 .info-width-controller {
@@ -67,7 +104,7 @@
   display: flex;
   /* border: 2px solid red; */
 }
-.profileData{
+.profileData {
   display: flex;
   gap: max(20px, 1.2vw);
   max-width: 1150px;
@@ -80,18 +117,18 @@
   margin-top: max(2.4vw, 40px);
   padding-left: 10px;
 }
-.friendsData{
+.friendsData {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: max(6px, .3vw);
+  gap: max(6px, 0.3vw);
   /* border: 2px solid red; */
   color: rgba(0, 0, 0, 0.33);
-  font-size: max(12px, .8vw);
+  font-size: max(12px, 0.8vw);
   font-weight: 500;
 }
-.friendsNum{
-  color: #111 ;
+.friendsNum {
+  color: #111;
 }
 
 .actions {
@@ -99,7 +136,6 @@
   gap: 10px;
   align-self: center;
 }
-
 
 .actions button {
   padding: 5px 10px;
@@ -118,9 +154,9 @@
 
 .buttons {
   display: flex;
-  gap: max(10px, .4vw);
+  gap: max(10px, 0.4vw);
 }
-.buttons .acceptButton{
+.buttons .acceptButton {
   padding: 5px 10px;
   background-color: transparent;
   border-radius: 15px;
@@ -129,9 +165,9 @@
   border: none;
   outline: none;
 }
-.buttons .rejectButton{
+.buttons .rejectButton {
   padding: 5px 10px;
-  background-color: #DEE2E6;
+  background-color: #dee2e6;
   border-radius: 15px;
   width: max(8vw, 120px);
   height: max(30px, 2vw);
@@ -156,16 +192,15 @@
 }
 
 .content-options a {
-  padding: max(.3vw, 5px) max(.7vw, 10px);
-  font-size: max(14px, .9vw);
+  padding: max(0.3vw, 5px) max(0.7vw, 10px);
+  font-size: max(14px, 0.9vw);
   font-weight: 500;
-  color:rgba(85, 85, 85, 0.33);
+  color: rgba(85, 85, 85, 0.33);
 }
 
 .content-options a[aria-current="page"] {
   border-bottom: 2px solid #111;
   color: #111;
-
 }
 
 .profile-outlet {
@@ -178,7 +213,7 @@
 }
 
 @media (max-width: 767px) {
-  .profileData{
+  .profileData {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
@@ -209,7 +244,7 @@
     bottom: 0;
     transform: translate(25%, 50%);
   }
-  
+
   .profile-info {
     margin-inline: unset;
     padding-top: 10px;
@@ -241,8 +276,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 1000px) {
