@@ -8,6 +8,7 @@ const API_ROUTES = {
   saved: "/posts/",
   users: "/users",
   user: "/users/",
+  updateUser: "/update/",
   post: "/post",
   deletePost: "/delete-post",
   savedPosts: "/savedPosts",
@@ -24,6 +25,7 @@ const API_ROUTES = {
   getSentRequests: "/get-send-request",
   cancelFriendRequest: "/cancel-request",
   profileViews: "/profile-view",
+  addProfilePic: "/users/profilePicture/" //:userId
 };
 
 export { BASE_URL, API_ROUTES };

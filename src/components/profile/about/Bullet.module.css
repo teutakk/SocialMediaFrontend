@@ -55,14 +55,14 @@
   width: max(100px);
 
 }
-.buttons button:nth-child(1) {
+.overview-bullet .buttons button:nth-child(1) {
   background-color: #ADD8E6;
   color: #111;
 }
-.buttons button:nth-child(2) {
+.overview-bullet .buttons button:nth-child(2) {
   background-color: #DEE2E6;
 }
-.buttons button{
+.overview-bullet .buttons button{
   display: flex;
   justify-content: center;
   align-items: center;

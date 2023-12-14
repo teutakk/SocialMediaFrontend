@@ -19,14 +19,18 @@ import {
   viewProfile,
 } from "../store/slices/friendshipSlice";
 import { FaSpinner } from "react-icons/fa";
-import { fetchPosts, selectPosts } from "../store/slices/postsSlice";
+import { selectPosts } from "../store/slices/postsSlice";
+import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
+import logo from "../assets/images/userSvg2.svg";
+
+
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAFriend, setIsAFriend] = useState(false);
   const [isSentRequest, setIsSentRequest] = useState(false);
   const [acceptFriend, setAcceptFriend] = useState(false);
-
+  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,11 +45,17 @@ const Profile = () => {
   const userId = loggedInUser?._id;
   const profileUserId = profilePageUser?._id
 
-
   const userPosts = allPosts?.filter((post) => 
     post?.userId === profileUserId
   )
 
+  const handleOpenEditProfileModal = () => {
+    setIsEditProfileModalOpen(true);
+  };
+
+  const handleCloseEditProfileModal = () => {
+    setIsEditProfileModalOpen(false);
+  };
   useEffect(() => {
     const handleGetSentRequests = (userId) => {
       try {
@@ -209,7 +219,6 @@ const Profile = () => {
                 profileUserId: profileUserId
               }))
             }
-            console.log("the users that have viewed your page: ", loggedUserViews);
         } catch (error) {
             console.error(error);
             throw error
@@ -218,14 +227,13 @@ const Profile = () => {
     getProfileViews()
   }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id])
 
-
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
         <div className={classes.cover}>
-          <img src="" alt="" />
           <div className={classes["profile-pic"]}>
-            <span></span>
+         
+            <img src={profilePageUser?.profilePicture?.length === 0 ? logo : profilePageUser?.profilePicture} alt="" />
           </div>
         </div>
       </section>
@@ -250,7 +258,13 @@ const Profile = () => {
                   </button>
                 )}
               {loggedInUser?._id === profilePageUser?._id && (
-                <button>Edit Profile</button>
+                <div>
+                <button onClick={handleOpenEditProfileModal}>Edit Profile</button>
+                <EditProfileModal
+                  isOpen={isEditProfileModalOpen}
+                  onClose={handleCloseEditProfileModal}
+                />
+              </div>
               )}
               {loggedInUser?._id !== profilePageUser?._id &&
                 isAFriend &&
