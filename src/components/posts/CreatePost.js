@@ -76,7 +76,6 @@ const CreatePost = () => {
 
   const handleFileInputChange = (e) => {
     const selectedFiles = e.target.files;
-    console.log(selectedFiles);
     setSelectedImages(selectedFiles);
     // Create an array to store image previews
     const previews = [];

@@ -27,7 +27,6 @@ import {
 } from "date-fns";
 import PostSettings from "./PostSettings";
 import { selectUser } from "../../store/slices/authSlice";
-import PostSettings from "./PostSettings";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
