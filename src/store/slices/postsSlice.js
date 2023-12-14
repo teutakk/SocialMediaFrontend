@@ -42,6 +42,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
 });
 
 export const editPost = createAsyncThunk("posts/editPost", async (data) => {
+  console.log("data slice: ", data);
   try {
     const response = await axiosInstance.put(
       API_ROUTES.posts + `/${data._id}`,
@@ -74,7 +75,9 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (data) => {
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-  const response = await axiosInstance.post(API_ROUTES.posts, data, {headers: {'Content-Type': 'multipart/form-data'}});
+  const response = await axiosInstance.post(API_ROUTES.posts, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return response.data;
 });
 
