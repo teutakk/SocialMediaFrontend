@@ -169,7 +169,6 @@ const Stories = () => {
 
   // Remove stories after 24 hours
   useEffect(() => {
-    console.log("useEffect triggered");
     const now = new Date().getTime();
 
     // Create a new object to store updated stories
