@@ -6,6 +6,7 @@ import postsSlice from "./slices/postsSlice";
 import profileSlice from "./slices/profileSlice";
 import notificationsSlice from "./slices/notificationsSlice";
 import marketplaceSlice from "./slices/marketplaceSlice";
+import storiesSlice from "./slices/storiesSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     profile: profileSlice,
     notifications: notificationsSlice,
     marketplace: marketplaceSlice,
+    stories: storiesSlice,
   },
 });
 
