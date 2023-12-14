@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3001"; // if we include the "/" we have to take care not to include it in routes
+const BASE_URL = "http://localhost:3001/"; // if we include the "/" we have to take care not to include it in routes
 const API_ROUTES = {
   //  define routes here, so we can use them without making spelling mistakes
   //  we redefine route when backend routes are ready
@@ -10,6 +10,8 @@ const API_ROUTES = {
   user: "/users/",
   post: "/post",
   deletePost: "/delete-post",
+  savedPosts: "/savedPosts",
+  unsavePost: "/unsavePost",
   comment: "/comments",
   likeComment: "/like-comment",
   replyComment: "/reply-comment",

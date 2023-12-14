@@ -1,10 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import classes from "./PostHeader.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { editPost, savePost, deletePost } from "../../store/slices/postsSlice";
+import {
+  editPost,
+  savePost,
+  unsavePost,
+  deletePost,
+  selectSavedPosts,
+} from "../../store/slices/postsSlice";
 import { CiEdit } from "react-icons/ci";
 import { MdOutlineReport, MdDelete } from "react-icons/md";
-import { BsBookmark } from "react-icons/bs";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
@@ -25,8 +31,23 @@ const PostHeader = ({ post, type }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [displayTime, setDisplayTime] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const savedPosts = useSelector(selectSavedPosts);
   // const selectPostsStatus = useSelector(selectPostStatus);
   // function to open and close modal
+
+  useEffect(() => {
+    const isPostSaved = savedPosts.findIndex((savedPost) => {
+      return savedPost.postId === post._id;
+    });
+
+    console.log("isPostSaved: ", isPostSaved);
+    if (isPostSaved !== -1) {
+      setIsSaved(true);
+    } else {
+      setIsSaved(false);
+    }
+  }, [savedPosts]);
 
   const loggedInUser = useSelector(selectUser);
   const showModal = () => {
@@ -46,9 +67,6 @@ const PostHeader = ({ post, type }) => {
 
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
-  const handleSave = () => {
-    dispatch(savePost(post._id));
-  };
 
   useEffect(() => {
     // we get the Notifications element
@@ -120,7 +138,35 @@ const PostHeader = ({ post, type }) => {
       console.error("Error deleting post:", error);
     }
   };
+  const handleSave = async () => {
+    if (!loggedInUser || !loggedInUser._id) {
+      console.error(
+        "User information is missing or incomplete. loggedInUser:",
+        loggedInUser
+      );
+      return;
+    }
 
+    if (!post || !post._id) {
+      console.error("Post information is missing or incomplete. Post:", post);
+      return;
+    }
+
+    const data = {
+      userId: loggedInUser?._id,
+      postId: post._id,
+    };
+
+    console.log("Post object:", post);
+
+    if (isSaved) {
+      dispatch(unsavePost(data));
+    } else {
+      dispatch(savePost(data));
+    }
+
+    setIsSaved((prevIsSaved) => !prevIsSaved);
+  };
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
@@ -189,11 +235,10 @@ const PostHeader = ({ post, type }) => {
             <p>report</p>
           </button>
           <button onClick={handleSave}>
-            <span>
-              <BsBookmark />
-            </span>
-            <p>save</p>
+            <span>{isSaved ? <BsBookmarkFill /> : <BsBookmark />}</span>
+            <p>{isSaved ? "Saved" : "Save"}</p>
           </button>
+
           {loggedInUser?._id === post.userId && (
             <button onClick={handleDeleteClick}>
               <span>
