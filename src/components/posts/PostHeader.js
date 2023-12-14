@@ -15,6 +15,9 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
 import UserChip from "../UserChip";
+import logo from "../../assets/images/userSvg2.svg"
+
+
 import {
   formatDistanceToNow,
   parseISO,
@@ -22,8 +25,8 @@ import {
   isToday,
   isYesterday,
 } from "date-fns";
-import { selectUser } from "../../store/slices/authSlice";
 import PostSettings from "./PostSettings";
+import { selectUser } from "../../store/slices/authSlice";
 
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
@@ -34,6 +37,7 @@ const PostHeader = ({ post, type }) => {
   const [isSaved, setIsSaved] = useState(false);
   const savedPosts = useSelector(selectSavedPosts);
   // const selectPostsStatus = useSelector(selectPostStatus);
+
   // function to open and close modal
 
   useEffect(() => {
@@ -170,7 +174,7 @@ const PostHeader = ({ post, type }) => {
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <UserChip id={post.userId} />
+        <UserChip url={post?.userProfilePicture?.length === 0 || post?.userProfilePicture === undefined ? logo : post?.userProfilePicture} id={post.userId} />
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.author}</strong>
