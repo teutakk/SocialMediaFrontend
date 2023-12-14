@@ -9,6 +9,17 @@
   flex-direction: column;
 }
 
+.Actions button {
+  background-color: transparent;
+  border: none;
+}
+
+.Actions button.liked,
+.Actions button:hover {
+  color: rgb(5, 5, 109);
+  font-weight: 500;
+}
+
 .CommentSection {
   border-radius: 26px;
   padding: 5px 15px;
