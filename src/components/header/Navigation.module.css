@@ -129,17 +129,17 @@
   place-content: center;
   padding: 3px;
   border: 1px solid transparent;
-  background-color: #eee;
   border-radius: 100%;
   position: relative;
 }
 
-.route:hover {
-  background-color: #ccc;
+.route[aria-current="page"] {
+  box-shadow: var(--shadow-type-5);
+  border: 1px solid gray;
 }
 
 .route svg {
-  width: 24px;
+  width: 20px;
 }
 
 .route-home svg {

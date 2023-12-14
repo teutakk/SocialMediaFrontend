@@ -130,7 +130,10 @@ const SingleComment = ({post, postId, comment }) => {
           <p>{comment.content}</p>
         </div>
         <div className={classes.Actions}>
-          <button onClick={handleLikeComment}>
+          <button
+            className={isLiked ? classes.liked : ""}
+            onClick={handleLikeComment}
+          >
             {isLiked ? "Dislike" : "Like"}
           </button>
           <button onClick={handleToggleReply}>Reply</button>

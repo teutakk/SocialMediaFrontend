@@ -15,8 +15,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
 import UserChip from "../UserChip";
-import logo from "../../assets/images/userSvg2.svg"
-
+import logo from "../../assets/images/userSvg2.svg";
 
 import {
   formatDistanceToNow,
@@ -64,6 +63,7 @@ const PostHeader = ({ post, type }) => {
 
   const onModalActionHandler = ({ action, data }) => {
     if (action === "save") {
+      console.log("data", data);
       dispatch(editPost(data));
       showModal();
     }
@@ -174,7 +174,15 @@ const PostHeader = ({ post, type }) => {
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <UserChip url={post?.userProfilePicture?.length === 0 || post?.userProfilePicture === undefined ? logo : post?.userProfilePicture} id={post.userId} />
+        <UserChip
+          url={
+            post?.userProfilePicture?.length === 0 ||
+            post?.userProfilePicture === undefined
+              ? logo
+              : post?.userProfilePicture
+          }
+          id={post.userId}
+        />
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.author}</strong>

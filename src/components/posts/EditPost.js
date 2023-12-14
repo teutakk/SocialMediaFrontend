@@ -8,6 +8,8 @@ const EditPost = ({ post, onChangeDataHandler, type }) => {
   const [editedImages, setEditedImages] = useState(post.pictures);
   const textareaRef = useRef(null);
 
+  console.log("editedImages: ", editedImages);
+
   useEffect(() => {
     onChangeDataHandler({
       description: editPostText,
