@@ -30,7 +30,9 @@ const Modal = ({
   const [updatedData, setUpdatedData] = useState();
   // const loggedInUser = useSelector(selectUser);
   const modalDataChangeHandler = (updatedData) => {
+    console.log("running");
     setUpdatedData(updatedData);
+    console.log("updated DAta: ", updatedData);
   };
 
   useEffect(() => {
@@ -49,12 +51,13 @@ const Modal = ({
   const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
 
   useEffect(() => {
-  // Check if any changes are made
-  const isDescriptionChanged = data.description !== updatedData?.description;
-  const isPicturesChanged = JSON.stringify(data.pictures) !== JSON.stringify(updatedData?.pictures);
+    // Check if any changes are made
+    const isDescriptionChanged = data.description !== updatedData?.description;
+    const isPicturesChanged =
+      JSON.stringify(data.pictures) !== JSON.stringify(updatedData?.pictures);
 
-  // Enable the save button if changes are made
-  setSaveButtonDisabled(!(isDescriptionChanged || isPicturesChanged));
+    // Enable the save button if changes are made
+    setSaveButtonDisabled(!(isDescriptionChanged || isPicturesChanged));
   }, [data, updatedData]);
 
   return createPortal(

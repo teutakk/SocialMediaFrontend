@@ -1,8 +1,10 @@
 import { API_ROUTES } from "../../api/apiConfig";
 import axiosInstance from "../../api/axiosInstance";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 const initialState = {
   posts: [],
+  savedPosts: [],
   status: {
     fetch: "idle",
     edit: "idle",
@@ -13,6 +15,7 @@ const initialState = {
     dislike: "idle",
     replyComment: "idle",
     deleteComment: "idle",
+    savePost: "idle",
   },
   error: {
     fetch: null,
@@ -24,6 +27,7 @@ const initialState = {
     dislike: null,
     replyComment: null,
     deleteComment: null,
+    savePost: null,
   },
   editPostId: null,
 };
@@ -41,7 +45,23 @@ export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   }
 });
 
+export const fetchSavedPosts = createAsyncThunk(
+  "posts/fetchSavedPosts",
+  async (id) => {
+    try {
+      const response = await axiosInstance.get(
+        API_ROUTES.savedPosts + "/" + id
+      );
+      console.log("response: ", response.data);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data.error);
+    }
+  }
+);
+
 export const editPost = createAsyncThunk("posts/editPost", async (data) => {
+  console.log("data slice: ", data);
   try {
     const response = await axiosInstance.put(
       API_ROUTES.posts + `/${data._id}`,
@@ -74,16 +94,39 @@ export const deletePost = createAsyncThunk("posts/deletePost", async (data) => {
 });
 
 export const createPost = createAsyncThunk("posts/createPost", async (data) => {
-  const response = await axiosInstance.post(API_ROUTES.posts, data, {headers: {'Content-Type': 'multipart/form-data'}});
+  const response = await axiosInstance.post(API_ROUTES.posts, data, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
   return response.data;
 });
 
-export const savePost = createAsyncThunk("posts/savePost", async (postId) => {
-  // here we need to be careful where we send the data, we need to post these data to the userId
+export const savePost = createAsyncThunk("posts/savePost", async (data) => {
   try {
-    const response = await axiosInstance.post(API_ROUTES.saved, postId);
+    const response = await axiosInstance.post(
+      `${API_ROUTES.posts}/${data.postId}/save`,
+      data
+    );
+    response.data.postId = data.postId;
+    console.log("data request:", response.data);
     return response.data;
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error during post saving:", error);
+    throw error;
+  }
+});
+
+export const unsavePost = createAsyncThunk("posts/unsavePost", async (data) => {
+  try {
+    const response = await axiosInstance.delete(
+      API_ROUTES.unsavePost(data.postId),
+      data
+    );
+    console.log("Unsave post response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error during post unsaving:", error);
+    throw error;
+  }
 });
 
 export const commentPost = createAsyncThunk(
@@ -220,6 +263,18 @@ export const postsSlice = createSlice({
         state.status.fetch = "failed";
         state.error.fetch = action.error.message;
       })
+      // fetchSaved posts
+      .addCase(fetchSavedPosts.pending, (state, action) => {
+        state.status.fetch = "loading";
+      })
+      .addCase(fetchSavedPosts.fulfilled, (state, action) => {
+        state.savedPosts = action.payload;
+        state.status.fetch = "succeeded";
+      })
+      .addCase(fetchSavedPosts.rejected, (state, action) => {
+        state.status.fetch = "failed";
+        state.error.fetch = action.error.message;
+      })
       // Editing posts, handling all cases of responses
       .addCase(editPost.pending, (state) => {
         state.status.edit = "loading";
@@ -301,6 +356,42 @@ export const postsSlice = createSlice({
         state.status.comment = "failed";
         state.error.comment = action.error.message;
       })
+
+      //saving a post
+      .addCase(savePost.pending, (state) => {
+        console.log("Save post action pending. Current state:", state);
+        state.status.edit = "loading";
+        state.error.edit = null;
+      })
+      .addCase(savePost.fulfilled, (state, action) => {
+        state.status.edit = "succeeded";
+        state.savedPosts.push({ postId: action.payload.postId });
+      })
+      .addCase(savePost.rejected, (state, action) => {
+        console.error("Save post action rejected:", action.error);
+
+        state.status.edit = "failed";
+        state.error.edit = action.error.message;
+      })
+
+      //unsaving a post
+
+      .addCase(unsavePost.pending, (state) => {
+        console.log("Unsave post action pending. Current state:", state);
+        state.status.edit = "loading";
+        state.error.edit = null;
+      })
+      .addCase(unsavePost.fulfilled, (state, action) => {
+        state.status.edit = "succeeded";
+        state.unsavePost.push({ postId: action.payload.postId });
+      })
+      .addCase(unsavePost.rejected, (state, action) => {
+        console.error("Save post action rejected:", action.error);
+
+        state.status.edit = "failed";
+        state.error.edit = action.error.message;
+      })
+
       // deleting a comment, handling all cases of responses
       .addCase(deleteComment.pending, (state, action) => {
         state.status.comment = "loading";
@@ -430,8 +521,10 @@ export const postsSlice = createSlice({
 });
 
 export const selectPosts = (state) => state.posts.posts;
+export const selectSavedPosts = (state) => state.posts.savedPosts;
 export const selectPostStatus = (state) => state.posts.status;
 export const selectPostErrors = (state) => state.posts.error;
 export const selectEditPostId = (state) => state.posts.editPostId;
+export const selectunsavePosts = (state) => state.posts.unsavePosts;
 
 export default postsSlice.reducer;

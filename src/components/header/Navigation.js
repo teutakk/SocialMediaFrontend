@@ -3,7 +3,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import classes from "./Navigation.module.css";
 import UserChip from "../UserChip";
-import logo from "../../assets/images/starlabs.png";
 import Notifications from "../notifications/Notifications";
 import SearchBar from "./SearchBar";
 import postify4 from "../../assets/images/postify4.png";
@@ -11,6 +10,8 @@ import { HiXMark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { selectUser, logoutUser } from "../../store/slices/authSlice";
 import UserDropDownMenu from "./UserDropDownMenu";
+import userlogo from "../../assets/images/userSvg2.svg"
+
 
 const Navigation = () => {
   const [showNavigation, setShowNavigation] = useState(false);
@@ -81,7 +82,7 @@ const Navigation = () => {
         </ul>
         <div className={classes.navigationActions}>
           <NavLink to={`id/${loggedInUser?._id}`}>
-            <UserChip url={loggedInUser?.profilePicuture} />
+            <UserChip url={loggedInUser?.profilePicture} />
             <p>
               {loggedInUser?.firstName} {loggedInUser?.lastName}
             </p>
@@ -173,7 +174,7 @@ const Navigation = () => {
             ref={userChipRef}
             onClick={(e) => handleShowUserDropDownMenu(e)}
           >
-            <UserChip url={loggedInUser?.profilePicture} />
+            <UserChip url={loggedInUser?.profilePicture.length === 0 ? userlogo : loggedInUser?.profilePicture} />
             {showUserMenu && (
               <UserDropDownMenu
                 userDropDownMenuRef={userDropDownMenuRef}

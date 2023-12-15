@@ -4,7 +4,6 @@ import UserChip from "../UserChip";
 import { useDispatch, useSelector } from "react-redux";
 import {
   createPost,
-  selectPostErrors,
   selectPostStatus,
 } from "../../store/slices/postsSlice";
 import PostImagePreviewer from "./PostImagePreviewer";
@@ -20,6 +19,7 @@ const CreatePost = () => {
   const [selectedImages, setSelectedImages] = useState([]);
   const postsStatus = useSelector(selectPostStatus);
   const [isPosting, setIsPosting] = useState(false)
+
 
   // function to increase the height of the textbox
   const handleInputChange = (e) => {
@@ -37,6 +37,7 @@ const CreatePost = () => {
       author: loggedInUser.firstName + " " + loggedInUser.lastName,
       description: postText,
       pictures: selectedImages,
+      profilePicture: loggedInUser?.profilePicture
     };
 
     const formData = new FormData();
@@ -47,6 +48,7 @@ const CreatePost = () => {
     for (let i = 0; i < selectedImages.length; i++) {
       formData.append("pictures", selectedImages[i]);
     }
+    formData.append("userProfilePicture", loggedInUser?.profilePicture)
 
     // // check formData key and value pairs
     // for (const pair of formData.entries()) {
@@ -75,16 +77,15 @@ const CreatePost = () => {
   // function to display uploaded photos
 
   const handleFileInputChange = (e) => {
-    console.log('firring: ')
+
     const selectedFiles = e.target.files;
-    console.log(selectedFiles);
     setSelectedImages(selectedFiles);
     // Create an array to store image previews
     const previews = [];
     // Iterate through selected files
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
-      console.log(file);
+
       // Use FileReader to read the file as a data URL
       const reader = new FileReader();
 
@@ -159,7 +160,7 @@ const CreatePost = () => {
   </button>
 </div>
 </>; ;
-useEffect(()=> {
+useEffect(()=> {  
 
   content =  <><div className={classes.Content}>
   <UserChip url={loggedInUser?.profilePicture} />

@@ -17,7 +17,7 @@
 
 .user-and-photo img {
   border-radius: 9999px;
-  border: 1px solid var(--color-grey-dark-1);
+  /* border: 1px solid var(--color-grey-dark-1); */
   height: 52px;
   width: 52px;
   object-fit: cover;
@@ -32,11 +32,4 @@
 
 .button {
   cursor: pointer;
-}
-
-@media (prefers-color-scheme: dark) {
-  .showOptions {
-    background-color: var(--color-grey-dark-2);
-    border: 1px solid var(--color-grey-light-2);
-  }
 }

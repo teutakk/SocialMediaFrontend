@@ -86,7 +86,7 @@
 
 @media (min-width: 567px) {
   .Edit {
-    height: 100%;
+    height: 83%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -109,8 +109,7 @@
     max-height: 400px;
   }
   .imageHolder .image {
-  max-height: 400px;
-
+    max-height: 400px;
   }
 
   .Edit textarea:focus,

@@ -1,0 +1,147 @@
+
+.container {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+.imageUpload{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px;
+}
+.dataContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #77777777;
+    border-radius: max(10px);
+    width: 100%;
+    font-size: max(14px, .9vw);
+    padding: max(10px, .7vw) max(20px, 1.2vw);
+
+}
+.imageData{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+.leftContainer{
+    display: flex;
+    flex-direction: column;
+    gap: max(10px, .5vw);
+    width: 28%;
+    padding: 10px 20px;
+    border-right: 1px solid #77777777;
+}
+
+.leftContainer .profileButton{
+    display: flex;
+    background-color: #5180C1;
+    width: fit-content;
+    gap: 10px;
+    padding: 7px 24px;
+    color: #fff;
+    border-radius: 19px;
+}
+.leftContainer .profileButton svg{
+    color: #fff;
+}
+.container button{
+    background-color: #B0B0B0 !important;
+    border: 2px solid #B0B0B0 !important;
+}
+.userAbout {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: max(10px, .7vw);
+    border: 1px solid #77777777;
+    border-radius: max(10px);
+    width: 100%;
+    padding: max(10px, .7vw) max(20px, 1.2vw);
+}
+
+.firstRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.firstRow .editButton{
+    margin: auto 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #111;
+    border: 1px solid #77777777 !important;
+    background-color: transparent !important;
+    padding: 5px 24px !important;
+    width: max(70px, 3.5vw) !important;
+}
+
+.firstRow .typeBox{
+    font-size: max(15px, 1vw);
+    font-weight: 500;
+}
+
+.changeData{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: max(20px);
+}
+.userData{
+    width: max(23vw, 350px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: max(5px, .3vw);
+}
+
+.userData label{
+    color: #B0B0B0;
+    font-size: max(14px, .9vw);
+}
+
+.userParagraph {
+    color: #000;
+    font-size: max(14px, .9vw);
+
+}
+
+.active {
+    color: red !important;
+}
+
+.spinner {
+    width: max(1vw, 15px);
+    height: max(1vw, 15px);
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+@media (max-width: 767px) {
+    .container{
+        flex-direction: column;
+    }
+    .leftContainer{
+        border: none;
+    }
+    .leftContainer .profileButton{
+        width: max(170px);
+        white-space: nowrap;
+
+    }
+}

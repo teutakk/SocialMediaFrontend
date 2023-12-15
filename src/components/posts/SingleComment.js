@@ -10,8 +10,10 @@ import {
 } from "../../store/slices/postsSlice";
 import { selectUser } from "../../store/slices/authSlice";
 import ReplyComment from "./ReplyComment";
+import logo from "../../assets/images/userSvg2.svg"
 
-const SingleComment = ({ postId, comment }) => {
+
+const SingleComment = ({post, postId, comment }) => {
   const loggedInUser = useSelector(selectUser);
   const dispatch = useDispatch();
   const [replyContent, setReplyContent] = useState("");
@@ -53,8 +55,6 @@ const SingleComment = ({ postId, comment }) => {
   };
 
   const handleReplyComment = async () => {
-    console.log("loggedInUser:", loggedInUser);
-    console.log("comment:", comment);
 
     if (!loggedInUser || !loggedInUser._id) {
       console.error("User information is missing or incomplete.");
@@ -104,7 +104,14 @@ const SingleComment = ({ postId, comment }) => {
 
   return (
     <div className={classes.SingleComment}>
-      <UserChip url={comment.profilePhoto} />
+      <UserChip
+        url={
+          comment?.commenterProfilePicture?.length === 0 ||
+          comment?.commenterProfilePicture === undefined
+            ? logo
+            : comment?.commenterProfilePicture
+        }
+      />
       <div className={classes.CommentContent}>
         <div className={classes.CommentSection}>
           <div className={classes["name-and-edit"]}>
@@ -123,7 +130,10 @@ const SingleComment = ({ postId, comment }) => {
           <p>{comment.content}</p>
         </div>
         <div className={classes.Actions}>
-          <button onClick={handleLikeComment}>
+          <button
+            className={isLiked ? classes.liked : ""}
+            onClick={handleLikeComment}
+          >
             {isLiked ? "Dislike" : "Like"}
           </button>
           <button onClick={handleToggleReply}>Reply</button>

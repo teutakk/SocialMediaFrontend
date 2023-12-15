@@ -176,7 +176,9 @@
     flex-direction: column;
     padding: 10px;
   }
+}
 
+@media (min-width: 767px) {
   .modal-content-show-post .modal-main {
     height: calc(85vh - 100px);
   }

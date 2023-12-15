@@ -45,7 +45,7 @@ const UserDropDownMenu = ({
     <div ref={userDropDownMenuRef} className={classes.UserDropDownMenu}>
       <NavLink className={classes.option} to={`id/${loggedInUser?._id}`}>
         <span className={classes.icon}>
-          <UserChip heigth={32} width={32} log={loggedInUser?.profilePicutre} />
+          <UserChip heigth={32} width={32} url={loggedInUser?.profilePicture} />
         </span>
         <p>Profile</p>
       </NavLink>

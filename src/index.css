@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap'); 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600;700&family=Pacifico&family=Roboto&display=swap");
 *,
 *::before,
 *::after {
@@ -14,7 +14,7 @@
 
   --color-danger: red;
 
-  --color-grey-light-1: #fefefa;
+  --color-grey-light-1: #ffffff;
   --color-grey-light-2: #e9ecef;
   --color-grey-light-3: #dee2e6;
   --color-grey-light-4: #ced4da;
@@ -66,12 +66,6 @@ body {
   overflow-y: scroll;
   scrollbar-gutter: stable;
   background-color: var(--color-grey-light-3);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: var(--color-grey-light-1);
-  }
 }
 
 @media (min-width: 767px) {
