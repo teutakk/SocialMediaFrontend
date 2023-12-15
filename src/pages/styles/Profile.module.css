@@ -306,3 +306,37 @@
     border-radius: 0 0 20px 20px;
   }
 }
+
+
+@media (max-width: 767px) {
+
+  .navlink-holder {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: var(--color-grey-light-1);
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: space-evenly;
+    overflow-x: auto; 
+    scrollbar-width: thin;
+    scrollbar-color: #acacac transparent;
+  }
+
+  .navlink-holder::-webkit-scrollbar-thumb {
+    background-color: #76919a; 
+  }
+
+  .navlink-holder::-webkit-scrollbar-track {
+    background-color: transparent; 
+  }
+
+  .content-options a {
+    white-space: nowrap; 
+  }
+
+  /* .content-options a[aria-current="page"] {
+    border-bottom: 2px solid #111;
+    color: #111;
+  } */
+}
