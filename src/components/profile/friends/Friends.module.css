@@ -14,7 +14,7 @@
   padding: 10px;
 }
 .Friends .searchInput{
-  width: max(25vw, 270px);
+  width: max(25vw, 200px);
   display: flex;
   align-items: center;
   gap: max(5px, .3vw);

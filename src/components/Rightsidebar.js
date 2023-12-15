@@ -11,6 +11,8 @@ import {
   sendFriendRequestAsync,
 } from "../store/slices/friendshipSlice";
 import { FaCheck } from "react-icons/fa";
+import logo from "../assets/images/userSvg2.svg"
+
 const Rightsidebar = () => {
   const [suggestedFriends, setSuggestedFriends] = useState([]);
   const [sentRequestsMap, setSentRequestsMap] = useState({});
@@ -80,7 +82,16 @@ const Rightsidebar = () => {
               key={friend._id}
               className={classes.navData}
             >
-              <UserChip width={40} heigth={40} url={friend?.profilePicture} />
+              <UserChip
+                width={40}
+                heigth={40}
+                url={
+                  friend?.profilePicture?.length === 0 ||
+                  friend?.profilePicture === undefined
+                    ? logo
+                    : friend?.profilePicture
+                }
+              />
               <p>
                 {friend.firstName} {friend.lastName}
               </p>

@@ -1,7 +1,7 @@
 .overview-bullet {
   padding: 5px;
   display: flex;
-  gap: 10px;
+  gap: 15px;
   align-items: center;
   position: relative;
 }
@@ -12,13 +12,15 @@
   background-color: #ccc;
   aspect-ratio: 1/1;
   border-radius: 100%;
-  display: block;
-  display: grid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   place-content: center;
   align-self: center;
   color: inherit;
   color: var(--color-primary-1);
   font-size: 20px;
+
 }
 
 .overview-bullet .logo img {
@@ -32,9 +34,12 @@
 }
 
 .bullet-content {
-  width: calc(100% - 80px);
+  /* width: calc(100% - 80px); */
   margin: auto 0;
-  gap: max(7px, .5vw);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  gap: max(5px, .3vw);
 }
 .bullet-content .blockContent{
   display: flex;
