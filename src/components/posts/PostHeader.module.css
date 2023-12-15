@@ -33,10 +33,3 @@
 .button {
   cursor: pointer;
 }
-
-@media (prefers-color-scheme: dark) {
-  .showOptions {
-    background-color: var(--color-grey-dark-2);
-    border: 1px solid var(--color-grey-light-2);
-  }
-}

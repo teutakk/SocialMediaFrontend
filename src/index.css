@@ -68,12 +68,6 @@ body {
   background-color: var(--color-grey-light-3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: var(--color-grey-light-1);
-  }
-}
-
 @media (min-width: 767px) {
   :root {
     font-size: 100%;

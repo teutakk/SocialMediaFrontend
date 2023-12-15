@@ -211,7 +211,6 @@
 
 .profile-outlet {
   width: 100%;
-  padding: 0 10px;
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -272,6 +271,10 @@
 
   .navlink-holder {
     justify-content: flex-start;
+  }
+
+  .profile-outlet {
+    padding: 0 10px;
   }
 }
 
