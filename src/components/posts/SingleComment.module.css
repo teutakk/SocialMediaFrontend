@@ -60,9 +60,3 @@
   border: none;
   padding: 10px;
 }
-
-@media (prefers-color-scheme: dark) {
-  .CommentSection {
-    background-color: var(--color-grey-dark-3);
-  }
-}

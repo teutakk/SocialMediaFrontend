@@ -70,18 +70,18 @@
 .creatingPost {
   width: 100%;
   top: 0;
-  left:  0;
+  left: 0;
   position: absolute;
   display: flex;
   align-items: center;
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
   justify-content: center;
   z-index: 2;
   pointer-events: none;
   height: 100%;
 }
 
-.spinner{
+.spinner {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,25 +93,23 @@
   height: 50px;
 }
 
-button:disabled, button:hover:disabled {
+button:disabled,
+button:hover:disabled {
   background-color: red;
   cursor: not-allowed;
 }
 
-
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (min-width: 460px) {
   .CreatePost {
     border-radius: 15px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .CreatePost {
-    background-color: var(--color-grey-dark-2);
   }
 }
