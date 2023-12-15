@@ -12,10 +12,10 @@ const productsData = [
       profilePicture:
         "https://i0.wp.com/collegecore.com/wp-content/uploads/2018/05/facebook-no-profile-picture-icon-620x389.jpg?ssl=1",
     },
-    name: "Product 1",
+    name: "SAMSUNG 32” S70A Series 4K UHD",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    price: "19.99$",
+      "SUPERIOR PICTURE QUALITY: With 4k monitor, four times more pixel density than FHD, 32 inch Samsung 4K monitor S70A series makes small text easy to read. The HDR10 makes dark colors darker and the brightest colors even brighter, every piece of content becomes a joy to look at and can be experienced exactly as the creator intended.Mounting Type: Wall Mount. Viewing Angle is 178° (H) / 178° (V); Aspect Ratio is 16:9. TRUE TO LIFE COLORS: 64x more colors than conventional monitors (1 billion colors) and HDR10 creates excellent color accuracy that shows contents exactly as the creator intended.",
+    price: "160.00$",
     images: [
       "https://m.media-amazon.com/images/I/81Mlvwip4dL._AC_SX679_.jpg",
       "https://m.media-amazon.com/images/I/81k0yldEqdL._AC_SX679_.jpg",
@@ -32,11 +32,18 @@ const productsData = [
       profilePicture:
         "https://i0.wp.com/collegecore.com/wp-content/uploads/2018/05/facebook-no-profile-picture-icon-620x389.jpg?ssl=1",
     },
-    name: "Product 2",
+    name: "SENSE7 Gaming Spellcaster Office Chair",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    price: "8.50$",
-    images: ["image3.jpg", "image4.jpg"],
+      "SENSE7 Gaming Spellcaster Office Chair, Gamer Ergonomic Chair, Armrest, One-Piece Steel Frame, Adjustable Tilt Angle, Black/Grey, Leather, 43-52 x 69.5 x 57 cm",
+    price: "124.99€",
+    images: [
+      "https://m.media-amazon.com/images/I/51WHcNOk8lL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/711yerN3DqL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71WaoIHK+YL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71bxAqA+u-L._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71kKFrisIZL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61rBRlnQQbL._AC_SL1500_.jpg",
+    ],
   },
   {
     id: 3,
@@ -46,11 +53,15 @@ const productsData = [
       profilePicture:
         "https://i0.wp.com/collegecore.com/wp-content/uploads/2018/05/facebook-no-profile-picture-icon-620x389.jpg?ssl=1",
     },
-    name: "Product 3",
+    name: "Logitech G 923 Steering Wheel with Pedals",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    price: "8.50$",
-    images: ["image3.jpg", "image4.jpg"],
+      "Trueforce power back clutch: The innovative Trueforce technology is directly connected to the engines in the game and processes information 4000 times per for the absolute driving experience. Programmable double clutch system: Start with the programmable double clutch system, which simulates realistic racing car start automatically from your controller. For fast responses and best speed: Six forward gears and one reverse gear.",
+    price: "320.00$",
+    images: [
+      "https://m.media-amazon.com/images/I/61bIrzmXU1L._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/717V6WngkXL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71o7o0s8qgL._AC_SL1500_.jpg",
+    ],
   },
   {
     id: 4,
@@ -60,11 +71,18 @@ const productsData = [
       profilePicture:
         "https://i0.wp.com/collegecore.com/wp-content/uploads/2018/05/facebook-no-profile-picture-icon-620x389.jpg?ssl=1",
     },
-    name: "Product 4",
+    name: "Logitech G PRO X SUPER LIGHT",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    price: "8.50$",
-    images: ["image3.jpg", "image4.jpg"],
+      "Wireless gaming mouse with HERO 25K sensor, ultra-lightweight with 63g, 5 programmable buttons, up to 70 hours of battery life, incl. Zero additives PTFE Feet, PC / Mac, Black",
+    price: "15520.00¥",
+    images: [
+      "https://m.media-amazon.com/images/I/61WRvXLabPL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71SOHPB1aAL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71X63Vvz9JL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71bCRfwAHDL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71VfEUgAKYL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/71kZkV8kMNL._AC_SL1500_.jpg",
+    ],
   },
   {
     id: 5,
@@ -74,11 +92,16 @@ const productsData = [
       profilePicture:
         "https://i0.wp.com/collegecore.com/wp-content/uploads/2018/05/facebook-no-profile-picture-icon-620x389.jpg?ssl=1",
     },
-    name: "Product 5",
+    name: "PlayStation®5",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam",
-    price: "8.50$",
-    images: ["image3.jpg", "image4.jpg"],
+      "The PS5 console opens up completely new gaming possibilities that you never expected. New, Slimmer Design: With the PS5, gamers get the same powerful gaming technology in a slim and compact console design. Enjoy lightning-fast loading with an ultra-fast SSD, a more realistic gaming experience with haptic feedback, adaptive trigger buttons and 3D audio, and an entirely new generation of incredible PlayStation games.",
+    price: "550.00£",
+    images: [
+      "https://m.media-amazon.com/images/I/51UjxChW5fL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/6131+EjtCDL._SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/51MlkZs2q-L._SL1500_.jpg",
+      "https://stickybunny.com/cdn/shop/products/sticky-bunny-shop-ps5-controller-pure-white-ps5-controller-skin-27940993368182_600x.jpg?v=1614572112",
+    ],
   },
 ];
 
