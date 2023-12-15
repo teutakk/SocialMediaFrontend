@@ -27,3 +27,26 @@
   background: var(--color-primary-1);
   transform: scale(1.03);
 }
+
+@media (max-width: 701px) {
+  .addStory {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: visible;
+  }
+
+  .addStory p {
+    font-size: 10px;
+    bottom: -20px;
+    z-index: 999;
+  }
+
+  .addStorySVG {
+    width: 20px;
+  }
+
+  .addStory:hover {
+    transform: scale(1.03);
+  }
+}

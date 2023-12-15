@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import classes from "./Stories.module.css";
 import CreateStory from "./CreateStory";
 
@@ -139,11 +140,16 @@ const dummyStories = [
 ];
 
 const Stories = () => {
+  // const dispatch = useDispatch();
   const [openStory, setOpenStory] = useState({
     userId: null,
     currentIndex: null,
   });
   let userStories = {};
+
+  // useEffect(() => {
+  //   dispatch(fetchStories());
+  // }, [dispatch]);
 
   dummyStories.forEach((story) => {
     const userId = story.user.id;
@@ -163,7 +169,6 @@ const Stories = () => {
 
   // Remove stories after 24 hours
   useEffect(() => {
-    console.log("useEffect triggered");
     const now = new Date().getTime();
 
     // Create a new object to store updated stories
@@ -296,6 +301,7 @@ const Stories = () => {
                 <img
                   src={userStoriesForUser[0].imageUrl}
                   alt={`Story by ${userStoriesForUser[0].user.username}`}
+                  className={classes.storyImages}
                 />
                 <div className={classes.userProfile}>
                   <img
