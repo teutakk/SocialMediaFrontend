@@ -9,6 +9,7 @@ import {
 import PostImagePreviewer from "./PostImagePreviewer";
 import button from "../Button.module.css";
 import { selectUser } from "../../store/slices/authSlice";
+import { FaSpinner } from "react-icons/fa";
 
 const CreatePost = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,6 @@ const CreatePost = () => {
   const [imagePreviews, setImagePreviews] = useState([]);
   const [postText, setPostText] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
-  console.log("selectedImages", selectedImages);
   const postsStatus = useSelector(selectPostStatus);
   const [isPosting, setIsPosting] = useState(false)
 
@@ -50,14 +50,16 @@ const CreatePost = () => {
     }
     formData.append("userProfilePicture", loggedInUser?.profilePicture)
 
-    //check formData key and value pairs
+    // // check formData key and value pairs
     // for (const pair of formData.entries()) {
-    //   console.log(pair[0], pair[1]);
+    //   console.log('photos: ',pair[0], pair[1]);
     // } 
-    dispatch(createPost(formData)).then((response) => console.log(response.payload));
+    dispatch(createPost(formData))
+    setIsPosting(true)
     if (postsStatus.create === "succeeded") {
       setPostText("");
       setSelectedImages([]);
+      setIsPosting(false)
     }
   };
 
@@ -75,6 +77,7 @@ const CreatePost = () => {
   // function to display uploaded photos
 
   const handleFileInputChange = (e) => {
+
     const selectedFiles = e.target.files;
     setSelectedImages(selectedFiles);
     // Create an array to store image previews
@@ -98,26 +101,24 @@ const CreatePost = () => {
       // Read the file as a data URL
       reader.readAsDataURL(file);
     }
-  };
+  }
 
-  return (
-    <form onSubmit={handleSubmit} className={classes.CreatePost} encType="multipart/form-data">
-      <div className={classes.Content}>
-        <UserChip url={loggedInUser?.profilePicture} />
-        <textarea
-          onChange={handleInputChange}
-          value={postText}
-          placeholder="What's on your mind..."
-        />
-      </div>
-      {imagePreviews.length > 0 && (
-        <PostImagePreviewer
-          setImagePreviews={setImagePreviews}
-          imagePreviews={imagePreviews}
-          setSelectedImages={setSelectedImages}
-          selectedImages={selectedImages}
-        />
-      )}
+  let content = <><div className={classes.Content}>
+  <UserChip url={loggedInUser?.profilePicture} />
+  <textarea
+    onChange={handleInputChange}
+    value={postText}
+    placeholder="What's on your mind..."
+  />
+</div>
+{imagePreviews.length > 0 && (
+  <PostImagePreviewer
+    setImagePreviews={setImagePreviews}
+    imagePreviews={imagePreviews}
+    setSelectedImages={setSelectedImages}
+    selectedImages={selectedImages}
+  />
+)}
 
 <div className={classes.Actions}>
   <label className={button.upload} htmlFor="upload-image">
@@ -234,7 +235,7 @@ console.log('isPosting: ', isPosting)
   return <form onSubmit={handleSubmit} className={classes.CreatePost} encType="multipart/form-data">
       {content}
     </form>
-  );
-};
+  
+}
 
-export default CreatePost;
+export default CreatePost

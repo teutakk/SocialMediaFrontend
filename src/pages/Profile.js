@@ -24,8 +24,6 @@ import { selectPosts } from "../store/slices/postsSlice";
 import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
 import logo from "../assets/images/userSvg2.svg";
 
-
-
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isAFriend, setIsAFriend] = useState(false);
@@ -49,7 +47,6 @@ const Profile = () => {
   const profileUserId = profilePageUser?._id;
 
   const userPosts = allPosts?.filter((post) => post?.userId === profileUserId);
-
 
   const handleOpenEditProfileModal = () => {
     setIsEditProfileModalOpen(true);
@@ -223,7 +220,6 @@ const Profile = () => {
             })
           );
         }
-        console.log("the users that have viewed your page: ", loggedUserViews);
       } catch (error) {
         console.error(error);
         throw error;
@@ -249,9 +245,16 @@ const Profile = () => {
               id="profile-photo"
             />
           </label>
-          <img src="" alt="" />
+
           <div className={classes["profile-pic"]}>
-            <span></span>
+            <img
+              src={
+                profilePageUser?.profilePicture?.length === 0
+                  ? logo
+                  : profilePageUser?.profilePicture
+              }
+              alt=""
+            />
             <label
               className={classes["profile-photo-uploader"]}
               htmlFor="profile-photo"
@@ -289,12 +292,14 @@ const Profile = () => {
                 )}
               {loggedInUser?._id === profilePageUser?._id && (
                 <div>
-                <button onClick={handleOpenEditProfileModal}>Edit Profile</button>
-                <EditProfileModal
-                  isOpen={isEditProfileModalOpen}
-                  onClose={handleCloseEditProfileModal}
-                />
-              </div>
+                  <button onClick={handleOpenEditProfileModal}>
+                    Edit Profile
+                  </button>
+                  <EditProfileModal
+                    isOpen={isEditProfileModalOpen}
+                    onClose={handleCloseEditProfileModal}
+                  />
+                </div>
               )}
               {loggedInUser?._id !== profilePageUser?._id &&
                 isAFriend &&

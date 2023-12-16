@@ -22,7 +22,6 @@
   justify-content: space-between;
   padding-left: 10px;
   padding-top: 10px;
-  height: 5%;
   h3 {
     display: none;
   }
@@ -158,12 +157,8 @@
   .modal-header h3 {
     flex: 1;
   }
-  
-  .modal-content-edit .close {
-    margin-left: auto; 
-  }
 
-  v.modal-content-edit .close {
+  .modal-content-edit .close {
     margin-left: auto;
   }
   /* STYLING FOR SHOW FULL POST */

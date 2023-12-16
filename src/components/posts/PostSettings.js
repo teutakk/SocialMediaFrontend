@@ -12,9 +12,10 @@ const PostSettings = ({
   setShowOptions,
   settingsSectionRef,
   showModal,
+  handleDeleteClick
 }) => {
   const loggedInUser = useSelector(selectUser);
-
+  console.log('showModal: ', showOptions)
   const handleEditClick = () => {
     showModal();
   };
@@ -60,7 +61,7 @@ const PostSettings = ({
           <p>save</p>
         </button>
         {loggedInUser?._id === post.userId && (
-          <button>
+          <button onClick={handleDeleteClick}>
             <span>
               <MdDelete />
             </span>

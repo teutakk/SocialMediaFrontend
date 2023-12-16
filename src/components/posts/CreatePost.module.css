@@ -10,6 +10,20 @@
   max-width: 680px;
   background: var(--color-grey-light-1);
   box-shadow: var(--shadow-type-1);
+  position: relative;
+  overflow: hidden;
+  min-height: 100px;
+}
+
+.upload-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  z-index: 2;
+  cursor: pointer;
 }
 
 .Content {

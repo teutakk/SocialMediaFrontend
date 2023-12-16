@@ -15,8 +15,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi";
 import EditPost from "./EditPost";
 import Modal from "../../layout/Modal";
 import UserChip from "../UserChip";
-import logo from "../../assets/images/userSvg2.svg"
-
+import logo from "../../assets/images/userSvg2.svg";
 
 import {
   formatDistanceToNow,
@@ -31,7 +30,7 @@ import { selectUser } from "../../store/slices/authSlice";
 const PostHeader = ({ post, type }) => {
   const dispatch = useDispatch();
   const [showOptions, setShowOptions] = useState();
-  const [modalOpen, setModalOpen] = useState();
+  const [modalOpen, setModalOpen] = useState(false);
   const [displayTime, setDisplayTime] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
@@ -72,9 +71,6 @@ const PostHeader = ({ post, type }) => {
 
   const settingsIconRef = useRef();
   const settingsSectionRef = useRef();
-  const handleSave = () => {
-    dispatch(savePost(post._id));
-  };
 
   useEffect(() => {
     // we get the Notifications element
@@ -178,7 +174,15 @@ const PostHeader = ({ post, type }) => {
   return (
     <div className={classes.PostHeader}>
       <div className={classes["user-and-photo"]}>
-        <UserChip url={post?.userProfilePicture?.length === 0 || post?.userProfilePicture === undefined ? logo : post?.userProfilePicture} id={post.userId} />
+        <UserChip
+          url={
+            post?.userProfilePicture?.length === 0 ||
+            post?.userProfilePicture === undefined
+              ? logo
+              : post?.userProfilePicture
+          }
+          id={post.userId}
+        />
         <div className={classes["user-and-date-posted"]}>
           <p>
             <strong>{post.author}</strong>
@@ -203,6 +207,7 @@ const PostHeader = ({ post, type }) => {
         <PostSettings
           post={post}
           showModal={showModal}
+          handleDeleteClick={handleDeleteClick}
           settingsSectionRef={settingsSectionRef}
           showOptions={showOptions}
           setShowOptions={handleShowOptions}
@@ -219,7 +224,7 @@ const PostHeader = ({ post, type }) => {
             <EditPost />
           </Modal>
         )}
-        <div
+        {/* <div
           ref={settingsSectionRef}
           className={`${
             showOptions
@@ -254,7 +259,7 @@ const PostHeader = ({ post, type }) => {
               <p>delete</p>
             </button>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

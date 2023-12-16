@@ -82,6 +82,7 @@
 
 .upload {
   align-self: stretch;
+  position: relative;
   height: 36px;
   background-color: #c5c5c5;
   color: #000000;
