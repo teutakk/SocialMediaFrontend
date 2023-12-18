@@ -7,7 +7,7 @@ import profileSlice from "./slices/profileSlice";
 import notificationsSlice from "./slices/notificationsSlice";
 import marketplaceSlice from "./slices/marketplaceSlice";
 import storiesSlice from "./slices/storiesSlice";
-import notificationSlice from "./slices/notificationSlice";
+import notifications from "./slices/notificationSlice";
 const store = configureStore({
   reducer: {
     authentication: authSlice,
@@ -15,7 +15,7 @@ const store = configureStore({
     posts: postsSlice,
     friendship: friendshipSlice,
     profile: profileSlice,
-    notifications: notificationsSlice,
+    notifications: notifications,
     marketplace: marketplaceSlice,
     stories: storiesSlice,
   },

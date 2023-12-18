@@ -81,9 +81,9 @@ import logo from "../../assets/images/starlabs.png";
 // };
 const SingleNotification = ({ notification }) => {
   return (
-    <div>
+    <div className={classes["Single-Notification"]}>
       {/* Render the notification data */}
-      <p>{notification.message}</p>
+      <p>{notification}</p>
     </div>
   );
 };

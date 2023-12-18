@@ -4,11 +4,25 @@ import Navigation from "../components/header/Navigation";
 import { Outlet, useLocation } from "react-router";
 import Sidebar from "../components/Sidebar";
 import Rightsidebar from "../components/Rightsidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../store/slices/authSlice";
+import { fetchPosts, fetchSavedPosts } from "../store/slices/postsSlice";
+import { getNotifications } from "../store/slices/notificationSlice";
 const Layout = () => {
   const location = useLocation();
   const custumClass = location.pathname.startsWith("/id")
     ? classes.customClass
     : "";
+
+  const dispatch = useDispatch();
+  const loggedInUser = useSelector(selectUser);
+
+  useEffect(() => {
+    dispatch(fetchPosts());
+    dispatch(getNotifications(loggedInUser?._id));
+    console.log(loggedInUser?._id);
+    dispatch(fetchSavedPosts(loggedInUser?._id));
+  }, [loggedInUser, dispatch]);
   return (
     <div className={classes.Layout}>
       <Navigation />

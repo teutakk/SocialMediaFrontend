@@ -32,23 +32,6 @@ const PostActions = ({ post }) => {
           <p>Comment</p>
         </div>
       </div>
-      <div className={`${button.share} ${button.postPosition}`}>
-        <div className={button.innerContent}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="24"
-            viewBox="0 0 25 24"
-            fill="none"
-          >
-            <path
-              d="M20.2146 12L15.6246 7.41V9.87L14.7646 10C10.4546 10.61 7.53457 12.87 5.86457 16.33C8.18457 14.69 11.0646 13.9 14.6246 13.9H15.6246V16.59M13.6246 14.92C9.15457 15.13 5.95457 16.74 3.62457 20C4.62457 15 7.62457 10 14.6246 9V5L21.6246 12L14.6246 19V14.9C14.2946 14.9 13.9646 14.91 13.6246 14.92Z"
-              fill="black"
-            />
-          </svg>
-          <p>Share</p>
-        </div>
-      </div>
     </div>
   );
 };

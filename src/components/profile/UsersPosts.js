@@ -17,7 +17,7 @@ const UsersPosts = () => {
     <div className={classes.UsersPosts}>
       <h3>Posts</h3>
       <div className={classes.postHolder}>
-        {profilePageUserPosts.map((post) => (
+        {profilePageUserPosts.reverse().map((post) => (
           <SinglePost post={post} key={post._id} />
         ))}
       </div>
