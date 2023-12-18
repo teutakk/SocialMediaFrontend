@@ -13,7 +13,7 @@ import Friends from "./components/profile/friends/Friends";
 import WorkAndEdu from "./components/profile/friends/WorkAndEdu";
 import Contacts from "./components/profile/friends/Contacts";
 import MarketPlace from "./pages/MarketPlace";
-import Chats from "./components/chats/Chat";
+import Chat from "./pages/Chat";
 import Notifications from "./pages/Notifications";
 import Requests from "./components/profile/requests/Requests";
 import UsersPosts from "./components/profile/UsersPosts";
@@ -30,6 +30,7 @@ const AppRoutes = () => {
       <Route path="/users/verify/:userId/:token" element={<Verified />} />
 
       <Route path="login" element={<Login />} />
+      <Route path="chat" element={<RequireAuth component={Chat} />} />
       <Route path="" element={<RequireAuth component={Layout} />}>
         <Route index path="" element={<RequireAuth component={Posts} />} />
         <Route path="saved" element={<RequireAuth component={Saved} />} />
@@ -47,7 +48,7 @@ const AppRoutes = () => {
           path="friends"
           element={<RequireAuth component={FriendShip} />}
         />
-        <Route path="chat" element={<RequireAuth component={Chats} />} />
+        
 
         <Route path="id/:idNumber" element={<Profile />}>
           <Route index element={<UsersPosts />} />

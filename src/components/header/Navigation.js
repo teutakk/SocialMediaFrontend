@@ -5,7 +5,7 @@ import classes from "./Navigation.module.css";
 import UserChip from "../UserChip";
 import Notifications from "../notifications/Notifications";
 import SearchBar from "./SearchBar";
-import postify4 from "../../assets/images/postify4.png";
+import logo from "../../assets/images/Logo.png";
 import { HiXMark } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { selectUser, logoutUser } from "../../store/slices/authSlice";
@@ -71,7 +71,7 @@ const Navigation = () => {
           showNavigation ? classes.shown : ""
         }`}
       >
-        <img src={postify4} width={120} />
+        <img src={logo} width={120} />
         <ul className={classes.mobileRoutes}>
           <NavLink to={"/"} end>
             Home
@@ -104,7 +104,7 @@ const Navigation = () => {
             </svg>
           </span>
           <NavLink to="/" end className={classes["logo-route"]}>
-            <img src={postify4} alt="postify" />
+            <img src={logo} alt="postify" />
             {/* <div className={classes.textLogo}> */}
             {/* <p>p</p> */}
             {/* </div> */}
