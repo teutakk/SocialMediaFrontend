@@ -194,6 +194,11 @@
   transform: translateX(-18%);
 }
 
+.route-chat:hover::after {
+  content: "Chat";
+  transform: translateX(-18%);
+}
+
 .navigation-right {
   display: flex;
   align-items: center;
