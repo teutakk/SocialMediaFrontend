@@ -59,9 +59,12 @@ const Notifications = ({
         </p>
       </div>
       <div className={classes.notifications}>
-        {notifications.slice(0, 10).map((notification, index) => (
-          <SingleNotification key={index} notification={notification} />
-        ))}
+        {notifications
+          .slice(0, 10)
+          .reverse()
+          .map((notification, index) => (
+            <SingleNotification key={index} notification={notification} />
+          ))}
       </div>
       <div className={classes.footer}>
         <NavLink to={"notifications"}>See all</NavLink>
