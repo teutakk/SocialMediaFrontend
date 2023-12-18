@@ -4,6 +4,8 @@ import SingleNotification from "./SingleNotification";
 
 import { notifications } from "../../api/dummyData";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectNotifications } from "../../store/slices/notificationSlice";
 const Notifications = ({
   showNotifications,
   setShowNotifications,
@@ -13,6 +15,7 @@ const Notifications = ({
 }) => {
   const onClearHandler = () => {};
   const onMarkAllAsReadHandler = () => {};
+  const notifications = useSelector(selectNotifications);
 
   useEffect(() => {
     // we get the Notifications element
@@ -56,12 +59,12 @@ const Notifications = ({
         </p>
       </div>
       <div className={classes.notifications}>
-        {/* {notifications.map((notification) => (
-          <SingleNotification
-            key={notification.id}
-            notification={notification}
-          />
-        ))} */}
+        {notifications
+          .slice(0, 10)
+          .reverse()
+          .map((notification, index) => (
+            <SingleNotification key={index} notification={notification} />
+          ))}
       </div>
       <div className={classes.footer}>
         <NavLink to={"notifications"}>See all</NavLink>

@@ -11,16 +11,9 @@ import {
 } from "../store/slices/postsSlice";
 import Stories from "../components/Stories";
 import { selectUser } from "../store/slices/authSlice";
+import { getNotifications } from "../store/slices/notificationSlice";
 const Posts = () => {
   const posts = useSelector(selectPosts);
-  const dispatch = useDispatch();
-  const loggedInUser = useSelector(selectUser);
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-    console.log(loggedInUser?._id);
-    dispatch(fetchSavedPosts(loggedInUser?._id));
-  }, [loggedInUser, dispatch]);
 
   const reversePosts = [...posts].reverse();
   const postsShown = reversePosts.map((post, index) => (

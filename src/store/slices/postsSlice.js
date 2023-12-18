@@ -218,7 +218,7 @@ export const likePost = createAsyncThunk("posts/likePost", async (data) => {
       API_ROUTES.posts + "/" + data.postId + "/like",
       data
     );
-
+    response.data.postId = data.postId;
     return response.data;
   } catch (err) {
     throw Error(err.message.data.error);
@@ -490,9 +490,9 @@ export const postsSlice = createSlice({
       })
       .addCase(likePost.fulfilled, (state, action) => {
         state.status.like = "succeeded";
-
+        console.log("action payload: ", action.payload);
         const postsIndex = state.posts.findIndex(
-          (post) => post._id === action.payload.newLike.postId
+          (post) => post._id === action.payload.postId
         );
         state.posts[postsIndex].likes.push(action.payload.newLike);
       })

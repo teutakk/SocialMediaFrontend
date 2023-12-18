@@ -171,7 +171,6 @@ const PostContent = ({ post, type }) => {
         </div>
         <div className={classes.commentsAndShare}>
           <p>{post.comments?.length} comments</p>
-          <p>{post.shares} shares</p>
         </div>
       </div>
     </div>

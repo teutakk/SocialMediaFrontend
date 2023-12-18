@@ -362,7 +362,6 @@ const Profile = () => {
             Posts
           </NavLink>
           <NavLink to={"about"}>About</NavLink>
-          <NavLink to={"photos"}>Photos</NavLink>
           <NavLink to={"friends"}>Friends</NavLink>
           {profilePageUser?._id === loggedInUser?._id && (
             <NavLink to={"requests"}>Requests</NavLink>
