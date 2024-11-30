@@ -39,6 +39,7 @@ const initialState = {
 export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
   try {
     const response = await axiosInstance.get(API_ROUTES.posts);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     throw error; // Handle errors appropriately
@@ -52,7 +53,7 @@ export const fetchSavedPosts = createAsyncThunk(
       const response = await axiosInstance.get(
         API_ROUTES.savedPosts + "/" + id
       );
-      console.log("response: ", response.data);
+      // console.log("response: ", response.data);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data.error);
@@ -257,6 +258,7 @@ export const postsSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.posts = action.payload;
+        // console.log(action.payload);
         state.status.fetch = "succeeded";
       })
       .addCase(fetchPosts.rejected, (state, action) => {

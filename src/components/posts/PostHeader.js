@@ -44,7 +44,7 @@ const PostHeader = ({ post, type }) => {
       return savedPost.postId === post._id;
     });
 
-    console.log("isPostSaved: ", isPostSaved);
+    // console.log("isPostSaved: ", isPostSaved);
     if (isPostSaved !== -1) {
       setIsSaved(true);
     } else {

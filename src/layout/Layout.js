@@ -20,7 +20,7 @@ const Layout = () => {
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(getNotifications(loggedInUser?._id));
-    console.log(loggedInUser?._id);
+    // console.log(loggedInUser?._id);
     dispatch(fetchSavedPosts(loggedInUser?._id));
   }, [loggedInUser, dispatch]);
   return (

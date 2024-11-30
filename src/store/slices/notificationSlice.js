@@ -10,7 +10,7 @@ export const getNotifications = createAsyncThunk(
         API_ROUTES.posts + "/notifications",
         { userId: data }
       );
-      console.log("data: ", response);
+      // console.log("data: ", response);
       return response.data;
     } catch (err) {
       throw Error(err.message.data.error);
@@ -31,13 +31,13 @@ const notificationsSlice = createSlice({
     // You can add any additional synchronous reducers here
   },
   extraReducers: (builder) => {
-    builder
+  builder
       .addCase(getNotifications.pending, (state) => {
         state.status = "loading";
       })
       .addCase(getNotifications.fulfilled, (state, action) => {
         state.status = "succeeded";
-        console.log("actionpayload: ", action.payload.messages);
+        // console.log("actionpayload: ", action.payload.messages);
         state.notifications = action.payload.messages;
       })
       .addCase(getNotifications.rejected, (state, action) => {

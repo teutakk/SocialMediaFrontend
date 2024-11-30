@@ -16,6 +16,7 @@ import logo from "../assets/images/userSvg2.svg"
 const Rightsidebar = () => {
   const [suggestedFriends, setSuggestedFriends] = useState([]);
   const [sentRequestsMap, setSentRequestsMap] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -23,6 +24,8 @@ const Rightsidebar = () => {
   const sentRequests = useSelector((state) => state.friendship.sentRequests);
   const userId = loggedInUser?._id;
 
+
+  //Kjo osht per me i marrë sugjerimet e per Shokë nga backend endpoint
   useEffect(() => {
     const fetchSuggestedFriends = async (userId) => {
       try {
@@ -30,6 +33,7 @@ const Rightsidebar = () => {
           userId,
         });
         setSuggestedFriends(response?.data?.data);
+        setLoading(true);
       } catch (error) {
         console.log(error);
       }
@@ -37,6 +41,7 @@ const Rightsidebar = () => {
     fetchSuggestedFriends(userId);
   }, [userId]);
 
+  // Me i marrë Friend Requestat qe ja u ka dergu useri qe osht i bom logged in
   useEffect(() => {
     const handleGetSentRequests = async (userId) => {
       try {
@@ -55,10 +60,11 @@ const Rightsidebar = () => {
     sentRequests.forEach((request) => {
       updatedMap[request?.requestTo?._id] = true;
     });
-
+    // console.log(updatedMap); rezultati ne console -> 652e836b29f693cb794f2d34 : true
     setSentRequestsMap(updatedMap);
   }, [sentRequests]);
 
+  // Function to Send a Friend Request from the RightSideBar/Suggested Friends List
   const sendFriendRequest = ({ recipientUserId, senderUserId }) => {
     dispatch(sendFriendRequestAsync({ recipientUserId, senderUserId }))
       .then(() => {
@@ -69,14 +75,14 @@ const Rightsidebar = () => {
       });
   };
 
-  console.log("suggested friends: ", suggestedFriends);
+  // console.log("suggested friends: ", suggestedFriends);
 
   return (
     <section className={classes.Rightsidebar}>
       <h3>Suggested for you</h3>
       <div className={classes["friends-holder"]}>
         {suggestedFriends?.map((friend) => (
-          <div className={classes["one-friend"]}>
+          <div key={friend._id} className={classes["one-friend"]}>
             <NavLink
               to={`id/${friend._id}`}
               key={friend._id}

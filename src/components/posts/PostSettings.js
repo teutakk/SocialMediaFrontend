@@ -15,7 +15,7 @@ const PostSettings = ({
   handleDeleteClick
 }) => {
   const loggedInUser = useSelector(selectUser);
-  console.log('showModal: ', showOptions)
+  // console.log('showModal: ', showOptions)
   const handleEditClick = () => {
     showModal();
   };

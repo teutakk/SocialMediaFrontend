@@ -219,7 +219,7 @@ useEffect(()=> {
   </button>
 </div>
 </>;
-console.log('isPosting: ', isPosting)
+// console.log('isPosting: ', isPosting)
   if(isPosting) {
     content = <div className={classes.creatingPost}>
     <FaSpinner className={classes.spinner}/>
