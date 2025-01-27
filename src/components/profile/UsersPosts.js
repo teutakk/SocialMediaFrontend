@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectProfilePageUser } from "../../store/slices/profileSlice";
 import { selectPosts } from "../../store/slices/postsSlice";
@@ -7,8 +7,13 @@ import SinglePost from "../posts/SinglePost";
 import classes from "./UsersPosts.module.css";
 
 const UsersPosts = () => {
+  
+  const [currentPosts, setCurrentPosts] = useState([])
+  const [visibleCount, setVisibleCount] = useState(5)
+
   const profilePageUser = useSelector(selectProfilePageUser);
   const posts = useSelector(selectPosts);
+
   const profilePageUserPosts = posts.filter(
     (post) => post.userId === profilePageUser._id
   );

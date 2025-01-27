@@ -54,8 +54,11 @@ const EditProfileModal = ({ isOpen, onClose }) => {
     try {
       setPictureLoading(true)
       const formData = new FormData();
+
       for (let i = 0; i < selectedImages.length; i++) {
+
         formData.append("profilePicture", selectedImages[i]);
+        
       }
       const res = await axiosInstance.put(`${API_ROUTES.addProfilePic}${userId}`, formData,  {headers: {
         'Content-Type': 'multipart/form-data',

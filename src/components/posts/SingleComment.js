@@ -101,7 +101,7 @@ const SingleComment = ({post, postId, comment }) => {
       console.error("Error deleting comment:", error);
     }
   };
-
+  // console.log("Profile picture URL:", comment?.commenterProfilePicture);
   return (
     <div className={classes.SingleComment}>
       <UserChip
@@ -111,6 +111,7 @@ const SingleComment = ({post, postId, comment }) => {
             ? logo
             : comment?.commenterProfilePicture
         }
+        link={`/id/${comment?.userId}`}
       />
       <div className={classes.CommentContent}>
         <div className={classes.CommentSection}>
@@ -128,7 +129,7 @@ const SingleComment = ({post, postId, comment }) => {
             </div>
           </div>
           <p>{comment.content}</p>
-        </div>
+      </div>
         <div className={classes.Actions}>
           <button
             className={isLiked ? classes.liked : ""}

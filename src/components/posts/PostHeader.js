@@ -93,10 +93,14 @@ const PostHeader = ({ post, type }) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showOptions]);
-  const inputDate = parseISO(post.createdAt);
-  const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+  // const inputDate = parseISO(post.createdAt);
 
   useEffect(() => {
+    if (!post?.createdAt) return;
+
+    const inputDate = parseISO(post.createdAt);
+    const timeAgo = formatDistanceToNow(inputDate, { addSuffix: true });
+
     if (timeAgo.includes("minutes")) {
       // Display time in minutes
       setDisplayTime(timeAgo);
@@ -120,7 +124,7 @@ const PostHeader = ({ post, type }) => {
         setDisplayTime(formattedDate);
       }
     }
-  }, [inputDate, timeAgo]);
+  }, [post?.createdAt]);
 
   const handleDeleteClick = async () => {
     try {

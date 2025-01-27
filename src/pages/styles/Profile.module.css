@@ -16,10 +16,23 @@
 .cover {
   height: 100%;
   position: relative;
+  border: 2px solid red;
+  max-width: 1150px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  /* object-fit: cover; */
+  /* width: 100vw;  */
+  margin: 0 auto;
+  /* background-color: rgb(16, 151, 151); */
+} 
+.coverImg{
+  height: 100%;
+  position: relative;
   max-width: 1150px;
   /* width: 100vw;  */
   margin: 0 auto;
-  background-color: rgb(16, 151, 151);
+  border: 2px solid red;
 }
 
 .profile-pic {

@@ -1,10 +1,11 @@
 import React, { useRef } from "react";
 import classes from "./UserChip.module.css";
 import { FaUserCircle } from "react-icons/fa";
-const UserChip = ({ url, width, heigth }) => {
+import { Link } from "react-router-dom";
+const UserChip = ({ url, width, heigth, link }) => {
   return (
     <div style={{ width: width, height: heigth }} className={classes.UserChip}>
-      {url ? <img src={url} alt="userphoto" /> : <FaUserCircle />}
+      <Link to={link}>{url ? <img src={url} alt="userphoto" /> : <FaUserCircle />}</Link>
     </div>
   );
 };

@@ -69,6 +69,10 @@ export const updateUserDetails = createAsyncThunk(
 
       console.log("old user response");
       console.log(response);
+      // if (response.ok) {
+      //   // Optionally refresh comments here
+      //   dispatch(fetchComments());
+      // }  
       return response;
     } catch (error) {
       console.error("Error saving user details:", error);

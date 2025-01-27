@@ -23,6 +23,8 @@ import { FaSpinner } from "react-icons/fa";
 import { selectPosts } from "../store/slices/postsSlice";
 import EditProfileModal from "../components/profile/editProfile/EditProfileModal";
 import logo from "../assets/images/userSvg2.svg";
+import axiosInstance from "../api/axiosInstance";
+import { API_ROUTES } from "../api/apiConfig";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +32,9 @@ const Profile = () => {
   const [isSentRequest, setIsSentRequest] = useState(false);
   const [acceptFriend, setAcceptFriend] = useState(false);
   const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [imagePreview, setImagePreview] = useState();
+  const [selectedImages, setSelectedImages] = useState([]);
+
   const params = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -227,24 +232,73 @@ const Profile = () => {
     };
     getProfileViews();
   }, [dispatch, userId, loggedInUser?.views, profilePageUser?._id]);
+  
+  
+  const openFileInput = (e) => {
+    document.getElementById("fileInput").click();
+  };
+
+  const previewImage = (input) => {
+
+    const file = input.files[0];
+
+    const selectedFiles = [file];
+
+    setSelectedImages(selectedFiles);
+    
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+  const handlePictureSubmit = async() => {
+    try {
+      
+      const formData = new FormData();
+
+      for (let i = 0; i < selectedImages.length; i++) {
+
+        formData.append("coverPicture", selectedImages[i]);
+        
+      }
+      const res = await axiosInstance.post(`${API_ROUTES.addCoverPic}${userId}`, formData,  {headers: {
+        'Content-Type': 'multipart/form-data',
+      }})
+      dispatch(fetchUserProfile(`/${params.idNumber}`));
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <div className={classes.Profile}>
       <section className={classes["profile-header"]}>
-        <div className={classes.cover}>
-          <label
+        <div className={classes.cover} style={{backgroundImage: `url(${imagePreview ? imagePreview : loggedInUser?.coverPicture.length === 0 ? logo : loggedInUser?.coverPicture})`}}>
+          {/* <img className={classes.coverImg} 
+          src={imagePreview ? imagePreview : loggedInUser?.profilePicture} 
+            
+          /> */}
+          {loggedInUser?._id === profilePageUser?._id && <div
             className={classes["cover-photo-uploader"]}
             htmlFor="profile-photo"
           >
             <FiCamera />
-            <p>Add a cover photo</p>
+            <p onClick={openFileInput}>Add a cover photo</p>
+            <button disabled={!selectedImages || !imagePreview} onClick={handlePictureSubmit} type="submit">Add a cover photo</button>
             <input
               type="file"
               accept="images/*"
-              name="profile-photo"
-              id="profile-photo"
+              name="coverPicture"
+              id="fileInput"
+              onChange={(e) => previewImage(e.target)}
             />
-          </label>
+          </div>}
 
           <div className={classes["profile-pic"]}>
             <img

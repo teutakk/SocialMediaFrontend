@@ -26,7 +26,8 @@ const API_ROUTES = {
   getSentRequests: "/get-send-request",
   cancelFriendRequest: "/cancel-request",
   profileViews: "/profile-view",
-  addProfilePic: "/users/profilePicture/" //:userId
+  addProfilePic: "/users/profilePicture/", //:userId
+  addCoverPic: "/users/coverPicture/" //:userId
 };
 
 export { BASE_URL, API_ROUTES };
